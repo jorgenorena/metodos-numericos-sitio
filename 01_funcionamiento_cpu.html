@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>¿Cómo funciona un computador? – Métodos Numéricos y Probabilidades 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Métodos Numéricos y Probabilidades 2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Acerca de</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clases" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Clases</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-clases">    
+        <li class="dropdown-header">Unidad 1: Introducción</li>
+        <li>
+    <a class="dropdown-item" href="./01_funcionamiento_cpu.html">
+ <span class="dropdown-text">Funcionamiento de la CPU</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_funcionamiento_cpu.html">Unidad 1: Introducción</a></li><li class="breadcrumb-item"><a href="./01_funcionamiento_cpu.html">Funcionamiento de la CPU</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 1: Introducción</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_funcionamiento_cpu.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Funcionamiento de la CPU</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#la-conducción-eléctrica" id="toc-la-conducción-eléctrica" class="nav-link active" data-scroll-target="#la-conducción-eléctrica">La conducción eléctrica</a>
+  <ul class="collapse">
+  <li><a href="#semiconductores" id="toc-semiconductores" class="nav-link" data-scroll-target="#semiconductores">Semiconductores</a></li>
+  </ul></li>
+  <li><a href="#el-transistor" id="toc-el-transistor" class="nav-link" data-scroll-target="#el-transistor">El transistor</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-un-transistor" id="toc-qué-es-un-transistor" class="nav-link" data-scroll-target="#qué-es-un-transistor">¿Qué es un transistor?</a></li>
+  <li><a href="#cómo-funciona-físicamente" id="toc-cómo-funciona-físicamente" class="nav-link" data-scroll-target="#cómo-funciona-físicamente">¿Cómo funciona físicamente?</a></li>
+  </ul></li>
+  <li><a href="#compuertas-lógicas" id="toc-compuertas-lógicas" class="nav-link" data-scroll-target="#compuertas-lógicas">Compuertas lógicas</a>
+  <ul class="collapse">
+  <li><a href="#compuerta-and" id="toc-compuerta-and" class="nav-link" data-scroll-target="#compuerta-and">Compuerta <code>AND</code></a></li>
+  <li><a href="#compuerta-or" id="toc-compuerta-or" class="nav-link" data-scroll-target="#compuerta-or">Compuerta <code>OR</code></a></li>
+  <li><a href="#compuerta-nand" id="toc-compuerta-nand" class="nav-link" data-scroll-target="#compuerta-nand">Compuerta <code>NAND</code></a></li>
+  <li><a href="#compuerta-xor" id="toc-compuerta-xor" class="nav-link" data-scroll-target="#compuerta-xor">Compuerta <code>XOR</code></a></li>
+  </ul></li>
+  <li><a href="#operaciones-aritméticas" id="toc-operaciones-aritméticas" class="nav-link" data-scroll-target="#operaciones-aritméticas">Operaciones aritméticas</a>
+  <ul class="collapse">
+  <li><a href="#binarios" id="toc-binarios" class="nav-link" data-scroll-target="#binarios">Binarios</a></li>
+  <li><a href="#la-media-suma" id="toc-la-media-suma" class="nav-link" data-scroll-target="#la-media-suma">La media suma</a></li>
+  <li><a href="#sumador-completo" id="toc-sumador-completo" class="nav-link" data-scroll-target="#sumador-completo">Sumador completo</a></li>
+  <li><a href="#suma-de-varios-dígitos" id="toc-suma-de-varios-dígitos" class="nav-link" data-scroll-target="#suma-de-varios-dígitos">Suma de varios dígitos</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_funcionamiento_cpu.html">Unidad 1: Introducción</a></li><li class="breadcrumb-item"><a href="./01_funcionamiento_cpu.html">Funcionamiento de la CPU</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">¿Cómo funciona un computador?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="la-conducción-eléctrica" class="level1">
+<h1>La conducción eléctrica</h1>
+<p>Lo que hace un computador es mover un montón de electrones. Para entender el computador, debemos entender cómo se mueven estas partículas en diferentes materiales. No entraremos en muchos detalles, pero necesitamos un par de hechos</p>
+<ul>
+<li><p>Los portadores de carga son los electrones: Los protones también tienen carga, pero son mucho más pesados y difíciles de mover. Las corrientes eléctricas consisten en electrones débilmente ligados que se mueven de un lugar a otro.</p></li>
+<li><p>El principio de exclusión de Pauli: Dos electrones no pueden tener el mismo estado. Si tenemos un átomo completamente ionizado (sin electrones) y le agregamos un electrón, éste tenderá a ocupar el estado de mínima energía. Al llegar un segundo electrón, no puede estar en el mismo estado, así que ocupa otro. A medida que llenamos el átomo de electrones, estos ocuparán estados de energías más altas (menos ligados al átomo).</p></li>
+<li><p>Al poner muchos átomos juntos en un material, los niveles de energía se mezclan formando bandas de energía. Estas bandas pueden acomodar muchos electrones. La energía máxima ocupada por un electrón cuando llenamos el material ignorando los efectos de la temperatura se llama energía de Fermi. Las bandas de energía por encima de las de Fermi están vacías a bajas temperaturas.</p></li>
+<li><p>Si la energía de Fermi cae en el medio de una banda de energía, el material es un <strong>conductor</strong>. Los electrones pueden adquirir un poco de energía cinética sin salirse de la banda y así moverse por el material.</p></li>
+<li><p>Si la energía de Fermi cae en la separación de dos bandas, el material es un <strong>aislante</strong>. Si un electrón quiere moverse, debe adquirir un poco de energía cinética, pero no puede ya que su banda está llena. A ese electrón le queda difícil adquirir suficiente energía cinética para pasar de la última banda llena a la primera banda vacía.</p></li>
+</ul>
+<section id="semiconductores" class="level2">
+<h2 class="anchored" data-anchor-id="semiconductores">Semiconductores</h2>
+<p>Un semiconductor es un aislante pero tal que la última banda llena está muy cerca de la primera banda vacía.</p>
+<p>Normalmente los semiconductores se <em>dopan</em>. Es decir, se les agrega una pequeña cantidad de átomos diferentes a los del material, pero que se encuentran cercanos en la tabla periódica.</p>
+<p>Esto quiere decir que esos átomos de dopaje les sobra o les falta un electrón respecto a los del material. Cuando les falta un electrón, se dice que son de <em>tipo p</em>, cuando les sobra uno son de <em>tipo n</em>.</p>
+<p>A continuación vemos el estado de las bandas de conducción para diferentes tipos de materiales. Cuando una banda tiene una región semillena (gris), esta puede conducir electricidad fácilmente. (Fuente: Wikipedia)</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1i28ukmuHDm9a7mWpeucz-u6jIDXCj-iy" width=200 alt="Bandas de conducción para diferentes tipos de materiales"> -->
+<p><img src="imgs/Band_filling_diagram.png" width="200" alt="Bandas de conducción para diferentes tipos de materiales"></p>
+<p>¿Para qué sirve eso? Una aplicación sencilla son los diodos. Estos consisten en una juntura de un semiconductor tipo p con uno de tipo n.&nbsp;Los electrones sobrantes en el tipo n pueden viajar hacia el tipo p para llenar los huecos presentes en este. Pero si se aplica un voltaje en la dirección opuesta, no puede pasar corriente. El diodo deja pasar corriente en una sola dirección.</p>
+<p>También sirven para hacer transistores, que son las componentes fundamentales del computador.</p>
+</section>
+</section>
+<section id="el-transistor" class="level1">
+<h1>El transistor</h1>
+<p>A su nivel más básico, un procesador no es más que un montón de transistores.</p>
+<section id="qué-es-un-transistor" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-un-transistor">¿Qué es un transistor?</h2>
+<p>Un transistor es un componente electrónico que tiene tres “cables”. Para nuestros propósitos aquí podemos pensar en él como un switch: Cuando el voltaje en un cable supera un cierto valor (Típicamente <span class="math inline">\(5\,\text{V}\)</span>), puede pasar corriente entre los otros dos cables.</p>
+</section>
+<section id="cómo-funciona-físicamente" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-funciona-físicamente">¿Cómo funciona físicamente?</h2>
+<p>El transistor más usado es el de efecto campo. Consiste en semiconductores de tipo n y p en la siguiente configuración:</p>
+<p>Hay una diferencia de potencial entre el lado izquierdo y el derecho, pero la corriente no puede pasar debido al mismo efecto que en el díodo.</p>
+<p>Pero si en el cable del medio se aplica un potencial positivo que atrae electrones, eso elimina los huecos del semiconductor tipo p y crea un canal por el cual puede fluir la corriente.</p>
+<p>Este es un diagrama del transistor de efecto de campo (Fuente: Wikipedia):</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1Mc7V-KB_Q21XGRaZ24WKBowD80DKMUN3" width=200 alt="Diagrama de un transistor de efecto de campo"> -->
+<p><img src="imgs/Lateral_mosfet.png" width="200" alt="Diagrama de un transistor de efecto de campo"></p>
+<p>El símbolo del transistor es el siguiente (Fuente: Wikipedia)</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1QbKsxCqdW15r09GeWMtvrHlOVt0LlJeK" width=200 alt="Símbolo de un transistor"> -->
+<p><img src="imgs/Transistor_symbol.png" width="200" alt="Símbolo de un transistor"></p>
+<p>Cuando hay voltaje en la compuerta, la corriente puede fluir entre la fuente y el drenaje.</p>
+</section>
+</section>
+<section id="compuertas-lógicas" class="level1">
+<h1>Compuertas lógicas</h1>
+<p>¿Qué podemos hacer con los transistores? Muchas cosas en electrónica, pero aquí nos enfocaremos en las <em>compuertas lógicas</em> que forman la base del procesador.</p>
+<p>Una compuerta lógica es un circuito que implementa las operaciones booleanas como <code>y</code>, <code>o</code>, <code>no</code>. Se pueden construir a partir de transistores.</p>
+<p>La idea es que un voltaje mayor a <span class="math inline">\(\sim 5\,\text{V}\)</span> se interpreta como <span class="math inline">\(1\)</span> o <code>true</code>, y un voltaje menor que eso se interpreta como <span class="math inline">\(0\)</span> o <code>false</code>.</p>
+<p>A continuación los diagramas para las principales compuertas lógicas:</p>
+<section id="compuerta-and" class="level2">
+<h2 class="anchored" data-anchor-id="compuerta-and">Compuerta <code>AND</code></h2>
+<p>Este es el diagrama de la compuerta que implementa la operación booleana <code>y</code> (Fuente: Wikipedia)</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=17a3p0duan8IcNTbd3AbTpBumRNNFUY8E" width=200 alt="Símbolo de la compuerta AND"> -->
+<p><img src="imgs/AND_symbol.png" width="200" alt="Símbolo de la compuerta AND"></p>
+<p>Representa la operación <span class="math inline">\(A\wedge B = Q\)</span>.</p>
+<p>Se puede realizar mediante transistores de la siguiente manera</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1BUCbd7v3YiFP41sNFnax_iUB3UFFRL20" width=200 alt="Compuerta AND hecha con transistores"> -->
+<p><img src="imgs/and.gif" width="200" alt="Compuerta AND hecha con transistores"></p>
+<p>Fuente: http://hyperphysics.phy-astr.gsu.edu/hbase/Electronic/trangate.html</p>
+</section>
+<section id="compuerta-or" class="level2">
+<h2 class="anchored" data-anchor-id="compuerta-or">Compuerta <code>OR</code></h2>
+<p>Este es el diagrama de la compuerta que implementa la operación booleana <code>o</code> (Fuente: Wikipedia)</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1tfRodcUpkv-fNK826EMS_atZFpwI3PAD" width=200 alt="Símbolo de la compuerta OR"> -->
+<p><img src="imgs/OR_symbol.png" width="200" alt="Símbolo de la compuerta OR"></p>
+<p>Representa la operación <span class="math inline">\(A\vee B = Q\)</span>.</p>
+<p>Se puede realizar mediante transistores de la siguiente manera</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1Lu0IhNrSjY2pNZAwl_82gsW3dhwIeIYX" width=200 alt="Compuerta OR hecha con transistores"> -->
+<p><img src="imgs/or.gif" width="200" alt="Compuerta OR hecha con transistores"></p>
+<p>Fuente: http://hyperphysics.phy-astr.gsu.edu/hbase/Electronic/trangate.html</p>
+</section>
+<section id="compuerta-nand" class="level2">
+<h2 class="anchored" data-anchor-id="compuerta-nand">Compuerta <code>NAND</code></h2>
+<p>Este es el diagrama de la compuerta que implementa la operación booleana <code>no y</code> (Fuente: Wikipedia)</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1rNBK8TiCzbew9ld6MBQlkMLL-V-uLDXU" width=200 alt="Símbolo de la compuerta nand"> -->
+<p><img src="imgs/NAND_symbol.png" width="200" alt="Símbolo de la compuerta nand"></p>
+<p>Representa la operación <span class="math inline">\(\neg(A\wedge B) = Q\)</span>.</p>
+<p>Se puede realizar mediante transistores de la siguiente manera</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1bk6U7LMaNXIpbUnRnZcxtvxzZkowuKje" width=200 alt="Compuerta nand hecha con transistores"> -->
+<p><img src="imgs/nand.gif" width="200" alt="Compuerta nand hecha con transistores"></p>
+<p>Fuente: http://hyperphysics.phy-astr.gsu.edu/hbase/Electronic/trangate.html</p>
+<p>Esta compuerta es muy importante ya que es una compuerta <em>universal</em>: Cualquier otra compuerta se puede construir combinando <code>NAND</code>s. Por ejemplo implementa la compuerta <code>NOT</code> mediante <span class="math inline">\(\neg A = \neg(A \wedge A)\)</span>.</p>
+</section>
+<section id="compuerta-xor" class="level2">
+<h2 class="anchored" data-anchor-id="compuerta-xor">Compuerta <code>XOR</code></h2>
+<p>Este es el diagrama de la compuerta que implementa la operación booleana <code>no exclusivo</code> (Fuente: Wikipedia)</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1o-1V3BGI7hpQ45z9BM9mVuEmYniZ3Jj9" width=200 alt="Símbolo de la compuerta XOR"> -->
+<p><img src="imgs/XOR_symbol.png" width="200" alt="Símbolo de la compuerta XOR"></p>
+<p>Representa la operación <span class="math inline">\(A \oplus B = Q\)</span>, que tiene la siguiente tabla de verdad</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>Q</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Como realizarla con transistores se deja como un ejercicio opcional para el estudiante.</p>
+<p>Esta compuerta corresponde al uso corriente de la palabra “o” en español. Es decir, es verdad cuando uno u otro es verdad, pero no cuando ambos lo son.</p>
+<p>Será importante en la siguiente sección.</p>
+</section>
+</section>
+<section id="operaciones-aritméticas" class="level1">
+<h1>Operaciones aritméticas</h1>
+<p>Combinando compuertas lógicas el computador puede realizar operaciones aritméticas como sumas, multiplicaciones, divisiones. Estas se combinan para hacer los cálculos numéricos que expondremos en el resto del curso.</p>
+<p>Aquí construiremos solamente un circuito para sumar dos números enteros positivos. Esto es a modo de muestra de cómo la CPU puede hacer operaciones de este estilo.</p>
+<section id="binarios" class="level2">
+<h2 class="anchored" data-anchor-id="binarios">Binarios</h2>
+<p>El computador combina <span class="math inline">\(1\)</span> y <span class="math inline">\(0\)</span> para formar números. Es decir que usa una <em>base binaria</em>.</p>
+<p>Estamos acostumbrados a la base decimal en la cual los dígitos van de <span class="math inline">\(0\)</span> a <span class="math inline">\(9\)</span>. Cuando llegamos a un número mayor que <span class="math inline">\(9\)</span>, necesitamos un nuevo dígito que representa las decenas y así sucesivamente.</p>
+<p>En la base binaria, tenemos sólo los dígitos <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span> que se pueden trabajar como voltajes en los circuitos que vimos arriba. Esto quiere decir que el número <span class="math inline">\(10\)</span> en binario representa el número <span class="math inline">\(2\)</span> en decimal. Por el contrario, el número <span class="math inline">\(10\)</span> en decimal se escribe <span class="math inline">\(1010\)</span> en binario.</p>
+<p>Se recomienda que la estudiante intente escribir por su cuenta algunos números más en base binaria.</p>
+</section>
+<section id="la-media-suma" class="level2">
+<h2 class="anchored" data-anchor-id="la-media-suma">La media suma</h2>
+<p>Empezamos por el elemento más sencillo: Sumar dos números enteros positivos binarios de un solo dígito.</p>
+<p>Para sumar los números <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> guardamos el resultado en <span class="math inline">\(S\)</span> que también tiene un solo dígito. Si el resultado tiene más de un dígito, el dígito adicional “se lleva” guardándolo en <span class="math inline">\(C\)</span>. De esta manera</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>S</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Note que <span class="math inline">\(S = A\oplus B\)</span> y que <span class="math inline">\(C = A \wedge B\)</span>, tal que esto se puede lograr con el siguiente circuito (Fuente: Wikipedia)</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1sZcTfQqQ0WHLP31tk3NHarqbdbD4S8MW" width=200 alt="Circuito de media suma"> -->
+<p><img src="imgs/Half_Adder.png" width="200" alt="Circuito de media suma"></p>
+<p>A un chip que realiza esto lo representamos mediante</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1iY7DKkcUe0dzPGLqu-IM8lE5bwg2gHY7" width=200 alt="Circuito de media suma"> -->
+<p><img src="imgs/1-bit_half-adder.png" width="200" alt="Circuito de media suma"></p>
+</section>
+<section id="sumador-completo" class="level2">
+<h2 class="anchored" data-anchor-id="sumador-completo">Sumador completo</h2>
+<p>Ahora nos preguntamos qué pasa si estamos sumando dos dígitos binarios, pero además queremos sumar un tercero que se “lleva” de la suma de dígitos anteriores. Ahora tenemos tres binarios <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C_{in}\)</span> con la siguiente tabla de verdad</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(B\)</span></th>
+<th><span class="math inline">\(C_{in}\)</span></th>
+<th><span class="math inline">\(S\)</span></th>
+<th><span class="math inline">\(C_{out}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Un posible circuito que lo logra es (fuente: Wikipedia)</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1bTDQbIh5AWx0cjVNHllmsLGE5iYKl9WN" width=200 alt="Circuito de suma"> -->
+<p><img src="imgs/Full_Adder.png" width="200" alt="Circuito de suma"></p>
+<p>Un chip que realiza esto lo podemos denotar</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=1paKrwGkrM6VIHFIfQ-hA9_uKncQsL9ew" width=200 alt="Circuito de media suma"> -->
+<p><img src="imgs/1-bit_full-adder.png" width="200" alt="Circuito de media suma"></p>
+</section>
+<section id="suma-de-varios-dígitos" class="level2">
+<h2 class="anchored" data-anchor-id="suma-de-varios-dígitos">Suma de varios dígitos</h2>
+<p>Ahora podemos encadenar varios chips de estos para sumar un número de cuatro bits (cuatro dígitos binarios)</p>
+<!-- <img src="https://docs.google.com/uc?export=download&id=14tl5ZgUNcpTEDRGyW_3RTnveHHU5F10t" width=200 alt="Circuito de suma de varios dígitos"> -->
+<p><img src="imgs/4-bit_ripple_carry_adder.png" width="200" alt="Circuito de suma de varios dígitos"></p>
+<p>Este es sólo un ejemplo de cómo a partir de semiconductores podemos realizar operaciones aritméticas.</p>
+<p>Los procesadores modernos trabajan con números de 64 bits, realizando operaciones como esta miles de millones de veces por segundo. Obviamente no usan solamente números enteros positivos, también usan números decimales (llamados de punto flotante) que estudiaremos en un par de clases.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jorgenorena\.github\.io\/metodos-numericos-sitio\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
