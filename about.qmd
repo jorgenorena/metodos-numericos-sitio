@@ -1,0 +1,9 @@
+---
+title: "Acerca de este sitio"
+---
+
+Versión: 0.0.1 (trabajo en progreso)
+
+Estas son las notas de clases del curso de Métodos Numéricos y Probabilidades 2025. El curso es parte del plan de estudios de la licenciatura en física de la Pontificia Universidad Católica de Valparaíso, Chile. Dictado por el profesor Jorge Noreña, el curso cubre temas fundamentales de métodos numéricos y probabilidad aplicados a la física.
+
+Una pequeña parte de estos apuntes fue escrita con la ayuda de inteligencia artificial, revisado y corregido por el profesor.

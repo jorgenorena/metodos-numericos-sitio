@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: _site
+
+execute:
+  cache: true
+
+website:
+  title: "Métodos Numéricos y Probabilidades 2025"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inicio
+      - href: about.qmd
+        text: Acerca de
+      - text: Clases
+        menu:
+          - text: "Unidad 1: Introducción"
+          - text: "Funcionamiento de la CPU"
+            href: 01_funcionamiento_cpu.qmd
+  sidebar:
+    style: docked
+    contents:
+      - section: "Unidad 1: Introducción"
+        contents:
+          - text: "Funcionamiento de la CPU"
+            href: 01_funcionamiento_cpu.qmd
+            
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+    sidebar:
+      style: floating
+      collapse-level: 2
+
+
+

@@ -1,0 +1,122 @@
+---
+title: "Métodos Numéricos y Probabilidades 2025"
+lang: es
+---
+
+# Motivación
+
+Las (los) físicas (os) siempre han llevado la punta de lanza del desarrollo tecnológico. Desde la revolución industrial hasta el desarrollo de la computación cuántica, los (las) físicos (as) han tenido un manejo profundo de la tecnología que les permite hacer nuevos descubrimientos o inventos. Esto es aún más cierto en el siglo XXI, en el cual la mayoría de las (los) licenciadas (os) en física de los países de alto desarrollo tecnológico trabajan en el sector privado creando y mejorando las herramientas informáticas, financieras y estadísticas que usamos todos los días. Esto se debe a que a lo largo de sus carreras adquieren un conocimiento íntimo de la tecnología de punta al intentar aplicarla a problemas científicos abiertos.
+
+Son muy pocos los problemas que admiten una solución sencilla de lápiz y papel. Para la mayoría de nuevos desarrollos es necesario usar el computador. Esto es verdad tanto para analizar los datos obtenidos en los experimentos, como para resolver las ecuaciones diferenciales que aparecen en la física teórica. Incluso quienes hacen un trabajo puramente analítico se apoyan en herramientas computacionales para los cálculos que son cada vez más complejos.
+
+En este curso aprenderemos a usar las herramientas numéricas disponibles para atacar problemas físicos y al hacerlo aprenderemos a usar plataformas, paquetes y lenguajes de programación modernos.
+
+# Lecturas Sugeridas
+
+- R. L. Burden, D. J. Faires, A. M. Burden, “Numerical Analysis”, 10ma edición, Cengage Learning, 2016 (NA)
+- T. A. Driscoll, R. J. Braun, “Funamentals of Numerical Computation”, 2da edición, SIAM, 2022 (FNC)
+- B. R. Martin, “Statistics for Physical Sciences”. Elsevier, 2012 (S)
+- A. B. Downey, “Think Python,” 2da edición, O’Reilly, 2015. (TP)
+
+# Programa
+
+Se indican las fechas y temas de cada clase, junto con las secciones de los
+libros a las que corresponden.
+
+1- Introducción
+
+  - ¿Cómo funciona una CPU?, 7 de agosto.
+  - Repaso de Python, 12 de agosto.
+  - Numpy y arrays, 14 de agosto.
+  - Representación binaria de números decimales, número de condicionamiento 19 de agosto
+  - Algoritmos y estabilidad 21 de agosto
+
+2- Probabilidades
+
+  - Propiedades básicas de la probabilidad, 26 de agosto
+  - Distribuciones de probabilidad, 28 de agosto
+  - Varias variables aleatorias, 2 de septiembre
+  - Suma de muchas variables aleatorias y teorema central del límite, 4 de septiembre
+  - Información y entropía, 9 de septiembre
+
+Prueba: 23 de septiembre
+
+3- Cálculo numérico
+
+  - Solución de sistemas de ecuaciones lineales: Inversión de matrices, 11 de septiembre
+  - Búsqueda de raíces: Métodos de bisección y Newton, 25 de septiembre
+  - Interpolación, 30 de septiembre
+  - Derivadas numéricas y autodiferenciación, 2 de octubre
+  - Integración numérica simple y adaptativa, 7 de octubre
+  - Integración numérica por método de Gauss, 9 de octubre
+
+Prueba: 16 de octubre
+
+4- Solución numérica de ecuaciones diferenciales ordinarias
+
+  - Métodos de Euler y Taylor, 14 de octubre
+  - Método de Runge Kutta, 21 de octubre
+  - Método de Runge Kutta adaptativo, 23 de octubre
+  - Métodos de múltiples pasos y método de Adams, 4 de noviembre
+  - Sistemas de ecuaciones diferenciales y ecuaciones de alto orden, 6 de noviembre
+
+Prueba: 13 de noviembre
+
+5- Optimización y otros algoritmos importantes
+
+  - Ajuste de curvas y bondad de ajuste, 11 de noviembre
+  - Optimización por descenso de gradiente, 18 de noviembre
+  - Introducción a las redes neuronales, 20 de noviembre
+  - Métodos de Monte Carlo y/o transformada rápida de Fourier, 25 de noviembre
+
+Recuperativa: 27 de noviembre
+Examen: Definido por Instituto
+
+# Evaluación
+
+La evaluación se hará por tareas y pruebas.
+
+Al final de cada clase habrán 5 tareas para un total de 10 tareas cada dos clases. De estas 10 tareas se le asignará de forma aleatoria una tarea a cada estudiante. De esta manera el estudiante deberá entregar aproximadamente 11 tareas a lo largo del curso. El 50% de la nota final es el promedio de las notas de las tareas.
+
+Las tareas se entregan dos clases después de haber sido asignadas.
+
+Se evaluará lo siguiente:
+
+El código funciona (4 puntos): Si el código pedido hace lo que deberíacumplir sin errores en ningún caso, la estudiante obtendrá los 4 puntos. Si existen casos especiales en los cuales el código no funciona, pero funciona en la mayoría de los casos, la estudiante obtendrá 3 puntos. Si el código no funciona pero el error es menor (algún detalle de sintaxis, alguna variable mal nombrada, alguna excepción de Python difícil de prever), el estudiante obtendrá 2 puntos. Si el código no funciona el estudiante obtendrá 1 punto. Si no entrega la tarea el estudiante obtendrá 0 puntos.
+
+El código es legible (+2 puntos): Si el código está comentado en cada paso el estudiante obtendrá +1 punto. Si el código es fácil de entender, está bien organizado, las variables tienen nombres que corresponden a lo que representan la estudiante obtendrá +1 punto.
+
+La nota de la tarea = # de puntos + 1.
+
+La otra mitad de la nota será el promedio de tres pruebas realizadas a lo largo del semestre. Las pruebas consisten en ejercicios sencillos basados en lo visto en clase y en las tareas.
+
+Las siguientes son las fechas de las pruebas:
+
+Prueba: 10 de septiembre
+Prueba: 5 de noviembre
+Prueba: 25 de noviembre
+Recuperativa: 26 de noviembre
+Examen: 10 de diciembre
+
+# Normas
+
+Los estudiantes no están obligados a ir a las ayudantías, pero obviamente quien asista estará mejor preparado para las pruebas y los exámenes porque sabrá cuáles son los problemas que entran. Las tareas se entregarán en formato electrónico por medio de la plataforma GitHub. Se usa esta en vez del Aula Virtual dado su uso extenso en el mundo profesional.
+
+Hágale preguntas al profesor a la dirección jorge.norena@pucv.cl, o en el horario de atención.  Hacer preguntas ayuda a aprender y hace más ameno el trabajo del profesor. La clase empieza puntual si hay al menos un estudiante presente, por respeto a los que llegan a tiempo.
+
+# Recomendaciones
+
+POR FAVOR HAGAN PREGUNTAS DURANTE LA CLASE, LAS AYUDANTÍAS, POR CORREO ELECTRÓNICO, EN LOS HORARIOS DE ATENCIÓN Y POR CUALQUIER OTRO MEDIO QUE PUEDA.
+
+Si quiere conversar hágalo por chat en su teléfono para que el ruido no distraiga a los demás. Use el teléfono para tomarle fotos a la pizarra cuando quiera recordar algo.
+
+# Horarios de atención y contacto
+
+Puede en cualquier momento hacer preguntas por correo electrónico.
+
+Correo electrónico profesor: jorge.norena@pucv.cl
+Correo electrónico de la ayudante: 
+
+También puede pasar por la oficina del profesor en cualquier momento.
+
+El horario de atención reservado es una hora después de cada clase.

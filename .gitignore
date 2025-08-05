@@ -1,0 +1,10 @@
+# Ignore datasets
+/data
+
+# Ignore Quarto files
+/.quarto/
+
+# Ignore Quarto rendered site
+/_site/
+_publish.yml
+.jupyter_cache/
