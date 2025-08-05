@@ -1,0 +1,758 @@
+---
+title: Repaso de Python
+jupyter: python3
+lang: es
+execute:
+  error: true
+---
+
+# Variables
+
+## Mi primer código
+
+```{python}
+print("Normalmente uno escribe: Hola, Mundo!")
+```
+
+```{python}
+2 + 3
+```
+
+```{python}
+2 * 3
+```
+
+```{python}
+2/3
+```
+
+```{python}
+2-3
+```
+
+```{python}
+2//3
+```
+
+```{python}
+2%3
+```
+
+```{python}
+2**3
+```
+
+## Tipos de valores
+
+```{python}
+type("Normalmente uno escribe: Hola, Mundo!")
+```
+
+```{python}
+type(2)
+```
+
+```{python}
+type(3.1)
+```
+
+## Variables y asignación
+
+```{python}
+mensaje = 'Normalmente uno escribe: Hola, Mundo!'
+```
+
+```{python}
+mensaje
+```
+
+```{python}
+n = 17
+```
+
+```{python}
+n
+```
+
+```{python}
+casi_pi = 3.1416
+```
+
+## Expresiones
+
+```{python}
+casi_pi + n
+```
+
+```{python}
+print(n)
+```
+
+## Orden de operaciones
+
+En Python los operadores tienen jerarquía:
+- Exponenciación
+- Multiplicación y división
+- Suma y resta
+Primero se evalúan los de mayor jerarquía. Cuando hay dos iguales se evalúa de izquierda a derecha.
+
+Cuando haya dudas, usar paréntesis, por ejemplo $2(3 - 1) = 4$
+
+```{python}
+2*(3 - 1)
+```
+
+Lo siguiente es $1 + 2^3 = 9$, muy distinto de $(1 + 2)^3 = 27$
+
+```{python}
+1 + 2**3
+```
+
+Esto es $2\times 3^2 = 18$ muy distinto de $(2\times 3)^2 = 36$
+
+```{python}
+2*3**2
+```
+
+```{python}
+2*3 - 1
+```
+
+```{python}
+6 + 4/2
+```
+
+¡Cuidado! Si quiero escribir $4/(2\times 2) = 1$ no lo puedo hacer de esta manera.
+
+```{python}
+4/2*2
+```
+
+```{python}
+4/2/2
+```
+
+```{python}
+4/(2*2)
+```
+
+## Comentarios
+
+```{python}
+# Este código no hace nada, es puro comentario
+```
+
+```{python}
+# Este código hace algo muy básico. Convierto mi pc en una calculadora cara
+2 + 3
+```
+
+## Errores y excepciones
+
+Error de sintaxis
+
+```{python}
+2 +
+```
+
+Otros tipos de errores
+
+```{python}
+print(2/0)
+```
+
+```{python}
+for i in j:
+    print(i)
+```
+
+```{python}
+def mistake(n):
+    for i in range(n):
+        print(10/i)
+```
+
+```{python}
+mistake(10)
+```
+
+# Expresiones booleanas
+
+Son expresiones que dan como resultado verdad (True) o falso (False). Los podemos usar para comparar 2 expresiones
+
+```{python}
+2 == 2
+```
+
+```{python}
+2 == 3
+```
+
+```{python}
+2 != 3
+```
+
+```{python}
+2 < 3
+```
+
+```{python}
+2 > 3
+```
+
+```{python}
+2 <= 3
+```
+
+```{python}
+x = 3
+y = 3
+```
+
+```{python}
+x <= y
+```
+
+```{python}
+x < y
+```
+
+```{python}
+x >= y
+```
+
+# Operadores lógicos
+
+Tenemos 3 operadores lógicos: No (not), Y (and), O (or). Veamos cómo funcionan
+
+```{python}
+x = True
+y = False
+```
+
+```{python}
+not x
+```
+
+```{python}
+not y
+```
+
+```{python}
+x and x
+```
+
+```{python}
+x and y
+```
+
+```{python}
+y and y
+```
+
+Cuidado, el "o" lógico es distinto del "o" usado en el lenguaje corriente. Cuando decimos que algo es blanco o negro queremos decir que no puede ser ambos a la vez, pero True or True da como resultado True. (El "o" del lenguaje corriente es más similar al operador "xor" lógico).
+
+```{python}
+x or x
+```
+
+```{python}
+x or y
+```
+
+```{python}
+y or y
+```
+
+# Evaluación condicional
+
+Ahora empezamos a programar. Vamos a necesitar que nuestro código tome deciciones. Si se cumple alguna condición el código puede hacer algo.
+
+```{python}
+#Velocidad en metros/segundo
+vel = 310000
+#Revisamos que la velocidad no sea demasiado grande
+if vel > 300000:
+    print("Error: La velocidad no puede ser mayor que la de la luz.")
+```
+
+```{python}
+#Velocidad en metros/segundo
+vel = 10000
+#Tiempo en segundos
+t = 10
+#Revisamos que la velocidad no sea demasiado grande
+if vel > 300000:
+    print("Error: La velocidad no puede ser mayor que la de la luz.")
+else:
+    #Calcula la distancia
+    dist = vel*t
+    print(f"dist = {dist} m")
+```
+
+```{python}
+#Velocidad en metros/segundo
+vel = 10000
+#Tiempo en segundos
+t = 10
+#Revisamos que la velocidad no sea demasiado grande
+if vel > 300000:
+    print("Error: La velocidad no puede ser mayor que la de la luz.")
+    dist = 0
+elif vel > 30000:
+    print("Cuidado: La velocidad es grande y no se pueden ignorar los efectos relativistas.")
+    dist = vel*t
+else:
+    #Calcula la distancia
+    dist = vel*t
+    
+print(f"dist = {dist} m")
+```
+
+```{python}
+#Velocidad en metros/segundo
+vel = 100000
+#Tiempo en segundos
+t = 10
+#Revisamos que la velocidad no sea demasiado grande
+if vel > 300000:
+    print("Error: La velocidad no puede ser mayor que la de la luz.")
+    dist = 0
+else:
+    if vel > 30000:
+        print("Cuidado: La velocidad es grande y no se pueden ignorar los efectos relativistas.")
+    #Calcula la distancia
+    dist = vel*t
+    
+print(f"dist = {dist} m")
+```
+
+# Ciclos for
+
+El ciclo for sirve para hacer la misma tarea muchas veces.
+
+```{python}
+for i in range(10):
+    print(i)
+```
+
+La función range(n) cuenta desde 0 hasta n-1. Hace que el ciclo tome n pasos.
+
+Por ejemplo, supongamos que queremos verificar si la paradoja de Zenón es correcta, sumamos
+
+$$
+\sum_{n = 1}^{m} \frac{1}{2^n}
+$$
+
+Queremos ver cuánto da para $m$ muy grande.
+
+```{python}
+# Nro de términos  a sumar
+m = 30
+
+# Acumulador, va teniendo cuenta de la suma
+s = 0   # Esto se llama inicializar, si lo ignoramos obtengo un error
+
+# Hacemos la suma
+for i in range(1,m):
+    s = s + 1/(2**i)  # Actualizamos el valor de s
+    #print(i, s)
+
+# Imprimimos el resultado
+print(f"Resultado final: {s}")
+```
+
+# Ciclo while
+
+"While" quiere decir "mientras". Es decir, mientras se cumple la condición, haga algo. Es útil cuando se quiere repetir una operación muchas veces, hasta cumplir una cierta condición.
+
+```{python}
+x = 1
+while x <= 10:
+    print(x)
+    x = x + 1
+```
+
+Por ejemplo, cuantos términos necesitamos en la sumatoria de la sección anterior para tener un error menor al 1%.
+
+```{python}
+s = 0 # Acumulador
+i = 0 # Contador
+error = 1 # Error
+while error > 0.01:
+    i = i + 1
+    s = s + 1/(2**i)
+    error = 1 - s
+    
+print(f"Obtuvimos {s}, luego de sumar {i} términos.")
+```
+
+Esto se puede lograr usando el enunciado "break" que quiere decir "romper" el ciclo.
+
+```{python}
+s = 0 # Acumulador
+i = 0 # Contador
+error = 1 # Error
+while True:
+    if error < 0.01:
+        break
+    i = i + 1
+    s = s + 1/(2**i)
+    error = 1 - s
+    
+print(f"Obtuvimos {s}, luego de sumar {i}, términos.")
+```
+
+# Listas
+
+```{python}
+[10, 15, 20, 25]
+```
+
+```{python}
+['Pedro', 'Pablo', 'Andrés']
+```
+
+```{python}
+ejemplo = ['Pedro', 10, ['hola', 1.12]]
+```
+
+```{python}
+print(ejemplo)
+```
+
+```{python}
+len(ejemplo)
+```
+
+## Obtener y modificar elementos
+
+```{python}
+ejemplo[0]
+```
+
+```{python}
+ejemplo[-1]
+```
+
+Cuidado, lo siguiente muestra el <b>tercer</b> elemento, no el segundo
+
+```{python}
+ejemplo[2]
+```
+
+```{python}
+ejemplo[1] = 'adiós'
+```
+
+```{python}
+ejemplo
+```
+
+```{python}
+ejemplo[3]
+```
+
+## Atravesar la lista
+
+```{python}
+for element in ejemplo:
+    print(element)
+```
+
+```{python}
+numeros = [12,13,15,22,23]
+```
+
+```{python}
+for i in range(len(numeros)):
+    numeros[i] = numeros[i] + 1
+```
+
+```{python}
+numeros
+```
+## Operaciones
+
+```{python}
+numeros2 = [1,2,3,4,5]
+```
+
+```{python}
+numeros3 = numeros + numeros2
+```
+
+```{python}
+numeros3
+```
+
+```{python}
+[0,1]*4
+```
+
+```{python}
+numeros2.append(1)
+```
+
+```{python}
+numeros2
+```
+
+```{python}
+numeros2.extend([1,2])
+```
+
+```{python}
+numeros2
+```
+
+```{python}
+sum(numeros2)
+```
+
+```{python}
+del numeros2[1]
+```
+
+```{python}
+numeros2
+```
+
+## Tajadas
+
+```{python}
+numeros3[1:2]
+```
+
+```{python}
+numeros3[1:4]
+```
+
+```{python}
+numeros3[1:]
+```
+
+```{python}
+numeros3[:-2]
+```
+
+```{python}
+numeros3[:]
+```
+
+# Tuplas
+
+Las tuplas se parecen a las listas, pero no se pueden modificar
+
+```{python}
+mi_tupla = (1,2,3)
+```
+
+```{python}
+mi_tupla[1]
+```
+
+```{python}
+mi_tupla[1] = 4
+```
+
+# Crear nuevas funciones
+
+```{python}
+def ejemplo():               # Encabezado
+    print('Mi ejemplo.')     # Cuerpo
+```
+
+```{python}
+ejemplo()
+```
+
+```{python}
+# Ahora le pasamos un argumento a la función.
+
+def impresora(algo):
+    print(algo)
+    print(algo)
+```
+
+```{python}
+impresora('Me repito')
+```
+
+```{python}
+impresora([1,2,2])
+```
+
+```{python}
+x = 10
+impresora(x)
+```
+
+```{python}
+# Los parámetros y las variables viven sólo dentro de la función
+
+def aumentar(x):
+    y = 1
+    x = x + y
+    print(x)
+```
+
+```{python}
+x = 10
+aumentar(x)
+```
+
+```{python}
+x
+```
+
+```{python}
+y
+```
+
+```{python}
+x = 1
+aumentar(11)
+```
+
+```{python}
+x
+```
+
+Las funciones sirven principalmente para lo siguiente:
+
+* Ayuda a organizar un código en partes lógicas. Uno puede diseñar el código atacando un problema a la vez.
+* Muchas veces uno tiene que escribir el mismo código muchas veces. En esos casos tiene sentido escribir una función y usarla, en vez de repetir el mismo código. Si hay un error en el código, es más fácil corregirlo una sola vez en la función.
+* Las funciones bien escritas se pueden reutilizar en varios códigos.
+* Sirven como funciones matemáticas.
+
+# Funciones que retornan un valor
+
+```{python}
+def area(lado):
+    a = lado*lado
+    return a
+```
+
+```{python}
+area(2)
+```
+
+```{python}
+x = area(2)
+```
+
+```{python}
+x
+```
+
+```{python}
+x = aumentar(2)
+```
+
+```{python}
+x
+```
+
+```{python}
+def valor_absoluto(x):
+    if x >= 0:
+        return x
+    elif x < 0:
+        return -x
+```
+
+```{python}
+valor_absoluto(-1)
+```
+
+```{python}
+def valor_absoluto(x):
+    if x > 0:
+        return x
+    elif x < 0:
+        return -x
+```
+
+```{python}
+valor_absoluto(0)
+```
+
+```{python}
+def divisible(x, y):
+    '''Esta función regresa True si x es divisible por y,
+    de otro modo regresa False'''
+    
+    if (x%y == 0):
+        return True
+    else:
+        return False
+    
+x = 120
+y = 10
+if divisible(x,y):
+    print(x, 'es divisible por', y)
+```
+
+```{python}
+def divisible(x, y):
+    '''Esta función regresa True si x es divisible por y,
+    de otro modo regresa False'''
+    
+    return x%y == 0
+```
+
+# ¡Tareas!
+
+## Tarea 1.1
+
+Use Python como una calculadora para calcular cuál es la velocidad inicial de una bola que cae una distancia de $2$ metros en $0.3$ segundos.
+
+## Tarea 1.2
+
+Escriba un código que produzca el siguiente texto:
+
+```
+1
+11  
+111  
+1111  
+11111  
+111111  
+1111111  
+11111111  
+111111111  
+1111111111  
+```
+
+(El código no puede tener más de 4 líneas y un enunciado "print"). Puede usar el siguiente truco:
+
+```{python}
+print(4*"1")
+```
+
+## Tarea 1.3
+
+Escriba un código que sea un loop infinito. En cada paso el código le pide al usuario que escriba algo y cuando el usuario escribe "salir" el código termina. Si el usuario escribe otra cosa el código no hace nada y sencillamente vuelve a pedirde al usuario que escriba algo. Para obtener la entrada del usuario use `input('Escriba "salir" para salir: ')`. Para terminar el loop use `break`.
+
+## Tarea 1.4
+
+Escriba un código que haga la siguiente sumatoria:
+
+$$
+\sum_{n=0}^{100} \sum_{m=0}^{n} \left(0.3^n\right)^m
+$$
+
+## Tarea 1.5
+
+Escriba un código que calcule el número de Euler con un error menor que 0.01 usando la expresión
+
+$$
+e = \sum_{n = 0}^\infty \frac{1}{n!}\,.
+$$
+
+Para calcular el error, puede comparar con la función `math.exp(1)`. Para calcular el factorial de n, puede usar la función `math.factorial(n)`. Para calcular el valor absoluto (puede ser necesario al calcular el error) use `abs(x)`. Estas funciones estarán disponibles luego de ejecutar la siguiente línea.
+
+```{python}
+import math
+```

@@ -18,6 +18,8 @@ website:
           - text: "Unidad 1: Introducción"
           - text: "Funcionamiento de la CPU"
             href: 01_funcionamiento_cpu.qmd
+          - text: "Repaso de Python"
+            href: 02_python.qmd
   sidebar:
     style: docked
     contents:
@@ -25,7 +27,8 @@ website:
         contents:
           - text: "Funcionamiento de la CPU"
             href: 01_funcionamiento_cpu.qmd
-            
+          - text: "Repaso de Python"
+            href: 02_python.qmd
 
 format:
   html:
