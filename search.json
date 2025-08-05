@@ -4,14 +4,211 @@
     "href": "index.html",
     "title": "Métodos Numéricos y Probabilidades 2025",
     "section": "",
-    "text": "Motivación\nLas (los) físicas (os) siempre han llevado la punta de lanza del desarrollo tecnológico. Desde la revolución industrial hasta el desarrollo de la computación cuántica, los (las) físicos (as) han tenido un manejo profundo de la tecnología que les permite hacer nuevos descubrimientos o inventos. Esto es aún más cierto en el siglo XXI, en el cual la mayoría de las (los) licenciadas (os) en física de los países de alto desarrollo tecnológico trabajan en el sector privado creando y mejorando las herramientas informáticas, financieras y estadísticas que usamos todos los días. Esto se debe a que a lo largo de sus carreras adquieren un conocimiento íntimo de la tecnología de punta al intentar aplicarla a problemas científicos abiertos.\nSon muy pocos los problemas que admiten una solución sencilla de lápiz y papel. Para la mayoría de nuevos desarrollos es necesario usar el computador. Esto es verdad tanto para analizar los datos obtenidos en los experimentos, como para resolver las ecuaciones diferenciales que aparecen en la física teórica. Incluso quienes hacen un trabajo puramente analítico se apoyan en herramientas computacionales para los cálculos que son cada vez más complejos.\nEn este curso aprenderemos a usar las herramientas numéricas disponibles para atacar problemas físicos y al hacerlo aprenderemos a usar plataformas, paquetes y lenguajes de programación modernos.\n\n\nLecturas Sugeridas\n\nR. L. Burden, D. J. Faires, A. M. Burden, “Numerical Analysis”, 10ma edición, Cengage Learning, 2016 (NA)\nT. A. Driscoll, R. J. Braun, “Funamentals of Numerical Computation”, 2da edición, SIAM, 2022 (FNC)\nB. R. Martin, “Statistics for Physical Sciences”. Elsevier, 2012 (S)\nA. B. Downey, “Think Python,” 2da edición, O’Reilly, 2015. (TP)\n\n\n\nPrograma\nSe indican las fechas y temas de cada clase, junto con las secciones de los libros a las que corresponden.\n1- Introducción\n\n¿Cómo funciona una CPU?, 7 de agosto.\nRepaso de Python, 12 de agosto.\nNumpy y arrays, 14 de agosto.\nRepresentación binaria de números decimales, número de condicionamiento 19 de agosto\nAlgoritmos y estabilidad 21 de agosto\n\n2- Probabilidades\n\nPropiedades básicas de la probabilidad, 26 de agosto\nDistribuciones de probabilidad, 28 de agosto\nVarias variables aleatorias, 2 de septiembre\nSuma de muchas variables aleatorias y teorema central del límite, 4 de septiembre\nInformación y entropía, 9 de septiembre\n\nPrueba: 23 de septiembre\n3- Cálculo numérico\n\nSolución de sistemas de ecuaciones lineales: Inversión de matrices, 11 de septiembre\nBúsqueda de raíces: Métodos de bisección y Newton, 25 de septiembre\nInterpolación, 30 de septiembre\nDerivadas numéricas y autodiferenciación, 2 de octubre\nIntegración numérica simple y adaptativa, 7 de octubre\nIntegración numérica por método de Gauss, 9 de octubre\n\nPrueba: 16 de octubre\n4- Solución numérica de ecuaciones diferenciales ordinarias\n\nMétodos de Euler y Taylor, 14 de octubre\nMétodo de Runge Kutta, 21 de octubre\nMétodo de Runge Kutta adaptativo, 23 de octubre\nMétodos de múltiples pasos y método de Adams, 4 de noviembre\nSistemas de ecuaciones diferenciales y ecuaciones de alto orden, 6 de noviembre\n\nPrueba: 13 de noviembre\n5- Optimización y otros algoritmos importantes\n\nAjuste de curvas y bondad de ajuste, 11 de noviembre\nOptimización por descenso de gradiente, 18 de noviembre\nIntroducción a las redes neuronales, 20 de noviembre\nMétodos de Monte Carlo y/o transformada rápida de Fourier, 25 de noviembre\n\nRecuperativa: 27 de noviembre Examen: Definido por Instituto\n\n\nEvaluación\nLa evaluación se hará por tareas y pruebas.\nAl final de cada clase habrán 5 tareas para un total de 10 tareas cada dos clases. De estas 10 tareas se le asignará de forma aleatoria una tarea a cada estudiante. De esta manera el estudiante deberá entregar aproximadamente 11 tareas a lo largo del curso. El 50% de la nota final es el promedio de las notas de las tareas.\nLas tareas se entregan dos clases después de haber sido asignadas.\nSe evaluará lo siguiente:\nEl código funciona (4 puntos): Si el código pedido hace lo que deberíacumplir sin errores en ningún caso, la estudiante obtendrá los 4 puntos. Si existen casos especiales en los cuales el código no funciona, pero funciona en la mayoría de los casos, la estudiante obtendrá 3 puntos. Si el código no funciona pero el error es menor (algún detalle de sintaxis, alguna variable mal nombrada, alguna excepción de Python difícil de prever), el estudiante obtendrá 2 puntos. Si el código no funciona el estudiante obtendrá 1 punto. Si no entrega la tarea el estudiante obtendrá 0 puntos.\nEl código es legible (+2 puntos): Si el código está comentado en cada paso el estudiante obtendrá +1 punto. Si el código es fácil de entender, está bien organizado, las variables tienen nombres que corresponden a lo que representan la estudiante obtendrá +1 punto.\nLa nota de la tarea = # de puntos + 1.\nLa otra mitad de la nota será el promedio de tres pruebas realizadas a lo largo del semestre. Las pruebas consisten en ejercicios sencillos basados en lo visto en clase y en las tareas.\nLas siguientes son las fechas de las pruebas:\nPrueba: 10 de septiembre Prueba: 5 de noviembre Prueba: 25 de noviembre Recuperativa: 26 de noviembre Examen: 10 de diciembre\n\n\nNormas\nLos estudiantes no están obligados a ir a las ayudantías, pero obviamente quien asista estará mejor preparado para las pruebas y los exámenes porque sabrá cuáles son los problemas que entran. Las tareas se entregarán en formato electrónico por medio de la plataforma GitHub. Se usa esta en vez del Aula Virtual dado su uso extenso en el mundo profesional.\nHágale preguntas al profesor a la dirección jorge.norena@pucv.cl, o en el horario de atención. Hacer preguntas ayuda a aprender y hace más ameno el trabajo del profesor. La clase empieza puntual si hay al menos un estudiante presente, por respeto a los que llegan a tiempo.\n\n\nRecomendaciones\nPOR FAVOR HAGAN PREGUNTAS DURANTE LA CLASE, LAS AYUDANTÍAS, POR CORREO ELECTRÓNICO, EN LOS HORARIOS DE ATENCIÓN Y POR CUALQUIER OTRO MEDIO QUE PUEDA.\nSi quiere conversar hágalo por chat en su teléfono para que el ruido no distraiga a los demás. Use el teléfono para tomarle fotos a la pizarra cuando quiera recordar algo.\n\n\nHorarios de atención y contacto\nPuede en cualquier momento hacer preguntas por correo electrónico.\nCorreo electrónico profesor: jorge.norena@pucv.cl Correo electrónico de la ayudante:\nTambién puede pasar por la oficina del profesor en cualquier momento.\nEl horario de atención reservado es una hora después de cada clase."
+    "text": "Motivación\nLas (los) físicas (os) siempre han llevado la punta de lanza del desarrollo tecnológico. Desde la revolución industrial hasta el desarrollo de la computación cuántica, los (las) físicos (as) han tenido un manejo profundo de la tecnología que les permite hacer nuevos descubrimientos o inventos. Esto es aún más cierto en el siglo XXI, en el cual la mayoría de las (los) licenciadas (os) en física de los países de alto desarrollo tecnológico trabajan en el sector privado creando y mejorando las herramientas informáticas, financieras y estadísticas que usamos todos los días. Esto se debe a que a lo largo de sus carreras adquieren un conocimiento íntimo de la tecnología de punta al intentar aplicarla a problemas científicos abiertos.\nSon muy pocos los problemas que admiten una solución sencilla de lápiz y papel. Para la mayoría de nuevos desarrollos es necesario usar el computador. Esto es verdad tanto para analizar los datos obtenidos en los experimentos, como para resolver las ecuaciones diferenciales que aparecen en la física teórica. Incluso quienes hacen un trabajo puramente analítico se apoyan en herramientas computacionales para los cálculos que son cada vez más complejos.\nEn este curso aprenderemos a usar las herramientas numéricas disponibles para atacar problemas físicos y al hacerlo aprenderemos a usar plataformas, paquetes y lenguajes de programación modernos.\n\n\nLecturas Sugeridas\n\nR. L. Burden, D. J. Faires, A. M. Burden, “Numerical Analysis”, 10ma edición, Cengage Learning, 2016 (NA)\nT. A. Driscoll, R. J. Braun, “Funamentals of Numerical Computation”, 2da edición, SIAM, 2022 (FNC)\nB. R. Martin, “Statistics for Physical Sciences”. Elsevier, 2012 (S)\nA. B. Downey, “Think Python,” 2da edición, O’Reilly, 2015. (TP)\n\n\n\nPrograma\nSe indican las fechas y temas de cada clase, junto con las secciones de los libros a las que corresponden.\n1- Introducción\n\n¿Cómo funciona una CPU?, 7 de agosto.\nRepaso de Python, 12 de agosto.\nNumpy y arrays, 14 de agosto.\nRepresentación binaria de números decimales, número de condicionamiento 19 de agosto\nAlgoritmos y estabilidad 21 de agosto\n\n2- Probabilidades\n\nPropiedades básicas de la probabilidad, 26 de agosto\nDistribuciones de probabilidad, 28 de agosto\nVarias variables aleatorias, 2 de septiembre\nSuma de muchas variables aleatorias y teorema central del límite, 4 de septiembre\nInformación y entropía, 9 de septiembre\n\nPrueba: 23 de septiembre\n3- Cálculo numérico\n\nSolución de sistemas de ecuaciones lineales: Inversión de matrices, 11 de septiembre\nBúsqueda de raíces: Métodos de bisección y Newton, 25 de septiembre\nInterpolación, 30 de septiembre\nDerivadas numéricas y autodiferenciación, 2 de octubre\nIntegración numérica simple y adaptativa, 7 de octubre\nIntegración numérica por método de Gauss, 9 de octubre\n\nPrueba: 16 de octubre\n4- Solución numérica de ecuaciones diferenciales ordinarias\n\nMétodos de Euler y Taylor, 14 de octubre\nMétodo de Runge Kutta, 21 de octubre\nMétodo de Runge Kutta adaptativo, 23 de octubre\nMétodos de múltiples pasos y método de Adams, 4 de noviembre\nSistemas de ecuaciones diferenciales y ecuaciones de alto orden, 6 de noviembre\n\nPrueba: 13 de noviembre\n5- Optimización y otros algoritmos importantes\n\nAjuste de curvas y bondad de ajuste, 11 de noviembre\nOptimización por descenso de gradiente, 18 de noviembre\nIntroducción a las redes neuronales, 20 de noviembre\nMétodos de Monte Carlo y/o transformada rápida de Fourier, 25 de noviembre\n\nRecuperativa: 27 de noviembre\nExamen: Definido por Instituto\n\n\nEvaluación\nLa evaluación se hará por tareas y pruebas.\nAl final de cada clase habrán 5 tareas para un total de 10 tareas cada dos clases. De estas 10 tareas se le asignará de forma aleatoria una tarea a cada estudiante. De esta manera el estudiante deberá entregar aproximadamente 11 tareas a lo largo del curso. El 50% de la nota final es el promedio de las notas de las tareas.\nLas tareas se entregan dos clases después de haber sido asignadas.\nSe evaluará lo siguiente:\nEl código funciona (4 puntos): Si el código pedido hace lo que deberíacumplir sin errores en ningún caso, la estudiante obtendrá los 4 puntos. Si existen casos especiales en los cuales el código no funciona, pero funciona en la mayoría de los casos, la estudiante obtendrá 3 puntos. Si el código no funciona pero el error es menor (algún detalle de sintaxis, alguna variable mal nombrada, alguna excepción de Python difícil de prever), el estudiante obtendrá 2 puntos. Si el código no funciona el estudiante obtendrá 1 punto. Si no entrega la tarea el estudiante obtendrá 0 puntos.\nEl código es legible (+2 puntos): Si el código está comentado en cada paso el estudiante obtendrá +1 punto. Si el código es fácil de entender, está bien organizado, las variables tienen nombres que corresponden a lo que representan la estudiante obtendrá +1 punto.\nLa nota de la tarea = # de puntos + 1.\nLa otra mitad de la nota será el promedio de tres pruebas realizadas a lo largo del semestre. Las pruebas consisten en ejercicios sencillos basados en lo visto en clase y en las tareas.\nLas siguientes son las fechas de las pruebas:\nPrueba: 10 de septiembre Prueba: 5 de noviembre Prueba: 25 de noviembre Recuperativa: 26 de noviembre Examen: 10 de diciembre\n\n\nNormas\nLos estudiantes no están obligados a ir a las ayudantías, pero obviamente quien asista estará mejor preparado para las pruebas y los exámenes porque sabrá cuáles son los problemas que entran. Las tareas se entregarán en formato electrónico por medio de la plataforma GitHub. Se usa esta en vez del Aula Virtual dado su uso extenso en el mundo profesional.\nHágale preguntas al profesor a la dirección jorge.norena@pucv.cl, o en el horario de atención. Hacer preguntas ayuda a aprender y hace más ameno el trabajo del profesor. La clase empieza puntual si hay al menos un estudiante presente, por respeto a los que llegan a tiempo.\n\n\nRecomendaciones\nPOR FAVOR HAGAN PREGUNTAS DURANTE LA CLASE, LAS AYUDANTÍAS, POR CORREO ELECTRÓNICO, EN LOS HORARIOS DE ATENCIÓN Y POR CUALQUIER OTRO MEDIO QUE PUEDA.\nSi quiere conversar hágalo por chat en su teléfono para que el ruido no distraiga a los demás. Use el teléfono para tomarle fotos a la pizarra cuando quiera recordar algo.\n\n\nHorarios de atención y contacto\nPuede en cualquier momento hacer preguntas por correo electrónico.\nCorreo electrónico profesor: jorge.norena@pucv.cl Correo electrónico de la ayudante:\nTambién puede pasar por la oficina del profesor en cualquier momento.\nEl horario de atención reservado es una hora después de cada clase."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Acerca de este sitio",
+    "objectID": "02_python.html",
+    "href": "02_python.html",
+    "title": "Repaso de Python",
     "section": "",
-    "text": "Versión: 0.0.1 (trabajo en progreso)\nEstas son las notas de clases del curso de Métodos Numéricos y Probabilidades 2025. El curso es parte del plan de estudios de la licenciatura en física de la Pontificia Universidad Católica de Valparaíso, Chile. Dictado por el profesor Jorge Noreña, el curso cubre temas fundamentales de métodos numéricos y probabilidad aplicados a la física.\nUna pequeña parte de estos apuntes fue escrita con la ayuda de inteligencia artificial, revisado y corregido por el profesor."
+    "text": "print(\"Normalmente uno escribe: Hola, Mundo!\")\n\nNormalmente uno escribe: Hola, Mundo!\n\n\n\n2 + 3\n\n5\n\n\n\n2 * 3\n\n6\n\n\n\n2/3\n\n0.6666666666666666\n\n\n\n2-3\n\n-1\n\n\n\n2//3\n\n0\n\n\n\n2%3\n\n2\n\n\n\n2**3\n\n8\n\n\n\n\n\n\ntype(\"Normalmente uno escribe: Hola, Mundo!\")\n\nstr\n\n\n\ntype(2)\n\nint\n\n\n\ntype(3.1)\n\nfloat\n\n\n\n\n\n\nmensaje = 'Normalmente uno escribe: Hola, Mundo!'\n\n\nmensaje\n\n'Normalmente uno escribe: Hola, Mundo!'\n\n\n\nn = 17\n\n\nn\n\n17\n\n\n\ncasi_pi = 3.1416\n\n\n\n\n\ncasi_pi + n\n\n20.1416\n\n\n\nprint(n)\n\n17\n\n\n\n\n\nEn Python los operadores tienen jerarquía: - Exponenciación - Multiplicación y división - Suma y resta Primero se evalúan los de mayor jerarquía. Cuando hay dos iguales se evalúa de izquierda a derecha.\nCuando haya dudas, usar paréntesis, por ejemplo \\(2(3 - 1) = 4\\)\n\n2*(3 - 1)\n\n4\n\n\nLo siguiente es \\(1 + 2^3 = 9\\), muy distinto de \\((1 + 2)^3 = 27\\)\n\n1 + 2**3\n\n9\n\n\nEsto es \\(2\\times 3^2 = 18\\) muy distinto de \\((2\\times 3)^2 = 36\\)\n\n2*3**2\n\n18\n\n\n\n2*3 - 1\n\n5\n\n\n\n6 + 4/2\n\n8.0\n\n\n¡Cuidado! Si quiero escribir \\(4/(2\\times 2) = 1\\) no lo puedo hacer de esta manera.\n\n4/2*2\n\n4.0\n\n\n\n4/2/2\n\n1.0\n\n\n\n4/(2*2)\n\n1.0\n\n\n\n\n\n\n# Este código no hace nada, es puro comentario\n\n\n# Este código hace algo muy básico. Convierto mi pc en una calculadora cara\n2 + 3\n\n5\n\n\n\n\n\nError de sintaxis\n\n2 +\n\n\n  Cell In[29], line 1\n    2 +\n       ^\nSyntaxError: invalid syntax\n\n\n\n\nOtros tipos de errores\n\nprint(2/0)\n\n\n---------------------------------------------------------------------------\nZeroDivisionError                         Traceback (most recent call last)\nCell In[30], line 1\n----&gt; 1 print(2/0)\n\nZeroDivisionError: division by zero\n\n\n\n\nfor i in j:\n    print(i)\n\n\n---------------------------------------------------------------------------\nNameError                                 Traceback (most recent call last)\nCell In[31], line 1\n----&gt; 1 for i in j:\n      2     print(i)\n\nNameError: name 'j' is not defined\n\n\n\n\ndef mistake(n):\n    for i in range(n):\n        print(10/i)\n\n\nmistake(10)\n\n\n---------------------------------------------------------------------------\nZeroDivisionError                         Traceback (most recent call last)\nCell In[33], line 1\n----&gt; 1 mistake(10)\n\nCell In[32], line 3, in mistake(n)\n      1 def mistake(n):\n      2     for i in range(n):\n----&gt; 3         print(10/i)\n\nZeroDivisionError: division by zero",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#mi-primer-código",
+    "href": "02_python.html#mi-primer-código",
+    "title": "Repaso de Python",
+    "section": "",
+    "text": "print(\"Normalmente uno escribe: Hola, Mundo!\")\n\nNormalmente uno escribe: Hola, Mundo!\n\n\n\n2 + 3\n\n5\n\n\n\n2 * 3\n\n6\n\n\n\n2/3\n\n0.6666666666666666\n\n\n\n2-3\n\n-1\n\n\n\n2//3\n\n0\n\n\n\n2%3\n\n2\n\n\n\n2**3\n\n8",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#tipos-de-valores",
+    "href": "02_python.html#tipos-de-valores",
+    "title": "Repaso de Python",
+    "section": "",
+    "text": "type(\"Normalmente uno escribe: Hola, Mundo!\")\n\nstr\n\n\n\ntype(2)\n\nint\n\n\n\ntype(3.1)\n\nfloat",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#variables-y-asignación",
+    "href": "02_python.html#variables-y-asignación",
+    "title": "Repaso de Python",
+    "section": "",
+    "text": "mensaje = 'Normalmente uno escribe: Hola, Mundo!'\n\n\nmensaje\n\n'Normalmente uno escribe: Hola, Mundo!'\n\n\n\nn = 17\n\n\nn\n\n17\n\n\n\ncasi_pi = 3.1416",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#expresiones",
+    "href": "02_python.html#expresiones",
+    "title": "Repaso de Python",
+    "section": "",
+    "text": "casi_pi + n\n\n20.1416\n\n\n\nprint(n)\n\n17",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#orden-de-operaciones",
+    "href": "02_python.html#orden-de-operaciones",
+    "title": "Repaso de Python",
+    "section": "",
+    "text": "En Python los operadores tienen jerarquía: - Exponenciación - Multiplicación y división - Suma y resta Primero se evalúan los de mayor jerarquía. Cuando hay dos iguales se evalúa de izquierda a derecha.\nCuando haya dudas, usar paréntesis, por ejemplo \\(2(3 - 1) = 4\\)\n\n2*(3 - 1)\n\n4\n\n\nLo siguiente es \\(1 + 2^3 = 9\\), muy distinto de \\((1 + 2)^3 = 27\\)\n\n1 + 2**3\n\n9\n\n\nEsto es \\(2\\times 3^2 = 18\\) muy distinto de \\((2\\times 3)^2 = 36\\)\n\n2*3**2\n\n18\n\n\n\n2*3 - 1\n\n5\n\n\n\n6 + 4/2\n\n8.0\n\n\n¡Cuidado! Si quiero escribir \\(4/(2\\times 2) = 1\\) no lo puedo hacer de esta manera.\n\n4/2*2\n\n4.0\n\n\n\n4/2/2\n\n1.0\n\n\n\n4/(2*2)\n\n1.0",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#comentarios",
+    "href": "02_python.html#comentarios",
+    "title": "Repaso de Python",
+    "section": "",
+    "text": "# Este código no hace nada, es puro comentario\n\n\n# Este código hace algo muy básico. Convierto mi pc en una calculadora cara\n2 + 3\n\n5",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#errores-y-excepciones",
+    "href": "02_python.html#errores-y-excepciones",
+    "title": "Repaso de Python",
+    "section": "",
+    "text": "Error de sintaxis\n\n2 +\n\n\n  Cell In[29], line 1\n    2 +\n       ^\nSyntaxError: invalid syntax\n\n\n\n\nOtros tipos de errores\n\nprint(2/0)\n\n\n---------------------------------------------------------------------------\nZeroDivisionError                         Traceback (most recent call last)\nCell In[30], line 1\n----&gt; 1 print(2/0)\n\nZeroDivisionError: division by zero\n\n\n\n\nfor i in j:\n    print(i)\n\n\n---------------------------------------------------------------------------\nNameError                                 Traceback (most recent call last)\nCell In[31], line 1\n----&gt; 1 for i in j:\n      2     print(i)\n\nNameError: name 'j' is not defined\n\n\n\n\ndef mistake(n):\n    for i in range(n):\n        print(10/i)\n\n\nmistake(10)\n\n\n---------------------------------------------------------------------------\nZeroDivisionError                         Traceback (most recent call last)\nCell In[33], line 1\n----&gt; 1 mistake(10)\n\nCell In[32], line 3, in mistake(n)\n      1 def mistake(n):\n      2     for i in range(n):\n----&gt; 3         print(10/i)\n\nZeroDivisionError: division by zero",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#obtener-y-modificar-elementos",
+    "href": "02_python.html#obtener-y-modificar-elementos",
+    "title": "Repaso de Python",
+    "section": "Obtener y modificar elementos",
+    "text": "Obtener y modificar elementos\n\nejemplo[0]\n\n'Pedro'\n\n\n\nejemplo[-1]\n\n['hola', 1.12]\n\n\nCuidado, lo siguiente muestra el tercer elemento, no el segundo\n\nejemplo[2]\n\n['hola', 1.12]\n\n\n\nejemplo[1] = 'adiós'\n\n\nejemplo\n\n['Pedro', 'adiós', ['hola', 1.12]]\n\n\n\nejemplo[3]\n\n\n---------------------------------------------------------------------------\nIndexError                                Traceback (most recent call last)\nCell In[72], line 1\n----&gt; 1 ejemplo[3]\n\nIndexError: list index out of range",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#atravesar-la-lista",
+    "href": "02_python.html#atravesar-la-lista",
+    "title": "Repaso de Python",
+    "section": "Atravesar la lista",
+    "text": "Atravesar la lista\n\nfor element in ejemplo:\n    print(element)\n\nPedro\nadiós\n['hola', 1.12]\n\n\n\nnumeros = [12,13,15,22,23]\n\n\nfor i in range(len(numeros)):\n    numeros[i] = numeros[i] + 1\n\n\nnumeros\n\n[13, 14, 16, 23, 24]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#operaciones",
+    "href": "02_python.html#operaciones",
+    "title": "Repaso de Python",
+    "section": "Operaciones",
+    "text": "Operaciones\n\nnumeros2 = [1,2,3,4,5]\n\n\nnumeros3 = numeros + numeros2\n\n\nnumeros3\n\n[13, 14, 16, 23, 24, 1, 2, 3, 4, 5]\n\n\n\n[0,1]*4\n\n[0, 1, 0, 1, 0, 1, 0, 1]\n\n\n\nnumeros2.append(1)\n\n\nnumeros2\n\n[1, 2, 3, 4, 5, 1]\n\n\n\nnumeros2.extend([1,2])\n\n\nnumeros2\n\n[1, 2, 3, 4, 5, 1, 1, 2]\n\n\n\nsum(numeros2)\n\n19\n\n\n\ndel numeros2[1]\n\n\nnumeros2\n\n[1, 3, 4, 5, 1, 1, 2]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#tajadas",
+    "href": "02_python.html#tajadas",
+    "title": "Repaso de Python",
+    "section": "Tajadas",
+    "text": "Tajadas\n\nnumeros3[1:2]\n\n[14]\n\n\n\nnumeros3[1:4]\n\n[14, 16, 23]\n\n\n\nnumeros3[1:]\n\n[14, 16, 23, 24, 1, 2, 3, 4, 5]\n\n\n\nnumeros3[:-2]\n\n[13, 14, 16, 23, 24, 1, 2, 3]\n\n\n\nnumeros3[:]\n\n[13, 14, 16, 23, 24, 1, 2, 3, 4, 5]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#tarea-1.1",
+    "href": "02_python.html#tarea-1.1",
+    "title": "Repaso de Python",
+    "section": "Tarea 1.1",
+    "text": "Tarea 1.1\nUse Python como una calculadora para calcular cuál es la velocidad inicial de una bola que cae una distancia de \\(2\\) metros en \\(0.3\\) segundos.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#tarea-1.2",
+    "href": "02_python.html#tarea-1.2",
+    "title": "Repaso de Python",
+    "section": "Tarea 1.2",
+    "text": "Tarea 1.2\nEscriba un código que produzca el siguiente texto:\n1\n11  \n111  \n1111  \n11111  \n111111  \n1111111  \n11111111  \n111111111  \n1111111111  \n(El código no puede tener más de 4 líneas y un enunciado “print”). Puede usar el siguiente truco:\n\nprint(4*\"1\")\n\n1111",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#tarea-1.3",
+    "href": "02_python.html#tarea-1.3",
+    "title": "Repaso de Python",
+    "section": "Tarea 1.3",
+    "text": "Tarea 1.3\nEscriba un código que sea un loop infinito. En cada paso el código le pide al usuario que escriba algo y cuando el usuario escribe “salir” el código termina. Si el usuario escribe otra cosa el código no hace nada y sencillamente vuelve a pedirde al usuario que escriba algo. Para obtener la entrada del usuario use input('Escriba \"salir\" para salir: '). Para terminar el loop use break.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#tarea-1.4",
+    "href": "02_python.html#tarea-1.4",
+    "title": "Repaso de Python",
+    "section": "Tarea 1.4",
+    "text": "Tarea 1.4\nEscriba un código que haga la siguiente sumatoria:\n\\[\n\\sum_{n=0}^{100} \\sum_{m=0}^{n} \\left(0.3^n\\right)^m\n\\]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
+  },
+  {
+    "objectID": "02_python.html#tarea-1.5",
+    "href": "02_python.html#tarea-1.5",
+    "title": "Repaso de Python",
+    "section": "Tarea 1.5",
+    "text": "Tarea 1.5\nEscriba un código que calcule el número de Euler con un error menor que 0.01 usando la expresión\n\\[\ne = \\sum_{n = 0}^\\infty \\frac{1}{n!}\\,.\n\\]\nPara calcular el error, puede comparar con la función math.exp(1). Para calcular el factorial de n, puede usar la función math.factorial(n). Para calcular el valor absoluto (puede ser necesario al calcular el error) use abs(x). Estas funciones estarán disponibles luego de ejecutar la siguiente línea.\n\nimport math",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de Python"
+    ]
   },
   {
     "objectID": "plan.html",
@@ -68,6 +265,13 @@
     "title": "Métodos Numéricos y Probabilidades",
     "section": "",
     "text": "Puede en cualquier momento hacer preguntas por correo electrónico.\nCorreo electrónico profesor: jorge.norena@pucv.cl Correo electrónico de la ayudante:\nTambién puede pasar por la oficina del profesor en cualquier momento.\nEl horario de atención reservado es una hora después de cada clase."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Acerca de este sitio",
+    "section": "",
+    "text": "Versión: 0.0.1 (trabajo en progreso)\nEstas son las notas de clases del curso de Métodos Numéricos y Probabilidades 2025. El curso es parte del plan de estudios de la licenciatura en física de la Pontificia Universidad Católica de Valparaíso, Chile. Dictado por el profesor Jorge Noreña, el curso cubre temas fundamentales de métodos numéricos y probabilidad aplicados a la física.\nUna pequeña parte de estos apuntes fue escrita con la ayuda de inteligencia artificial, revisado y corregido por el profesor."
   },
   {
     "objectID": "01_funcionamiento_cpu.html",
