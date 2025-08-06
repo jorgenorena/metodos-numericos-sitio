@@ -211,6 +211,198 @@
     ]
   },
   {
+    "objectID": "03_numpy_arrays.html",
+    "href": "03_numpy_arrays.html",
+    "title": "Repaso de numpy y otros",
+    "section": "",
+    "text": "Los arreglos son mucho más rápidos para cálculos numéricos ya que son un bloque continuo en memoria. Son similares a los arreglos en lenguajes como C.\n\nimport numpy as np\n\n\nmi_arreglo = np.array([1,2,3])\n\n\nmi_arreglo[1] = 5\n\n\nmi_arreglo\n\narray([1, 5, 3])\n\n\nLos arreglos sólo pueden contener datos de un tipo de datos. Cuando se mezclan tipos, Python hará lo mejor que pueda para convertirlos a un úunico tipo.\n\nnp.array([1,'hola'])\n\narray(['1', 'hola'], dtype='&lt;U21')\n\n\nPodemos hacer arreglos bidimensionales (matrices), tridimensionales, etc\n\nnp.array([[1,1],[1,1]])\n\narray([[1, 1],\n       [1, 1]])\n\n\nLos arreglos no pueden contener elementos de dimensiones diferentes\n\nnp.array([1,'hola',[2,'adios']])\n\n\n---------------------------------------------------------------------------\nValueError                                Traceback (most recent call last)\nCell In[7], line 1\n----&gt; 1 np.array([1,'hola',[2,'adios']])\n\nValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (3,) + inhomogeneous part.\n\n\n\n\n\n\nnp.ones([3,4])\n\narray([[1., 1., 1., 1.],\n       [1., 1., 1., 1.],\n       [1., 1., 1., 1.]])\n\n\n\nnp.zeros((2,3,4))\n\narray([[[0., 0., 0., 0.],\n        [0., 0., 0., 0.],\n        [0., 0., 0., 0.]],\n\n       [[0., 0., 0., 0.],\n        [0., 0., 0., 0.],\n        [0., 0., 0., 0.]]])\n\n\n\nnp.full((3,2),3, dtype=np.float128)\n\narray([[3., 3.],\n       [3., 3.],\n       [3., 3.]], dtype=float128)\n\n\n\nnp.arange(10,25,5)\n\narray([10, 15, 20])\n\n\n\nmi_arreglo2 = np.linspace(0,2,9)\n\n\nmi_arreglo2\n\narray([0.  , 0.25, 0.5 , 0.75, 1.  , 1.25, 1.5 , 1.75, 2.  ])\n\n\n\n\n\n\nmi_arreglo2.ndim\n\n1\n\n\n\nnp.full((3,2),3, dtype=np.float128).size\n\n6\n\n\n\nmi_arreglo2.data\n\n&lt;memory at 0x78b51e241180&gt;\n\n\n\nmi_arreglo2.shape\n\n(9,)\n\n\n\nmi_arreglo2.dtype\n\ndtype('float64')\n\n\n\nmi_arreglo2.nbytes\n\n72\n\n\n\nmi_arreglo2.astype(np.float16)\n\narray([0.  , 0.25, 0.5 , 0.75, 1.  , 1.25, 1.5 , 1.75, 2.  ],\n      dtype=float16)\n\n\n\nmi_arreglo2.astype(np.float16).nbytes\n\n18\n\n\n\n\n\n\nmi_arreglo\n\narray([1, 5, 3])\n\n\n\nmi_arreglo3 =  mi_arreglo + 1\n\n\nmi_arreglo3\n\narray([2, 6, 4])\n\n\n\nmi_arreglo + mi_arreglo3\n\narray([ 3, 11,  7])\n\n\n\nmi_arreglo3/mi_arreglo\n\narray([2.        , 1.2       , 1.33333333])\n\n\n\nmi_arreglo3 == mi_arreglo\n\narray([False, False, False])\n\n\nSe pueden usar los operadores +, -, *, /, %, **, ==, !=, &gt;, &lt;, &gt;=, &lt;=\n\nmi_arreglo3.max()\n\nnp.int64(6)\n\n\n\nmi_arreglo3.min()\n\nnp.int64(2)\n\n\n\n\n\n\nmi_arreglo_2d = np.array([[1,2,3],[4,5,6],[7,8,9]])\n\n\nmi_arreglo_2d\n\narray([[1, 2, 3],\n       [4, 5, 6],\n       [7, 8, 9]])\n\n\n\nmi_arreglo_2d[1:2]\n\narray([[4, 5, 6]])\n\n\n\nmi_arreglo_2d[1:]\n\narray([[4, 5, 6],\n       [7, 8, 9]])\n\n\n\nmi_arreglo_2d[1,1]\n\nnp.int64(5)\n\n\n¿Cuál es la diferencia? El siguiente código primero toma todas las filas desde la segunda (índice 1), luego toma la segunda de esas listas.\n\nmi_arreglo_2d[1:][1]\n\narray([7, 8, 9])\n\n\nPor otra parte, el siguiente código toma el primer elemento de cada una de esas listas.\n\nmi_arreglo_2d[1:,1]\n\narray([5, 8])\n\n\n\nmi_arreglo_2d[1:,:-1]\n\narray([[4, 5],\n       [7, 8]])\n\n\n\nmi_arreglo\n\narray([1, 5, 3])\n\n\n\nmi_arreglo[mi_arreglo&lt;=3]\n\narray([1, 3])\n\n\n\nmenor_que_3 = mi_arreglo &lt; 3\n\n\nmenor_que_3\n\narray([ True, False, False])\n\n\n\nmi_arreglo[menor_que_3]\n\narray([1])",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#llenar-arreglos-automáticamente",
+    "href": "03_numpy_arrays.html#llenar-arreglos-automáticamente",
+    "title": "Repaso de numpy y otros",
+    "section": "",
+    "text": "np.ones([3,4])\n\narray([[1., 1., 1., 1.],\n       [1., 1., 1., 1.],\n       [1., 1., 1., 1.]])\n\n\n\nnp.zeros((2,3,4))\n\narray([[[0., 0., 0., 0.],\n        [0., 0., 0., 0.],\n        [0., 0., 0., 0.]],\n\n       [[0., 0., 0., 0.],\n        [0., 0., 0., 0.],\n        [0., 0., 0., 0.]]])\n\n\n\nnp.full((3,2),3, dtype=np.float128)\n\narray([[3., 3.],\n       [3., 3.],\n       [3., 3.]], dtype=float128)\n\n\n\nnp.arange(10,25,5)\n\narray([10, 15, 20])\n\n\n\nmi_arreglo2 = np.linspace(0,2,9)\n\n\nmi_arreglo2\n\narray([0.  , 0.25, 0.5 , 0.75, 1.  , 1.25, 1.5 , 1.75, 2.  ])",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#inspeccionar-arreglos",
+    "href": "03_numpy_arrays.html#inspeccionar-arreglos",
+    "title": "Repaso de numpy y otros",
+    "section": "",
+    "text": "mi_arreglo2.ndim\n\n1\n\n\n\nnp.full((3,2),3, dtype=np.float128).size\n\n6\n\n\n\nmi_arreglo2.data\n\n&lt;memory at 0x78b51e241180&gt;\n\n\n\nmi_arreglo2.shape\n\n(9,)\n\n\n\nmi_arreglo2.dtype\n\ndtype('float64')\n\n\n\nmi_arreglo2.nbytes\n\n72\n\n\n\nmi_arreglo2.astype(np.float16)\n\narray([0.  , 0.25, 0.5 , 0.75, 1.  , 1.25, 1.5 , 1.75, 2.  ],\n      dtype=float16)\n\n\n\nmi_arreglo2.astype(np.float16).nbytes\n\n18",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#aritmética-de-arreglos",
+    "href": "03_numpy_arrays.html#aritmética-de-arreglos",
+    "title": "Repaso de numpy y otros",
+    "section": "",
+    "text": "mi_arreglo\n\narray([1, 5, 3])\n\n\n\nmi_arreglo3 =  mi_arreglo + 1\n\n\nmi_arreglo3\n\narray([2, 6, 4])\n\n\n\nmi_arreglo + mi_arreglo3\n\narray([ 3, 11,  7])\n\n\n\nmi_arreglo3/mi_arreglo\n\narray([2.        , 1.2       , 1.33333333])\n\n\n\nmi_arreglo3 == mi_arreglo\n\narray([False, False, False])\n\n\nSe pueden usar los operadores +, -, *, /, %, **, ==, !=, &gt;, &lt;, &gt;=, &lt;=\n\nmi_arreglo3.max()\n\nnp.int64(6)\n\n\n\nmi_arreglo3.min()\n\nnp.int64(2)",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#tajadas-de-arreglos",
+    "href": "03_numpy_arrays.html#tajadas-de-arreglos",
+    "title": "Repaso de numpy y otros",
+    "section": "",
+    "text": "mi_arreglo_2d = np.array([[1,2,3],[4,5,6],[7,8,9]])\n\n\nmi_arreglo_2d\n\narray([[1, 2, 3],\n       [4, 5, 6],\n       [7, 8, 9]])\n\n\n\nmi_arreglo_2d[1:2]\n\narray([[4, 5, 6]])\n\n\n\nmi_arreglo_2d[1:]\n\narray([[4, 5, 6],\n       [7, 8, 9]])\n\n\n\nmi_arreglo_2d[1,1]\n\nnp.int64(5)\n\n\n¿Cuál es la diferencia? El siguiente código primero toma todas las filas desde la segunda (índice 1), luego toma la segunda de esas listas.\n\nmi_arreglo_2d[1:][1]\n\narray([7, 8, 9])\n\n\nPor otra parte, el siguiente código toma el primer elemento de cada una de esas listas.\n\nmi_arreglo_2d[1:,1]\n\narray([5, 8])\n\n\n\nmi_arreglo_2d[1:,:-1]\n\narray([[4, 5],\n       [7, 8]])\n\n\n\nmi_arreglo\n\narray([1, 5, 3])\n\n\n\nmi_arreglo[mi_arreglo&lt;=3]\n\narray([1, 3])\n\n\n\nmenor_que_3 = mi_arreglo &lt; 3\n\n\nmenor_que_3\n\narray([ True, False, False])\n\n\n\nmi_arreglo[menor_que_3]\n\narray([1])",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#preparar-los-datos",
+    "href": "03_numpy_arrays.html#preparar-los-datos",
+    "title": "Repaso de numpy y otros",
+    "section": "Preparar los datos",
+    "text": "Preparar los datos\nPara graficar necesitamos una tabla de datos. Estos pueden ser de dos tipos:\n\nResultados de la evaluación de una función (como en el ejemplo anterior).\nDatos de una simulación o una medición experimental.\n\n\n# Preparamos los datos\nx = np.linspace(-1,1,100)\ny1 = np.arccos(x)\ny2 = np.arcsin(x)\n\n\n# Producimos el gráfico \nplt.plot(x, y1, label=r'$\\cos^{-1}(x)$')\nplt.plot(x, y2, label=r'$\\sin^{-1}(x)$')\n\n# Para diferenciar los dos gráficos podemos incluir una leyenda\nplt.legend()\n\nplt.show()\n\n\n\n\n\n\n\n\nNormalmente los datos de un experimento o simulación están guardados en un archivo. Hablaremos de cómo manejar archivos más adelante. Por ahora ponemos a mano algunos datos (que son el resultado de una simulación de ciertas propiedades estadísticas de la distribución de materia a gran escala en el universo).\n\ndatos = np.array(\n    [[0.00314159, 3.0318397997408217, 0.4566634429053162], \n    [0.00628318, 2.7707221181056867, 0.17510327334847328], \n    [0.00942477, 2.6792094345075723, 0.14418474960362074], \n    [0.01256636, 2.8629530955402314, 0.0799879332308988], \n    [0.015707950000000002, 2.6228671669898738, 0.04669866360637852], \n    [0.01884954, 2.544881594794191, 0.032079885722964156], \n    [0.02199113, 2.457245781452802, 0.045660793878032256], \n    [0.02513272, 2.418177998205174, 0.041336657066345844], \n    [0.02827431, 2.358376185696977, 0.03448018004161942], \n    [0.031415900000000004, 2.346427014273152, 0.0331860259716874], \n    [0.03455749, 2.339197080901526, 0.02361983589273171], \n    [0.03769908, 2.2761885850394745, 0.026495927143311844], \n    [0.04084067, 2.2553242344026168, 0.021181457699213722], \n    [0.04398226, 2.218805385557498, 0.01764832127890884], \n    [0.04712385, 2.1968751769225405, 0.02084889785594682], \n    [0.05026544, 2.183116404353682, 0.0229514467313476], \n    [0.05340703, 2.149455000853029, 0.012785355627588396], \n    [0.05654862, 2.122002117746843, 0.017161461769528517], \n    [0.05969021, 2.0863880826499894, 0.013943154873837437]])\n\nEsto es el resultado de simular una cierta función \\(f(q)\\) donde \\(q\\) es la primera columna, \\(f\\) es la segunda columna y el error está en la tercera columna. Queremos solamente graficar f como función de q.\n\nq = datos[:,0]\nf = datos[:,1]\n\n\nplt.plot(q,f, label='$f(q)$')\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nEstas son las notas (normalizadas entre 0 y 100) de un conjunto de estudiantes de licenciatura en física de una universidad norteamericana. El primer número es la nota en un curso de mecánica clásica, la segunda la nota en un curso de mecánica cuántica y la tercera es la nota de un curso de experimentación avanzada.\n\nnotas = np.array(\n[[100, 100, 93.0],\n [53.0, 60.0, 37.0],\n [42.0, 35.0, 89.0],\n [57.0, 54.0, 37.0],\n [77.0, 66.0, 53.0],\n [23.0, 26.0, 55.0],\n [97.0, 78.0, 68.0],\n [65.0, 45.0, 69.0],\n [74.0, 74.0, 84.0],\n [39.0, 44.0, 78.0],\n [95.0, 94.0, 25.0],\n [95.0, 74.0, 60.0],\n [77.0, 67.0, 17.0],\n [52.0, 47.0, 49.0],\n [66.0, 52.0, 27.0],\n [74.0, 63.0, 47.0],\n [79.0, 59.0, 13.0],\n [60.0, 40.0, 92.0],\n [80.0, 69.0, 36.0],\n [74.0, 44.0, 82.0],\n [100, 77.0, 7.0],\n [30.0, 23.0, 14.0],\n [96.0, 78.0, 57.0],\n [60.0, 81.0, 2.0],\n [57.0, 60.0, 29.0],\n [72.0, 88.0, 25.0],\n [44.0, 48.0, 58.0],\n [57.0, 53.0, 89.0],\n [58.0, 66.0, 31.0],\n [54.0, 48.0, 27.0],\n [58.0, 39.0, 86.0],\n [62.0, 55.0, 67.0],\n [54.0, 54.0, 66.0],\n [74.0, 70.0, 89.0],\n [60.0, 73.0, 39.0],\n [58.0, 74.0, 81.0],\n [50.0, 67.0, 52.0],\n [55.0, 50.0, 60.0],\n [91.0, 89.0, 70.0],\n [50.0, 55.0, 100],\n [47.0, 83.0, 51.0],\n [100, 100, 32.0],\n [53.0, 59.0, 72.0],\n [7.0, 39.0, 95.0],\n [73.0, 68.0, 76.0],\n [92.0, 100.0, 83.0],\n [81.0, 82.0, 66.0],\n [99.0, 88.0, 80.0],\n [79.0, 98.0, 48.0],\n [71.0, 45.0, 53.0]])",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#crear-el-gráfico",
+    "href": "03_numpy_arrays.html#crear-el-gráfico",
+    "title": "Repaso de numpy y otros",
+    "section": "Crear el gráfico",
+    "text": "Crear el gráfico\nLos ejemplos de arriba usan una versión simplificada (y mucho más limpia). Vamos a hacer unos ejemplos que usan toda la maquinaria de matplotlib, pero siempre es mejor usar la solución más sencilla.\n\n# Primero creamos una figura, es un objeto abstracto que puede contener varios gráficos\nfig = plt.figure()\n\n# Ahora creamos unos \"ejes\", que son la región donde el gráfico aparecerá\nax1 = fig.add_subplot(2,2,1) # número de filas, número de columnas, posición de este eje\nax2 = fig.add_subplot(2,2,2)\nax3 = fig.add_subplot(2,2,3)",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#graficar",
+    "href": "03_numpy_arrays.html#graficar",
+    "title": "Repaso de numpy y otros",
+    "section": "Graficar",
+    "text": "Graficar\n\nfig = plt.figure()\n\naxs1 = fig.add_subplot(2,2,1)\naxs2 = fig.add_subplot(2,2,2)\naxs3 = fig.add_subplot(2,2,3)\n\naxs1.scatter(notas[:,0], notas[:,1])\naxs2.scatter(notas[:,0], notas[:,2])\naxs3.scatter(notas[:,1], notas[:,2])\n\nfig.show()\n\n/tmp/ipykernel_155057/941235242.py:11: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  fig.show()\n\n\n\n\n\n\n\n\n\n\n# Preparamos los datos\nx = np.linspace(0,2*np.pi,100)\ny = np.sin(x)\n\n# Graficamos los datos\nplt.fill(x, y)\n\n# Mostramos el gráfico\nplt.show()",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#parámetros-del-gráfico",
+    "href": "03_numpy_arrays.html#parámetros-del-gráfico",
+    "title": "Repaso de numpy y otros",
+    "section": "Parámetros del gráfico",
+    "text": "Parámetros del gráfico\nPodemos cambiar diferentes parámetros como el color, el tipo de línea o punto, etc.\n\nfig = plt.figure()\n\naxs1 = fig.add_subplot(2,2,1)\naxs2 = fig.add_subplot(2,2,2)\naxs3 = fig.add_subplot(2,2,3)\n\naxs1.scatter(notas[:,0], notas[:,1], color='yellowgreen', marker='^')\naxs2.scatter(notas[:,0], notas[:,2], color='teal', marker='o')\naxs3.scatter(notas[:,1], notas[:,2], color='darkslategray', marker='+')\n\nfig.suptitle('Correlación entre notas')\naxs1.set_title('Cuántica-Clásica')\naxs2.set_title('Cuántica-Experimental')\naxs3.set_title('Clásica-Experimental')\nfig.tight_layout(pad=2.0)\n\nfig.show()\n\n/tmp/ipykernel_155057/1727335637.py:17: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  fig.show()\n\n\n\n\n\n\n\n\n\n\n# Preparamos los datos\nx = np.linspace(-1,1,100)\ny1 = np.arccos(x)\ny2 = np.arcsin(x)\ny3 = np.arctan(x)\n\nplt.plot(x, y1, label=r'$\\cos^{-1}(x)$', linestyle='--', color='turquoise', linewidth=2)\nplt.plot(x, y2, label=r'$\\sin^{-1}(x)$', linestyle='-', color='tan', linewidth=2)\nplt.plot(x, y3, label=r'$\\tan^{-1}(x)$', linestyle=':', color='cornflowerblue', linewidth=2.5)\nplt.xlabel('$x$')\nplt.ylabel('Función')\n\n# Para diferenciar los dos gráficos podemos incluir una leyenda\nplt.legend()\n\nplt.show()",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#guardar-el-gráfico",
+    "href": "03_numpy_arrays.html#guardar-el-gráfico",
+    "title": "Repaso de numpy y otros",
+    "section": "Guardar el gráfico",
+    "text": "Guardar el gráfico\n\nq = datos[:,0]\nf = datos[:,1]\ne = datos[:,2]\n\nplt.errorbar(q,f,e, ecolor='black', capsize=3)\nplt.xlabel('$q$')\nplt.ylabel('$f(q)$')\n\n## Importante! Poner antes de plt.show()\n#plt.savefig('datos.pdf')\n\nplt.show()",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#formato-para-archivos-de-texto",
+    "href": "03_numpy_arrays.html#formato-para-archivos-de-texto",
+    "title": "Repaso de numpy y otros",
+    "section": "Formato para archivos de texto",
+    "text": "Formato para archivos de texto\nNormalmente queremos guardar números bien formateados.\n\nimport numpy as np\n\n\nx = np.linspace(0,1,20)\ny = x**2\n\n\nwith open('copia.txt', 'w') as file:\n    for i in range(len(x)):\n        texto = f'{x[i]:020.3f}\\t{y[i]:.3e}\\n'\n        file.write(texto)\n\n\nwith open('copia.txt', 'r') as file:\n    x = []\n    y = []\n    for l in file:\n        xin, yin = l.split()\n        x.append(float(xin))\n        y.append(float(yin))\n        print(l, end='')\n\n0000000000000000.000    0.000e+00\n0000000000000000.053    2.770e-03\n0000000000000000.105    1.108e-02\n0000000000000000.158    2.493e-02\n0000000000000000.211    4.432e-02\n0000000000000000.263    6.925e-02\n0000000000000000.316    9.972e-02\n0000000000000000.368    1.357e-01\n0000000000000000.421    1.773e-01\n0000000000000000.474    2.244e-01\n0000000000000000.526    2.770e-01\n0000000000000000.579    3.352e-01\n0000000000000000.632    3.989e-01\n0000000000000000.684    4.681e-01\n0000000000000000.737    5.429e-01\n0000000000000000.789    6.233e-01\n0000000000000000.842    7.091e-01\n0000000000000000.895    8.006e-01\n0000000000000000.947    8.975e-01\n0000000000000001.000    1.000e+00\n\n\n\ny\n\n[0.0,\n 0.00277,\n 0.01108,\n 0.02493,\n 0.04432,\n 0.06925,\n 0.09972,\n 0.1357,\n 0.1773,\n 0.2244,\n 0.277,\n 0.3352,\n 0.3989,\n 0.4681,\n 0.5429,\n 0.6233,\n 0.7091,\n 0.8006,\n 0.8975,\n 1.0]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#tarea-1.6",
+    "href": "03_numpy_arrays.html#tarea-1.6",
+    "title": "Repaso de numpy y otros",
+    "section": "Tarea 1.6",
+    "text": "Tarea 1.6\nUn colega le entrega a usted archivos de texto con los resultados de una simulación (simulacion.txt). Este archivo contiene tres columnas separadas por espacios tal que cada fila es un dato y las tres columnas son tres propiedades simuladas de ese dato.\nEscriba una función que lea ese archivo de texto y lo vuelva a guardar en un archivo simulacion.hd5 con tres datasets correspondientes a las tres propiedades de cada dato.\nComo usted quiere reutilizar esta función para cualquier otro archivo con tres columnas, la función debe tomar el nombre del archivo de texto y el nombre deseado para el nuevo archivo hd5 como argumentos.\nEl archivo simulacion.txt contiene por ejemplo lo siguiente:\n3.141590000000000094e-03 2.557680595776000416e+02 4.501400409434224770e+01 \n6.283180000000000189e-03 3.752818426478838205e+02 2.947770471609068110e+01 \n9.424770000000000716e-03 4.246697882492646841e+02 2.843524433400840579e+01 \n1.256636000000000038e-02 4.676325636948347437e+02 2.576223788106328882e+01 \n1.570795000000000177e-02 4.820912691815412359e+02 1.530261598082400276e+01 \n1.884954000000000143e-02 4.337667969674867550e+02 1.450243036000263963e+01 \n2.199113000000000109e-02 4.299064323187142804e+02 7.689521175184014012e+00 \n2.513272000000000075e-02 3.840742743415148084e+02 5.880658615460115257e+00 \n2.827431000000000041e-02 3.464876766126099596e+02 5.062040746246734280e+00",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#tarea-1.7",
+    "href": "03_numpy_arrays.html#tarea-1.7",
+    "title": "Repaso de numpy y otros",
+    "section": "Tarea 1.7",
+    "text": "Tarea 1.7\nSin usar ciclos for ni while, escriba un código que calcule la siguiente sumatoria\n\\[\n\\sum_{n = 1}^{100} e^n(n+1)\n\\]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#tarea-1.8",
+    "href": "03_numpy_arrays.html#tarea-1.8",
+    "title": "Repaso de numpy y otros",
+    "section": "Tarea 1.8",
+    "text": "Tarea 1.8\nGrafique en una misma figura la siguiente función junto con su serie de Taylor alrededor de \\(x = 0\\) truncada al término número 10. ¿Hasta cuál valor de \\(x\\) parece ser una buena aproximación?\n\\[\nf(x) = x\\sin(x)\n\\]\nUse colores y estilos de línea diferentes para cada línea. Escoja un rango de valores de \\(x\\) que represente lo que quiera concluir sobre esta aproximación. Incluya una leyenda para facilitar la lectura del gráfico.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#tarea-1.9",
+    "href": "03_numpy_arrays.html#tarea-1.9",
+    "title": "Repaso de numpy y otros",
+    "section": "Tarea 1.9",
+    "text": "Tarea 1.9\nSuponga que usted es un ayudante de un laboratorio de física. En un experimento se pide medir la posición de una masa que cae en un plano inclinado a intervalos regulares en el tiempo. El equipo disponible puede medir las posiciones con una precisión de \\(4\\,\\text{mm}\\). Uno de los estudiantes usa los siguientes datos (en \\(\\text{cm}\\)):\n\ndatos = [0.9,  2. ,  3.6,  5.6,  8. , 10.9, 14.2, 18.]\n\nGrafique estos datos con sus barras de error. Explique por qué el estudiante merece una nota de 1.0. Compare con los siguientes datos obtenidos por un estudiante que merece 7.0.\n\ndatos_7 = [0.3,  1.7,  4.1,  5.7,  8.5, 10.7, 13.6, 17.2]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
+    "objectID": "03_numpy_arrays.html#tarea-1.10",
+    "href": "03_numpy_arrays.html#tarea-1.10",
+    "title": "Repaso de numpy y otros",
+    "section": "Tarea 1.10",
+    "text": "Tarea 1.10\nUn colega le pasa a usted un archivo .hd5 que contiene tres “datasets” ‘x’, ‘y’, ‘e’. Todos los datasets tienen la misma longitud y el i-ésimo elemento de cada dataset corresponde a una propiedad diferente del i-ésimo dato.\nEscriba una función que grafique esos resultados donde ‘x’ es el eje horizontal, ‘y’ el eje vertical y ‘e’ son las barras de error de ‘y’.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Repaso de numpy, matplotlib, archivos"
+    ]
+  },
+  {
     "objectID": "plan.html",
     "href": "plan.html",
     "title": "Métodos Numéricos y Probabilidades",
