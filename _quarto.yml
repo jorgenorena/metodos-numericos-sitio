@@ -20,6 +20,8 @@ website:
             href: 01_funcionamiento_cpu.qmd
           - text: "Repaso de Python"
             href: 02_python.qmd
+          - text: "Repaso de numpy, matplotlib, archivos"
+            href: 03_numpy_arrays.qmd
   sidebar:
     style: docked
     contents:
@@ -29,6 +31,8 @@ website:
             href: 01_funcionamiento_cpu.qmd
           - text: "Repaso de Python"
             href: 02_python.qmd
+          - text: "Repaso de numpy, matplotlib, archivos"
+            href: 03_numpy_arrays.qmd
 
 format:
   html:
