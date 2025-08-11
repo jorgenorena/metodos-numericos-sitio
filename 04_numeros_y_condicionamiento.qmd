@@ -1,0 +1,260 @@
+---
+title: "Clase 4: Representación de números y número de condicionamiento"
+jupyter: python3
+lang: es
+---
+
+# Representación de números reales
+
+El computador representa los números usando un sistema **binario**. Es decir, una lista de 1s y 0s. Las CPUs modernas usan 64 bits, cada uno de los cuales puede ser 0 o 1. Como esto es un número finito de información, la precisión del computador para guardar un número no es infinita y esto puede inducir errores.
+
+Para entender el problema, hagamos un ejemplo con 16 bits.
+
+```{python}
+import numpy as np
+```
+
+```{python}
+pi = np.float16(np.pi)
+dos = np.float16(2)
+cien = np.float16(100)
+cien*np.sin(dos*pi)
+```
+
+## Representación binaria de números decimales
+
+Para guardar un número real en la memoria de un pc se usa la siguiente representación
+
+$$
+(-1)^s 2^{n} (1 + f)\,,
+$$
+
+donde $s$ es el signo, $n$ es el exponente, y la mantisa $f$ es $f = \sum_{i=1}^d b_i 2^{-i}$.
+
+El exponente normalmente se define como $n = c - 2^{k-1} + 1$, donde $k$ es el número de bits en la representación.
+
+## Números de 16 bits
+
+Para ilustrar el tipo de dificultades que esto introduce es engorroso trabajar con números tan grandes. Por eso trabajamos con números de 16 bits (como si estuviéramos en los años 90). Un número de este estilo es
+
+1 11010 1111000100
+
+El primer dígito es $s$, los siguientes cinco forman $c$ y los siguientes diez forman $f$ de manera análoga a la de antes. En nuestro ejemplo tenemos
+
+$$
+f = \left(\frac{1}{2}\right)^1 + \left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^3 + \left(\frac{1}{2}\right)^4 + \left(\frac{1}{2}\right)^8 = 0.94140625
+$$
+
+$$
+c = 2^4 + 2^3 + 2^1 = 26
+$$
+
+El número total está dado por $$(-1)^s 2^{c - 15} (1 + f)$$
+
+El número de nuestro ejemplo es
+
+$$
+(-1)\times 2^{26 - 15} 1.94140625 = -3976
+$$
+
+* Número más grande de 16 bits
+
+0 11110 1111111111
+
+```{python}
+f = sum((1/2.)**(np.arange(1,11)))
+f
+```
+
+```{python}
+c = sum(2**(np.arange(1,5)))
+c
+```
+
+```{python}
+2**(c - 15)*(1 + f)
+```
+
+* Número más pequeño de 16 bits
+
+1 11110 1111111111
+
+```{python}
+-2**(c-15)*(1 + f)
+```
+
+* Número más cercano a cero de 16 bits
+
+0 00000 0000000001
+
+```{python}
+2**(1-15)*((1/2)**10)
+```
+
+* Cifras decimales de precisión de 16 bits
+
+0 00000 0000000001
+
+```{python}
+(1/2)**(10)
+```
+
+Algo análogo ocurre para números representados con 64 bits sólo que ahora tenemos más bits disponibles para el exponente y la mantisa, lo que nos da más precisión. En ese caso tenemos 15 cifras de precisión. Hoy en día se usan también números de 32 bits para algunos cálculos, estos tienen aproximadamente 7 cifras de precisión.
+
+Si el lector está interesado, puede consultar cómo el uso de números aún más pequeños ha resurgido en el contexto de modelos de inteligencia artificial. Esto acelera los modelos. En esos casos se usa una mantisa más pequeña porque lo importante es el orden de magnitud del número.
+
+## Redondeo, truncación, error absoluto y relativo
+
+Para explorar este problema, ignoremos por ahora el sistema *binario* y veamos lo que ocurre en el sistema **decimal**. 
+
+```{python}
+#| scrolled: true
+np.pi
+```
+
+En este caso, si queremos representar el número $\pi$ con una cierta cantidad $n$ de cifras significativas podemos hacer dos cosas:
+
+* Truncar: Ignoramos las cifras adicionales, más allá de la $n$-ésima cifra.
+
+```{python}
+pi_truncado = 3.1415
+```
+
+* Redondear: Si la cifra $n + 1$ es menor a 5 truncamos, pero si la cifra $n + 1$ es mayor o igual que 5
+
+```{python}
+pi_redondeado = 3.1416
+```
+
+Al truncar o redondear cometemos un error. Podemos cuantificar el error de varias maneras:
+
+* Error real: estimación - valor verdadero
+
+```{python}
+pi_truncado - np.pi
+```
+
+```{python}
+pi_redondeado - np.pi
+```
+
+* Error absoluto: |estimación - valor verdadero|
+
+```{python}
+np.abs(pi_truncado - np.pi)
+```
+
+```{python}
+np.abs(pi_redondeado - np.pi)
+```
+
+* Error relativo: |estimación - valor verdadero|/|valor verdadero|
+
+```{python}
+np.abs(pi_truncado - np.pi)/np.abs(np.pi)
+```
+
+```{python}
+np.abs(pi_redondeado - np.pi)/np.abs(np.pi)
+```
+
+## Aritmética de dígitos finitos
+
+El número más cercano a $1$ por la derecha en $16$ bits es
+
+```
+0 00000 0000000001
+```
+
+Restándole $1$, este se llama el $\epsilon$ de máquina. En el caso de 16 bits es burdamente $10^{-3}$. En el caso de 64 bits es $\sim 10^{-16}$ y en el caso de 32 bits es $\sim 10^{-8}$. Esta es la máxima precisión que podemos alcanzar al operar con números representados de esta forma.
+
+```{python}
+np.finfo(np.float32).eps
+```
+
+```{python}
+np.finfo(np.float64).eps
+```
+
+Cuidado, el verdadero error cometido es el $\epsilon_{maq}$ multiplicado por el exponente, tal que el error al usar números en $[1/2, 1)$ es en realidad $\epsilon_{maq}/2$ por ejemplo.
+
+```{python}
+eps = np.finfo(float).eps
+x = eps/2
+(1.0 + x) - 1.0
+```
+
+```{python}
+1.0 + (x - 1.0)
+```
+
+Según el estándar IEEE 754, los resultados de las sumas, restas, multiplicaciones y divisiones de números de punto flotante en el computador deben dar un resultado igual a hacer el cálculo con números reales y luego redondear a la precisión de la representación.
+
+::: {.callout-warning icon="false"}
+Como vimos con el ejemplo de arriba, todo esto quiere decir que dos resultados matemáticamente equivalentes no dan necesariamente el mismo resultado si se usa aritmética de punto flotante.
+:::
+
+# Número de condicionamiento
+
+Queremos tener alguna manera de estimar los errores inducidos por esto. Es decir, supongamos que queremos resolver algún problema numérico. En general esto se puede describir como evaluar una función $f(x)$. Como $x$ se representa con aritmética finita en realidad tendremos $f(x(1 + \epsilon))$ para algún $\epsilon < |\epsilon_{maq}|$ que asumimos muy pequeño. El error relativo cometido es
+
+$$
+\left | \frac{f(x(1 + \epsilon)) - f(x)}{f(x)} \right | \,,
+$$
+
+tal que definimos el **número de condicionamiento** de la función $f(x)$ como
+
+$$
+\kappa_f (x) = \lim_{\epsilon \rightarrow 0} \left | \frac{f(x(1 + \epsilon)) - f(x)}{\epsilon f(x)} \right |\,.
+$$
+
+En otras palabras, el error relativo cometido es $\kappa_f(x) |\epsilon|$. 
+
+Si $\kappa_f(x)$ es grande, el error cometido es mayor que la precisión del computador. En general, si $\kappa_f(x) \sim 10^d$, decimos que perdemos $d$ cifras significativas. Cuando esto ocurre, decimos que el problema está **mal condicionado**.
+
+Hagamos un ejemplo. Para $f(x) = x - c$ es fácil calcular 
+$$
+\kappa_f(x) = \left |\frac{xf'(x)}{f(x)}\right| = \left|\frac{x}{x-c}\right|\,.
+$$
+Esto quiere decir que si $x$ está cerca de $c$, el número de condicionamiento se vuelve grande y el error relativo también lo será.
+
+El número de condicionamiento también puede hacer referencia al cambio de algún otro parámetro en la función.
+
+Como ejemplo consideremos las raíces del polinomio cuadrático $p(x) = ax^2 + bx + c$. Busquemos el número de condicionamiento del problema de buscar las raíces $r_1, r_2$ bajo cambios en $a$. Primero tomamos la derivada del polinomio evaluado en la raíz $r_1$ respecto a $a$, tomando en cuenta que la raíz cambia al cambiar $a$:
+
+$$
+r_1^2 + 2a r_1\frac{dr_1}{da} + b\frac{dr_1}{da} = 0\,.
+$$
+
+Despejando obtenemos $dr_1/da = -r_1^2/(2ar_1 + b)$. Ahora, el número de condicionamiento es
+
+$$
+\kappa_p(a) = \left |\frac{a \frac{dr_1}{da}}{r_1}\right| = \left|\frac{a r_1}{2a r_1 + b}\right| = \left|\frac{a r_1}{r_1 - r_2} \right|\,,
+$$
+
+Esto quiere decir que cuando las dos raíces están muy cerca comparadas con su tamaño, el número de condicionamiento se vuelve grande.
+
+Como ejemplo, busquemos las raices de $\frac{1}{3}(x - 1)(x - 1 - e)$ para $e$ pequeño. Si tomamos $e = 1e-6$ esperamos un número de condicionamiento $e$ y perdemos $6$ cifras de precisión.
+
+```{python}
+e = 1e-6
+a, b, c = 1/3, (-2 - e)/3, (1 + e)/3
+
+d = np.sqrt(b**2 - 4*a*c)
+r1 = (-b + d)/(2*a)
+r2 = (-b - d)/(2*a)
+(r1, r2)
+```
+
+Veamos el error relativo
+
+```{python}
+abs(r1 - (1 + e))/(1 + e)
+```
+
+Perdimos $6$ cifras de precisión como prometido.
+
+# ¡Tareas!
+
+## Tarea 2.1
+

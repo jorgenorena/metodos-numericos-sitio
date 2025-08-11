@@ -77,7 +77,7 @@ Examen: Definido por Instituto
 
 La evaluación se hará por tareas y pruebas.
 
-Al final de cada clase habrán 5 tareas para un total de 10 tareas cada dos clases. De estas 10 tareas se le asignará de forma aleatoria una tarea a cada estudiante. De esta manera el estudiante deberá entregar aproximadamente 11 tareas a lo largo del curso. El 50% de la nota final es el promedio de las notas de las tareas.
+Al final de cada clase habrán 5 tareas para un total de 10 tareas cada dos clases. De estas 10 tareas se le asignará de forma aleatoria una tarea a cada estudiante. De esta manera el estudiante deberá entregar aproximadamente 11 tareas a lo largo del curso. El 25% de la nota final es el promedio de las notas de las tareas.
 
 Las tareas se entregan dos clases después de haber sido asignadas.
 

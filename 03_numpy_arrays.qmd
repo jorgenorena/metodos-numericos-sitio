@@ -1,11 +1,10 @@
 ---
 title: Repaso de numpy y otros
 jupyter: python3
+lang: es
 execute:
   error: true
 ---
-
-
 
 # Arreglos
 

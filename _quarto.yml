@@ -22,6 +22,8 @@ website:
             href: 02_python.qmd
           - text: "Repaso de numpy, matplotlib, archivos"
             href: 03_numpy_arrays.qmd
+          - text: "Representación de números y condicionamiento"
+            href: 04_numeros_y_condicionamiento.qmd
   sidebar:
     style: docked
     contents:
@@ -33,6 +35,8 @@ website:
             href: 02_python.qmd
           - text: "Repaso de numpy, matplotlib, archivos"
             href: 03_numpy_arrays.qmd
+          - text: "Representación de números y condicionamiento"
+            href: 04_numeros_y_condicionamiento.qmd
 
 format:
   html:
