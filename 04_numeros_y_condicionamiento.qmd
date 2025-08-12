@@ -237,7 +237,7 @@ $$
 Despejando obtenemos $dr_1/da = -r_1^2/(2ar_1 + b)$. Ahora, el número de condicionamiento es
 
 $$
-\kappa_p(a) = \left |\frac{a \frac{dr_1}{da}}{r_1}\right| = \left|\frac{a r_1}{2a r_1 + b}\right| = \left|\frac{a r_1}{r_1 - r_2} \right|\,,
+\kappa_p(a) = \left |\frac{a \frac{dr_1}{da}}{r_1}\right| = \left|\frac{a r_1}{2a r_1 + b}\right| = \left|\frac{r_1}{r_1 - r_2} \right|\,,
 $$
 
 Esto quiere decir que cuando las dos raíces están muy cerca comparadas con su tamaño, el número de condicionamiento se vuelve grande.
@@ -307,9 +307,9 @@ Profundizaremos en el cálculo numérico de integrales más adelante.
 
 La cantidad de interés es $I = I_{1} + I_{2}$.
 
-* Usando $q_{max} = 0.1$ y $N = 500000$, calcule ambas integrales por separado usando la aproximación, y luego súmelas.
+- Usando $q_{max} = 0.1$ y $N = 500000$, calcule ambas integrales por separado usando la aproximación, y luego súmelas.
 
-* La suma de las integrales $I$ se puede escribir como la integral de la suma de los integrandos:
+- La suma de las integrales $I$ se puede escribir como la integral de la suma de los integrandos:
 
 $$
 I = \int_0^{q_{max}} q^2 \frac{4}{q}\,dq
@@ -317,15 +317,15 @@ $$
 
 Calcule $I$ de esta manera usando la aproximación.
 
-* ¿Por qué son diferentes los resultados? Compare con el resultado exacto de la integral $I$.
+- ¿Por qué son diferentes los resultados? Compare con el resultado exacto de la integral $I$.
 
 ## Tarea 2.4
 
 Ejercicio 1.3.1 del libro de Burden: Use números de punto flotante de 16 bits para calcular las siguientes sumas. Explique por qué ambos métodos en cada caso dan resultados diferentes y cuál es la más correcta.
 
-* $\sum_{n = 1}^{100}\frac{1}{n^2}$ primero de la forma $1 + \frac{1}{4} + \frac{1}{9} + \dots + \frac{1}{10^4}$ y luego en la forma $\frac{1}{10^4} + \dots + \frac{1}{9} + \frac{1}{4} + 1$.
+- $\sum_{n = 1}^{100}\frac{1}{n^2}$ primero de la forma $1 + \frac{1}{4} + \frac{1}{9} + \dots + \frac{1}{10^4}$ y luego en la forma $\frac{1}{10^4} + \dots + \frac{1}{9} + \frac{1}{4} + 1$.
 
-* $\sum_{n = 1}^{100}\frac{1}{n^3}$ primero de la forma $1 + \frac{1}{8} + \frac{1}{27} + \dots + \frac{1}{10^6}$ y luego en la forma $\frac{1}{10^6} + \dots + \frac{1}{27} + \frac{1}{8} + 1$.
+- $\sum_{n = 1}^{100}\frac{1}{n^3}$ primero de la forma $1 + \frac{1}{8} + \frac{1}{27} + \dots + \frac{1}{10^6}$ y luego en la forma $\frac{1}{10^6} + \dots + \frac{1}{27} + \frac{1}{8} + 1$.
 
 ## Tarea 2.5
 
