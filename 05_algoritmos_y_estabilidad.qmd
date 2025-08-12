@@ -1,0 +1,176 @@
+---
+title: "Clase 5: Algoritmos y estabilidad"
+jupyter: python3
+lang: es
+---
+
+Evaluamos los algoritmos según tres criterios: Eficiencia, convergencia y estabilidad.
+
+# Eficiciencia de los algoritmos
+
+Para cálculos pesados, es necesario estimar la eficiencia del algoritmo. A veces cálculos que parecen inocentes se hacen demasiado pesadoos incluso para un computador.
+
+Para analizar la eficiencia de un algoritmo se estima el número de pasos involucrados. Por ejemplo:
+
+```{python}
+suma = 0
+n = 100
+for i in range(n):
+    suma += i
+```
+
+```{python}
+suma = sum(range(n))
+```
+
+Este algoritmo toma $n$ pasos, ya que debe realizar $n$ operaciones. Decimos que su eficiencia es de orden $\mathcal{O}(n)$.
+
+A veces es necesario anidar ciclos, esto empieza a aumentar el número de pasos
+
+```{python}
+suma = 0
+n = 100
+for i in range(n):
+    for j in range(i):
+        suma += j
+```
+
+Este algoritmo toma mucho más tiempo porque el primer ciclo toma $n$ pasos y el siguiente toma $i$ pasos, Como $i$ puede llegar hasta $n(n-1)/2$ pasos. Cuando $n$ es un número muy grande esto es aproximadamente igual a $n^2/2$. En este caso decimos que la eficiencia del algoritmo es del orden $\mathcal{O}(n^2)$.
+
+A los algoritmos con una eficiencia de orden $\mathcal{O}(n^c)$, donde $c$ es una constante numérica, se los llama algoritmos de eficiencia polinomial.
+
+Los algoritmos más eficientes posibles son los que tienen una eficiencia logarítmica $\mathcal{O}(\log n)$ (y en informática normalmente se usa el logaritmo base $2$ en este contexto. Veremos un ejemplo de uno de estos algoritmos próximamente.
+
+Los peores algoritmos son los que tienen un crecimiento exponencial, por ejemplo $\mathcal{O}(2^n)$, Estos se hacen extremadamente difíciles de ejecutar para un computado incluso para valores modestos de $n$.
+
+```{python}
+#| scrolled: true
+import matplotlib.pyplot as plt
+import numpy as np
+
+n = np.arange(1,50)
+log = np.log(n)/np.log(2)
+pol2 = n**2
+pol4 = n**4
+exp = 2**n
+
+plt.scatter(n, log, label = '$\log_2$')
+plt.scatter(n, pol2, label = '$n^2$')
+plt.scatter(n, pol4, label = '$n^4$')
+plt.scatter(n, exp, label = 'exp')
+plt.legend()
+```
+
+# Precisión y convergencia de los algoritmos
+
+Además de la eficiencia de un algoritmo, también es importante su precisión. Los métodos numéricos consisten en encontrar soluciones aproximadas a los problemas y será importante tener una estimacióon del error cometido. El error cometido en un algoritmo numérico nos da una idea de su precisión. Si el error disminuye a medida que se ejecuta un algoritmo de más pasos, decimos que converge.
+
+El método numérico normalmente consiste en encontrar una sucesión de números que convergen al resultado requerido. Supongamos que tenemos una cierta sucesión $\{\alpha_n\}$ que converge al resultado $\alpha$. Por otra parte supongamos que tenemos otra sucesión $\{\beta_n\}$ que converge a cero. Decimos que el algoritmo converge a $\alpha$ a una razón $\mathcal{O}(\beta_n)$ si se cumple que
+
+$$
+|\alpha_n - \alpha| < K|\beta_n|\,,
+$$
+
+para alguna constante $K$.
+
+Normalmente se toma $\beta_n = 1/n^c$ para alguna potencia $c$. Los algoritmos que convergen más rápido tienen $c$ alto.
+
+Por ejemplo, consideremos la sucesión $\{n \sin(1/n)\}$, esta converge a $1$ a medida que $n$ crece. Otra sucesión que converge a $1$ es $\{1 - 1/n\}$.
+
+```{python}
+suc1 = []
+suc2 = []
+for n in range(1,101):
+    suc1.append(1 - n*np.sin(1/n))
+    suc2.append(1/n)
+```
+
+```{python}
+#| scrolled: true
+plt.scatter(np.arange(1,101), suc1)
+plt.scatter(np.arange(1,101), suc2)
+```
+
+```{python}
+plt.loglog(np.arange(1,101), suc1)
+plt.loglog(np.arange(1,101), suc2)
+```
+
+Otro ejemplo es un algoritmo para calcular $\pi$, llamada fórmula de Leibniz
+
+$$
+\pi = 4 - \frac{4}{3} + \frac{4}{5} - \frac{4}{7} + \frac{4}{9} - \dots
+$$
+
+(Esto viene del hecho que $\pi/4 = \tan^{-1}(1)$ al hacer la expanción de Taylor de la tangente inversa).
+
+Comparada con otra fórmula que converge más rápidamente
+
+$$
+\pi = 3 + \frac{4}{2\times 3\times 4} - \frac{4}{4\times 5 \times 6} + \frac{4}{6\times 7\times 8} - \dots
+$$
+
+```{python}
+#| collapsed: true
+#| jupyter: {outputs_hidden: true}
+pi1 = [4]
+pi2 = [3]
+
+for n in range(1, 100):
+    pi1.append(pi1[n-1] + (-1)**n*4/(2*n + 1))
+    pi2.append(pi2[n-1] + (-1)**(n + 1)*4/(2*n*(2*n + 1)*2*(n+1)))
+    
+plt.loglog(np.arange(100), pi1, label='pi1')
+plt.loglog(np.arange(100), pi2, label = 'pi2')
+plt.loglog(np.arange(100), np.full(100, np.pi), label = 'pi verdadero')
+plt.legend()
+plt.xlim(10**1, 10**2)
+plt.ylim(np.pi - 0.001*np.pi, np.pi + 0.001*np.pi)
+```
+
+# Estabilidad de los algoritmos
+
+En algunos casos el problema que queremos resolver tiene un buen número de condicionamiento, pero el algoritmo da errores grandes al perturbar los datos de entrada. En estos casos decimos que el algoritmo es **inestable**. Esta inestabilidad puede tener varios orígenes: Acumulación de errores de redondeo (ver tarea 2.4), número de condicionamiento grande de los pasos intermedios del algoritmo, entre otros.
+
+Hagamos un ejemplo: Consideremos el polinomio $p(x) = (x - 10^6)(x - 10^{-6})$. Como las dos raíces son muy distintas sabemos que es un problema bien condicionado (ver clase anterior). Sin embargo, al intentar evaluar las raíces usando la formulita estándar obtenemos
+
+```{python}
+import math
+
+a = 1
+b = -(1e6 + 1e-6)
+c = 1
+x1 = (-b + math.sqrt(b**2 - 4*a*c)) / (2*a)
+x2 = (-b - math.sqrt(b**2 - 4*a*c)) / (2*a)
+print(f"Raíz 1: {x1}, Raíz 2: {x2}")
+```
+
+La raíz 1 es exacta. Sin embargo la raíz 2 tiene sólo 7 cifras decimales de precisión (no las 15 que nos promete la aritmética de 64 bits). ¿Qué pasa aqí?
+
+Para calcular `x2` tenemos que hacer la resta de 
+
+```{python}
+-b
+```
+
+con
+
+```{python}
+math.sqrt(b**2 - 4*a*c)
+```
+
+Vemos que son dos cantidades cercanas. Esto tiene un mal número de condicionamiento y se pierden cifras decimales de precisión. La formulita es inestable.
+
+Para resolver este problema podemos usar el hecho que $x_1 x_2 = c/a$ y entonces
+
+```{python}
+x2 = c/a/x1
+print(f"Raíz 2: {x2}")
+```
+
+El problema estaba bien condicionado tal que podemos encontrar una buena solución, pero el algoritmo usado inicialmente es inestable.
+
+El término "inestable" también se usa para los algoritmos que no convergen a la solución correcta cuando se aumenta la precisión. Esto puede suceder, por ejemplo, si el algoritmo depende de operaciones que amplifican errores de redondeo o si el número de condicionamiento de los pasos intermedios es grande.
+
+# ¡Tareas!
+
