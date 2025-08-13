@@ -174,3 +174,51 @@ El término "inestable" también se usa para los algoritmos que no convergen a l
 
 # ¡Tareas!
 
+## Tarea 2.6
+
+Discuta la estabilidad de los problemas presentados en las tareas 2.3 y 2.4.
+
+## Tarea 2.7
+
+Tarea de notebook viejo.
+
+## Tarea 2.8
+
+Ejercicio 1.4.1 del libro "Fundamentals of Numerical Computation: Julia Edition" de Driscoll y Braun.
+
+Las dos fórmulas siguientes son matemáticamente equivalentes
+
+$$
+  f(x) = \frac{1 - \cos(x)}{\sin(x)}\,,\quad g(x) = \frac{\sin^2(x/2)}{\sin(x)}\,.
+$$
+
+Sin embargo sugieren algoritmos para su cálculo que se comportan de manera distinta en aritmética de punto flotante.
+
+- Encuentre el número de condicionamiento de $f(x)$ respecto a pequeños cambios en $x$. Como son equivalentes, este es el mismo para $g(x)$.
+- Calcule $f(10^{-6})$ usando una cadena de cuatro operaciones elementales (sumas, restas, multiplicaciones, divisiones, funciones trigonométricas). Calcule el número de condicionamiento de cada una.
+- Repita lo mismo para $g(10^{-6})$, que requiere seis operaciones elementales.
+- Basado en lo anterior, compare ambos resultados y discuta cuál es más preciso.
+
+## Tarea 2.9
+
+Ejercicio 1.4.2 del libro "Fundamentals of Numerical Computation: Julia Edition" de Driscoll y Braun.
+
+Sea $f(x) = \frac{e^x - 1}{x}$.
+
+- Encuentre el número de condicionamiento. ¿Cuál es su máximo entre $-1 \leq x \leq 1$?
+- Use el algoritmo obvio
+
+  ```{python}
+  (e**x - 1)/x
+  ```
+
+  para calcular $f(x)$ para $x = 10^{-2}, 10^{-3}, 10^{-4}, ..., 10^{-8}$.
+- Repita lo mismo usando en cambio los primeros ocho términos de la serie de Taylor 
+  $$
+  f(x) \approx 1 + \frac{1}{2}x + \frac{1}{3!}x^3 + \dots + \frac{1}{8!}x^7\,.
+  $$
+- Haga una tabla de las diferencias relativas entre ambos métodos. ¿Cuál es más preciso y por qué?
+
+## Tarea 2.10
+
+Convergencia y graficar.
