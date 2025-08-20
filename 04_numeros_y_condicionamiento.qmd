@@ -1,5 +1,5 @@
 ---
-title: "Clase 4: Representación de números y número de condicionamiento"
+title: "Representación de números y número de condicionamiento"
 jupyter: python3
 lang: es
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Clase 5: Algoritmos y estabilidad"
+title: "Algoritmos y estabilidad"
 jupyter: python3
 lang: es
 ---
