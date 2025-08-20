@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clase 5: Algoritmos y estabilidad – Métodos Numéricos y Probabilidades 2025</title>
+<title>Algoritmos y estabilidad – Métodos Numéricos y Probabilidades 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -280,7 +280,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_funcionamiento_cpu.html">Unidad 1: Introducción</a></li><li class="breadcrumb-item"><a href="./05_algoritmos_y_estabilidad.html">Algoritmos y estabilidad</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clase 5: Algoritmos y estabilidad</h1>
+<h1 class="title">Algoritmos y estabilidad</h1>
 </div>
 
 
@@ -302,18 +302,18 @@ window.Quarto = {
 <h1>Eficiciencia de los algoritmos</h1>
 <p>Para cálculos pesados, es necesario estimar la eficiencia del algoritmo. A veces cálculos que parecen inocentes se hacen demasiado pesadoos incluso para un computador.</p>
 <p>Para analizar la eficiencia de un algoritmo se estima el número de pasos involucrados. Por ejemplo:</p>
-<div id="fba9a548" class="cell" data-execution_count="1">
+<div id="3423ac44" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    suma <span class="op">+=</span> i</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e329571d" class="cell" data-execution_count="2">
+<div id="00ab0a5d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">range</span>(n))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Este algoritmo toma <span class="math inline">\(n\)</span> pasos, ya que debe realizar <span class="math inline">\(n\)</span> operaciones. Decimos que su eficiencia es de orden <span class="math inline">\(\mathcal{O}(n)\)</span>.</p>
 <p>A veces es necesario anidar ciclos, esto empieza a aumentar el número de pasos</p>
-<div id="84cbb348" class="cell" data-execution_count="3">
+<div id="aeb5fb63" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -324,7 +324,7 @@ window.Quarto = {
 <p>A los algoritmos con una eficiencia de orden <span class="math inline">\(\mathcal{O}(n^c)\)</span>, donde <span class="math inline">\(c\)</span> es una constante numérica, se los llama algoritmos de eficiencia polinomial.</p>
 <p>Los algoritmos más eficientes posibles son los que tienen una eficiencia logarítmica <span class="math inline">\(\mathcal{O}(\log n)\)</span> (y en informática normalmente se usa el logaritmo base <span class="math inline">\(2\)</span> en este contexto. Veremos un ejemplo de uno de estos algoritmos próximamente.</p>
 <p>Los peores algoritmos son los que tienen un crecimiento exponencial, por ejemplo <span class="math inline">\(\mathcal{O}(2^n)\)</span>, Estos se hacen extremadamente difíciles de ejecutar para un computado incluso para valores modestos de <span class="math inline">\(n\)</span>.</p>
-<div id="41ac971e" class="cell" data-execution_count="4">
+<div id="2d1699cf" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -342,7 +342,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:10: SyntaxWarning: invalid escape sequence '\l'
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence '\l'
-/tmp/ipykernel_224528/2146404212.py:10: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_229623/2146404212.py:10: SyntaxWarning: invalid escape sequence '\l'
   plt.scatter(n, log, label = '$\log_2$')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -364,14 +364,14 @@ window.Quarto = {
 <p>para alguna constante <span class="math inline">\(K\)</span>.</p>
 <p>Normalmente se toma <span class="math inline">\(\beta_n = 1/n^c\)</span> para alguna potencia <span class="math inline">\(c\)</span>. Los algoritmos que convergen más rápido tienen <span class="math inline">\(c\)</span> alto.</p>
 <p>Por ejemplo, consideremos la sucesión <span class="math inline">\(\{n \sin(1/n)\}\)</span>, esta converge a <span class="math inline">\(1\)</span> a medida que <span class="math inline">\(n\)</span> crece. Otra sucesión que converge a <span class="math inline">\(1\)</span> es <span class="math inline">\(\{1 - 1/n\}\)</span>.</p>
-<div id="84695886" class="cell" data-execution_count="5">
+<div id="32d141a2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>suc1 <span class="op">=</span> []</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>suc2 <span class="op">=</span> []</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">101</span>):</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    suc1.append(<span class="dv">1</span> <span class="op">-</span> n<span class="op">*</span>np.sin(<span class="dv">1</span><span class="op">/</span>n))</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    suc2.append(<span class="dv">1</span><span class="op">/</span>n)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b91f8f6e" class="cell" data-execution_count="6">
+<div id="960cce98" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(np.arange(<span class="dv">1</span>,<span class="dv">101</span>), suc1)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(np.arange(<span class="dv">1</span>,<span class="dv">101</span>), suc2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -382,7 +382,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="f23ab50b" class="cell" data-execution_count="7">
+<div id="f6251274" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(np.arange(<span class="dv">1</span>,<span class="dv">101</span>), suc1)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.loglog(np.arange(<span class="dv">1</span>,<span class="dv">101</span>), suc2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -402,7 +402,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \pi = 3 + \frac{4}{2\times 3\times 4} - \frac{4}{4\times 5 \times 6} + \frac{4}{6\times 7\times 8} - \dots
 \]</span></p>
-<div id="591e95be" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:true}" data-execution_count="8">
+<div id="40d44636" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:true}" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pi1 <span class="op">=</span> [<span class="dv">4</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pi2 <span class="op">=</span> [<span class="dv">3</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -429,7 +429,7 @@ window.Quarto = {
 <h1>Estabilidad de los algoritmos</h1>
 <p>En algunos casos el problema que queremos resolver tiene un buen número de condicionamiento, pero el algoritmo da errores grandes al perturbar los datos de entrada. En estos casos decimos que el algoritmo es <strong>inestable</strong>. Esta inestabilidad puede tener varios orígenes: Acumulación de errores de redondeo (ver tarea 2.4), número de condicionamiento grande de los pasos intermedios del algoritmo, entre otros.</p>
 <p>Hagamos un ejemplo: Consideremos el polinomio <span class="math inline">\(p(x) = (x - 10^6)(x - 10^{-6})\)</span>. Como las dos raíces son muy distintas sabemos que es un problema bien condicionado (ver clase anterior). Sin embargo, al intentar evaluar las raíces usando la formulita estándar obtenemos</p>
-<div id="4f9e71a1" class="cell" data-execution_count="9">
+<div id="81ce3cb8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
@@ -444,14 +444,14 @@ window.Quarto = {
 </div>
 <p>La raíz 1 es exacta. Sin embargo la raíz 2 tiene sólo 7 cifras decimales de precisión (no las 15 que nos promete la aritmética de 64 bits). ¿Qué pasa aqí?</p>
 <p>Para calcular <code>x2</code> tenemos que hacer la resta de</p>
-<div id="86f2be4e" class="cell" data-execution_count="10">
+<div id="d4fb4d61" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>b</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>1000000.000001</code></pre>
 </div>
 </div>
 <p>con</p>
-<div id="aab8c3d0" class="cell" data-execution_count="11">
+<div id="0dea16a8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>math.sqrt(b<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>999999.999999</code></pre>
@@ -459,7 +459,7 @@ window.Quarto = {
 </div>
 <p>Vemos que son dos cantidades cercanas. Restarlas tiene un mal número de condicionamiento y se pierden cifras decimales de precisión. La formulita es inestable.</p>
 <p>Para resolver este problema podemos usar el hecho que <span class="math inline">\(x_1 x_2 = c/a\)</span> y entonces</p>
-<div id="ce4881d1" class="cell" data-execution_count="12">
+<div id="735480ca" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> c<span class="op">/</span>a<span class="op">/</span>x1</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Raíz 2: </span><span class="sc">{</span>x2<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -494,6 +494,27 @@ window.Quarto = {
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> s <span class="op">+</span> i <span class="op">+</span> <span class="bu">sum</span>(<span class="bu">range</span>(n))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7607e0e2" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100000</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>small <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">146</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>attempt <span class="op">=</span> n<span class="op">//</span><span class="dv">2</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>not_found <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> not_found:</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> s <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> attempt <span class="op">&gt;</span> p:</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> attempt</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> attempt <span class="op">&lt;</span> p:</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        small <span class="op">=</span> attempt</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Encontré'</span>, attempt, <span class="st">'luego de'</span>, s, <span class="st">'pasos'</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    attempt <span class="op">=</span> (n <span class="op">+</span> small)<span class="op">//</span><span class="dv">2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Encontré 146 luego de 11 pasos</code></pre>
+</div>
+</div>
 </section>
 <section id="tarea-2.8" class="level2">
 <h2 class="anchored" data-anchor-id="tarea-2.8">Tarea 2.8</h2>
@@ -517,7 +538,7 @@ window.Quarto = {
 <ul>
 <li><p>Encuentre el número de condicionamiento. ¿Cuál es su máximo entre <span class="math inline">\(-1 \leq x \leq 1\)</span>?</p></li>
 <li><p>Use el algoritmo obvio</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(e<span class="op">**</span>x <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span>x</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(e<span class="op">**</span>x <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span>x</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>para calcular <span class="math inline">\(f(x)\)</span> para <span class="math inline">\(x = 10^{-2}, 10^{-3}, 10^{-4}, ..., 10^{-8}\)</span>.</p></li>
 <li><p>Repita lo mismo usando en cambio los primeros ocho términos de la serie de Taylor <span class="math display">\[
 f(x) \approx 1 + \frac{1}{2}x + \frac{1}{3!}x^3 + \dots + \frac{1}{8!}x^7\,.
@@ -529,29 +550,29 @@ f(x) \approx 1 + \frac{1}{2}x + \frac{1}{3!}x^3 + \dots + \frac{1}{8!}x^7\,.
 <h2 class="anchored" data-anchor-id="tarea-2.10">Tarea 2.10</h2>
 <p>Compare la convergencia de dos algoritmos para aproximar <span class="math inline">\(\sqrt{2}\)</span> resolviendo <span class="math inline">\(f(x) = x^2 − 2 = 0\)</span></p>
 <p><strong>Bisección en el intervalo [1, 2]</strong>: Este método lo veremos más adelante, aquí hay una implementación:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">20</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">2.0</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>true <span class="op">=</span> np.sqrt(<span class="dv">2</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Método de bisección</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="fl">1.0</span>, <span class="fl">2.0</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>err_bis <span class="op">=</span> np.empty(N)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>x_bis_hist <span class="op">=</span> []</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(N):</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>(a <span class="op">+</span> b)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    x_bis_hist.append(c)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    err_bis[k] <span class="op">=</span> <span class="bu">abs</span>(c <span class="op">-</span> true)</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> f(a)<span class="op">*</span>f(c) <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> c</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> c</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">2.0</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>true <span class="op">=</span> np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Método de bisección</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="fl">1.0</span>, <span class="fl">2.0</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>err_bis <span class="op">=</span> np.empty(N)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>x_bis_hist <span class="op">=</span> []</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>(a <span class="op">+</span> b)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    x_bis_hist.append(c)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    err_bis[k] <span class="op">=</span> <span class="bu">abs</span>(c <span class="op">-</span> true)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> f(a)<span class="op">*</span>f(c) <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> c</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> c</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La aproximación se guarda en <code>x_bis_hist</code> para cada iteración.</p>
 <p><strong>Newton (método babilónico)</strong>: El resultado de la iteración <span class="math inline">\(k+1\)</span> se calcula a partir de la anterior de esta manera: <span class="math inline">\(x_{k+1} = \frac{1}{2}(x_k + \frac{2}{x_k})\)</span></p>
 <ul>
 <li><p>Implemente el método babilónico partiendo desde <span class="math inline">\(x_0 = 2.0\)</span> y guarde la aproximación en cada iteración.</p></li>
-<li><p>Calcule el error absoluto <span class="math inline">\(|x_k − \sqrt{2}|\)</span> y grafíquelo en una escala apropiada.</p></li>
-<li><p>Estime el orden de convergencia p de cada método a partir de los errores (use las últimas iteraciones).</p></li>
+<li><p>Calcule el error absoluto <span class="math inline">\(|x_k − \sqrt{2}|\)</span> para ambos métodos y grafíquelo en una escala apropiada que nos permita compararlos.</p></li>
+<li><p>Comente por qué el error del método de Newton/Babilónico deja de disminuir durante las últimas iteraciones.</p></li>
 </ul>
 
 
