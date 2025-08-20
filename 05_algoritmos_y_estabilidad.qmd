@@ -235,7 +235,7 @@ Ejercicio 1.4.1 del libro "Fundamentals of Numerical Computation: Julia Edition"
 Las dos fórmulas siguientes son matemáticamente equivalentes
 
 $$
-  f(x) = \frac{1 - \cos(x)}{\sin(x)}\,,\quad g(x) = \frac{\sin^2(x/2)}{\sin(x)}\,.
+  f(x) = \frac{1 - \cos(x)}{\sin(x)}\,,\quad g(x) = \frac{2\sin^2(x/2)}{\sin(x)}\,.
 $$
 
 Sin embargo sugieren algoritmos para su cálculo que se comportan de manera distinta en aritmética de punto flotante.
@@ -272,7 +272,9 @@ Compare la convergencia de dos algoritmos para aproximar $\sqrt{2}$ resolviendo 
 *Bisección en el intervalo [1, 2]*: Este método lo veremos más adelante, aquí hay una implementación:
 
 ```{.python}
-N = 40
+N = 20
+f = lambda x: x**2 - 2.0
+true = np.sqrt(2)
 
 # Método de bisección
 a, b = 1.0, 2.0
@@ -294,6 +296,6 @@ La aproximación se guarda en `x_bis_hist` para cada iteración.
 - *Newton (método babilónico)*: El resultado de la iteración $k+1$ se calcula a partir de la anterior de esta manera: $x_{k+1} = \frac{1}{2}(x_k + \frac{2}{x_k})$ 
 
 Tareas:
-- Implemente el método babilónico partiendo desde $x_0 = 1.5$ y guarde la aproximación en cada iteración.
+- Implemente el método babilónico partiendo desde $x_0 = 2.0$ y guarde la aproximación en cada iteración.
 - Calcule el error absoluto $|x_k − \sqrt{2}|$ y grafíquelo en una escala apropiada.
 - Estime el orden de convergencia p de cada método a partir de los errores (use las últimas iteraciones).
