@@ -159,7 +159,7 @@ con
 math.sqrt(b**2 - 4*a*c)
 ```
 
-Vemos que son dos cantidades cercanas. Esto tiene un mal número de condicionamiento y se pierden cifras decimales de precisión. La formulita es inestable.
+Vemos que son dos cantidades cercanas. Restarlas tiene un mal número de condicionamiento y se pierden cifras decimales de precisión. La formulita es inestable.
 
 Para resolver este problema podemos usar el hecho que $x_1 x_2 = c/a$ y entonces
 

@@ -24,6 +24,8 @@ website:
             href: 03_numpy_arrays.qmd
           - text: "Representación de números y condicionamiento"
             href: 04_numeros_y_condicionamiento.qmd
+          - text: "Algoritmos y estabilidad"
+            href: 05_algoritmos_y_estabilidad.qmd
   sidebar:
     style: docked
     contents:
@@ -37,6 +39,8 @@ website:
             href: 03_numpy_arrays.qmd
           - text: "Representación de números y condicionamiento"
             href: 04_numeros_y_condicionamiento.qmd
+          - text: "Algoritmos y estabilidad"
+            href: 05_algoritmos_y_estabilidad.qmd
 
 format:
   html:
