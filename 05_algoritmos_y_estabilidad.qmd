@@ -180,7 +180,53 @@ Discuta la estabilidad de los problemas presentados en las tareas 2.3 y 2.4.
 
 ## Tarea 2.7
 
-Tarea de notebook viejo.
+A partir de los siguientes códigos, explique si el número de pasos es $\mathcal{O}(n^c)$  (y cuánto vale $c$), $\mathcal{O}(\log_2 n)$ o $\mathcal{O}(2^n)$ y por qué. Pista: Para el último código aumente n y vea cómo cambia el número de pasos s. Grafique n contra s e intente deducir a qué corresponde.
+
+```{.python}
+n = 1000
+s = 0 
+for i in range(n):
+    for j in range(n):
+        if i < j:
+            s = s + i + j
+```
+
+```{.python}
+n = 1000
+s = 0
+for i in range(n):
+    for j in range(i):
+        s = s + i + j
+```
+
+Cuidado, consulte en internet lo que hace el enunciado sum() antes de responder
+
+```{.python}
+n = 1000
+s = 0
+for i in range(n):
+    s = s + i + sum(range(n))
+```
+
+```{.python}
+#| scrolled: true
+n = 100000
+small = 0
+p = 146
+attempt = n//2
+not_found = True
+s = 0
+while not_found:
+    s = s + 1
+    if attempt > p:
+        n = attempt
+    elif attempt < p:
+        small = attempt
+    else:
+        print('Encontré', attempt, 'luego de', s, 'pasos')
+        break
+    attempt = (n + small)//2
+```
 
 ## Tarea 2.8
 
@@ -208,7 +254,7 @@ Sea $f(x) = \frac{e^x - 1}{x}$.
 - Encuentre el número de condicionamiento. ¿Cuál es su máximo entre $-1 \leq x \leq 1$?
 - Use el algoritmo obvio
 
-  ```{python}
+  ```{.python}
   (e**x - 1)/x
   ```
 
@@ -221,4 +267,33 @@ Sea $f(x) = \frac{e^x - 1}{x}$.
 
 ## Tarea 2.10
 
-Convergencia y graficar.
+Compare la convergencia de dos algoritmos para aproximar $\sqrt{2}$ resolviendo $f(x) = x**2 − 2 = 0$
+
+*Bisección en el intervalo [1, 2]*: Este método lo veremos más adelante, aquí hay una implementación:
+
+```{.python}
+N = 40
+
+# Método de bisección
+a, b = 1.0, 2.0
+err_bis = np.empty(N)
+x_bis_hist = []
+
+for k in range(N):
+    c = 0.5*(a + b)
+    x_bis_hist.append(c)
+    err_bis[k] = abs(c - true)
+    if f(a)*f(c) <= 0:
+        b = c
+    else:
+        a = c
+```
+
+La aproximación se guarda en `x_bis_hist` para cada iteración.
+
+- *Newton (método babilónico)*: El resultado de la iteración $k+1$ se calcula a partir de la anterior de esta manera: $x_{k+1} = \frac{1}{2}(x_k + \frac{2}{x_k})$ 
+
+Tareas:
+- Implemente el método babilónico partiendo desde $x_0 = 1.5$ y guarde la aproximación en cada iteración.
+- Calcule el error absoluto $|x_k − \sqrt{2}|$ y grafíquelo en una escala apropiada.
+- Estime el orden de convergencia p de cada método a partir de los errores (use las últimas iteraciones).
