@@ -547,7 +547,7 @@
     "href": "04_numeros_y_condicionamiento.html#tarea-2.3",
     "title": "Clase 4: Representación de números y número de condicionamiento",
     "section": "Tarea 2.3",
-    "text": "Tarea 2.3\nEn ciertos cálculos importantes en cosmología surge un problema análogo al siguiente. Queremos calcular algunas integrales\n\\[\nI_{1} = \\int_{0}^{q_{max}} q^2\\left(\\frac{1}{q^5} + \\frac{3}{q}\\right)\\,dq\n\\]\n\\[\nI_{2} = \\int_{0}^{q_{max}} q^2\\left(\\frac{-1}{q^5} + \\frac{1}{q}\\right)\\,dq\n\\]\nEstas integrales se pueden aproximar numéricamente por medio de su suma\n\\[\n\\int_0^{q_{max}} f(q)\\,dq \\approx \\frac{q_{max}}{N} \\sum_{i = 1}^{N} f\\left(i\\times\\frac{q_{max}}{N}\\right)\n\\]\nProfundizaremos en el cálculo numérico de integrales más adelante.\nLa cantidad de interés es \\(I = I_{1} + I_{2}\\).\n\nUsando \\(q_{max} = 0.1\\) y \\(N = 500000\\), calcule ambas integrales por separado usando la aproximación, y luego súmelas.\nLa suma de las integrales \\(I\\) se puede escribir como la integral de la suma de los integrandos:\n\n\\[\nI = \\int_0^{q_{max}} q^2 \\frac{4}{q}\\,dq\n\\]\nCalcule \\(I\\) de esta manera usando la aproximación.\n\n¿Por qué son diferentes los resultados? Compare con el resultado exacto de la integral \\(I\\).",
+    "text": "Tarea 2.3\nEn ciertos cálculos importantes en cosmología surge un problema análogo al siguiente. Queremos calcular algunas integrales\n\\[\nI_{1} = \\int_{0}^{q_{max}} q^2\\left(\\frac{1}{q^5} + \\frac{3}{q}\\right)\\,dq\n\\]\n\\[\nI_{2} = \\int_{0}^{q_{max}} q^2\\left(\\frac{-1}{q^5} + \\frac{1}{q}\\right)\\,dq\n\\]\nEstas integrales se pueden aproximar numéricamente por medio de su suma ) \\[\n\\int_0^{q_{max}} f(q)\\,dq \\approx \\frac{q_{max}}{N} \\sum_{i = 1}^{N} f\\left(i\\times\\frac{q_{max}}{N}\\right)\n\\]\nProfundizaremos en el cálculo numérico de integrales más adelante.\nLa cantidad de interés es \\(I = I_{1} + I_{2}\\).\n\nUsando \\(q_{max} = 0.1\\) y \\(N = 500000\\), calcule ambas integrales por separado usando la aproximación, y luego súmelas.\nLa suma de las integrales \\(I\\) se puede escribir como la integral de la suma de los integrandos:\n\n\\[\nI = \\int_0^{q_{max}} q^2 \\frac{4}{q}\\,dq\n\\]\nCalcule \\(I\\) de esta manera usando la aproximación.\n\n¿Por qué son diferentes los resultados? Compare con el resultado exacto de la integral \\(I\\).",
     "crumbs": [
       "Inicio",
       "Unidad 1: Introducción",
@@ -583,7 +583,67 @@
     "href": "05_algoritmos_y_estabilidad.html",
     "title": "Clase 5: Algoritmos y estabilidad",
     "section": "",
-    "text": "Evaluamos los algoritmos según tres criterios: Eficiencia, convergencia y estabilidad.\n\nEficiciencia de los algoritmos\nPara cálculos pesados, es necesario estimar la eficiencia del algoritmo. A veces cálculos que parecen inocentes se hacen demasiado pesadoos incluso para un computador.\nPara analizar la eficiencia de un algoritmo se estima el número de pasos involucrados. Por ejemplo:\n\nsuma = 0\nn = 100\nfor i in range(n):\n    suma += i\n\n\nsuma = sum(range(n))\n\nEste algoritmo toma \\(n\\) pasos, ya que debe realizar \\(n\\) operaciones. Decimos que su eficiencia es de orden \\(\\mathcal{O}(n)\\).\nA veces es necesario anidar ciclos, esto empieza a aumentar el número de pasos\n\nsuma = 0\nn = 100\nfor i in range(n):\n    for j in range(i):\n        suma += j\n\nEste algoritmo toma mucho más tiempo porque el primer ciclo toma \\(n\\) pasos y el siguiente toma \\(i\\) pasos, Como \\(i\\) puede llegar hasta \\(n(n-1)/2\\) pasos. Cuando \\(n\\) es un número muy grande esto es aproximadamente igual a \\(n^2/2\\). En este caso decimos que la eficiencia del algoritmo es del orden \\(\\mathcal{O}(n^2)\\).\nA los algoritmos con una eficiencia de orden \\(\\mathcal{O}(n^c)\\), donde \\(c\\) es una constante numérica, se los llama algoritmos de eficiencia polinomial.\nLos algoritmos más eficientes posibles son los que tienen una eficiencia logarítmica \\(\\mathcal{O}(\\log n)\\) (y en informática normalmente se usa el logaritmo base \\(2\\) en este contexto. Veremos un ejemplo de uno de estos algoritmos próximamente.\nLos peores algoritmos son los que tienen un crecimiento exponencial, por ejemplo \\(\\mathcal{O}(2^n)\\), Estos se hacen extremadamente difíciles de ejecutar para un computado incluso para valores modestos de \\(n\\).\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nn = np.arange(1,50)\nlog = np.log(n)/np.log(2)\npol2 = n**2\npol4 = n**4\nexp = 2**n\n\nplt.scatter(n, log, label = '$\\log_2$')\nplt.scatter(n, pol2, label = '$n^2$')\nplt.scatter(n, pol4, label = '$n^4$')\nplt.scatter(n, exp, label = 'exp')\nplt.legend()\n\n&lt;&gt;:10: SyntaxWarning: invalid escape sequence '\\l'\n&lt;&gt;:10: SyntaxWarning: invalid escape sequence '\\l'\n/tmp/ipykernel_295305/2146404212.py:10: SyntaxWarning: invalid escape sequence '\\l'\n  plt.scatter(n, log, label = '$\\log_2$')\n\n\n\n\n\n\n\n\n\n\n\nPrecisión y convergencia de los algoritmos\nAdemás de la eficiencia de un algoritmo, también es importante su precisión. Los métodos numéricos consisten en encontrar soluciones aproximadas a los problemas y será importante tener una estimacióon del error cometido. El error cometido en un algoritmo numérico nos da una idea de su precisión. Si el error disminuye a medida que se ejecuta un algoritmo de más pasos, decimos que converge.\nEl método numérico normalmente consiste en encontrar una sucesión de números que convergen al resultado requerido. Supongamos que tenemos una cierta sucesión \\(\\{\\alpha_n\\}\\) que converge al resultado \\(\\alpha\\). Por otra parte supongamos que tenemos otra sucesión \\(\\{\\beta_n\\}\\) que converge a cero. Decimos que el algoritmo converge a \\(\\alpha\\) a una razón \\(\\mathcal{O}(\\beta_n)\\) si se cumple que\n\\[\n|\\alpha_n - \\alpha| &lt; K|\\beta_n|\\,,\n\\]\npara alguna constante \\(K\\).\nNormalmente se toma \\(\\beta_n = 1/n^c\\) para alguna potencia \\(c\\). Los algoritmos que convergen más rápido tienen \\(c\\) alto.\nPor ejemplo, consideremos la sucesión \\(\\{n \\sin(1/n)\\}\\), esta converge a \\(1\\) a medida que \\(n\\) crece. Otra sucesión que converge a \\(1\\) es \\(\\{1 - 1/n\\}\\).\n\nsuc1 = []\nsuc2 = []\nfor n in range(1,101):\n    suc1.append(1 - n*np.sin(1/n))\n    suc2.append(1/n)\n\n\nplt.scatter(np.arange(1,101), suc1)\nplt.scatter(np.arange(1,101), suc2)\n\n\n\n\n\n\n\n\n\nplt.loglog(np.arange(1,101), suc1)\nplt.loglog(np.arange(1,101), suc2)\n\n\n\n\n\n\n\n\nOtro ejemplo es un algoritmo para calcular \\(\\pi\\), llamada fórmula de Leibniz\n\\[\n\\pi = 4 - \\frac{4}{3} + \\frac{4}{5} - \\frac{4}{7} + \\frac{4}{9} - \\dots\n\\]\n(Esto viene del hecho que \\(\\pi/4 = \\tan^{-1}(1)\\) al hacer la expanción de Taylor de la tangente inversa).\nComparada con otra fórmula que converge más rápidamente\n\\[\n\\pi = 3 + \\frac{4}{2\\times 3\\times 4} - \\frac{4}{4\\times 5 \\times 6} + \\frac{4}{6\\times 7\\times 8} - \\dots\n\\]\n\npi1 = [4]\npi2 = [3]\n\nfor n in range(1, 100):\n    pi1.append(pi1[n-1] + (-1)**n*4/(2*n + 1))\n    pi2.append(pi2[n-1] + (-1)**(n + 1)*4/(2*n*(2*n + 1)*2*(n+1)))\n    \nplt.loglog(np.arange(100), pi1, label='pi1')\nplt.loglog(np.arange(100), pi2, label = 'pi2')\nplt.loglog(np.arange(100), np.full(100, np.pi), label = 'pi verdadero')\nplt.legend()\nplt.xlim(10**1, 10**2)\nplt.ylim(np.pi - 0.001*np.pi, np.pi + 0.001*np.pi)\n\n\n\n\n\n\n\n\n\n\nEstabilidad de los algoritmos\nEn algunos casos el problema que queremos resolver tiene un buen número de condicionamiento, pero el algoritmo da errores grandes al perturbar los datos de entrada. En estos casos decimos que el algoritmo es inestable. Esta inestabilidad puede tener varios orígenes: Acumulación de errores de redondeo (ver tarea 2.4), número de condicionamiento grande de los pasos intermedios del algoritmo, entre otros.\nHagamos un ejemplo: Consideremos el polinomio \\(p(x) = (x - 10^6)(x - 10^{-6})\\). Como las dos raíces son muy distintas sabemos que es un problema bien condicionado (ver clase anterior). Sin embargo, al intentar evaluar las raíces usando la formulita estándar obtenemos\n\nimport math\n\na = 1\nb = -(1e6 + 1e-6)\nc = 1\nx1 = (-b + math.sqrt(b**2 - 4*a*c)) / (2*a)\nx2 = (-b - math.sqrt(b**2 - 4*a*c)) / (2*a)\nprint(f\"Raíz 1: {x1}, Raíz 2: {x2}\")\n\nRaíz 1: 1000000.0, Raíz 2: 1.00000761449337e-06\n\n\nLa raíz 1 es exacta. Sin embargo la raíz 2 tiene sólo 7 cifras decimales de precisión (no las 15 que nos promete la aritmética de 64 bits). ¿Qué pasa aqí?\nPara calcular x2 tenemos que hacer la resta de\n\n-b\n\n1000000.000001\n\n\ncon\n\nmath.sqrt(b**2 - 4*a*c)\n\n999999.999999\n\n\nVemos que son dos cantidades cercanas. Esto tiene un mal número de condicionamiento y se pierden cifras decimales de precisión. La formulita es inestable.\nPara resolver este problema podemos usar el hecho que \\(x_1 x_2 = c/a\\) y entonces\n\nx2 = c/a/x1\nprint(f\"Raíz 2: {x2}\")\n\nRaíz 2: 1e-06\n\n\nEl problema estaba bien condicionado tal que podemos encontrar una buena solución, pero el algoritmo usado inicialmente es inestable.\nEl término “inestable” también se usa para los algoritmos que no convergen a la solución correcta cuando se aumenta la precisión. Esto puede suceder, por ejemplo, si el algoritmo depende de operaciones que amplifican errores de redondeo o si el número de condicionamiento de los pasos intermedios es grande.\n\n\n¡Tareas!",
+    "text": "Evaluamos los algoritmos según tres criterios: Eficiencia, convergencia y estabilidad.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.6",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.6",
+    "title": "Clase 5: Algoritmos y estabilidad",
+    "section": "Tarea 2.6",
+    "text": "Tarea 2.6\nDiscuta la estabilidad de los problemas presentados en las tareas 2.3 y 2.4.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.7",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.7",
+    "title": "Clase 5: Algoritmos y estabilidad",
+    "section": "Tarea 2.7",
+    "text": "Tarea 2.7\nA partir de los siguientes códigos, explique si el número de pasos es \\(\\mathcal{O}(n^c)\\) (y cuánto vale \\(c\\)), \\(\\mathcal{O}(\\log_2 n)\\) o \\(\\mathcal{O}(2^n)\\) y por qué. Pista: Para el último código aumente n y vea cómo cambia el número de pasos s. Grafique n contra s e intente deducir a qué corresponde.\nn = 1000\ns = 0 \nfor i in range(n):\n    for j in range(n):\n        if i &lt; j:\n            s = s + i + j\nn = 1000\ns = 0\nfor i in range(n):\n    for j in range(i):\n        s = s + i + j\nCuidado, consulte en internet lo que hace el enunciado sum() antes de responder\nn = 1000\ns = 0\nfor i in range(n):\n    s = s + i + sum(range(n))\n#| scrolled: true\nn = 100000\nsmall = 0\np = 146\nattempt = n//2\nnot_found = True\ns = 0\nwhile not_found:\n    s = s + 1\n    if attempt &gt; p:\n        n = attempt\n    elif attempt &lt; p:\n        small = attempt\n    else:\n        print('Encontré', attempt, 'luego de', s, 'pasos')\n        break\n    attempt = (n + small)//2",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.8",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.8",
+    "title": "Clase 5: Algoritmos y estabilidad",
+    "section": "Tarea 2.8",
+    "text": "Tarea 2.8\nEjercicio 1.4.1 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nLas dos fórmulas siguientes son matemáticamente equivalentes\n\\[\n  f(x) = \\frac{1 - \\cos(x)}{\\sin(x)}\\,,\\quad g(x) = \\frac{\\sin^2(x/2)}{\\sin(x)}\\,.\n\\]\nSin embargo sugieren algoritmos para su cálculo que se comportan de manera distinta en aritmética de punto flotante.\n\nEncuentre el número de condicionamiento de \\(f(x)\\) respecto a pequeños cambios en \\(x\\). Como son equivalentes, este es el mismo para \\(g(x)\\).\nCalcule \\(f(10^{-6})\\) usando una cadena de cuatro operaciones elementales (sumas, restas, multiplicaciones, divisiones, funciones trigonométricas). Calcule el número de condicionamiento de cada una.\nRepita lo mismo para \\(g(10^{-6})\\), que requiere seis operaciones elementales.\nBasado en lo anterior, compare ambos resultados y discuta cuál es más preciso.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.9",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.9",
+    "title": "Clase 5: Algoritmos y estabilidad",
+    "section": "Tarea 2.9",
+    "text": "Tarea 2.9\nEjercicio 1.4.2 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nSea \\(f(x) = \\frac{e^x - 1}{x}\\).\n\nEncuentre el número de condicionamiento. ¿Cuál es su máximo entre \\(-1 \\leq x \\leq 1\\)?\nUse el algoritmo obvio\n(e**x - 1)/x\npara calcular \\(f(x)\\) para \\(x = 10^{-2}, 10^{-3}, 10^{-4}, ..., 10^{-8}\\).\nRepita lo mismo usando en cambio los primeros ocho términos de la serie de Taylor \\[\nf(x) \\approx 1 + \\frac{1}{2}x + \\frac{1}{3!}x^3 + \\dots + \\frac{1}{8!}x^7\\,.\n\\]\nHaga una tabla de las diferencias relativas entre ambos métodos. ¿Cuál es más preciso y por qué?",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.10",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.10",
+    "title": "Clase 5: Algoritmos y estabilidad",
+    "section": "Tarea 2.10",
+    "text": "Tarea 2.10\nCompare la convergencia de dos algoritmos para aproximar \\(\\sqrt{2}\\) resolviendo \\(f(x) = x**2 − 2 = 0\\)\nBisección en el intervalo [1, 2]: Este método lo veremos más adelante, aquí hay una implementación:\nN = 40\n\n# Método de bisección\na, b = 1.0, 2.0\nerr_bis = np.empty(N)\nx_bis_hist = []\n\nfor k in range(N):\n    c = 0.5*(a + b)\n    x_bis_hist.append(c)\n    err_bis[k] = abs(c - true)\n    if f(a)*f(c) &lt;= 0:\n        b = c\n    else:\n        a = c\nLa aproximación se guarda en x_bis_hist para cada iteración.\n\nNewton (método babilónico): El resultado de la iteración \\(k+1\\) se calcula a partir de la anterior de esta manera: \\(x_{k+1} = \\frac{1}{2}(x_k + \\frac{2}{x_k})\\)\n\nTareas: - Implemente el método babilónico partiendo desde \\(x_0 = 1.5\\) y guarde la aproximación en cada iteración. - Calcule el error absoluto \\(|x_k − \\sqrt{2}|\\) y grafíquelo en una escala apropiada. - Estime el orden de convergencia p de cada método a partir de los errores (use las últimas iteraciones).",
     "crumbs": [
       "Inicio",
       "Unidad 1: Introducción",
