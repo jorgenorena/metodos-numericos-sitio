@@ -296,6 +296,6 @@ La aproximación se guarda en `x_bis_hist` para cada iteración.
 
 - Implemente el método babilónico partiendo desde $x_0 = 2.0$ y guarde la aproximación en cada iteración.
 
-- Calcule el error absoluto para ambos métodos $|x_k − \sqrt{2}|$ y grafíquelo en una escala apropiada que nos permita compararlos.
+- Calcule el error absoluto $|x_k − \sqrt{2}|$ para ambos métodos y grafíquelo en una escala apropiada que nos permita compararlos.
 
-- Estime el orden de convergencia p de cada método a partir de los errores (use las últimas iteraciones).
+- Comente por qué el error del método de Newton/Babilónico deja de disminuir durante las últimas iteraciones.
