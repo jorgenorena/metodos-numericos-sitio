@@ -208,8 +208,7 @@ for i in range(n):
     s = s + i + sum(range(n))
 ```
 
-```{.python}
-#| scrolled: true
+```{python}
 n = 100000
 small = 0
 p = 146
@@ -267,9 +266,9 @@ Sea $f(x) = \frac{e^x - 1}{x}$.
 
 ## Tarea 2.10
 
-Compare la convergencia de dos algoritmos para aproximar $\sqrt{2}$ resolviendo $f(x) = x**2 − 2 = 0$
+Compare la convergencia de dos algoritmos para aproximar $\sqrt{2}$ resolviendo $f(x) = x^2 − 2 = 0$
 
-*Bisección en el intervalo [1, 2]*: Este método lo veremos más adelante, aquí hay una implementación:
+**Bisección en el intervalo [1, 2]**: Este método lo veremos más adelante, aquí hay una implementación:
 
 ```{.python}
 N = 20
@@ -293,9 +292,10 @@ for k in range(N):
 
 La aproximación se guarda en `x_bis_hist` para cada iteración.
 
-- *Newton (método babilónico)*: El resultado de la iteración $k+1$ se calcula a partir de la anterior de esta manera: $x_{k+1} = \frac{1}{2}(x_k + \frac{2}{x_k})$ 
+**Newton (método babilónico)**: El resultado de la iteración $k+1$ se calcula a partir de la anterior de esta manera: $x_{k+1} = \frac{1}{2}(x_k + \frac{2}{x_k})$ 
 
-Tareas:
 - Implemente el método babilónico partiendo desde $x_0 = 2.0$ y guarde la aproximación en cada iteración.
-- Calcule el error absoluto $|x_k − \sqrt{2}|$ y grafíquelo en una escala apropiada.
+
+- Calcule el error absoluto para ambos métodos $|x_k − \sqrt{2}|$ y grafíquelo en una escala apropiada que nos permita compararlos.
+
 - Estime el orden de convergencia p de cada método a partir de los errores (use las últimas iteraciones).
