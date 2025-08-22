@@ -26,6 +26,10 @@ website:
             href: 04_numeros_y_condicionamiento.qmd
           - text: "Algoritmos y estabilidad"
             href: 05_algoritmos_y_estabilidad.qmd
+          - text: "------"
+          - text: "Unidad 2: Probabilidad"
+          - text: "Propiedades de la probabilidad"
+            href: 06_definicion_probabilidad.qmd
   sidebar:
     style: docked
     contents:
@@ -41,6 +45,10 @@ website:
             href: 04_numeros_y_condicionamiento.qmd
           - text: "Algoritmos y estabilidad"
             href: 05_algoritmos_y_estabilidad.qmd
+      - section: "Unidad 2: Probabilidad"
+        contents:
+          - text: "Propiedades de la probabilidad"
+            href: 06_definicion_probabilidad.qmd
 
 format:
   html:
