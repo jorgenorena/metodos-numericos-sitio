@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Definiciones básicas de probabilidad – Métodos Numéricos y Probabilidades 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Métodos Numéricos y Probabilidades 2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Acerca de</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-clases" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Clases</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-clases">    
+        <li class="dropdown-header">Unidad 1: Introducción</li>
+        <li>
+    <a class="dropdown-item" href="./01_funcionamiento_cpu.html">
+ <span class="dropdown-text">Funcionamiento de la CPU</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02_python.html">
+ <span class="dropdown-text">Repaso de Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03_numpy_arrays.html">
+ <span class="dropdown-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04_numeros_y_condicionamiento.html">
+ <span class="dropdown-text">Representación de números y condicionamiento</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05_algoritmos_y_estabilidad.html">
+ <span class="dropdown-text">Algoritmos y estabilidad</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Unidad 2: Probabilidad</li>
+        <li>
+    <a class="dropdown-item" href="./06_definicion_probabilidad.html">
+ <span class="dropdown-text">Propiedades de la probabilidad</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Unidad 2: Probabilidad</a></li><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Propiedades de la probabilidad</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 1: Introducción</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_funcionamiento_cpu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funcionamiento de la CPU</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_numpy_arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_numeros_y_condicionamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Representación de números y condicionamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_algoritmos_y_estabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmos y estabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 2: Probabilidad</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_definicion_probabilidad.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Propiedades de la probabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducción-a-la-probabilidad" id="toc-introducción-a-la-probabilidad" class="nav-link active" data-scroll-target="#introducción-a-la-probabilidad">Introducción a la probabilidad</a>
+  <ul class="collapse">
+  <li><a href="#definición" id="toc-definición" class="nav-link" data-scroll-target="#definición">Definición</a></li>
+  <li><a href="#propiedades-básicas" id="toc-propiedades-básicas" class="nav-link" data-scroll-target="#propiedades-básicas">Propiedades básicas</a></li>
+  <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes">Teorema de Bayes</a></li>
+  <li><a href="#una-variable-aleatoria" id="toc-una-variable-aleatoria" class="nav-link" data-scroll-target="#una-variable-aleatoria">Una variable aleatoria</a></li>
+  <li><a href="#momentos-y-cumulantes" id="toc-momentos-y-cumulantes" class="nav-link" data-scroll-target="#momentos-y-cumulantes">Momentos y cumulantes</a></li>
+  </ul></li>
+  <li><a href="#simulaciones" id="toc-simulaciones" class="nav-link" data-scroll-target="#simulaciones">Simulaciones</a>
+  <ul class="collapse">
+  <li><a href="#generadores-de-números-aleatorios" id="toc-generadores-de-números-aleatorios" class="nav-link" data-scroll-target="#generadores-de-números-aleatorios">Generadores de números aleatorios</a></li>
+  <li><a href="#simulaciones-estilo-monte-carlo-de-probabilidades" id="toc-simulaciones-estilo-monte-carlo-de-probabilidades" class="nav-link" data-scroll-target="#simulaciones-estilo-monte-carlo-de-probabilidades">Simulaciones estilo Monte Carlo de probabilidades</a></li>
+  </ul></li>
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">¡Tareas!</a>
+  <ul class="collapse">
+  <li><a href="#tarea-3.1" id="toc-tarea-3.1" class="nav-link" data-scroll-target="#tarea-3.1">Tarea 3.1</a></li>
+  <li><a href="#tarea-3.2" id="toc-tarea-3.2" class="nav-link" data-scroll-target="#tarea-3.2">Tarea 3.2</a></li>
+  <li><a href="#tarea-3.3" id="toc-tarea-3.3" class="nav-link" data-scroll-target="#tarea-3.3">Tarea 3.3</a></li>
+  <li><a href="#tarea-3.4" id="toc-tarea-3.4" class="nav-link" data-scroll-target="#tarea-3.4">Tarea 3.4</a></li>
+  <li><a href="#tarea-3.5" id="toc-tarea-3.5" class="nav-link" data-scroll-target="#tarea-3.5">Tarea 3.5</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Unidad 2: Probabilidad</a></li><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Propiedades de la probabilidad</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Definiciones básicas de probabilidad</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="123d1a0a" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="introducción-a-la-probabilidad" class="level1">
+<h1>Introducción a la probabilidad</h1>
+<section id="definición" class="level2">
+<h2 class="anchored" data-anchor-id="definición">Definición</h2>
+<p>Matemáticamente la probabilidad es la asignación de una <em>medida</em> a un conjunto <span class="math inline">\(\mathcal{S}\)</span>. Es decir, a cada subconjunto <span class="math inline">\(E\)</span> del conjunto le asignamos un número <span class="math inline">\(p(E)\)</span> tal que</p>
+<ul>
+<li><span class="math inline">\(p(E) \geq 0\)</span> para todo <span class="math inline">\(E\)</span>.</li>
+<li><span class="math inline">\(p(A \cup B) = p(A) + p(B)\)</span></li>
+<li><span class="math inline">\(p(\mathcal{S}) = 1\)</span></li>
+</ul>
+<p>Cuando el conjunto <span class="math inline">\(\mathcal{S}\)</span> es discreto, le asignamos a cada elemento un número entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span> tal que la suma de todos los elementos sea <span class="math inline">\(1\)</span>.</p>
+<p>Cuando el conjunto <span class="math inline">\(\mathcal{S}\)</span> es un subconjunto continuo de los reales, le asignamos una <em>densidad de probabilidad</em> tal que la probabilidad del intervalo <span class="math inline">\((a,b) \subset \mathcal{S}\)</span> es <span class="math display">\[
+p((a,b)) = \int_a^b dx\,\rho(x)\,.
+\]</span> La función de distribución de probabilidad a veces se llama la PDF por su sigla en inglés.</p>
+<p>Más allá de la definición matemática, uno puede preguntarse por el <em>significado</em> de la probabilidad. Esta pregunta también es práctica, porque nos gustaría saber cómo asignarle una probabilidad a cada evento. Hay dos interpretaciones</p>
+<ul>
+<li><em>Objetiva</em>: La probabilidad es obtenida <em>experimentalmente</em>. Si realizamos un experimento un número <span class="math inline">\(N\)</span> de veces y obtenemos el resultado <span class="math inline">\(A\)</span> un número <span class="math inline">\(N_A\)</span> veces, decimos que la probabilidad de obtener <span class="math inline">\(A\)</span> es <span class="math display">\[
+P(A) = \lim_{N\rightarrow \infty} \frac{N_A}{N}\,.
+\]</span> Esta definición es idealizada ya que nunca podemos realizar un experimento infinitas veces.</li>
+<li><em>Subjetiva</em>: Las probabilidades nos dan una estima basada en la incertidumbre debida a la ignorancia sobre los procesos.</li>
+</ul>
+<p>Normalmente asumimos, a falta de más información, que todos los resultados son igualmente probables. Si hacemos esto la probabilidad es la fracción de eventos favorables.</p>
+</section>
+<section id="propiedades-básicas" class="level2">
+<h2 class="anchored" data-anchor-id="propiedades-básicas">Propiedades básicas</h2>
+<p>Definimos primero la probabilidad condicional de que ocurra <span class="math inline">\(A\)</span> dado que ocurre <span class="math inline">\(B\)</span>: <span class="math inline">\(P(A|B)\)</span></p>
+<p><strong>Ejemplo</strong>: La probabilidad de que al lanzar un dado dos veces el segundo resultado sea par dado que la suma de ambos es 6.</p>
+<p>Lanzar dos dados tiene 36 posibles resultados. La probabilidad la tomamos como la fracción que cumple lo pedido.</p>
+<p>Entre los 36 resultados, tomemos aquellos que cumplen B (la suma de ambos resultados es 6):</p>
+<p><span class="math display">\[
+1, 5\,;\quad 2, 4\,;\quad 3, 3\,;\quad 4, 2\,;\quad 5, 1\,.
+\]</span></p>
+<p>La probabilidad condicional es la fracción de estos 5 que cumple la condición A (el segundo es par). Estos son 2. Por lo tanto la probabilidad es <span class="math inline">\(2/5\)</span>.</p>
+<p>La <strong>probabilidad conjunta</strong> es la probabilidad de que ocurran dos eventos.</p>
+<p>En el ejemplo anterior, la probabilidad de que el segundo resultado sea par y la suma de ambos sea 6 es la fracción del total que cumple estas dos condiciones. Es decir <span class="math inline">\(2/36\)</span>.</p>
+<p>En general tenemos que</p>
+<p><span class="math display">\[
+P(AB) = P(A|B)P(B)
+\]</span></p>
+<p>Podemos verificar que se cumple para el ejemplo anterior.</p>
+<p>Esto tiene sentido ya que <span class="math inline">\(P(B)\)</span> es la fracción que cumple B, y <span class="math inline">\(P(A|B)\)</span> es la fracción entre todos los que cumplen B de aquellos que cumplen A.</p>
+<p>Otro problema, ¿cuál es la probabilidad de que la suma sea 6 o que el segundo resultado sea par?</p>
+<p>Si lo pensamos un segundo</p>
+<p><span class="math display">\[
+P(A\cup B) = P(A) + P(B) - P(AB)
+\]</span></p>
+<p>Esto es porque al sumar los que cumplen A y los que cumplen B, estamos contando dos veces los que cumplen ambos.</p>
+<p>Decimos que dos eventos son independientes cuando <span class="math inline">\(P(A|B) = P(A)\)</span>. En ese caso <span class="math inline">\(P(AB) = P(A)P(B)\)</span>.</p>
+<p>Decimos que dos eventos son mutuamente excluyentes cuando <span class="math inline">\(P(AB) = 0\)</span>. En ese caso <span class="math inline">\(P(A\cup B) = P(A) + P(B)\)</span>.</p>
+</section>
+<section id="teorema-de-bayes" class="level2">
+<h2 class="anchored" data-anchor-id="teorema-de-bayes">Teorema de Bayes</h2>
+<p>Este teorema es tal vez el teorema famoso más sencillo de demostrar:</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A) P(A)}{P(B)}
+\]</span></p>
+<p><strong>Demostración:</strong></p>
+<p><span class="math display">\[
+P(AB) = P(BA)
+\]</span></p>
+<p>entonces</p>
+<p><span class="math display">\[
+P(A|B)P(B) = P(B|A)P(A)
+\]</span></p>
+<p>Para ver un ejemplo de su poder, supongamos que sabemos que los estudiantes de física son <span class="math inline">\(70\)</span> hombres y <span class="math inline">\(30\)</span> mujeres mientras que los estudiantes de química son <span class="math inline">\(141\)</span> hombres y <span class="math inline">\(153\)</span> mujeres. En el pasillo conocemos a un estudiante que está hablando de átomos (tal que es de física o química). Si este estudiante es mujer, ¿cuál es la probabilidad de que sea de física?</p>
+<p>Queremos calcular <span class="math inline">\(P(física|mujer)\)</span>, pero conocemos el objeto al revés <span class="math inline">\(P(mujer|física)\)</span>. ¿Cómo lo hacemos?</p>
+<div id="1cfc13d0" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>numero_estudiantes <span class="op">=</span> <span class="dv">141</span> <span class="op">+</span> <span class="dv">153</span> <span class="op">+</span> <span class="dv">70</span> <span class="op">+</span> <span class="dv">30</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>prob_mujer <span class="op">=</span> (<span class="dv">153</span> <span class="op">+</span> <span class="dv">30</span>)<span class="op">/</span>numero_estudiantes</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>prob_fisica <span class="op">=</span> <span class="dv">100</span><span class="op">/</span>numero_estudiantes</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>prob_mujer_dado_fisica <span class="op">=</span> <span class="dv">30</span><span class="op">/</span><span class="dv">100</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>prob_mujer_dado_fisica<span class="op">*</span>prob_fisica<span class="op">/</span>prob_mujer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>0.16393442622950818</code></pre>
+</div>
+</div>
+</section>
+<section id="una-variable-aleatoria" class="level2">
+<h2 class="anchored" data-anchor-id="una-variable-aleatoria">Una variable aleatoria</h2>
+<p>Un número <span class="math inline">\(x\)</span> que puede tomar valores dentro del conjunto <span class="math inline">\(\mathcal{S}\)</span> se llama una <em>variable aleatoria</em>. En física es más común usar variables aleatorias continuas, es decir <span class="math inline">\(\mathcal{S} = \mathbb{R}\)</span>. Podemos caracterizar esta variable con varias propiedades:</p>
+<ul>
+<li>La <strong>función cumulativa de probabilidad</strong> es <span class="math inline">\(P(x) = p((-\infty, x))\)</span>. Claramente <span class="math inline">\(P(-\infty) = 0\)</span> y <span class="math inline">\(P(\infty) = 1\)</span>. Note que <span class="math inline">\(\frac{d P}{dx}(x) = \rho(x)\)</span>.</li>
+<li>El <strong>valor esperado</strong> de alguna cantidad <span class="math inline">\(F(x)\)</span> es <span class="math display">\[
+\langle F \rangle = \int_{-\infty}^{\infty}dx\,\rho(x)F(x)\,.
+\]</span></li>
+<li>Podemos cambiar de variable definiendo <span class="math inline">\(y(x)\)</span>. La distribución de probabilidad de esta variable es <span class="math display">\[
+\rho(y) = \left|\frac{\partial x}{\partial y}\right|\rho(x)\,.
+\]</span></li>
+</ul>
+<p><strong>Ejemplo</strong>: Sea <span class="math inline">\(\rho(x) = \lambda \exp(-\lambda|x|)/2\)</span>. Note que <span class="math inline">\(\int_{-\infty}^\infty dx\,\rho(x) = 1\)</span>. Tomemos <span class="math inline">\(y = x^2\)</span>, entonces también <span class="math inline">\(\left|\frac{\partial x}{\partial y}\right| = \frac{1}{2\sqrt{y}}\)</span>.</p>
+<p>Como hay dos valores de <span class="math inline">\(x\)</span> que corresponden al mismo valor de <span class="math inline">\(y\)</span>, la probabilidad de <span class="math inline">\(y\)</span> será la suma de esas dos posibilidades: <span class="math display">\[
+\rho(y) = 2\frac{\lambda}{2}\exp(-\lambda\sqrt{y})\frac{1}{2\sqrt{y}} = \frac{\lambda \exp(-\lambda \sqrt{y})}{2\sqrt{y}}\,.
+\]</span></p>
+</section>
+<section id="momentos-y-cumulantes" class="level2">
+<h2 class="anchored" data-anchor-id="momentos-y-cumulantes">Momentos y cumulantes</h2>
+<p>Una propiedad importante de una distribución de probabilidad son sus <strong>momentos</strong> <span class="math display">\[
+m_n = \langle x^n \rangle = \int dx\,\rho(x)x^n\,.
+\]</span></p>
+<p>La <strong>función característica</strong> es la transformada de Fourier de la densidad de probabilidad <span class="math display">\[
+\tilde{\rho}(k) = \langle e^{-ikx} \rangle = \int dx\,\rho(x) e^{-ikx}\,.
+\]</span> La PDF se puede recuperar a partir de la función característica tomando la transformada inversa <span class="math display">\[
+\rho(x) = \frac{1}{2\pi}\int_{-\infty}^\infty dk\,\rho(k) e^{ikx}\,.
+\]</span> Los momentos de la distribución se pueden obtener expandiendo en potencias de <span class="math inline">\(k\)</span> <span class="math display">\[
+\tilde{\rho}(k) = \left\langle \sum_{n=0}^\infty \frac{(-ik)^n}{n!}x^n\right\rangle = \sum_{n=0}^\infty \frac{(-ik)^n}{n!}\langle x^n\rangle\,.
+\]</span></p>
+<p>Los <strong>cumulantes</strong> son valores esperados conexos. Es decir, le restamos a los momentos la información contenida en momentos de orden inferior: <span class="math display">\[\begin{align*}
+\langle x \rangle_c &amp;= \langle x\rangle\,,\\
+\langle x^2 \rangle_c &amp;= \langle x^2 \rangle - \langle x \rangle^2\,,\\
+\langle x^3 \rangle_c &amp;= \langle x^3 \rangle - 3 \langle x^2\rangle_c \langle x \rangle - \langle x\rangle^3\,,\\
+\langle x^4 \rangle_c &amp;= \langle x^4 \rangle - 4 \langle x^4\rangle_c \langle x \rangle - 6\langle x^2\rangle_c^2 - 6 \langle x^2\rangle_c \langle x \rangle^2 - \langle x\rangle^4\,.
+\end{align*}\]</span> En general, estos cumulantes se definen como proveniendo del logaritmo de la función característica <span class="math display">\[
+\ln \tilde{\rho}(k) = \sum_{n=1}^\infty \frac{(-ik)^n}{n!}\langle x^n\rangle_c\,.
+\]</span></p>
+<p>El segundo cumulante <span class="math inline">\(\sigma^2 = \langle x^2 \rangle_c\)</span> se llama la <strong>varianza</strong> de la distribución y representa cuánto está esparcida. Si llamamos <span class="math inline">\(x_o = \langle x \rangle\)</span> tenemos <span class="math display">\[
+\langle (x - x_o)^2 \rangle = \langle x^2 \rangle - 2 \langle x x_o \rangle + \langle x_o^2 \rangle = \langle x^2 \rangle - x_o^2 = \langle x^2 \rangle_c\,.
+\]</span> La varianza es el valor esperado de la desviación al cuadrado. Es decir, nos dice en promedio cual es la desviación al cuadrado de un punto respecto a <span class="math inline">\(x_o\)</span>.</p>
+<p><strong>Demostración</strong> (opcional):</p>
+<p><span class="math display">\[
+\sum_{n=0}^\infty \frac{(-ik)^n}{n!}\langle x^n\rangle = \exp\left[\sum_{n=1}^\infty\frac{(-ik)^n}{n!}\langle x^n\rangle_c\right] = \prod_n \sum_{p_n}\left[\frac{(-ik)^{np_n}}{p_n!}\left(\frac{\langle x^n \rangle_c}{n!}\right)^{p_n}\right]\,.
+\]</span></p>
+<p>Igualando las potencias de <span class="math inline">\(k\)</span> del lado izquierdo y derecho obtenemos</p>
+<p><span class="math display">\[
+\langle x^n \rangle = \sum'_{p_n} m! \prod_n \frac{1}{p_n!(n!)^{p_n}}\langle x^n \rangle_c^{p_n}\,.
+\]</span></p>
+<p>La suma primada se refiere al hecho que sumamos sobre todos los valores de <span class="math inline">\(p_n\)</span> tales que <span class="math inline">\(\sum n p_n = m\)</span>.</p>
+</section>
+</section>
+<section id="simulaciones" class="level1">
+<h1>Simulaciones</h1>
+<section id="generadores-de-números-aleatorios" class="level2">
+<h2 class="anchored" data-anchor-id="generadores-de-números-aleatorios">Generadores de números aleatorios</h2>
+<p>Tomado completamente de:</p>
+<ul>
+<li>http://users.dimi.uniud.it/~alberto.policriti/home/sites/default/files/ASD/prng-slides.pdf</li>
+<li>https://www.eg.bucknell.edu/~xmeng/Course/CS6337/Note/master/node40.html</li>
+<li>https://realpython.com/python-random/</li>
+</ul>
+<p>Este es un tema sumamente interesante. Se le dedican libros enteros y es crucial para las simulaciones en física y estadística. Así mismo es una parte central de la criptografía moderna. Sin embargo, yo no soy un experto y este no es el tema central del curso, así que seremos un poco superficiales.</p>
+<p>De las siguientes dos secuencias, la segunda parece más aleatoria:</p>
+<ul>
+<li>0101010101010101010101010101010101010101</li>
+<li>0010010000111111011010101000100010000101</li>
+</ul>
+<p>Esto es porque parece tener menos patrones y repeticiones. En realidad es una representación del número <span class="math inline">\(\pi\)</span>.</p>
+<p>Se pueden obtener números verdaderamente aleatorios a partir de fenómenos físicos como rayos cósmicos, decaimiento de átomos, o incluso los estados electrónicos de algunos componentes del computador. También se pueden obtener números esencialmente aleatorios contando cuántas teclas ha presionado el usuario junto con el estado de la memoria RAM y el número del proceso en el sistema operativo (todo esto es determinista pero imposible de predecir en la práctica). En Python podemos acceder a tales números “verdaderamente” aleatorios:</p>
+<div id="dc8e6c98" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> secrets</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>secrets.randbelow(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>2</code></pre>
+</div>
+</div>
+<div id="695e01fc" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>secrets.randbits(<span class="dv">64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>1121979361033119556</code></pre>
+</div>
+</div>
+<div id="df4a9f68" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>secrets.choice(lista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>3</code></pre>
+</div>
+</div>
+<p>Sin embargo estos números aleatorios son lentos de producir. En física, nos basta con que los números “parezcan” aleatorios. Es decir, que tenga buenas propiedades estadísticas y que no sea predecible.</p>
+<p>Por ejemplo, pedimos que la variable aleatoria <span class="math inline">\(x_i \in [0,N]\)</span> esté distribuida de manera uniforme. Es decir, si tomo <span class="math inline">\(n\)</span> muestras, y divido el intervalo <span class="math inline">\([0,N]\)</span> en <span class="math inline">\(m\)</span> subintervalos, en promedio cada subintervalo contiene <span class="math inline">\(n/m\)</span> muestras.</p>
+<p>A los números que no son aleatorios pero parecen aleatorios se los llama números pseudo-aleatorios. Para generarlos se usan funciones que no tengan patrones fáciles de discernir y que sean caóticas (para condiciones iniciales cercanas producen secuencias muy diferentes).</p>
+<p>El punto en la secuencia se llama el “estado”. Como el número de bits es finito, el “estado” tarde o temprano se repite. Las secuencias de números aleatorios tienen un período. Queremos que ese período sea lo más largo posible.</p>
+<p>Ejemplo sencillo: Generadores de congruencia lineal.</p>
+<p><span class="math display">\[
+x_{n+1} = (a x_n + c)\mod(m)
+\]</span></p>
+<div id="8570e359" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># función (muy mala) que implementa el generador de congruencia lineal</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lcg():</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Variables que definen el generador</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="dv">7</span> <span class="co"># intentar todos los números de 2 a 9</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="dv">11</span> <span class="co"># intentar 10 y 11, ojalá grande para dar un período grande</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Esto intenta ejecutar un pedazo de código, y si encuentra un error</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ejecuta lo que hay luego de "except"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># queremos que el estado no se borre cuando la función termine,</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># de esa manera logramos que la función nos de el siguiente valor</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># en la secuencia.</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        lcg.xn <span class="op">=</span> (a<span class="op">*</span>lcg.xn <span class="op">+</span> c)<span class="op">%</span>m</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>(<span class="pp">AttributeError</span>):</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Habrá un error cuando lcg.xn no tenga un valor</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Error: No se ha fijado la semilla.'</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lcg.xn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c6da37d0" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lcg.xn <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lcg()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>7</code></pre>
+</div>
+</div>
+<div id="5b5ca439" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lcg.xn <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>aleatorios <span class="op">=</span> [lcg() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num)]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(num), aleatorios)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-9-output-1.png" width="566" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="d71e5702" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># función (mala) que implementa el generador de congruencia lineal</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lcg():</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Variables que definen el generador</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="dv">7</span><span class="op">**</span><span class="dv">5</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">31</span> <span class="op">-</span> <span class="dv">1</span>   <span class="co"># si es primo es más fácil obtener períodos grandes</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Esto intenta ejecutar un pedazo de código, y si encuentra un error</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ejecuta lo que hay luego de "except"</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># queremos que el estado no se borre cuando la función termine,</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># de esa manera logramos que la función nos de el siguiente valor</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># en la secuencia.</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        lcg.xn <span class="op">=</span> (a<span class="op">*</span>lcg.xn <span class="op">+</span> c)<span class="op">%</span>m</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>(<span class="pp">AttributeError</span>):</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Habrá un error cuando lcg.xn no tenga un valor</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Error: No se ha fijado la semilla.'</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lcg.xn<span class="op">%</span><span class="dv">10</span> <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4201a8a1" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>lcg.xn <span class="op">=</span> <span class="dv">321</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>aleatorios <span class="op">=</span> [lcg() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num)]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(num), aleatorios)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-11-output-1.png" width="566" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Además, cuando se grafican las tuplas <span class="math inline">\((x_n, x_{n+1},\dots, x_{n + k})\)</span>, todos los puntos yacen en <span class="math inline">\(k - 1\)</span> planos. Esto hace predecible la secuencia y no muy aleatoria.</p>
+<p>Moraleja: <strong>No programar su propio generador aleatorio</strong>, si hay que hacerlo leer antes un libro dedicado a ello.</p>
+<p>Python usa un algoritmo más sofisticado llamado “Marsenne twister”. En cambio la librería estándar de C implementa un LCG.</p>
+<div id="7f353458" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="2cd39122" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>random.randint(<span class="dv">1</span>,<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>13</code></pre>
+</div>
+</div>
+<div id="2516f6cb" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>random.shuffle(lista)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>lista</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>['b', 'c', 'd', 'a']</code></pre>
+</div>
+</div>
+<div id="dd45ab14" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(num), np.random.random(num))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-15-output-1.png" width="571" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="dfc27a8c" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(num), np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>num) <span class="op">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-16-output-1.png" width="566" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="simulaciones-estilo-monte-carlo-de-probabilidades" class="level2">
+<h2 class="anchored" data-anchor-id="simulaciones-estilo-monte-carlo-de-probabilidades">Simulaciones estilo Monte Carlo de probabilidades</h2>
+<p>Describamos la probabilidad con un ejemplo:</p>
+<p>Supongamos que lanzamoos un dado y nos preguntamos cuál es la probabilidad de que caiga un número par.</p>
+<div id="6205ac98" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dado <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>}</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>par <span class="op">=</span> {<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0aeece8e" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prob(evento, espacio):</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">''' </span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Regresa la probabilidad de que ocurra 'evento'.</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Los argumentos deben ser conjuntos.    </span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="bu">len</span>(evento <span class="op">&amp;</span> espacio)<span class="op">/</span><span class="bu">len</span>(espacio))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="9e95bd08" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>prob(par, dado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>0.5</code></pre>
+</div>
+</div>
+<p>Para un ejemplo menos trivial, consideremos una urna con 23 bolas: 8 blancas, 6 azules, 9 rojas.</p>
+<div id="bccca467" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unir(color, numeros):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {color <span class="op">+</span> numero <span class="cf">for</span> numero <span class="kw">in</span> numeros}</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>urna <span class="op">=</span> unir(<span class="st">'B'</span>, <span class="st">'12345678'</span>) <span class="op">|</span> unir(<span class="st">'A'</span>, <span class="st">'123456'</span>) <span class="op">|</span> unir(<span class="st">'R'</span>, <span class="st">'123456789'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se extraen 6 bolas de la urna sin reemplazo.</p>
+<div id="bf8e9a3b" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>espacio <span class="op">=</span> <span class="bu">set</span>(itertools.permutations(urna, <span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nos preguntamos cuál es la probabilidad de obtener 6 bolas rojas</p>
+<div id="a2f5e235" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> todos_rojos(evento):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> [i[<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> evento]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s.count(<span class="st">'R'</span>) <span class="op">==</span> <span class="dv">6</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>rojos <span class="op">=</span> {e <span class="cf">for</span> e <span class="kw">in</span> espacio <span class="cf">if</span> todos_rojos(e)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="3129dc5d" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>prob(rojos, espacio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>0.0008321198252548367</code></pre>
+</div>
+</div>
+<p>Esto fue un cálculo a fuerza bruta. El problema es que si la urna tiene muchas bolas, el computador no va a ser capaz de calcular todos los elementos del espacio, se hace todo muy lento.</p>
+<p>Consideremos una urna con 2300 bolas: 800 blancas, 600 azules y 900 rojas.</p>
+<div id="2e06e246" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unir(color, numero):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {color <span class="op">+</span> <span class="bu">str</span>(n <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(numero)}</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>urna <span class="op">=</span> <span class="bu">list</span>(unir(<span class="st">'B'</span>, <span class="dv">800</span>) <span class="op">|</span> unir(<span class="st">'A'</span>, <span class="dv">600</span>) <span class="op">|</span> unir(<span class="st">'R'</span>, <span class="dv">900</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extraemos 6 bolas</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cuidado, correr esto colapsa el computador</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>espacio <span class="op">=</span> <span class="bu">set</span>(itertools.permutations(urna,<span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El problema es que hay demasiadas combinaciones posibles. En estos casos lo que se hace es tomar un número de muestras al azar.</p>
+<div id="20898bef" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5f9d14f8" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>muestra <span class="op">=</span> {<span class="bu">tuple</span>(random.choices(urna, k <span class="op">=</span> <span class="dv">6</span>)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100000</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fc374e04" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>rojos <span class="op">=</span> {e <span class="cf">for</span> e <span class="kw">in</span> muestra <span class="cf">if</span> todos_rojos(e)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0b1301ac" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>prob(rojos, muestra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>0.00379</code></pre>
+</div>
+</div>
+<div id="f753fad4" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ee171faa" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> <span class="dv">200000</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> np.zeros(sims)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(sims):</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    muestra <span class="op">=</span> {<span class="bu">tuple</span>(random.choices(urna, k <span class="op">=</span> <span class="dv">6</span>)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(puntos)}</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    rojos <span class="op">=</span> {e <span class="cf">for</span> e <span class="kw">in</span> muestra <span class="cf">if</span> todos_rojos(e)}</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    probs[i] <span class="op">=</span> prob(rojos, muestra)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(sims), probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-30-output-1.png" width="605" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="db186dda" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>probs.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>np.float64(0.003608)</code></pre>
+</div>
+</div>
+<div id="479376a3" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>probs.std()<span class="op">/</span>probs.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>np.float64(0.02877815809893737)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="tareas" class="level1">
+<h1>¡Tareas!</h1>
+<p>Los siguientes problemas se pueden resolver calculando la probabilidad contando la fracción de eventos favorables, usando cálculo combinatorial.</p>
+<p>También se pueden resolver haciendo simulaciones reutilizando el código de arriba.</p>
+<section id="tarea-3.1" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-3.1">Tarea 3.1</h2>
+<p>En el problema de la urna con23 bolas, al extraer 6 de ellas sin reemplazo.</p>
+<ul>
+<li>¿Cuál es la probabilidad de que entre las tres primeras no haya ninguna roja?</li>
+<li>¿Cuál es la probabilidad de sacar dos bolas de cada color?</li>
+</ul>
+</section>
+<section id="tarea-3.2" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-3.2">Tarea 3.2</h2>
+<p>Repita el problema de la urna pero con reemplazo. Es decir, luego de sacar cada bola esta se vuelve a poner en la urna. Si se extraen cuatro bolas de la urna, ¿cuál es la probabilidad de que todas sean rojas? Responda este problema escribiendo un código, modificando las funciones escritas en la clase para tomar en cuenta el reemplazo.</p>
+</section>
+<section id="tarea-3.3" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-3.3">Tarea 3.3</h2>
+<p>Ejercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.</p>
+<p>Se lanza un dado cargado, con probabilidades de <span class="math inline">\(\{0.1, 0.2, 0.2, 0.3, 0.1, 0.1\}\)</span> de obtener <span class="math inline">\(\{1, 2, 3, 4, 5, 6\}\)</span> respectivamente. Sea <span class="math inline">\(N\)</span> el resultado obtenido al lanzar el dado, luego de lo cual se lanza una moneda <span class="math inline">\(N\)</span> veces. Encuentre la probabilidad condicional de que <span class="math inline">\(N\)</span> sea impar dado que se obtuvo al menos una cara.</p>
+<p><strong>Pista</strong>: Si no quiere hacerlo analíticamente, construya primero la distribución de probabilidad con todos los resultados posibles junto con sus probabilidades, y luego use las siguientes funciones que definimos en clase.</p>
+<div id="c6f991a3" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prob(evento, dist):</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula la probabilidad de un evento a partir de una distribución. El evento debe ser una función que</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">    regresa verdadero o falso y la distribución debe ser un diccionario (evento: frecuencia)</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    conjunto <span class="op">=</span> {e <span class="cf">for</span> e <span class="kw">in</span> dist.keys() <span class="cf">if</span> evento(e)}</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">sum</span>(d <span class="cf">for</span> d <span class="kw">in</span> dist.values())</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    frec <span class="op">=</span> <span class="bu">sum</span>(dist[e] <span class="cf">for</span> e <span class="kw">in</span> conjunto)</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> frec<span class="op">/</span>total</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prob_cond(A, B, dist):</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>    conjuntoB <span class="op">=</span> {e <span class="cf">for</span> e <span class="kw">in</span> dist.keys() <span class="cf">if</span> B(e)}</span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>    conjuntoA <span class="op">=</span> {e <span class="cf">for</span> e <span class="kw">in</span> conjuntoB <span class="cf">if</span> A(e)}</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>    frec_B <span class="op">=</span> <span class="bu">sum</span>(dist[e] <span class="cf">for</span> e <span class="kw">in</span> conjuntoB)</span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>    frec <span class="op">=</span> <span class="bu">sum</span>(dist[e] <span class="cf">for</span> e <span class="kw">in</span> conjuntoA)</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> frec<span class="op">/</span>frec_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tarea-3.4" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-3.4">Tarea 3.4</h2>
+<p>Ejercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.</p>
+<p>En una cierta población, el <span class="math inline">\(20\%\)</span> de las personas tiene una enfermedad. Se hace un examen a los miembros de la población que tiene la característica de dar positivo el <span class="math inline">\(90\%\)</span> de las veces si la persona tiene la enfermedad y el <span class="math inline">\(30\%\)</span> de las veces si la persona no tiene la enfermedad (falso positivo). A los que dan positivo se les suministra una droga que puede causar manchas rojas en la piel en un <span class="math inline">\(20\%\)</span> de los pacientes.</p>
+<p>Si una persona tiene esas manchas rojas. ¿Cuál es la probabilidad de que haya tenido la enfermedad?</p>
+</section>
+<section id="tarea-3.5" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-3.5">Tarea 3.5</h2>
+<p>Ejercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.</p>
+<p>De las <span class="math inline">\(100\)</span> personas de una aldea, <span class="math inline">\(50\)</span> siempre dicen la verdad, <span class="math inline">\(30\)</span> siempre mienten y <span class="math inline">\(20\)</span> siempre se niegan a responder. Se toma una muestra de <span class="math inline">\(30\)</span> personas sin reemplazo. Encuentre la probabilidad de que esta muestra contenga <span class="math inline">\(10\)</span> personas de cada categoría.</p>
+<p>Para resolver este ejercicio es necesario hacer una simulación estilo Monte Carlo ya que el número de elementos en el espacio de resultados es demasiadoo grande. Estime el error cometido al hacer el cálculo de esta manera y obtenga un error razonable.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jorgenorena\.github\.io\/metodos-numericos-sitio\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

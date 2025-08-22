@@ -579,6 +579,162 @@
     ]
   },
   {
+    "objectID": "06_definicion_probabilidad.html",
+    "href": "06_definicion_probabilidad.html",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "",
+    "text": "import matplotlib.pyplot as plt\nimport numpy as np",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#definición",
+    "href": "06_definicion_probabilidad.html#definición",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Definición",
+    "text": "Definición\nMatemáticamente la probabilidad es la asignación de una medida a un conjunto \\(\\mathcal{S}\\). Es decir, a cada subconjunto \\(E\\) del conjunto le asignamos un número \\(p(E)\\) tal que\n\n\\(p(E) \\geq 0\\) para todo \\(E\\).\n\\(p(A \\cup B) = p(A) + p(B)\\)\n\\(p(\\mathcal{S}) = 1\\)\n\nCuando el conjunto \\(\\mathcal{S}\\) es discreto, le asignamos a cada elemento un número entre \\(0\\) y \\(1\\) tal que la suma de todos los elementos sea \\(1\\).\nCuando el conjunto \\(\\mathcal{S}\\) es un subconjunto continuo de los reales, le asignamos una densidad de probabilidad tal que la probabilidad del intervalo \\((a,b) \\subset \\mathcal{S}\\) es \\[\np((a,b)) = \\int_a^b dx\\,\\rho(x)\\,.\n\\] La función de distribución de probabilidad a veces se llama la PDF por su sigla en inglés.\nMás allá de la definición matemática, uno puede preguntarse por el significado de la probabilidad. Esta pregunta también es práctica, porque nos gustaría saber cómo asignarle una probabilidad a cada evento. Hay dos interpretaciones\n\nObjetiva: La probabilidad es obtenida experimentalmente. Si realizamos un experimento un número \\(N\\) de veces y obtenemos el resultado \\(A\\) un número \\(N_A\\) veces, decimos que la probabilidad de obtener \\(A\\) es \\[\nP(A) = \\lim_{N\\rightarrow \\infty} \\frac{N_A}{N}\\,.\n\\] Esta definición es idealizada ya que nunca podemos realizar un experimento infinitas veces.\nSubjetiva: Las probabilidades nos dan una estima basada en la incertidumbre debida a la ignorancia sobre los procesos.\n\nNormalmente asumimos, a falta de más información, que todos los resultados son igualmente probables. Si hacemos esto la probabilidad es la fracción de eventos favorables.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#propiedades-básicas",
+    "href": "06_definicion_probabilidad.html#propiedades-básicas",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Propiedades básicas",
+    "text": "Propiedades básicas\nDefinimos primero la probabilidad condicional de que ocurra \\(A\\) dado que ocurre \\(B\\): \\(P(A|B)\\)\nEjemplo: La probabilidad de que al lanzar un dado dos veces el segundo resultado sea par dado que la suma de ambos es 6.\nLanzar dos dados tiene 36 posibles resultados. La probabilidad la tomamos como la fracción que cumple lo pedido.\nEntre los 36 resultados, tomemos aquellos que cumplen B (la suma de ambos resultados es 6):\n\\[\n1, 5\\,;\\quad 2, 4\\,;\\quad 3, 3\\,;\\quad 4, 2\\,;\\quad 5, 1\\,.\n\\]\nLa probabilidad condicional es la fracción de estos 5 que cumple la condición A (el segundo es par). Estos son 2. Por lo tanto la probabilidad es \\(2/5\\).\nLa probabilidad conjunta es la probabilidad de que ocurran dos eventos.\nEn el ejemplo anterior, la probabilidad de que el segundo resultado sea par y la suma de ambos sea 6 es la fracción del total que cumple estas dos condiciones. Es decir \\(2/36\\).\nEn general tenemos que\n\\[\nP(AB) = P(A|B)P(B)\n\\]\nPodemos verificar que se cumple para el ejemplo anterior.\nEsto tiene sentido ya que \\(P(B)\\) es la fracción que cumple B, y \\(P(A|B)\\) es la fracción entre todos los que cumplen B de aquellos que cumplen A.\nOtro problema, ¿cuál es la probabilidad de que la suma sea 6 o que el segundo resultado sea par?\nSi lo pensamos un segundo\n\\[\nP(A\\cup B) = P(A) + P(B) - P(AB)\n\\]\nEsto es porque al sumar los que cumplen A y los que cumplen B, estamos contando dos veces los que cumplen ambos.\nDecimos que dos eventos son independientes cuando \\(P(A|B) = P(A)\\). En ese caso \\(P(AB) = P(A)P(B)\\).\nDecimos que dos eventos son mutuamente excluyentes cuando \\(P(AB) = 0\\). En ese caso \\(P(A\\cup B) = P(A) + P(B)\\).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#teorema-de-bayes",
+    "href": "06_definicion_probabilidad.html#teorema-de-bayes",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Teorema de Bayes",
+    "text": "Teorema de Bayes\nEste teorema es tal vez el teorema famoso más sencillo de demostrar:\n\\[\nP(A|B) = \\frac{P(B|A) P(A)}{P(B)}\n\\]\nDemostración:\n\\[\nP(AB) = P(BA)\n\\]\nentonces\n\\[\nP(A|B)P(B) = P(B|A)P(A)\n\\]\nPara ver un ejemplo de su poder, supongamos que sabemos que los estudiantes de física son \\(70\\) hombres y \\(30\\) mujeres mientras que los estudiantes de química son \\(141\\) hombres y \\(153\\) mujeres. En el pasillo conocemos a un estudiante que está hablando de átomos (tal que es de física o química). Si este estudiante es mujer, ¿cuál es la probabilidad de que sea de física?\nQueremos calcular \\(P(física|mujer)\\), pero conocemos el objeto al revés \\(P(mujer|física)\\). ¿Cómo lo hacemos?\n\nnumero_estudiantes = 141 + 153 + 70 + 30\nprob_mujer = (153 + 30)/numero_estudiantes\nprob_fisica = 100/numero_estudiantes\nprob_mujer_dado_fisica = 30/100\n\nprob_mujer_dado_fisica*prob_fisica/prob_mujer\n\n0.16393442622950818",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#una-variable-aleatoria",
+    "href": "06_definicion_probabilidad.html#una-variable-aleatoria",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Una variable aleatoria",
+    "text": "Una variable aleatoria\nUn número \\(x\\) que puede tomar valores dentro del conjunto \\(\\mathcal{S}\\) se llama una variable aleatoria. En física es más común usar variables aleatorias continuas, es decir \\(\\mathcal{S} = \\mathbb{R}\\). Podemos caracterizar esta variable con varias propiedades:\n\nLa función cumulativa de probabilidad es \\(P(x) = p((-\\infty, x))\\). Claramente \\(P(-\\infty) = 0\\) y \\(P(\\infty) = 1\\). Note que \\(\\frac{d P}{dx}(x) = \\rho(x)\\).\nEl valor esperado de alguna cantidad \\(F(x)\\) es \\[\n\\langle F \\rangle = \\int_{-\\infty}^{\\infty}dx\\,\\rho(x)F(x)\\,.\n\\]\nPodemos cambiar de variable definiendo \\(y(x)\\). La distribución de probabilidad de esta variable es \\[\n\\rho(y) = \\left|\\frac{\\partial x}{\\partial y}\\right|\\rho(x)\\,.\n\\]\n\nEjemplo: Sea \\(\\rho(x) = \\lambda \\exp(-\\lambda|x|)/2\\). Note que \\(\\int_{-\\infty}^\\infty dx\\,\\rho(x) = 1\\). Tomemos \\(y = x^2\\), entonces también \\(\\left|\\frac{\\partial x}{\\partial y}\\right| = \\frac{1}{2\\sqrt{y}}\\).\nComo hay dos valores de \\(x\\) que corresponden al mismo valor de \\(y\\), la probabilidad de \\(y\\) será la suma de esas dos posibilidades: \\[\n\\rho(y) = 2\\frac{\\lambda}{2}\\exp(-\\lambda\\sqrt{y})\\frac{1}{2\\sqrt{y}} = \\frac{\\lambda \\exp(-\\lambda \\sqrt{y})}{2\\sqrt{y}}\\,.\n\\]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#momentos-y-cumulantes",
+    "href": "06_definicion_probabilidad.html#momentos-y-cumulantes",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Momentos y cumulantes",
+    "text": "Momentos y cumulantes\nUna propiedad importante de una distribución de probabilidad son sus momentos \\[\nm_n = \\langle x^n \\rangle = \\int dx\\,\\rho(x)x^n\\,.\n\\]\nLa función característica es la transformada de Fourier de la densidad de probabilidad \\[\n\\tilde{\\rho}(k) = \\langle e^{-ikx} \\rangle = \\int dx\\,\\rho(x) e^{-ikx}\\,.\n\\] La PDF se puede recuperar a partir de la función característica tomando la transformada inversa \\[\n\\rho(x) = \\frac{1}{2\\pi}\\int_{-\\infty}^\\infty dk\\,\\rho(k) e^{ikx}\\,.\n\\] Los momentos de la distribución se pueden obtener expandiendo en potencias de \\(k\\) \\[\n\\tilde{\\rho}(k) = \\left\\langle \\sum_{n=0}^\\infty \\frac{(-ik)^n}{n!}x^n\\right\\rangle = \\sum_{n=0}^\\infty \\frac{(-ik)^n}{n!}\\langle x^n\\rangle\\,.\n\\]\nLos cumulantes son valores esperados conexos. Es decir, le restamos a los momentos la información contenida en momentos de orden inferior: \\[\\begin{align*}\n\\langle x \\rangle_c &= \\langle x\\rangle\\,,\\\\\n\\langle x^2 \\rangle_c &= \\langle x^2 \\rangle - \\langle x \\rangle^2\\,,\\\\\n\\langle x^3 \\rangle_c &= \\langle x^3 \\rangle - 3 \\langle x^2\\rangle_c \\langle x \\rangle - \\langle x\\rangle^3\\,,\\\\\n\\langle x^4 \\rangle_c &= \\langle x^4 \\rangle - 4 \\langle x^4\\rangle_c \\langle x \\rangle - 6\\langle x^2\\rangle_c^2 - 6 \\langle x^2\\rangle_c \\langle x \\rangle^2 - \\langle x\\rangle^4\\,.\n\\end{align*}\\] En general, estos cumulantes se definen como proveniendo del logaritmo de la función característica \\[\n\\ln \\tilde{\\rho}(k) = \\sum_{n=1}^\\infty \\frac{(-ik)^n}{n!}\\langle x^n\\rangle_c\\,.\n\\]\nEl segundo cumulante \\(\\sigma^2 = \\langle x^2 \\rangle_c\\) se llama la varianza de la distribución y representa cuánto está esparcida. Si llamamos \\(x_o = \\langle x \\rangle\\) tenemos \\[\n\\langle (x - x_o)^2 \\rangle = \\langle x^2 \\rangle - 2 \\langle x x_o \\rangle + \\langle x_o^2 \\rangle = \\langle x^2 \\rangle - x_o^2 = \\langle x^2 \\rangle_c\\,.\n\\] La varianza es el valor esperado de la desviación al cuadrado. Es decir, nos dice en promedio cual es la desviación al cuadrado de un punto respecto a \\(x_o\\).\nDemostración (opcional):\n\\[\n\\sum_{n=0}^\\infty \\frac{(-ik)^n}{n!}\\langle x^n\\rangle = \\exp\\left[\\sum_{n=1}^\\infty\\frac{(-ik)^n}{n!}\\langle x^n\\rangle_c\\right] = \\prod_n \\sum_{p_n}\\left[\\frac{(-ik)^{np_n}}{p_n!}\\left(\\frac{\\langle x^n \\rangle_c}{n!}\\right)^{p_n}\\right]\\,.\n\\]\nIgualando las potencias de \\(k\\) del lado izquierdo y derecho obtenemos\n\\[\n\\langle x^n \\rangle = \\sum'_{p_n} m! \\prod_n \\frac{1}{p_n!(n!)^{p_n}}\\langle x^n \\rangle_c^{p_n}\\,.\n\\]\nLa suma primada se refiere al hecho que sumamos sobre todos los valores de \\(p_n\\) tales que \\(\\sum n p_n = m\\).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#generadores-de-números-aleatorios",
+    "href": "06_definicion_probabilidad.html#generadores-de-números-aleatorios",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Generadores de números aleatorios",
+    "text": "Generadores de números aleatorios\nTomado completamente de:\n\nhttp://users.dimi.uniud.it/~alberto.policriti/home/sites/default/files/ASD/prng-slides.pdf\nhttps://www.eg.bucknell.edu/~xmeng/Course/CS6337/Note/master/node40.html\nhttps://realpython.com/python-random/\n\nEste es un tema sumamente interesante. Se le dedican libros enteros y es crucial para las simulaciones en física y estadística. Así mismo es una parte central de la criptografía moderna. Sin embargo, yo no soy un experto y este no es el tema central del curso, así que seremos un poco superficiales.\nDe las siguientes dos secuencias, la segunda parece más aleatoria:\n\n0101010101010101010101010101010101010101\n0010010000111111011010101000100010000101\n\nEsto es porque parece tener menos patrones y repeticiones. En realidad es una representación del número \\(\\pi\\).\nSe pueden obtener números verdaderamente aleatorios a partir de fenómenos físicos como rayos cósmicos, decaimiento de átomos, o incluso los estados electrónicos de algunos componentes del computador. También se pueden obtener números esencialmente aleatorios contando cuántas teclas ha presionado el usuario junto con el estado de la memoria RAM y el número del proceso en el sistema operativo (todo esto es determinista pero imposible de predecir en la práctica). En Python podemos acceder a tales números “verdaderamente” aleatorios:\n\nimport secrets\n\nsecrets.randbelow(10)\n\n2\n\n\n\nsecrets.randbits(64)\n\n1121979361033119556\n\n\n\nlista = [1,2,3,4,5,6]\nsecrets.choice(lista)\n\n3\n\n\nSin embargo estos números aleatorios son lentos de producir. En física, nos basta con que los números “parezcan” aleatorios. Es decir, que tenga buenas propiedades estadísticas y que no sea predecible.\nPor ejemplo, pedimos que la variable aleatoria \\(x_i \\in [0,N]\\) esté distribuida de manera uniforme. Es decir, si tomo \\(n\\) muestras, y divido el intervalo \\([0,N]\\) en \\(m\\) subintervalos, en promedio cada subintervalo contiene \\(n/m\\) muestras.\nA los números que no son aleatorios pero parecen aleatorios se los llama números pseudo-aleatorios. Para generarlos se usan funciones que no tengan patrones fáciles de discernir y que sean caóticas (para condiciones iniciales cercanas producen secuencias muy diferentes).\nEl punto en la secuencia se llama el “estado”. Como el número de bits es finito, el “estado” tarde o temprano se repite. Las secuencias de números aleatorios tienen un período. Queremos que ese período sea lo más largo posible.\nEjemplo sencillo: Generadores de congruencia lineal.\n\\[\nx_{n+1} = (a x_n + c)\\mod(m)\n\\]\n\n# función (muy mala) que implementa el generador de congruencia lineal\ndef lcg():\n    \n    # Variables que definen el generador\n    a = 7 # intentar todos los números de 2 a 9\n    c = 0\n    m = 11 # intentar 10 y 11, ojalá grande para dar un período grande\n    \n    # Esto intenta ejecutar un pedazo de código, y si encuentra un error\n    # ejecuta lo que hay luego de \"except\"\n    try:\n        # queremos que el estado no se borre cuando la función termine,\n        # de esa manera logramos que la función nos de el siguiente valor\n        # en la secuencia.\n        lcg.xn = (a*lcg.xn + c)%m\n    except(AttributeError):\n        # Habrá un error cuando lcg.xn no tenga un valor\n        print('Error: No se ha fijado la semilla.')\n        return\n        \n    return lcg.xn\n\n\nlcg.xn = 1\n\nlcg()\n\n7\n\n\n\nlcg.xn = 4\nnum = 100\naleatorios = [lcg() for i in range(num)]\nplt.scatter(range(num), aleatorios)\n\n\n\n\n\n\n\n\n\n# función (mala) que implementa el generador de congruencia lineal\ndef lcg():\n    \n    # Variables que definen el generador\n    a = 7**5\n    c = 0\n    m = 2**31 - 1   # si es primo es más fácil obtener períodos grandes\n    \n    # Esto intenta ejecutar un pedazo de código, y si encuentra un error\n    # ejecuta lo que hay luego de \"except\"\n    try:\n        # queremos que el estado no se borre cuando la función termine,\n        # de esa manera logramos que la función nos de el siguiente valor\n        # en la secuencia.\n        lcg.xn = (a*lcg.xn + c)%m\n    except(AttributeError):\n        # Habrá un error cuando lcg.xn no tenga un valor\n        print('Error: No se ha fijado la semilla.')\n        return\n        \n    return lcg.xn%10 + 1\n\n\nlcg.xn = 321\nnum = 100\naleatorios = [lcg() for i in range(num)]\nplt.scatter(range(num), aleatorios)\n\n\n\n\n\n\n\n\nAdemás, cuando se grafican las tuplas \\((x_n, x_{n+1},\\dots, x_{n + k})\\), todos los puntos yacen en \\(k - 1\\) planos. Esto hace predecible la secuencia y no muy aleatoria.\nMoraleja: No programar su propio generador aleatorio, si hay que hacerlo leer antes un libro dedicado a ello.\nPython usa un algoritmo más sofisticado llamado “Marsenne twister”. En cambio la librería estándar de C implementa un LCG.\n\nimport random\n\n\nrandom.randint(1,100)\n\n13\n\n\n\nlista = ['a', 'b', 'c', 'd']\nrandom.shuffle(lista)\nlista\n\n['b', 'c', 'd', 'a']\n\n\n\nnum = 10000\nplt.scatter(range(num), np.random.random(num))\n\n\n\n\n\n\n\n\n\nnum = 10000\nplt.scatter(range(num), np.random.randint(10, size=num) + 1)",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#simulaciones-estilo-monte-carlo-de-probabilidades",
+    "href": "06_definicion_probabilidad.html#simulaciones-estilo-monte-carlo-de-probabilidades",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Simulaciones estilo Monte Carlo de probabilidades",
+    "text": "Simulaciones estilo Monte Carlo de probabilidades\nDescribamos la probabilidad con un ejemplo:\nSupongamos que lanzamoos un dado y nos preguntamos cuál es la probabilidad de que caiga un número par.\n\ndado = {1, 2, 3, 4, 5, 6}\npar = {2, 4, 6}\n\n\ndef prob(evento, espacio):\n    ''' \n    Regresa la probabilidad de que ocurra 'evento'.\n    Los argumentos deben ser conjuntos.    \n    '''\n    return (len(evento & espacio)/len(espacio))\n\n\nprob(par, dado)\n\n0.5\n\n\nPara un ejemplo menos trivial, consideremos una urna con 23 bolas: 8 blancas, 6 azules, 9 rojas.\n\ndef unir(color, numeros):\n    return {color + numero for numero in numeros}\n\nurna = unir('B', '12345678') | unir('A', '123456') | unir('R', '123456789')\n\nSe extraen 6 bolas de la urna sin reemplazo.\n\nimport itertools\n\nespacio = set(itertools.permutations(urna, 6))\n\nNos preguntamos cuál es la probabilidad de obtener 6 bolas rojas\n\ndef todos_rojos(evento):\n    s = [i[0] for i in evento]\n    return s.count('R') == 6\n\nrojos = {e for e in espacio if todos_rojos(e)}\n\n\nprob(rojos, espacio)\n\n0.0008321198252548367\n\n\nEsto fue un cálculo a fuerza bruta. El problema es que si la urna tiene muchas bolas, el computador no va a ser capaz de calcular todos los elementos del espacio, se hace todo muy lento.\nConsideremos una urna con 2300 bolas: 800 blancas, 600 azules y 900 rojas.\n\ndef unir(color, numero):\n    return {color + str(n + 1) for n in range(numero)}\n\nurna = list(unir('B', 800) | unir('A', 600) | unir('R', 900))\n\nExtraemos 6 bolas\n# Cuidado, correr esto colapsa el computador\n\nespacio = set(itertools.permutations(urna,6))\nEl problema es que hay demasiadas combinaciones posibles. En estos casos lo que se hace es tomar un número de muestras al azar.\n\nimport random\n\n\nmuestra = {tuple(random.choices(urna, k = 6)) for i in range(100000)}\n\n\nrojos = {e for e in muestra if todos_rojos(e)}\n\n\nprob(rojos, muestra)\n\n0.00379\n\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n\nsims = 10\npuntos = 200000\nprobs = np.zeros(sims)\n\nfor i in range(sims):\n    muestra = {tuple(random.choices(urna, k = 6)) for i in range(puntos)}\n    rojos = {e for e in muestra if todos_rojos(e)}\n    probs[i] = prob(rojos, muestra)\n\nplt.plot(np.arange(sims), probs)\n\n\n\n\n\n\n\n\n\nprobs.mean()\n\nnp.float64(0.003608)\n\n\n\nprobs.std()/probs.mean()\n\nnp.float64(0.02877815809893737)",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.1",
+    "href": "06_definicion_probabilidad.html#tarea-3.1",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.1",
+    "text": "Tarea 3.1\nEn el problema de la urna con23 bolas, al extraer 6 de ellas sin reemplazo.\n\n¿Cuál es la probabilidad de que entre las tres primeras no haya ninguna roja?\n¿Cuál es la probabilidad de sacar dos bolas de cada color?",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.2",
+    "href": "06_definicion_probabilidad.html#tarea-3.2",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.2",
+    "text": "Tarea 3.2\nRepita el problema de la urna pero con reemplazo. Es decir, luego de sacar cada bola esta se vuelve a poner en la urna. Si se extraen cuatro bolas de la urna, ¿cuál es la probabilidad de que todas sean rojas? Responda este problema escribiendo un código, modificando las funciones escritas en la clase para tomar en cuenta el reemplazo.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.3",
+    "href": "06_definicion_probabilidad.html#tarea-3.3",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.3",
+    "text": "Tarea 3.3\nEjercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.\nSe lanza un dado cargado, con probabilidades de \\(\\{0.1, 0.2, 0.2, 0.3, 0.1, 0.1\\}\\) de obtener \\(\\{1, 2, 3, 4, 5, 6\\}\\) respectivamente. Sea \\(N\\) el resultado obtenido al lanzar el dado, luego de lo cual se lanza una moneda \\(N\\) veces. Encuentre la probabilidad condicional de que \\(N\\) sea impar dado que se obtuvo al menos una cara.\nPista: Si no quiere hacerlo analíticamente, construya primero la distribución de probabilidad con todos los resultados posibles junto con sus probabilidades, y luego use las siguientes funciones que definimos en clase.\n\ndef prob(evento, dist):\n    '''\n    Calcula la probabilidad de un evento a partir de una distribución. El evento debe ser una función que\n    regresa verdadero o falso y la distribución debe ser un diccionario (evento: frecuencia)\n    '''\n    \n    conjunto = {e for e in dist.keys() if evento(e)}\n    total = sum(d for d in dist.values())\n    frec = sum(dist[e] for e in conjunto)\n    return frec/total\n\n\ndef prob_cond(A, B, dist):\n    \n    conjuntoB = {e for e in dist.keys() if B(e)}\n    conjuntoA = {e for e in conjuntoB if A(e)}\n    frec_B = sum(dist[e] for e in conjuntoB)\n    frec = sum(dist[e] for e in conjuntoA)\n    return frec/frec_B",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.4",
+    "href": "06_definicion_probabilidad.html#tarea-3.4",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.4",
+    "text": "Tarea 3.4\nEjercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.\nEn una cierta población, el \\(20\\%\\) de las personas tiene una enfermedad. Se hace un examen a los miembros de la población que tiene la característica de dar positivo el \\(90\\%\\) de las veces si la persona tiene la enfermedad y el \\(30\\%\\) de las veces si la persona no tiene la enfermedad (falso positivo). A los que dan positivo se les suministra una droga que puede causar manchas rojas en la piel en un \\(20\\%\\) de los pacientes.\nSi una persona tiene esas manchas rojas. ¿Cuál es la probabilidad de que haya tenido la enfermedad?",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.5",
+    "href": "06_definicion_probabilidad.html#tarea-3.5",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.5",
+    "text": "Tarea 3.5\nEjercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.\nDe las \\(100\\) personas de una aldea, \\(50\\) siempre dicen la verdad, \\(30\\) siempre mienten y \\(20\\) siempre se niegan a responder. Se toma una muestra de \\(30\\) personas sin reemplazo. Encuentre la probabilidad de que esta muestra contenga \\(10\\) personas de cada categoría.\nPara resolver este ejercicio es necesario hacer una simulación estilo Monte Carlo ya que el número de elementos en el espacio de resultados es demasiadoo grande. Estime el error cometido al hacer el cálculo de esta manera y obtenga un error razonable.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
     "objectID": "05_algoritmos_y_estabilidad.html",
     "href": "05_algoritmos_y_estabilidad.html",
     "title": "Algoritmos y estabilidad",
