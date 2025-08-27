@@ -6,6 +6,7 @@ lang: es
 
 ```{python}
 import numpy as np
+import math
 import matplotlib.pyplot as plt
 from scipy.special import comb
 ```
@@ -61,7 +62,7 @@ Cuando el número de muestras $r$ tiende a ser grande, la distribución tiende a
 
 ```{python}
 def poisson(n, lamda):
-    return lamda**n*np.exp(-lamda)/np.math.factorial(n)
+    return lamda**n*np.exp(-lamda)/math.factorial(n)
 
 def probs(lamda, m):
     return [poisson(n, lamda) for n in range(m+1)]
@@ -86,14 +87,14 @@ ax6.bar(range(25+1), probs(10, 25))
 ax7.bar(range(40+1), probs(20, 40))
 ax8.bar(range(80+1), probs(50, 80))
         
-ax1.set_title('$\lambda = 0.2$')
-ax2.set_title('$\lambda = 0.5$')
-ax3.set_title('$\lambda = 1$')
-ax4.set_title('$\lambda = 2$')
-ax5.set_title('$\lambda = 5$')
-ax6.set_title('$\lambda = 10$')
-ax7.set_title('$\lambda = 20$')
-ax8.set_title('$\lambda = 50$')
+ax1.set_title(r'$\lambda = 0.2$')
+ax2.set_title(r'$\lambda = 0.5$')
+ax3.set_title(r'$\lambda = 1$')
+ax4.set_title(r'$\lambda = 2$')
+ax5.set_title(r'$\lambda = 5$')
+ax6.set_title(r'$\lambda = 10$')
+ax7.set_title(r'$\lambda = 20$')
+ax8.set_title(r'$\lambda = 50$')
 
 fig.tight_layout(pad=2.0)
 
