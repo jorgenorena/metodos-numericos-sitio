@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.43">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Acerca de este sitio – Métodos Numéricos y Probabilidades 2025</title>
+<title>Varias variables aleatorias – Métodos Numéricos y Probabilidades 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -53,20 +87,49 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -82,8 +145,8 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Métodos Numéricos y Probabilidades 2025</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -93,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Inicio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">Acerca de</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -150,11 +213,11 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Acerca de este sitio</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Unidad 2: Probabilidad</a></li><li class="breadcrumb-item"><a href="./08_varias_variables_aleatorias.html">Varias variables aleatorias</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -169,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Unidad 1: Introducción</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -210,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Unidad 2: Probabilidad</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -229,7 +292,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08_varias_variables_aleatorias.html" class="sidebar-item-text sidebar-link">
+  <a href="./08_varias_variables_aleatorias.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Varias variables aleatorias</span></a>
   </div>
 </li>
@@ -240,15 +303,38 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#funciones-características" id="toc-funciones-características" class="nav-link active" data-scroll-target="#funciones-características">Funciones características</a>
+  <ul class="collapse">
+  <li><a href="#binomial" id="toc-binomial" class="nav-link" data-scroll-target="#binomial">Binomial</a></li>
+  <li><a href="#poisson" id="toc-poisson" class="nav-link" data-scroll-target="#poisson">Poisson</a></li>
+  <li><a href="#gaussiana" id="toc-gaussiana" class="nav-link" data-scroll-target="#gaussiana">Gaussiana</a></li>
+  </ul></li>
+  <li><a href="#varias-variables-aleatorias" id="toc-varias-variables-aleatorias" class="nav-link" data-scroll-target="#varias-variables-aleatorias">Varias variables aleatorias</a>
+  <ul class="collapse">
+  <li><a href="#la-gaussiana-multidimensional" id="toc-la-gaussiana-multidimensional" class="nav-link" data-scroll-target="#la-gaussiana-multidimensional">La gaussiana multidimensional</a></li>
+  </ul></li>
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">¡Tareas!</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">4.1</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">4.2</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">4.3</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">4.4</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">4.5</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Unidad 2: Probabilidad</a></li><li class="breadcrumb-item"><a href="./08_varias_variables_aleatorias.html">Varias variables aleatorias</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Acerca de este sitio</h1>
+<h1 class="title">Varias variables aleatorias</h1>
 </div>
 
 
@@ -265,11 +351,174 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Versión: 0.0.1 (trabajo en progreso)</p>
-<p>Estas son las notas de clases del curso de Métodos Numéricos y Probabilidades 2025. El curso es parte del plan de estudios de la licenciatura en física de la Pontificia Universidad Católica de Valparaíso, Chile. Dictado por el profesor Jorge Noreña, el curso cubre temas fundamentales de métodos numéricos y probabilidad aplicados a la física.</p>
-<p>Una pequeña parte de estos apuntes fue escrita con la ayuda de inteligencia artificial, revisado y corregido por el profesor.</p>
+<section id="funciones-características" class="level1">
+<h1>Funciones características</h1>
+<section id="binomial" class="level2">
+<h2 class="anchored" data-anchor-id="binomial">Binomial</h2>
+<p><span class="math display">\[
+\tilde{p}(k;n) = \sum_{s=0}^n\frac{n!}{s!(n-s)!}p^s(1-p)^{(n-s)}e^{-iks} = \left(p e^{-ik} + (1 - p)\right)^n\,.
+\]</span> Entonces, <span class="math display">\[
+\ln \tilde{p}(k;n) = n \ln \tilde{p}(k;1)\,.
+\]</span> Pero por otro lado cuando <span class="math inline">\(n=1\)</span> <span class="math display">\[
+\langle s^\ell \rangle_1 = 1^\ell p + 0^\ell (1 - p) = p\,.
+\]</span> De aquí podemos deducir <span class="math display">\[
+\mu = \langle s \rangle_c = n \langle s \rangle_1 = np\,,
+\]</span></p>
+<p><span class="math display">\[
+\sigma^2 = \langle s^2 \rangle_c = n \langle s^2 \rangle_{1,c} = n \left(\langle s^2 \rangle_1 - \langle s\rangle_1^2\right) = np(1 - p)\,.
+\]</span></p>
+</section>
+<section id="poisson" class="level2">
+<h2 class="anchored" data-anchor-id="poisson">Poisson</h2>
+<p>Lo más fácil es tomar el límite continuo de la binomial con <span class="math inline">\(n = T/dt\)</span> donde <span class="math inline">\(dt\)</span> es un intervalo infinitesimal, y <span class="math inline">\(p = \lambda dt\)</span> <span class="math display">\[
+\tilde{p}(k) = \lim_{dt\rightarrow\infty} \left(\lambda dt e^{-ik} + (1 - \lambda dt)\right)^{T/dt} = \exp\left[\lambda (e^{-ik} - 1)\right]\,.
+\]</span> De aquí tenemos que <span class="math display">\[
+\ln \tilde{p}(k) = \lambda (e^{-ik} - 1) = \lambda\sum_{n=1}^\infty \frac{1}{n!}(-ik)^n
+\]</span> ¡Eso quiere decir que todos los cumulantes son iguales! <span class="math display">\[
+\langle s^n \rangle_c = \lambda\,.
+\]</span> En particular el valor esperado de <span class="math inline">\(s\)</span> y la varianza son <span class="math display">\[
+\mu = s\,,\quad \sigma^2 = s\,.
+\]</span></p>
+</section>
+<section id="gaussiana" class="level2">
+<h2 class="anchored" data-anchor-id="gaussiana">Gaussiana</h2>
+<p><span class="math display">\[
+\tilde{\rho}(k) = \frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{\infty} dx\,e^{-(x - \mu)^2/2\sigma}e^{-ikx} = \exp\left(-ik\mu - \frac{1}{2}
+k^2\sigma^2\right)
+\]</span> Entonces <span class="math display">\[
+\ln \tilde{\rho}(k) = -ik\mu -\frac{1}{2}k^2\sigma^2\,.
+\]</span> Esto quiere decir que todos los cumulantes son cero excepto los primeros dos. La gaussiana es una distribución completamente determinada por su media y su varianza.</p>
+</section>
+</section>
+<section id="varias-variables-aleatorias" class="level1">
+<h1>Varias variables aleatorias</h1>
+<p>Estudiemos el caso de <span class="math inline">\(n\)</span> variables aleatorias <span class="math inline">\(x_1,\dots,x_m\)</span> que organizamos en un vector <span class="math inline">\(\mathbf{x}\)</span>. Definimos la función de distribución conjunta de probabilidad para las varias variables <span class="math inline">\(\rho(\mathbf{x})\)</span>, tal que <span class="math display">\[
+\int d^nx\,\rho(\mathbf{x}) = 1\,.
+\]</span></p>
+<p>La PDF incondicional de las de las variables <span class="math inline">\(x_1,\dots,x_m\)</span> es <span class="math display">\[
+\rho(x_1,...,x_m) = \int dx_{m+1} \dots dx_n\,\rho(\mathbf{x})\,.
+\]</span> En términos de esta definimos la probabilidad condicional <span class="math display">\[
+\rho(x_1,...,x_m|x_{m+1},...,x_n) = \frac{\rho(\mathbf{x})}{\rho(x_{m+1},...,x_n)}\,.
+\]</span> Decimos que las variables son independientes si y solo si <span class="math inline">\(\rho(x_1,...,x_n) = \rho(x_1)...\rho(x_n)\)</span>.</p>
+<p>El valor esperado se define de manera análoga al caso de una variable <span class="math display">\[
+\langle F \rangle = \int d^nx\,\rho(\mathbf{x})F(\mathbf{x})\,.
+\]</span> Así mismo la función característica <span class="math display">\[
+\tilde{\rho}(\mathbf{k}) = \int d^nx\,\rho(x) e^{-i\mathbf{k}\cdot\mathbf{x}}\,.
+\]</span> A partir de esta podemos calcular funciones de correlación <span class="math display">\[
+\langle x_1 ... x_s \rangle = (i)^s \left.\frac{\partial}{\partial k_1}...\frac{\partial}{\partial k_s} \tilde{\rho}(\mathbf{k})\right|_{\mathbf{k} = 0}\,.
+\]</span> También podemos calcular cumulantes <span class="math display">\[
+\langle x_1 ... x_s \rangle_c = (i)^s \left.\frac{\partial}{\partial k_1}...\frac{\partial}{\partial k_s} \ln\tilde{\rho}(\mathbf{k})\right|_{\mathbf{k} = 0}\,.
+\]</span></p>
+<section id="la-gaussiana-multidimensional" class="level2">
+<h2 class="anchored" data-anchor-id="la-gaussiana-multidimensional">La gaussiana multidimensional</h2>
+<p>La distribución de varias variables más importante es la gaussiana <span class="math display">\[
+\rho(\mathbf{x}) = \frac{1}{(2\pi)^{n/2}(\det \Sigma)^{1/2}
+}\exp\left\{-\frac{1}{2}(\mathbf{x} - \mathbf{\mu})^T \Sigma^{-1} (\mathbf{x} - \mathbf{\mu})\right\}\,,
+\]</span> donde <span class="math inline">\(\Sigma_{ij}\)</span> es la matriz de covarianza.</p>
+<p>La función característica es simplemente la transformada de Fourier, que es análoga al caso de una dimensión <span class="math display">\[
+\tilde\rho(\mathbf{k}) = \exp\left(-i\mathbf{\mu}\cdot\mathbf{k} - \frac{1}{2}\mathbf{k}^T\Sigma \mathbf{k}\right)
+\]</span></p>
+<p>Usando las fórmulas de arriba es fácil demostrar que <span class="math display">\[
+\langle x_i x_j \rangle_c = \Sigma_{ij}\,.
+\]</span></p>
+<div id="5cf8d261" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros para la distribución normal multidimensional</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="fl">0.8</span>], [<span class="fl">0.8</span>, <span class="dv">1</span>]])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generamos una muestra a partir de la distribución gaussiana</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> np.random.multivariate_normal(mean, cov, <span class="dv">500</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Grilla para el gráfico de contornos de equiprobabilidad</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> np.mgrid[<span class="op">-</span><span class="dv">3</span>:<span class="dv">3</span>:<span class="fl">.01</span>, <span class="op">-</span><span class="dv">3</span>:<span class="dv">3</span>:<span class="fl">.01</span>]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> np.dstack((x, y))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución gaussiana multidimensional</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multivariate_gaussian(pos, mean, cov):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> mean.shape[<span class="dv">0</span>]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    diff <span class="op">=</span> pos <span class="op">-</span> mean</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> np.einsum(<span class="st">'...k,kl,...l-&gt;...'</span>, diff, np.linalg.inv(cov), diff)) <span class="op">/</span> <span class="op">\</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>           (np.sqrt((<span class="dv">2</span> <span class="op">*</span> np.pi) <span class="op">**</span> n <span class="op">*</span> np.linalg.det(cov)))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos los valores de la gaussiana en la grilla</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> multivariate_gaussian(pos, mean, cov)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficamos</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.scatter(samples[:, <span class="dv">0</span>], samples[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'Random samples'</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.contour(x, y, z, levels<span class="op">=</span><span class="dv">5</span>, colors<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Multivariate Gaussian Distribution</span><span class="ch">\n</span><span class="st">Mean = [0, 0], Covariance = [[1, 0.8], [0.8, 1]]'</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X'</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Y'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08_varias_variables_aleatorias_files/figure-html/cell-2-output-1.png" width="662" height="541" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tareas" class="level1">
+<h1>¡Tareas!</h1>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">4.1</h2>
+<p>Dado un vector aleatorio de dos componentes <span class="math inline">\(\mathbf{X}\)</span> tomado de una distribución gaussiana de dos variables, con media y varianza <span class="math display">\[
+\mu = \begin{bmatrix}1 \\ 2\end{bmatrix}\,,\quad \Sigma = \begin{bmatrix}2 &amp; 1 \\ 1 &amp; 2\end{bmatrix}\,,
+\]</span> considere la transformación <span class="math inline">\(\mathbf{y} = A\mathbf{x} + \mathbf{b}\)</span> donde <span class="math display">\[
+A = \begin{bmatrix}1 &amp; 2 \\ 3 &amp; 4\end{bmatrix}\,,\quad \mathbf{b} = \begin{bmatrix}1\\ 1\end{bmatrix}\,.
+\]</span></p>
+<ol type="1">
+<li>Deduzca la media y la covarianza de la nueva variable <span class="math inline">\(\mathbf{y}\)</span>.</li>
+<li>Explique cómo la transformación afecta la geometría de los contornos de equiprobabilidad de la nueva distribución. Use gráficos para ilustrar su respuesta.</li>
+</ol>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">4.2</h2>
+<p>Demuestre que la covarianza siempre cumple <span class="math inline">\(\mathbf{v}^T\Sigma\mathbf{v} \geq 0\)</span> para cualquier vector <span class="math inline">\(\mathbf{v}\)</span>. Interprete el caso en el cual <span class="math inline">\(\mathbf{w}^T\Sigma\mathbf{w} = 0\)</span> para algún vector <span class="math inline">\(\mathbf{w}\)</span>.</p>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">4.3</h2>
+<p>Considere una variable aleatoria <span class="math inline">\(x \in (0,\infty)\)</span> distribuida de acuerdo a una distribución exponencial <span class="math inline">\(\rho(x) = \lambda e^{-\lambda x}\)</span>.</p>
+<ol type="1">
+<li>Calcule la función característica <span class="math inline">\(\tilde{\rho}(k)\)</span>.</li>
+<li>Calcule los primeros cuatro cumulantes de esta distribución.</li>
+<li>Basado en el punto anterior, compare con la distribución gaussiana.</li>
+</ol>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">4.4</h2>
+<p>Una distribución es simétrica respecto a la transformación <span class="math inline">\(\mathbf{x} \rightarrow - \mathbf{x}\)</span>.</p>
+<ul>
+<li>¿Qué podemos concluir sobre sus momentos <span class="math inline">\(\langle x^\ell \rangle\)</span> con <span class="math inline">\(\ell = 3, 4\)</span>?</li>
+<li>Aplique sus conclusiones a la distribución de Cauchy</li>
+</ul>
+<p><span class="math display">\[
+f(x) = \frac{1}{\pi}\frac{\gamma}{x^2 + \gamma^2}\,,
+\]</span></p>
+<p>donde <span class="math inline">\(\gamma\)</span> es una constante positiva.</p>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4">4.5</h2>
+<p>Suponga que tenemos dos variables <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> que pueden tomar valores <span class="math inline">\(0\)</span> o <span class="math inline">\(1\)</span>.</p>
+<ul>
+<li>Encuentre una distribución de probabilidad tal que <span class="math display">\[
+P(A=1) = 0.5\,, P(B=1)=0.1\,, P(A=1, B=1) = 0\,.
+\]</span></li>
+<li>Interprete la covarianza entre <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>.</li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -315,12 +564,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
