@@ -4,12 +4,17 @@ jupyter: python3
 lang: es
 ---
 
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import comb
+```
+
 # Distribuciones que tienden a la normal
 
 Muchas distribuciones tienden a parecerse a la distribución gaussiana en algún límite. Tomemos la distribución binomial
 
 ```{python}
-from scipy.special import comb
 
 def binomial(n, r, p):
     return comb(r, n)*p**n*(1-p)**(r - n)
