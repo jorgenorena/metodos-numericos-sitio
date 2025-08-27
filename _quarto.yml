@@ -13,9 +13,8 @@ website:
         text: Inicio
       - href: about.qmd
         text: Acerca de
-      - text: Clases
+      - text:  "Unidad 1"
         menu:
-          - text: "Unidad 1: Introducción"
           - text: "Funcionamiento de la CPU"
             href: 01_funcionamiento_cpu.qmd
           - text: "Repaso de Python"
@@ -26,10 +25,12 @@ website:
             href: 04_numeros_y_condicionamiento.qmd
           - text: "Algoritmos y estabilidad"
             href: 05_algoritmos_y_estabilidad.qmd
-          - text: "------"
-          - text: "Unidad 2: Probabilidad"
+      - text: "Unidad 2"
+        menu:
           - text: "Propiedades de la probabilidad"
             href: 06_definicion_probabilidad.qmd
+          - text: "Distribuciones de probabilidad"
+            href: 07_distribuciones.qmd
   sidebar:
     style: docked
     contents:
@@ -49,6 +50,8 @@ website:
         contents:
           - text: "Propiedades de la probabilidad"
             href: 06_definicion_probabilidad.qmd
+          - text: "Distribuciones de probabilidad"
+            href: 07_distribuciones.qmd
 
 format:
   html:

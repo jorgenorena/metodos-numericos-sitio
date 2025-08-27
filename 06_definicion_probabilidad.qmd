@@ -461,18 +461,18 @@ Los siguientes problemas se pueden resolver calculando la probabilidad contando 
 
 También se pueden resolver haciendo simulaciones reutilizando el código de arriba.
 
-## Tarea 2.6
+## Tarea 3.1
 
 En el problema de la urna con23 bolas, al extraer 6 de ellas sin reemplazo. 
 
 * ¿Cuál es la probabilidad de que entre las tres primeras no haya ninguna roja?
 * ¿Cuál es la probabilidad de sacar dos bolas de cada color?
 
-## Tarea 2.7
+## Tarea 3.2
 
 Repita el problema de la urna pero con reemplazo. Es decir, luego de sacar cada bola esta se vuelve a poner en la urna. Si se extraen cuatro bolas de la urna, ¿cuál es la probabilidad de que todas sean rojas? Responda este problema escribiendo un código, modificando las funciones escritas en la clase para tomar en cuenta el reemplazo.
 
-## Tarea 2.8
+## Tarea 3.3
 
 Ejercicio sacado de "Basic Probability Theory", R. B. Ash, Dover, 1970.
 
@@ -502,7 +502,7 @@ def prob_cond(A, B, dist):
     return frec/frec_B
 ```
 
-## Tarea 2.9
+## Tarea 3.4
 
 Ejercicio sacado de "Basic Probability Theory", R. B. Ash, Dover, 1970.
 
@@ -510,7 +510,7 @@ En una cierta población, el $20\%$ de las personas tiene una enfermedad. Se hac
 
 Si una persona tiene esas manchas rojas. ¿Cuál es la probabilidad de que haya tenido la enfermedad?
 
-## Tarea 2.10
+## Tarea 3.5
 
 Ejercicio sacado de "Basic Probability Theory", R. B. Ash, Dover, 1970.
 
