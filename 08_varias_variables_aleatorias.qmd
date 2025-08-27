@@ -1,0 +1,202 @@
+---
+title: Varias variables aleatorias
+jupyter: python3
+lang: es
+---
+
+# Funciones características
+
+## Binomial
+
+$$
+\tilde{p}(k;n) = \sum_{s=0}^n\frac{n!}{s!(n-s)!}p^s(1-p)^{(n-s)}e^{-iks} = \left(p e^{-ik} + (1 - p)\right)^n\,.
+$$
+Entonces,
+$$
+\ln \tilde{p}(k;n) = n \ln \tilde{p}(k;1)\,.
+$$
+Pero por otro lado cuando $n=1$
+$$
+\langle s^\ell \rangle_1 = 1^\ell p + 0^\ell (1 - p) = p\,.
+$$
+De aquí podemos deducir
+$$
+\mu = \langle s \rangle_c = n \langle s \rangle_1 = np\,,
+$$
+
+$$
+\sigma^2 = \langle s^2 \rangle_c = n \langle s^2 \rangle_{1,c} = n \left(\langle s^2 \rangle_1 - \langle s\rangle_1^2\right) = np(1 - p)\,.
+$$
+
+## Poisson
+
+Lo más fácil es tomar el límite continuo de la binomial con $n = T/dt$ donde $dt$ es un intervalo infinitesimal, y $p = \lambda dt$
+$$
+\tilde{p}(k) = \lim_{dt\rightarrow\infty} \left(\lambda dt e^{-ik} + (1 - \lambda dt)\right)^{T/dt} = \exp\left[\lambda (e^{-ik} - 1)\right]\,.
+$$
+De aquí tenemos que
+$$
+\ln \tilde{p}(k) = \lambda (e^{-ik} - 1) = \lambda\sum_{n=1}^\infty \frac{1}{n!}(-ik)^n
+$$
+¡Eso quiere decir que todos los cumulantes son iguales!
+$$
+\langle s^n \rangle_c = \lambda\,.
+$$
+En particular el valor esperado de $s$ y la varianza son
+$$
+\mu = s\,,\quad \sigma^2 = s\,.
+$$
+
+## Gaussiana
+
+$$
+\tilde{\rho}(k) = \frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{\infty} dx\,e^{-(x - \mu)^2/2\sigma}e^{-ikx} = \exp\left(-ik\mu - \frac{1}{2}
+k^2\sigma^2\right)
+$$
+Entonces
+$$
+\ln \tilde{\rho}(k) = -ik\mu -\frac{1}{2}k^2\sigma^2\,.
+$$
+Esto quiere decir que todos los cumulantes son cero excepto los primeros dos. La gaussiana es una distribución completamente determinada por su media y su varianza.
+
+# Varias variables aleatorias
+
+Estudiemos el caso de $n$ variables aleatorias $x_1,\dots,x_m$ que organizamos en un vector $\mathbf{x}$. Definimos la función de distribución conjunta de probabilidad para las varias variables $\rho(\mathbf{x})$, tal que
+$$
+\int d^nx\,\rho(\mathbf{x}) = 1\,.
+$$
+
+La PDF incondicional de las de las variables $x_1,\dots,x_m$ es
+$$
+\rho(x_1,...,x_m) = \int dx_{m+1} \dots dx_n\,\rho(\mathbf{x})\,.
+$$
+En términos de esta definimos la probabilidad condicional
+$$
+\rho(x_1,...,x_m|x_{m+1},...,x_n) = \frac{\rho(\mathbf{x})}{\rho(x_{m+1},...,x_n)}\,.
+$$
+Decimos que las variables son independientes si y solo si $\rho(x_1,...,x_n) = \rho(x_1)...\rho(x_n)$.
+
+El valor esperado se define de manera análoga al caso de una variable
+$$
+\langle F \rangle = \int d^nx\,\rho(\mathbf{x})F(\mathbf{x})\,.
+$$
+Así mismo la función característica
+$$
+\tilde{\rho}(\mathbf{k}) = \int d^nx\,\rho(x) e^{-i\mathbf{k}\cdot\mathbf{x}}\,.
+$$
+A partir de esta podemos calcular funciones de correlación
+$$
+\langle x_1 ... x_s \rangle = (i)^s \left.\frac{\partial}{\partial k_1}...\frac{\partial}{\partial k_s} \tilde{\rho}(\mathbf{k})\right|_{\mathbf{k} = 0}\,.
+$$
+También podemos calcular cumulantes
+$$
+\langle x_1 ... x_s \rangle_c = (i)^s \left.\frac{\partial}{\partial k_1}...\frac{\partial}{\partial k_s} \ln\tilde{\rho}(\mathbf{k})\right|_{\mathbf{k} = 0}\,.
+$$
+
+## La gaussiana multidimensional
+
+La distribución de varias variables más importante es la gaussiana
+$$
+\rho(\mathbf{x}) = \frac{1}{(2\pi)^{n/2}(\det \Sigma)^{1/2}
+}\exp\left\{-\frac{1}{2}(\mathbf{x} - \mathbf{\mu})^T \Sigma^{-1} (\mathbf{x} - \mathbf{\mu})\right\}\,,
+$$
+donde $\Sigma_{ij}$ es la matriz de covarianza.
+
+La función característica es simplemente la transformada de Fourier, que es análoga al caso de una dimensión
+$$
+\tilde\rho(\mathbf{k}) = \exp\left(-i\mathbf{\mu}\cdot\mathbf{k} - \frac{1}{2}\mathbf{k}^T\Sigma \mathbf{k}\right)
+$$
+
+Usando las fórmulas de arriba es fácil demostrar que
+$$
+\langle x_i x_j \rangle_c = \Sigma_{ij}\,.
+$$
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parámetros para la distribución normal multidimensional
+mean = np.array([0, 0])
+cov = np.array([[1, 0.8], [0.8, 1]])
+
+# Generamos una muestra a partir de la distribución gaussiana
+np.random.seed(42)
+samples = np.random.multivariate_normal(mean, cov, 500)
+
+# Grilla para el gráfico de contornos de equiprobabilidad
+x, y = np.mgrid[-3:3:.01, -3:3:.01]
+pos = np.dstack((x, y))
+
+# Distribución gaussiana multidimensional
+def multivariate_gaussian(pos, mean, cov):
+    n = mean.shape[0]
+    diff = pos - mean
+    return np.exp(-0.5 * np.einsum('...k,kl,...l->...', diff, np.linalg.inv(cov), diff)) / \
+           (np.sqrt((2 * np.pi) ** n * np.linalg.det(cov)))
+
+# Calculamos los valores de la gaussiana en la grilla
+z = multivariate_gaussian(pos, mean, cov)
+
+# Graficamos
+plt.figure(figsize=(8, 6))
+plt.scatter(samples[:, 0], samples[:, 1], alpha=0.5, label='Random samples')
+plt.contour(x, y, z, levels=5, colors='blue', alpha=0.7)
+plt.title('Multivariate Gaussian Distribution\nMean = [0, 0], Covariance = [[1, 0.8], [0.8, 1]]')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+# ¡Tareas!
+
+## 4.1
+
+Dado un vector aleatorio de dos componentes $\mathbf{X}$ tomado de una distribución gaussiana de dos variables, con media y varianza
+$$
+\mu = \begin{bmatrix}1 \\ 2\end{bmatrix}\,,\quad \Sigma = \begin{bmatrix}2 & 1 \\ 1 & 2\end{bmatrix}\,,
+$$
+considere la transformación $\mathbf{y} = A\mathbf{x} + \mathbf{b}$ donde
+$$
+A = \begin{bmatrix}1 & 2 \\ 3 & 4\end{bmatrix}\,,\quad \mathbf{b} = \begin{bmatrix}1\\ 1\end{bmatrix}\,.
+$$
+
+1. Deduzca la media y la covarianza de la nueva variable $\mathbf{y}$.
+2. Explique cómo la transformación afecta la geometría de los contornos de equiprobabilidad de la nueva distribución. Use gráficos para ilustrar su respuesta.
+
+## 4.2
+
+Demuestre que la covarianza siempre cumple $\mathbf{v}^T\Sigma\mathbf{v} \geq 0$ para cualquier vector $\mathbf{v}$. Interprete el caso en el cual $\mathbf{w}^T\Sigma\mathbf{w} = 0$ para algún vector $\mathbf{w}$.
+
+## 4.3
+
+Considere una variable aleatoria $x \in (0,\infty)$ distribuida de acuerdo a una distribución exponencial $\rho(x) = \lambda e^{-\lambda x}$.
+
+1. Calcule la función característica $\tilde{\rho}(k)$.
+2. Calcule los primeros cuatro cumulantes de esta distribución.
+3. Basado en el punto anterior, compare con la distribución gaussiana.
+
+## 4.4
+
+Una distribución es simétrica respecto a la transformación $\mathbf{x} \rightarrow - \mathbf{x}$. 
+
+- ¿Qué podemos concluir sobre sus momentos $\langle x^\ell \rangle$ con $\ell = 3, 4$? 
+- Aplique sus conclusiones a la distribución de Cauchy
+
+$$
+f(x) = \frac{1}{\pi}\frac{\gamma}{x^2 + \gamma^2}\,,
+$$
+
+donde $\gamma$ es una constante positiva.
+
+## 4.5
+
+Suponga que tenemos dos variables $A$ y $B$ que pueden tomar valores $0$ o $1$. 
+
+- Encuentre una distribución de probabilidad tal que
+$$
+P(A=1) = 0.5\,, P(B=1)=0.1\,, P(A=1, B=1) = 0\,.
+$$
+- Interprete la covarianza entre $A$ y $B$.

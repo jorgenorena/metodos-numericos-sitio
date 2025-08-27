@@ -31,6 +31,8 @@ website:
             href: 06_definicion_probabilidad.qmd
           - text: "Distribuciones de probabilidad"
             href: 07_distribuciones.qmd
+          - text: "Varias variables aleatorias"
+            href: 08_varias_variables_aleatorias.qmd
   sidebar:
     style: docked
     contents:
@@ -52,6 +54,8 @@ website:
             href: 06_definicion_probabilidad.qmd
           - text: "Distribuciones de probabilidad"
             href: 07_distribuciones.qmd
+          - text: "Varias variables aleatorias"
+            href: 08_varias_variables_aleatorias.qmd
 
 format:
   html:
