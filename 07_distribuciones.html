@@ -368,20 +368,20 @@ P(3;4,p) = 4 p^3(1-p)\,.
 <p><span class="math display">\[
 P(s;n,p) = \frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}
 \]</span></p>
-<div id="49830fce" class="cell" data-execution_count="1">
+<div id="eef6668d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> comb</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binomial(s, n, p):</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> comb(n, s)<span class="op">*</span>p<span class="op">**</span>s<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)<span class="op">**</span>(n <span class="op">-</span> s)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e8faad6d" class="cell" data-execution_count="2">
+<div id="8c09c35a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="780703e2" class="cell" data-execution_count="3">
+<div id="449087d5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> probs(n, p):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [binomial(s, n, p) <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(n<span class="op">+</span><span class="dv">1</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="241cab02" class="cell" data-execution_count="4">
+<div id="d0020477" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">20</span>), dpi<span class="op">=</span> <span class="dv">100</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
@@ -402,21 +402,21 @@ P(s;n,p) = \frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>ax7.bar(<span class="bu">range</span>(<span class="dv">5</span><span class="op">+</span><span class="dv">1</span>), probs(<span class="dv">5</span>,<span class="fl">0.9</span>))</span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>ax8.bar(<span class="bu">range</span>(<span class="dv">15</span><span class="op">+</span><span class="dv">1</span>), probs(<span class="dv">15</span>,<span class="fl">0.9</span>))</span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'s = 4, p = 0.5'</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'s = 5, p = 0.5'</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>ax3.set_title(<span class="st">'s = 15, p = 0.5'</span>)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ax4.set_title(<span class="st">'s = 50, p = 0.5'</span>)</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax5.set_title(<span class="st">'s = 5, p = 0.1'</span>)</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>ax6.set_title(<span class="st">'s = 15, p = 0.1'</span>)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>ax7.set_title(<span class="st">'s = 5, p = 0.9'</span>)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>ax8.set_title(<span class="st">'s = 15, p = 0.9'</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'n = 4, p = 0.5'</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'n = 5, p = 0.5'</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>ax3.set_title(<span class="st">'n = 15, p = 0.5'</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ax4.set_title(<span class="st">'n = 50, p = 0.5'</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax5.set_title(<span class="st">'n = 5, p = 0.1'</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>ax6.set_title(<span class="st">'n = 15, p = 0.1'</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>ax7.set_title(<span class="st">'n = 5, p = 0.9'</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>ax8.set_title(<span class="st">'n = 15, p = 0.9'</span>)</span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>fig.tight_layout(pad<span class="op">=</span><span class="fl">2.0</span>)</span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_253604/159021693.py:33: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+<pre><code>/tmp/ipykernel_279212/3723431669.py:33: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
   fig.show()</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -431,7 +431,7 @@ P(s;n,p) = \frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}
 <li>Valor esperado: <span class="math inline">\(\langle n \rangle = rp\)</span></li>
 <li>Varianza: <span class="math inline">\(\sigma^2 = np(1-p)\)</span></li>
 </ul>
-<div id="8b837d45" class="cell" data-execution_count="5">
+<div id="6fe73a86" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -444,25 +444,25 @@ P(s;n,p) = \frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># de elementos que son True</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array([<span class="bu">sum</span>(realizacion(r, p)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_realizaciones)])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a67cd6e4" class="cell" data-execution_count="6">
+<div id="498b6481" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>num_exitos(<span class="dv">3</span>, <span class="dv">10</span>, <span class="fl">0.2</span>).mean()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>np.float64(1.6666666666666667)</code></pre>
 </div>
 </div>
-<div id="38e3ced2" class="cell" data-execution_count="7">
+<div id="959e2d63" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>num_exitos(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="fl">0.2</span>).mean()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>np.float64(1.986)</code></pre>
+<pre><code>np.float64(2.0052)</code></pre>
 </div>
 </div>
-<div id="6713cd92" class="cell" data-execution_count="8">
+<div id="3e25008f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>num_exitos(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="fl">0.2</span>).std()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>np.float64(1.2709429412841475)</code></pre>
+<pre><code>np.float64(1.2716062126303096)</code></pre>
 </div>
 </div>
-<div id="5cc386d9" class="cell" data-execution_count="9">
+<div id="24081c6c" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>np.sqrt(<span class="dv">10</span><span class="op">*</span><span class="fl">0.2</span><span class="op">*</span><span class="fl">0.8</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>np.float64(1.2649110640673518)</code></pre>
@@ -486,21 +486,21 @@ P(s; n, \lambda/n) = \frac{\lambda^s}{n^s}\left(1 - \frac{\lambda}{r}\right)^{n 
 <p><span class="math display">\[
 P(s; \lambda) = \frac{\lambda^s}{s!} e^{-\lambda}
 \]</span></p>
-<div id="30149ea2" class="cell" data-execution_count="10">
+<div id="511879a4" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> factorial</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson(n, lamda):</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lamda<span class="op">**</span>n<span class="op">*</span>np.exp(<span class="op">-</span>lamda)<span class="op">/</span>factorial(n)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ejemplo: Si en promedio caen dos rayos por minuto en una tormenta eléctrica. ¿Cuál es la probabilidad de obtener 5 rayos en un minuto?</p>
-<div id="8332484e" class="cell" data-execution_count="11">
+<div id="4c2e67dd" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>poisson(<span class="dv">5</span>,<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>np.float64(0.03608940886309672)</code></pre>
 </div>
 </div>
 <p>Ejemplo: Número de neutrinos detectados en intervalos de 10 segundos por un experimento el 27 de febrero de 1987. Alrededor de esa fecha se observó laa explosión de la supernova SN1987a.</p>
-<div id="af54f6b4" class="cell" data-execution_count="12">
+<div id="039958c8" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> np.array([[<span class="dv">0</span>,<span class="dv">1042</span>],</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>         [<span class="dv">1</span>,<span class="dv">860</span>],</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         [<span class="dv">2</span>,<span class="dv">307</span>],</span>
@@ -513,13 +513,13 @@ P(s; \lambda) = \frac{\lambda^s}{s!} e^{-\lambda}
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>         [<span class="dv">9</span>,<span class="dv">1</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El punto con 9 eventos es anómalo. Excluyámoslo por ahora y calculemos el número promedio de eventos en un intervalo de 10 segundos</p>
-<div id="61f19361" class="cell" data-execution_count="13">
+<div id="5f673f4f" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lamda <span class="op">=</span> <span class="bu">sum</span>(datos[:<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>]<span class="op">*</span>datos[:<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>])<span class="op">/</span><span class="bu">sum</span>(datos[:<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7d35fbd2" class="cell" data-execution_count="14">
+<div id="072ebe7d" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>predicciones <span class="op">=</span> np.array([poisson(n, lamda)<span class="op">*</span><span class="bu">sum</span>(datos[:<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>]) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f018ac89" class="cell" data-execution_count="15">
+<div id="c142db5a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>predicciones</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>array([1.06347823e+03, 8.22638474e+02, 3.18170152e+02, 8.20386667e+01,
@@ -528,7 +528,7 @@ P(s; \lambda) = \frac{\lambda^s}{s!} e^{-\lambda}
 </div>
 </div>
 <p>La mayoría de intervalos siguen una distribución de Poisson que se atribuye a un ruido de fondo. El intervalo con 9 eventos no sigue esa distribución y se puede decir que se detectó la emisión de neutrinos por parte de la supernova. Veremos un criterio para esto más adelante.</p>
-<div id="72bb7ba8" class="cell" data-execution_count="16">
+<div id="470859c0" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> probs(lamda, m):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [poisson(n, lamda) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(m<span class="op">+</span><span class="dv">1</span>)]</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -582,23 +582,23 @@ P(s; \lambda) = \frac{\lambda^s}{s!} e^{-\lambda}
 &lt;&gt;:29: SyntaxWarning: invalid escape sequence '\l'
 &lt;&gt;:30: SyntaxWarning: invalid escape sequence '\l'
 &lt;&gt;:31: SyntaxWarning: invalid escape sequence '\l'
-/tmp/ipykernel_253604/2634404984.py:24: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_279212/2634404984.py:24: SyntaxWarning: invalid escape sequence '\l'
   ax1.set_title('$\lambda = 0.2$')
-/tmp/ipykernel_253604/2634404984.py:25: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_279212/2634404984.py:25: SyntaxWarning: invalid escape sequence '\l'
   ax2.set_title('$\lambda = 0.5$')
-/tmp/ipykernel_253604/2634404984.py:26: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_279212/2634404984.py:26: SyntaxWarning: invalid escape sequence '\l'
   ax3.set_title('$\lambda = 1$')
-/tmp/ipykernel_253604/2634404984.py:27: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_279212/2634404984.py:27: SyntaxWarning: invalid escape sequence '\l'
   ax4.set_title('$\lambda = 2$')
-/tmp/ipykernel_253604/2634404984.py:28: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_279212/2634404984.py:28: SyntaxWarning: invalid escape sequence '\l'
   ax5.set_title('$\lambda = 5$')
-/tmp/ipykernel_253604/2634404984.py:29: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_279212/2634404984.py:29: SyntaxWarning: invalid escape sequence '\l'
   ax6.set_title('$\lambda = 10$')
-/tmp/ipykernel_253604/2634404984.py:30: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_279212/2634404984.py:30: SyntaxWarning: invalid escape sequence '\l'
   ax7.set_title('$\lambda = 20$')
-/tmp/ipykernel_253604/2634404984.py:31: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_279212/2634404984.py:31: SyntaxWarning: invalid escape sequence '\l'
   ax8.set_title('$\lambda = 50$')
-/tmp/ipykernel_253604/2634404984.py:36: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+/tmp/ipykernel_279212/2634404984.py:36: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
   fig.show()</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -609,7 +609,7 @@ P(s; \lambda) = \frac{\lambda^s}{s!} e^{-\lambda}
 </div>
 </div>
 </div>
-<div id="c8bc9921" class="cell" data-execution_count="17">
+<div id="eeb838f9" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>probs(<span class="fl">0.2</span>, <span class="dv">5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>[np.float64(0.8187307530779818),
@@ -631,15 +631,15 @@ P(s; \lambda) = \frac{\lambda^s}{s!} e^{-\lambda}
 <p><span class="math display">\[
 \rho(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
 \]</span></p>
-<div id="e03045d9" class="cell" data-execution_count="18">
+<div id="e127ce98" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="04412652" class="cell" data-execution_count="19">
+<div id="d3cd36a7" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gauss(x, mu, sigma):</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span>(x <span class="op">-</span> mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))<span class="op">/</span>(np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi)<span class="op">*</span>sigma)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b6c2eca9" class="cell" data-execution_count="20">
+<div id="e2163447" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">100</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, gauss(x, <span class="dv">0</span>, <span class="dv">1</span>))</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -674,7 +674,7 @@ P(s; \lambda) = \frac{\lambda^s}{s!} e^{-\lambda}
 <section id="tarea-3.7" class="level2">
 <h2 class="anchored" data-anchor-id="tarea-3.7">Tarea 3.7</h2>
 <p>En ausencia de una señal, un cierto detector de partículas en promedio detecta <span class="math inline">\(2\)</span> impactos por segundo debidos a una contaminación de fondo. Durante una medición se obtienen las siguientes observaciones (esta es una lista del número de señales por cada segundo de duración del experimento):</p>
-<div id="f861c615" class="cell" data-execution_count="21">
+<div id="d06cc23d" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mediciones <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Compare estos resultados con la distribución de Poisson. Discuta en cuáles intervalos cree usted que se detectó una señal que no es contaminación.</p>
@@ -687,7 +687,7 @@ P(s; \lambda) = \frac{\lambda^s}{s!} e^{-\lambda}
 <section id="tarea-3.9" class="level2">
 <h2 class="anchored" data-anchor-id="tarea-3.9">Tarea 3.9</h2>
 <p>Considere los siguientes conjuntos de mediciones de una cierta cantidad que tiene un valor verdadero de <span class="math inline">\(10\)</span> y la medición tiene un error gaussiano de <span class="math inline">\(\pm 0.1\)</span> a un nivel de confiaza del <span class="math inline">\(68\%\)</span>. ¿Cuál de ellos es anómalo? ¿Por qué? ¿Qué interpretación le da?</p>
-<div id="591226d2" class="cell" data-execution_count="22">
+<div id="314e8498" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conjunto 1</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> [<span class="fl">10.09728388</span>, <span class="fl">14.00677546</span>,  <span class="fl">9.97330124</span>, <span class="fl">10.03403577</span>, <span class="fl">10.11014852</span>,</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="fl">9.85702412</span>, <span class="fl">10.06725561</span>, <span class="fl">10.08586217</span>,  <span class="fl">9.99805356</span>, <span class="fl">10.09222044</span>,</span>

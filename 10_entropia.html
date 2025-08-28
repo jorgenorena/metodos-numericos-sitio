@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Entropía – Métodos Numéricos y Probabilidades 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Métodos Numéricos y Probabilidades 2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Acerca de</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-1">    
+        <li>
+    <a class="dropdown-item" href="./01_funcionamiento_cpu.html">
+ <span class="dropdown-text">Funcionamiento de la CPU</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02_python.html">
+ <span class="dropdown-text">Repaso de Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03_numpy_arrays.html">
+ <span class="dropdown-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04_numeros_y_condicionamiento.html">
+ <span class="dropdown-text">Representación de números y condicionamiento</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05_algoritmos_y_estabilidad.html">
+ <span class="dropdown-text">Algoritmos y estabilidad</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-2">    
+        <li>
+    <a class="dropdown-item" href="./06_definicion_probabilidad.html">
+ <span class="dropdown-text">Propiedades de la probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07_distribuciones.html">
+ <span class="dropdown-text">Distribuciones de probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08_varias_variables_aleatorias.html">
+ <span class="dropdown-text">Varias variables aleatorias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09_teorema_central_del_limite.html">
+ <span class="dropdown-text">Teorema central del límite</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Entropía</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 1: Introducción</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_funcionamiento_cpu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funcionamiento de la CPU</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_numpy_arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_numeros_y_condicionamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Representación de números y condicionamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_algoritmos_y_estabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmos y estabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 2: Probabilidad</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_definicion_probabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Propiedades de la probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_distribuciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distribuciones de probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_varias_variables_aleatorias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Varias variables aleatorias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_teorema_central_del_limite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Teorema central del límite</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#información-y-entropía-de-shannon" id="toc-información-y-entropía-de-shannon" class="nav-link active" data-scroll-target="#información-y-entropía-de-shannon">Información y entropía de Shannon</a>
+  <ul class="collapse">
+  <li><a href="#el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann" id="toc-el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann" class="nav-link" data-scroll-target="#el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann">El principio de máxima entropía y la distribución de Boltzmann</a></li>
+  </ul></li>
+  <li><a href="#el-teorema-de-canal-sin-ruido-de-shannon" id="toc-el-teorema-de-canal-sin-ruido-de-shannon" class="nav-link" data-scroll-target="#el-teorema-de-canal-sin-ruido-de-shannon">El teorema de canal sin ruido de Shannon</a>
+  <ul class="collapse">
+  <li><a href="#el-teorema-original" id="toc-el-teorema-original" class="nav-link" data-scroll-target="#el-teorema-original">El teorema original</a></li>
+  <li><a href="#un-par-de-consideraciones-intuitivas" id="toc-un-par-de-consideraciones-intuitivas" class="nav-link" data-scroll-target="#un-par-de-consideraciones-intuitivas">Un par de consideraciones intuitivas</a></li>
+  <li><a href="#un-ejemplo-de-compresión" id="toc-un-ejemplo-de-compresión" class="nav-link" data-scroll-target="#un-ejemplo-de-compresión">Un ejemplo de compresión</a></li>
+  </ul></li>
+  <li><a href="#tipos-de-entropía" id="toc-tipos-de-entropía" class="nav-link" data-scroll-target="#tipos-de-entropía">Tipos de entropía</a></li>
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">¡Tareas!</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">5.1</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">5.2</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">5.3</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">5.4</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">5.5</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Entropía</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Esta clase está basada en las siguientes fuentes:</p>
+<ul>
+<li>“Statistical Physics of Particles”, Mehran Kardar, Cambridge University Press, 2007.</li>
+<li>“What is Entropy?”, John Baez, 2024 (https://johncarlosbaez.wordpress.com/2024/07/20/what-is-entropy/)</li>
+<li>“Quantum information and quantum computation”, M. Nielsen y I. Chuang, Cambridge University Press, 2010</li>
+<li>“Advanced Machine Learning for Physicists”, Lecture 7, Florian Marquardt, 2022, https://www.youtube.com/watch?v=Ihcruy9gX70&amp;list=PLemsnf33Vij4-kv-JTjDthaGUYUnQbbws&amp;index=7</li>
+</ul>
+<section id="información-y-entropía-de-shannon" class="level1">
+<h1>Información y entropía de Shannon</h1>
+<p>¿Cuánta información se obtiene cuando se sabe que ocurrió un evento de probabilidad <span class="math inline">\(p\)</span>? <span class="math display">\[
+-\log p
+\]</span> La base del logaritmo no es importante; es mera convención. Si uno es físico le gusta el logaritmo natural, si uno es informático le gusta base 2, si uno en cambio es una persona normal le gusta base 10. Pero no es muy importante. Simplemente definimos un “bit de información” como <span class="math inline">\(\log 2\)</span> en la base dada.</p>
+<p>Por ejemplo: Suponga que se tiran tres monedas y se obtiene “cara, sello, cara”. Este evento tiene probabilidad <span class="math inline">\(1/2^3\)</span> y entonces se obtuvo una cantidad de información igual a <span class="math display">\[
+-\log\left(\frac{1}{2^3}\right) = 3\log 2
+\]</span></p>
+<p>La justificación del enunciado anterior es que queremos que la información sea:</p>
+<ul>
+<li><p>Positiva para <span class="math inline">\(p &gt; 0\)</span>.</p></li>
+<li><p>Decreciente <span class="math inline">\(I(p) &gt; I(q)\)</span> para <span class="math inline">\(p &lt; q\)</span>: Si ocurre un evento de baja probabilidad queremos decir que obtuvimos mucha información y vice versa.</p></li>
+<li><p>Aditiva <span class="math inline">\(I(pq) = I(p) + I(q)\)</span>: La información de la combinación de dos eventos independientes es la suma de las informaciones.</p></li>
+</ul>
+<p>Resulta que la única función que cumple estas tres condiciones es el logaritmo.</p>
+<p>Ahora supongamos que tenemos una moneda pesada tal que <span class="math inline">\(2/3\)</span> de las veces sale cara mientras <span class="math inline">\(1/3\)</span> de las veces sale sello.</p>
+<p>Si sale cara obtuvimos <span class="math inline">\(-\log 2/3\)</span> de información mientras si sale sello obtuvimos <span class="math inline">\(-\log 1/3\)</span>.</p>
+<p>La información promedio obtenida en cada lanzamiento de la moneda es <span class="math display">\[
+-\frac{2}{3} \log \frac{2}{3} - \frac{1}{3} \log \frac{1}{3}\,.
+\]</span></p>
+<p>Esta es la <strong>entropía de Shannon</strong> de este sistema.</p>
+<p>En general supongamos que hay <span class="math inline">\(n\)</span> eventos con probabilidades <span class="math inline">\(p_1,...,p_n\)</span>. La entropía de Shannon es <span class="math display">\[
+H = -\sum_{i=1}^n p_i\log p_i\,.
+\]</span></p>
+<p>Resulta que la entropía de Shannon es mayor para distribuciones esparcidas igualmente entre eventos y menor para distribuciones concentradas en pocos eventos.</p>
+<div id="bba6738b" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ps <span class="op">=</span> np.linspace(<span class="fl">0.0001</span>, <span class="fl">0.9999</span>, <span class="dv">100</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="op">-</span>ps<span class="op">*</span>np.log(ps) <span class="op">-</span> (<span class="dv">1</span> <span class="op">-</span> ps)<span class="op">*</span>np.log(<span class="dv">1</span> <span class="op">-</span> ps)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.plot(ps, h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10_entropia_files/figure-html/cell-2-output-1.png" width="571" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Para dos eventos con probabilidades <span class="math inline">\(p\)</span> y <span class="math inline">\(1 - p\)</span> la entropía es máxima cuando <span class="math inline">\(p=1/2\)</span>. Es mínima cuando <span class="math inline">\(p=1\)</span> o <span class="math inline">\(p=0\)</span> (cuando sabemos todo y no ganamos información con la ocurrencia de un evento).</p>
+<p>En general para <span class="math inline">\(n\)</span> eventos queremos encontrar el mínimo y el máximo de la entropía. Es decir los extremos de <span class="math display">\[
+H = -\sum_i p_i \log p_i\,,
+\]</span> sujetos a la condición <span class="math inline">\(\sum_i p_i = 1\)</span>. Para lograrlo fijamos <span class="math inline">\(p_1 = 1 - \sum_{j = 2}^n p_i\)</span> y calculamos la derivada respecto a <span class="math inline">\(p_i\)</span> con <span class="math inline">\(i \neq 1\)</span> <span class="math display">\[
+\frac{\partial}{\partial p_i} H = -\log p_i - 1 + \log p_1 + 1 = -\log \frac{p_i}{p_1}
+\]</span> Esto es cero cuando <span class="math inline">\(\frac{p_i}{p_1} = 1\)</span>, es decir cuando todas las probabilidades son iguales <span class="math inline">\(p_i = 1/n\)</span>. De hecho este punto es un máximo.</p>
+<p>Esta definición se puede generalizar a una variable continua, hagamos un intento tomando el límite del discreto al continuo. Consideremos partir la recta real en <span class="math inline">\(n \rightarrow \infty\)</span> intervalos de ancho infinitesimal <span class="math inline">\(\Delta x\)</span>, entonces <span class="math display">\[
+H = -\sum_{i = 0}^\infty p_i \log p_i
+\]</span> donde <span class="math inline">\(p_i =\int_{x_i - \Delta x/2}^{x_i + \Delta} \!\!dx\,\rho(x) \approx \rho(x_i) \Delta x\)</span> es la probabilidad de caer en el i-ésimo intervalo. Entonces <span class="math display">\[
+H = -\lim_{\Delta x \to 0} \sum_{i=0}^\infty \rho(x_i) \Delta x \log(\rho(x_i) \Delta x) = -\int dx\, \rho(x) \log(\rho(x)) - \lim_{\Delta x \to 0} \int dx\, \rho(x) \log \Delta x\,.
+\]</span> El segundo término es infinito. Para obtener algo que tenga sentido nos vemos obligados a ignorarlo.</p>
+<p>Definimos la entropía de Gibbs como <span class="math display">\[
+H = -\int dx\, \rho(x) \log \rho(x)\,.
+\]</span></p>
+<p>Esta entropía tiene el defecto de que puede ser negativa y no es invariante bajo cambios de variables, a diferencia del caso discreto.</p>
+<p>La interpretación de esto depende del contexto.</p>
+<section id="el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann" class="level2">
+<h2 class="anchored" data-anchor-id="el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann">El principio de máxima entropía y la distribución de Boltzmann</h2>
+<p>En general es difícil asignar una distribución de probabilidad. Un principio que funciona en mecánica estadística es el de “máxima entropía”. Es decir, basados en la información que tenemos sobre el sistema, escogemos la distribución de probabilidad que maximiza le entropía de Shannon.</p>
+<p>Jaynes arguyó que este principio se puede aplicar a otros contextos. Corresponde a admitir la ignorancia. La máxima entropía corresponde a la máxima ignorancia sobre el sistema, es decir corresponde a ganar la cantidad máxima de información en promedio con cada observación.</p>
+<p>A partir de este principio se puede deducir la distribución de Boltzmann.</p>
+<p>Supongamos que conocemos el promedio de alguna cantidad <span class="math inline">\(A\)</span>. Queremos encontrar la distribución que maximiza la entropía bajo la condición <span class="math inline">\(\langle A \rangle = \sum_i p_i A_i = c\)</span> fijo.</p>
+<p>Si vemos <span class="math inline">\(\langle A \rangle\)</span> como una función de las variables <span class="math inline">\(p_i\)</span>, queremos maximizar <span class="math inline">\(H(\mathbf{p})\)</span> en el espacio dado por las coordenadas <span class="math inline">\((p_1, ..., p_n)\)</span> sobre la superficie <span class="math inline">\(g(\mathbf{p}) = \sum_i p_i A_i\)</span> constante.</p>
+<p>El gradiente <span class="math inline">\(\nabla g\)</span> siempre es ortogonal a la superficie <span class="math inline">\(g\)</span> constante.</p>
+<p>El gradiente <span class="math inline">\(\nabla H\)</span> es ortogonal a la superficie <span class="math inline">\(g\)</span> constante en los puntos donde <span class="math inline">\(H\)</span> es un mínimo o máximo sobre la superficie. Si no fuera así podríamos movernos en la dirección del gradiente proyectado sobre la superficie y hacer que <span class="math inline">\(H\)</span> sea un poco más pequeño o grande.</p>
+<p>Entonces los dos gradientes son proporcionales en el punto extremo de <span class="math inline">\(H\)</span>, es decir <span class="math inline">\(\nabla H = \lambda \nabla g\)</span> o en otras palabras tenemos que encontrar <span class="math display">\[
+\nabla (H - \lambda g) = 0\,.
+\]</span> Aquí <span class="math inline">\(\lambda\)</span> se llama un <em>multiplicador de Lagrange</em>.</p>
+<p><span class="math display">\[
+\nabla_j H = -\nabla_j \sum_i p_i \ln p_i = -\sum_i (1 + \ln p_i) \nabla_j p_i = \ln \frac{p_j}{p_1}\,,
+\]</span></p>
+<p><span class="math display">\[
+\nabla_j g = \nabla_j \sum_i A_i p_i = \sum_i A_i \nabla_j p_i = A_j - A_1\,,
+\]</span></p>
+<p>Juntando estas expresiones tenemos</p>
+<p><span class="math display">\[
+0 = \ln\frac{p_j}{p_1} - \lambda (A_j - A_1)\,,
+\]</span></p>
+<p>es decir</p>
+<p><span class="math display">\[
+\frac{p_i}{p_1} = \frac{e^{-\lambda A_i}}{e^{-\lambda A_1}}
+\]</span></p>
+<p>Normalizando adecuadamente</p>
+<p><span class="math display">\[
+p_i = \left(\frac{1}{\sum_{i=1}^n e^{-\lambda A_i}}\right) e^{-\lambda A_i}\,.
+\]</span></p>
+</section>
+</section>
+<section id="el-teorema-de-canal-sin-ruido-de-shannon" class="level1">
+<h1>El teorema de canal sin ruido de Shannon</h1>
+<section id="el-teorema-original" class="level2">
+<h2 class="anchored" data-anchor-id="el-teorema-original">El teorema original</h2>
+<p>Shannon era un informático (más apropiadamente un científico de la información) que introdujo su concepto de entropía para demostrar un teorema sobre comunicaciones en redes.</p>
+<p>La pregunta es cuánto podemos comprimir la información producida por un computador para enviarla de manera eficiente a otro computador. Todos hemos usado archivos .zip. La pregunta es cuánto podemos comprimir una serie de bits.</p>
+<p>Definimos la compresión como un mapa <span class="math inline">\(C^n\)</span> entre las posibles secuencias <span class="math inline">\((x_1,...,x_n)\)</span> y una cadena de bits de longitud <span class="math inline">\(nR\)</span>. Entonces la <em>razón de compresión</em> de este mapa es <span class="math inline">\(R\)</span>.</p>
+<p>La descompresión del mensjae es un mapa <span class="math inline">\(D^n\)</span> que toma una cadena de bits de longitud <span class="math inline">\(nR\)</span> y produce <span class="math inline">\((x_1,...,x_n)\)</span>.</p>
+<p>Un mecanismo de compresión y descompresión es <em>confiable</em> si <span class="math inline">\(D^n(C^n(x)) = x\)</span> con probabilidad <span class="math inline">\(1\)</span> cuando <span class="math inline">\(n\)</span> tiende a infinito.</p>
+<p>El teorema dice (asumiendo que el logaritmo en la definición de <span class="math inline">\(H\)</span> es base <span class="math inline">\(2\)</span>)</p>
+<p><strong>Teorema del canal sin ruido de Shannon</strong>: Suponga que <span class="math inline">\(X_i\)</span> es una serie de variables i.i.d (independientes e idénticamente distribuidas) sacadas de una distribución discreta de probabilidad con entropía <span class="math inline">\(H(X)\)</span>. Sea <span class="math inline">\(R &gt; H\)</span>, entonces existe un mecanismo de compresión confiable con razón de compresión <span class="math inline">\(R\)</span>. Por el contrario sea <span class="math inline">\(R &lt; H\)</span>, entonces no existe un tal mecanismo confiable.</p>
+<p>Lamentablemente no tenemos el tiempo necesario para introducir los conceptos previos necesarios para demostrar este teorema.</p>
+</section>
+<section id="un-par-de-consideraciones-intuitivas" class="level2">
+<h2 class="anchored" data-anchor-id="un-par-de-consideraciones-intuitivas">Un par de consideraciones intuitivas</h2>
+<p>Consideremos una fuente que sólo produce la letra “c”. Esta fuente no contiene ninguna información, no necesitamos comprimir nada.</p>
+<p>Ahora supongamos que unos días la fuente produce la palabra “azul” y otros días la fuente produce la palabra “rojo”. En este caso podemos representar la palabra “azul” con 0 y la palabra rojo con “1”. De hecho la entropía es <span class="math inline">\(1\)</span>, necesitamos un solo bit.</p>
+<p>En el otro extremo, supongamos que la fuente produce una cadena completamente aleatoria de “1” y “0” de longitud <span class="math inline">\(n\)</span>. No tenemos manera de comprimirla si es completamente aleatoria, la entropía es <span class="math display">\[
+H = -n\sum_{i=0}^1 \frac{1}{2}\log\frac{1}{2} = n\,,
+\]</span> y necesitamos todos los <span class="math inline">\(n\)</span> bits. Esta cadena tiene la máxima cantidad de información, no se puede comprimir.</p>
+<p>Aquí vemos que la estadística de la fuente es importante, por eso la información está relacionada con la estadísitica.</p>
+<p>Ahora pensemos en una fuente que transmite un mensaje en español. Resulta que los 33 caracteres del español no ocurren con igual probabilidad, las vocales son mucho más probables. Igualmente para las palabras, algunas palabras son más comunes. Idem para las parejas de palabras o frases.</p>
+<p>Para acercarnos a ese caso, ahora pensemos en una cadena de “0” y “1” tal que el “1” aparece con probabilidad <span class="math inline">\(0.8\)</span>. Una tal cadena es <span class="math display">\[
+111101110101111
+\]</span> Parecería que no podemos comprimir esta cadena, después de todo para el cero necesitamos el símbolo “0” y para el uno necesitamos el símbolo “1”. Esto parecería contradecir la intuición que hemos construído de entropía <span class="math display">\[
+H = -n\left(0.8\log 0.8 + 0.2 \log 0.2\right) \approx 0.5\,.
+\]</span> Pero en realidad podemos tomar cadenas de caracteres, por ejemplo de cinco caracteres. Las cinco cadenas “11110”, “11101”, “11011”, “10111”, “01111” ocurren con mucha más frecuencia que las otras, tal que podemos usar un par de bits para representarlas en vez de cinco. Jugando de esta manera nos podemos acercar a comprimir esos mensajes por un <span class="math inline">\(50\%\)</span>.</p>
+</section>
+<section id="un-ejemplo-de-compresión" class="level2">
+<h2 class="anchored" data-anchor-id="un-ejemplo-de-compresión">Un ejemplo de compresión</h2>
+<p>Ahora supongamos que tenemos un alfabeto de 8 caracteres que queremos comprimir, llamémoslos <span class="math inline">\(\{1,2,3,4,5,6,7,8\}\)</span>. De forma ingenua podemos representar cada caracter con 3 bits. ¿Podemos comprimirlo?</p>
+<p>Si los 8 caracteres ocurren con igual probabilidad <span class="math inline">\(1/8\)</span> no podemos hacer mucho <span class="math display">\[
+H = -n\sum \frac{1}{8}\log\frac{1}{8} = n\log 8 = 3n\,.
+\]</span> Es decir, necesitamos <span class="math inline">\(3n\)</span> bits para representar un mensaje de longitud <span class="math inline">\(n\)</span>.</p>
+<p>Pero si ocurren con probabilidad diferente, podemos hacer algo mejor. Supongamos que las probabilidades son <span class="math display">\[
+\{p_1 = 0.5, p_2 = 0.3, p_3 = 0.1, p_4 = 0.05, p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,.
+\]</span> Entonces un esquema debido a Fano consiste en:</p>
+<ol type="1">
+<li>Ordenar las probabilidades de forma decreciente (como ya hemos hecho)</li>
+<li>Dividir en dos conjuntos que tengan aproximadamente la misma probabilidad. Para nosotros serán <span class="math display">\[
+\{0.5\}\,,\quad \{0.3, 0.1, 0.05, 0.025, 0.0125, 0.0065, 0.006\}\,.
+\]</span></li>
+<li>Los caracteres del primer conjunto se representan con el dígito <span class="math inline">\(0\)</span>, los del segundo con el dígito <span class="math inline">\(1\)</span>. <span class="math display">\[
+``0" = 1\,,\quad ``1" = \{p_2 = 0.3, p_3 = 0.1, p_4 = 0.05, p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
+\]</span></li>
+<li>Repetimos hasta terminar <span class="math display">\[
+``0" = 1\,,\quad ``10" = 2\,,\quad ``11" = \{p_3 = 0.1, p_4 = 0.05, p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
+\]</span> <span class="math display">\[
+``0" = 1\,,\quad ``10" = 2\,,\quad ``110" = \{p_3 = 0.1, p_4 = 0.05\}\,,\quad ``111" = \{p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
+\]</span> <span class="math display">\[
+``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``1111" = \{p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
+\]</span> <span class="math display">\[
+``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``11110" = 6\,,\quad ``11111" = \{p_7 = 0.0065, p_8 = 0.006\}\,,
+\]</span> <span class="math display">\[
+``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``11110" = 6\,,\quad ``111110" = 7\,,\quad ``111111" = 8\,.
+\]</span> Es verdad que los símbolos menos probables son representados por más de 3 bits. Pero en promedio un mensaje tendrá longitud</li>
+</ol>
+<div id="9827688d" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.5</span><span class="op">*</span><span class="dv">1</span><span class="op">+</span><span class="fl">0.3</span><span class="op">*</span><span class="dv">2</span><span class="op">+</span><span class="fl">0.1</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.05</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.025</span><span class="op">*</span><span class="dv">4</span><span class="op">+</span><span class="fl">0.0125</span><span class="op">*</span><span class="dv">5</span><span class="op">+</span><span class="fl">0.0065</span><span class="op">*</span><span class="dv">6</span><span class="op">+</span><span class="fl">0.006</span><span class="op">*</span><span class="dv">6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>1.7875000000000003</code></pre>
+</div>
+</div>
+<p>La entropía es</p>
+<div id="17b20e2d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>np.log(<span class="fl">0.5</span>)<span class="op">-</span><span class="fl">0.3</span><span class="op">*</span>np.log(<span class="fl">0.3</span>)<span class="op">-</span><span class="fl">0.1</span><span class="op">*</span>np.log(<span class="fl">0.1</span>)<span class="op">-</span><span class="fl">0.05</span><span class="op">*</span>np.log(<span class="fl">0.05</span>)<span class="op">-</span><span class="fl">0.025</span><span class="op">*</span>np.log(<span class="fl">0.025</span>)<span class="op">-</span><span class="fl">0.0125</span><span class="op">*</span>np.log(<span class="fl">0.0125</span>)<span class="op">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">0.0065</span><span class="op">*</span>np.log(<span class="fl">0.0065</span>)<span class="op">-</span><span class="fl">0.006</span><span class="op">*</span>np.log(<span class="fl">0.006</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>np.float64(1.2982375438631775)</code></pre>
+</div>
+</div>
+<p>El esquema descrito arriba se acerca a esta entropía.</p>
+<p>En general, aplicando un esquema como el que vimos la longitud de cada caracter será aproximadamente <span class="math inline">\(-\log p\)</span> y como este ocurre con frecuencia <span class="math inline">\(p\)</span>, la longitud promedio de un mensaje en bits será cercana a la entropía <span class="math display">\[
+-n\sum_i p_i\log p_i\,.
+\]</span></p>
+</section>
+</section>
+<section id="tipos-de-entropía" class="level1">
+<h1>Tipos de entropía</h1>
+<p>Existen al menos cinco definiciones de entropía</p>
+<ol type="1">
+<li><strong>Termodinámica</strong>: La función que hace integrable el diferencial de calor. En equilibrio térmico <span class="math inline">\(dQ = TdS\)</span>.</li>
+<li><strong>Física estadística clásica</strong>: Definida por Boltzmann como <span class="math inline">\(S = k\ln\Omega\)</span> donde <span class="math inline">\(\Omega\)</span> es el número de estados del sistema. Se puede demostrar que cumple todas las propiedades de la termodinámica. Esta fue reescrita por Gibbs en la forma <span class="math inline">\(S = -k\sum_i p_i\ln p_i\)</span>,.</li>
+<li><strong>Entropía de información</strong>: Shannon aplicó el concepto de entropía a cualquier distribución de probabilidad para definir la información contenida en un mensaje, escribiendo <span class="math inline">\(H = -\sum_i p_i \log p_i\)</span>. Difiere de la de Boltzmann y Gibbs solo por una constante. Jaynes arguyó que se puede interpretar como la información de cualquier observación de eventos con una distribución de probabilidad. Esta fue la estudiada aquí.</li>
+<li><strong>Física estadística cuántica</strong>: Generalizada por Von Neumann y otros al caso cuántico <span class="math inline">\(S = -k \text{tr}(\rho \ln \rho)\)</span> donde <span class="math inline">\(\rho\)</span> es la matriz de densidad.</li>
+<li><strong>Entropía algorítmica</strong>: La entropía de una cadena de símbolos es la longitud del código más corto que la puede producir.</li>
+</ol>
+</section>
+<section id="tareas" class="level1">
+<h1>¡Tareas!</h1>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">5.1</h2>
+<ol type="1">
+<li><p>Si dos variables aleatorias <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> son independientes, demuestre que su entropía conjunta satisface <span class="math display">\[
+H(x,y) = H(x) + H(y)\,,
+\]</span> donde <span class="math inline">\(H(x,y)\)</span> se calcula con la distribución de probabilidad conjunta <span class="math inline">\(p(x,y)\)</span> y <span class="math inline">\(H(x)\)</span>, <span class="math inline">\(H(y)\)</span> se calculan con las distribuciones de probabilidad <span class="math inline">\(p(x)\)</span>, <span class="math inline">\(p(y)\)</span> respectivamente.</p></li>
+<li><p>Demuestre que <span class="math inline">\(H(x) \leq H(x,y)\)</span>.</p></li>
+</ol>
+<p><strong>Solución</strong>:</p>
+<ol type="1">
+<li><p>Si las variables son independientes <span class="math inline">\(p(x,y) = p(x)p(y)\)</span> tal que <span class="math display">\[
+H(x,y) = -\sum_{x,y} p(x)p(y)\log(p(x)p(y)) = -\sum_y p(y) \sum_{x} p(x)\log p(x) - \sum_x p(x)\sum_{y} p(y)\log p(y) = H(x) + H(y)\,.
+\]</span></p></li>
+<li><p><span class="math display">\[
+H(x,y) = -\sum_{x,y} p(x,y)p(y) \log(p(x|y)p(y)) = -\sum_x \left(\sum_y p(x|y)p(y)\right)\log p(x) - \sum_{x,y}p(x,y)\log p(x|y) = -\sum_x p(x)\log p(x) - \sum_{x,y}p(x,y)\log p(x|y) = H(x) - \sum_{x,y}p(x,y)\log p(x|y)\,,
+\]</span> pero <span class="math inline">\(p(x,y)\log p(x|y) &lt; 0\)</span> para cualesquiera <span class="math inline">\(x, y\)</span>.</p></li>
+</ol>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">5.2</h2>
+<p>Considere una variable aleatoria <span class="math inline">\(x\)</span> que puede tomar valores enteros con probabilidades <span class="math inline">\(p_i\)</span>. Suponga que a priori conocemos sólo la varianza de <span class="math inline">\(x\)</span> y que su media es cero. Calcule la distribución de probabilidad de <span class="math inline">\(x\)</span> basándose en el principio de máxima entropía.</p>
+<p><strong>Solución</strong>:</p>
+<p>Necesitamos imponer la restricción sobre la varianza y maximizar la entropía <span class="math display">\[
+g = \sum_i p_i i^2 - \sigma^2\,.
+\]</span> Calculamos el gradiente <span class="math display">\[
+\frac{\partial g}{\partial p_i} = i^2 - 1\,,
+\]</span> Entonces el máximo de la entropía con esta restricción es cuando se cumple <span class="math display">\[
+\ln \left(\frac{p_i}{p_1}\right) = -\lambda_1 (i^2 - 1) -\lambda_2 (i - 1)\,,
+\]</span> donde <span class="math inline">\(\mu = \sum_j p_j j\)</span>. Normalizando la probabilidad obtenemos <span class="math display">\[
+p_i = \frac{1}{\sum_j \exp\left[-\lambda_1 j^2 - \lambda_2 j\right]}\exp\left[-\lambda_1 i^2 -\lambda_2 i\right]\,.
+\]</span> La solución siguiente también es correcta (mientras se especifique que se exige media cero) <span class="math display">\[
+p_i = \frac{1}{\sum_j \exp\left[-\lambda j^2 \right]}\exp\left[-\lambda i^2\right]\,.
+\]</span></p>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">5.3</h2>
+<p>La distribución de uso de letras en el español es (en porcentajes y orden alfabético):</p>
+<div id="db0e575a" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[<span class="fl">12.53</span>,<span class="fl">1.42</span>,<span class="fl">4.68</span>,<span class="fl">5.86</span>,<span class="fl">13.68</span>,<span class="fl">0.69</span>,<span class="fl">1.01</span>,<span class="fl">0.70</span>,<span class="fl">6.25</span>,<span class="fl">0.44</span>,<span class="fl">0.02</span>,<span class="fl">4.97</span>,<span class="fl">3.15</span>,<span class="fl">6.71</span>,<span class="fl">0.31</span>,<span class="fl">8.68</span>,<span class="fl">2.51</span>,<span class="fl">0.88</span>,<span class="fl">6.87</span>,<span class="fl">7.98</span>,<span class="fl">4.63</span>,<span class="fl">3.93</span>,<span class="fl">0.90</span>,<span class="fl">0.01</span>,<span class="fl">0.22</span>,<span class="fl">0.90</span>,<span class="fl">0.52</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>[12.53,
+ 1.42,
+ 4.68,
+ 5.86,
+ 13.68,
+ 0.69,
+ 1.01,
+ 0.7,
+ 6.25,
+ 0.44,
+ 0.02,
+ 4.97,
+ 3.15,
+ 6.71,
+ 0.31,
+ 8.68,
+ 2.51,
+ 0.88,
+ 6.87,
+ 7.98,
+ 4.63,
+ 3.93,
+ 0.9,
+ 0.01,
+ 0.22,
+ 0.9,
+ 0.52]</code></pre>
+</div>
+</div>
+<p>(Sacado de Wikipedia).</p>
+<ol type="1">
+<li><p>Calcule la entropía de Shannon del español como si fuera sólo una distribución de letras.</p></li>
+<li><p>Ignorando comas, espacios y la diferencia entre mayúsculas y minúsculas, explique por qué es posible comprimir el siguiente poema con una razón de compresión mayor a la entropía calculada en el numeral anterior</p></li>
+</ol>
+<p>Entre menesteres, el ser envejece,<br>
+teje redes, perece<br>
+reverdece en el refleje breve<br>
+de este presente. Cede.</p>
+<p><strong>Solución</strong>:</p>
+<ol type="1">
+<li></li>
+</ol>
+<div id="3df4be76" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.array([<span class="fl">12.53</span>,<span class="fl">1.42</span>,<span class="fl">4.68</span>,<span class="fl">5.86</span>,<span class="fl">13.68</span>,<span class="fl">0.69</span>,<span class="fl">1.01</span>,<span class="fl">0.70</span>,<span class="fl">6.25</span>,<span class="fl">0.44</span>,<span class="fl">0.02</span>,<span class="fl">4.97</span>,<span class="fl">3.15</span>,<span class="fl">6.71</span>,<span class="fl">0.31</span>,<span class="fl">8.68</span>,<span class="fl">2.51</span>,<span class="fl">0.88</span>,<span class="fl">6.87</span>,<span class="fl">7.98</span>,<span class="fl">4.63</span>,<span class="fl">3.93</span>,<span class="fl">0.90</span>,<span class="fl">0.01</span>,<span class="fl">0.22</span>,<span class="fl">0.90</span>,<span class="fl">0.52</span>])<span class="op">/</span><span class="dv">100</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>shannon <span class="op">=</span> <span class="op">-</span>np.<span class="bu">sum</span>(p<span class="op">*</span>np.log2(p))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0f73c7a8" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>shannon</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>np.float64(4.042399808105608)</code></pre>
+</div>
+</div>
+<div id="2e3e2d81" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p[<span class="dv">21</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>np.float64(0.0393)</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Notemos que usa una única vocal, la “e”. Entonces podemos imponer esa restricción y obtener una entropía menor.</li>
+</ol>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">5.4</h2>
+<p>La entropía de Shannon de una distribución discreta que tiene absoluta certeza de obtener un resultado dado es cero.</p>
+<p>En el continuo es un poco más complicado. Considere la siguiente función de densidad de probabilidad <span class="math display">\[
+\rho(x) = \begin{cases} \frac{1}{L} &amp; -L/2 \leq x \leq L/2 \\ 0 &amp; x &lt; -L/2\quad\text{o}\quad x &gt; L/2 \end{cases}
+\]</span></p>
+<ol type="1">
+<li>Calcule la entropía de Shannon de esta distribución de probabilidad.</li>
+<li>Tome el límite <span class="math inline">\(L \rightarrow 0\)</span> en el cual esta distribución tiende a una delta de Dirac.</li>
+<li>En el límite anterior estamos absolutamente seguros de que la variable tiene el valor <span class="math inline">\(0\)</span>. ¿Por qué la entropía no nos da igual a cero? De una interpretación de este hecho más allá del simple hecho que la fórmula para el continuo es diferente.</li>
+</ol>
+<p><strong>Solución</strong>:</p>
+<ol type="1">
+<li><span class="math display">\[
+H = -\int_{-L/2}^{L/2}dx \frac{1}{L}\ln\left(\frac{1}{L}\right) = \ln L\,,
+\]</span></li>
+<li>El límie es infinito. De aquí podemos concluir que la entropía de una delta de Dirac es infinita.</li>
+<li>Recordemos que la entropía de Shannon para una distribución continua sufre de una divergencia cuando se toma el límite del discreto al continuo. Este infinito corresponde a esa divergencia.</li>
+</ol>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4">5.5</h2>
+<p>Calcule la entropía de Shannon de la distribución binomial para un número grande de eventos <span class="math inline">\(n\)</span>.</p>
+<p><strong>Solución</strong>:</p>
+<p>Usamos el teorema central del límite para aproximar la distribución binomial como una distribución gaussiana de media <span class="math inline">\(np\)</span> y varianza <span class="math inline">\(np(1 - p)\)</span>. Entonces <span class="math display">\[
+H \approx \frac{1}{\sqrt{2\pi np(1 - p)}}\int dx\,\exp\left[-\frac{(x - np)^2}{2np(1 - p)}\right]\left(\frac{1}{2}\ln(2\pi np(1 - p)) + \frac{(x - np)^2}{2np(1 - p)}\right) = \frac{1}{2}\ln(2\pi np(1 - p)) + \frac{1}{2} = \frac{1}{2}\ln(2\pi e np(1 - p))
+\]</span></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jorgenorena\.github\.io\/metodos-numericos-sitio\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
