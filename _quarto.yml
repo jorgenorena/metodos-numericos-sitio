@@ -35,6 +35,8 @@ website:
             href: 08_varias_variables_aleatorias.qmd
           - text: "Teorema central del límite"
             href: 09_teorema_central_del_limite.qmd
+          - text: "Entropía de Shannon"
+            href: 10_entropia.qmd
   sidebar:
     style: docked
     contents:
@@ -60,6 +62,8 @@ website:
             href: 08_varias_variables_aleatorias.qmd
           - text: "Teorema central del límite"
             href: 09_teorema_central_del_limite.qmd
+          - text: "Entropía de Shannon"
+            href: 10_entropia.qmd
 
 format:
   html:
