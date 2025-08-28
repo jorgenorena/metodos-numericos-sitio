@@ -404,7 +404,7 @@ window.Quarto = {
 H = -\sum_{i=1}^n p_i\log p_i\,.
 \]</span></p>
 <p>Resulta que la entropía de Shannon es mayor para distribuciones esparcidas igualmente entre eventos y menor para distribuciones concentradas en pocos eventos.</p>
-<div id="bba6738b" class="cell" data-execution_count="2">
+<div id="3fda9fbb" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -525,14 +525,14 @@ H = -n\sum \frac{1}{8}\log\frac{1}{8} = n\log 8 = 3n\,.
 ``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``11110" = 6\,,\quad ``111110" = 7\,,\quad ``111111" = 8\,.
 \]</span> Es verdad que los símbolos menos probables son representados por más de 3 bits. Pero en promedio un mensaje tendrá longitud</li>
 </ol>
-<div id="9827688d" class="cell" data-execution_count="3">
+<div id="f77e4752" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.5</span><span class="op">*</span><span class="dv">1</span><span class="op">+</span><span class="fl">0.3</span><span class="op">*</span><span class="dv">2</span><span class="op">+</span><span class="fl">0.1</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.05</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.025</span><span class="op">*</span><span class="dv">4</span><span class="op">+</span><span class="fl">0.0125</span><span class="op">*</span><span class="dv">5</span><span class="op">+</span><span class="fl">0.0065</span><span class="op">*</span><span class="dv">6</span><span class="op">+</span><span class="fl">0.006</span><span class="op">*</span><span class="dv">6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>1.7875000000000003</code></pre>
 </div>
 </div>
 <p>La entropía es</p>
-<div id="17b20e2d" class="cell" data-execution_count="4">
+<div id="2fa9e4a7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>np.log(<span class="fl">0.5</span>)<span class="op">-</span><span class="fl">0.3</span><span class="op">*</span>np.log(<span class="fl">0.3</span>)<span class="op">-</span><span class="fl">0.1</span><span class="op">*</span>np.log(<span class="fl">0.1</span>)<span class="op">-</span><span class="fl">0.05</span><span class="op">*</span>np.log(<span class="fl">0.05</span>)<span class="op">-</span><span class="fl">0.025</span><span class="op">*</span>np.log(<span class="fl">0.025</span>)<span class="op">-</span><span class="fl">0.0125</span><span class="op">*</span>np.log(<span class="fl">0.0125</span>)<span class="op">\</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">0.0065</span><span class="op">*</span>np.log(<span class="fl">0.0065</span>)<span class="op">-</span><span class="fl">0.006</span><span class="op">*</span>np.log(<span class="fl">0.006</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -566,36 +566,15 @@ H(x,y) = H(x) + H(y)\,,
 \]</span> donde <span class="math inline">\(H(x,y)\)</span> se calcula con la distribución de probabilidad conjunta <span class="math inline">\(p(x,y)\)</span> y <span class="math inline">\(H(x)\)</span>, <span class="math inline">\(H(y)\)</span> se calculan con las distribuciones de probabilidad <span class="math inline">\(p(x)\)</span>, <span class="math inline">\(p(y)\)</span> respectivamente.</p></li>
 <li><p>Demuestre que <span class="math inline">\(H(x) \leq H(x,y)\)</span>.</p></li>
 </ol>
-<p><strong>Solución</strong>:</p>
-<ol type="1">
-<li><p>Si las variables son independientes <span class="math inline">\(p(x,y) = p(x)p(y)\)</span> tal que <span class="math display">\[
-H(x,y) = -\sum_{x,y} p(x)p(y)\log(p(x)p(y)) = -\sum_y p(y) \sum_{x} p(x)\log p(x) - \sum_x p(x)\sum_{y} p(y)\log p(y) = H(x) + H(y)\,.
-\]</span></p></li>
-<li><p><span class="math display">\[
-H(x,y) = -\sum_{x,y} p(x,y)p(y) \log(p(x|y)p(y)) = -\sum_x \left(\sum_y p(x|y)p(y)\right)\log p(x) - \sum_{x,y}p(x,y)\log p(x|y) = -\sum_x p(x)\log p(x) - \sum_{x,y}p(x,y)\log p(x|y) = H(x) - \sum_{x,y}p(x,y)\log p(x|y)\,,
-\]</span> pero <span class="math inline">\(p(x,y)\log p(x|y) &lt; 0\)</span> para cualesquiera <span class="math inline">\(x, y\)</span>.</p></li>
-</ol>
 </section>
 <section id="section-1" class="level2">
 <h2 class="anchored" data-anchor-id="section-1">5.2</h2>
 <p>Considere una variable aleatoria <span class="math inline">\(x\)</span> que puede tomar valores enteros con probabilidades <span class="math inline">\(p_i\)</span>. Suponga que a priori conocemos sólo la varianza de <span class="math inline">\(x\)</span> y que su media es cero. Calcule la distribución de probabilidad de <span class="math inline">\(x\)</span> basándose en el principio de máxima entropía.</p>
-<p><strong>Solución</strong>:</p>
-<p>Necesitamos imponer la restricción sobre la varianza y maximizar la entropía <span class="math display">\[
-g = \sum_i p_i i^2 - \sigma^2\,.
-\]</span> Calculamos el gradiente <span class="math display">\[
-\frac{\partial g}{\partial p_i} = i^2 - 1\,,
-\]</span> Entonces el máximo de la entropía con esta restricción es cuando se cumple <span class="math display">\[
-\ln \left(\frac{p_i}{p_1}\right) = -\lambda_1 (i^2 - 1) -\lambda_2 (i - 1)\,,
-\]</span> donde <span class="math inline">\(\mu = \sum_j p_j j\)</span>. Normalizando la probabilidad obtenemos <span class="math display">\[
-p_i = \frac{1}{\sum_j \exp\left[-\lambda_1 j^2 - \lambda_2 j\right]}\exp\left[-\lambda_1 i^2 -\lambda_2 i\right]\,.
-\]</span> La solución siguiente también es correcta (mientras se especifique que se exige media cero) <span class="math display">\[
-p_i = \frac{1}{\sum_j \exp\left[-\lambda j^2 \right]}\exp\left[-\lambda i^2\right]\,.
-\]</span></p>
 </section>
 <section id="section-2" class="level2">
 <h2 class="anchored" data-anchor-id="section-2">5.3</h2>
 <p>La distribución de uso de letras en el español es (en porcentajes y orden alfabético):</p>
-<div id="db0e575a" class="cell" data-execution_count="5">
+<div id="d691cbe9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[<span class="fl">12.53</span>,<span class="fl">1.42</span>,<span class="fl">4.68</span>,<span class="fl">5.86</span>,<span class="fl">13.68</span>,<span class="fl">0.69</span>,<span class="fl">1.01</span>,<span class="fl">0.70</span>,<span class="fl">6.25</span>,<span class="fl">0.44</span>,<span class="fl">0.02</span>,<span class="fl">4.97</span>,<span class="fl">3.15</span>,<span class="fl">6.71</span>,<span class="fl">0.31</span>,<span class="fl">8.68</span>,<span class="fl">2.51</span>,<span class="fl">0.88</span>,<span class="fl">6.87</span>,<span class="fl">7.98</span>,<span class="fl">4.63</span>,<span class="fl">3.93</span>,<span class="fl">0.90</span>,<span class="fl">0.01</span>,<span class="fl">0.22</span>,<span class="fl">0.90</span>,<span class="fl">0.52</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>[12.53,
@@ -636,32 +615,6 @@ p_i = \frac{1}{\sum_j \exp\left[-\lambda j^2 \right]}\exp\left[-\lambda i^2\righ
 teje redes, perece<br>
 reverdece en el refleje breve<br>
 de este presente. Cede.</p>
-<p><strong>Solución</strong>:</p>
-<ol type="1">
-<li></li>
-</ol>
-<div id="3df4be76" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.array([<span class="fl">12.53</span>,<span class="fl">1.42</span>,<span class="fl">4.68</span>,<span class="fl">5.86</span>,<span class="fl">13.68</span>,<span class="fl">0.69</span>,<span class="fl">1.01</span>,<span class="fl">0.70</span>,<span class="fl">6.25</span>,<span class="fl">0.44</span>,<span class="fl">0.02</span>,<span class="fl">4.97</span>,<span class="fl">3.15</span>,<span class="fl">6.71</span>,<span class="fl">0.31</span>,<span class="fl">8.68</span>,<span class="fl">2.51</span>,<span class="fl">0.88</span>,<span class="fl">6.87</span>,<span class="fl">7.98</span>,<span class="fl">4.63</span>,<span class="fl">3.93</span>,<span class="fl">0.90</span>,<span class="fl">0.01</span>,<span class="fl">0.22</span>,<span class="fl">0.90</span>,<span class="fl">0.52</span>])<span class="op">/</span><span class="dv">100</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>shannon <span class="op">=</span> <span class="op">-</span>np.<span class="bu">sum</span>(p<span class="op">*</span>np.log2(p))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="0f73c7a8" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>shannon</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>np.float64(4.042399808105608)</code></pre>
-</div>
-</div>
-<div id="2e3e2d81" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p[<span class="dv">21</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>np.float64(0.0393)</code></pre>
-</div>
-</div>
-<ol start="2" type="1">
-<li>Notemos que usa una única vocal, la “e”. Entonces podemos imponer esa restricción y obtener una entropía menor.</li>
-</ol>
 </section>
 <section id="section-3" class="level2">
 <h2 class="anchored" data-anchor-id="section-3">5.4</h2>
@@ -674,22 +627,10 @@ de este presente. Cede.</p>
 <li>Tome el límite <span class="math inline">\(L \rightarrow 0\)</span> en el cual esta distribución tiende a una delta de Dirac.</li>
 <li>En el límite anterior estamos absolutamente seguros de que la variable tiene el valor <span class="math inline">\(0\)</span>. ¿Por qué la entropía no nos da igual a cero? De una interpretación de este hecho más allá del simple hecho que la fórmula para el continuo es diferente.</li>
 </ol>
-<p><strong>Solución</strong>:</p>
-<ol type="1">
-<li><span class="math display">\[
-H = -\int_{-L/2}^{L/2}dx \frac{1}{L}\ln\left(\frac{1}{L}\right) = \ln L\,,
-\]</span></li>
-<li>El límie es infinito. De aquí podemos concluir que la entropía de una delta de Dirac es infinita.</li>
-<li>Recordemos que la entropía de Shannon para una distribución continua sufre de una divergencia cuando se toma el límite del discreto al continuo. Este infinito corresponde a esa divergencia.</li>
-</ol>
 </section>
 <section id="section-4" class="level2">
 <h2 class="anchored" data-anchor-id="section-4">5.5</h2>
 <p>Calcule la entropía de Shannon de la distribución binomial para un número grande de eventos <span class="math inline">\(n\)</span>.</p>
-<p><strong>Solución</strong>:</p>
-<p>Usamos el teorema central del límite para aproximar la distribución binomial como una distribución gaussiana de media <span class="math inline">\(np\)</span> y varianza <span class="math inline">\(np(1 - p)\)</span>. Entonces <span class="math display">\[
-H \approx \frac{1}{\sqrt{2\pi np(1 - p)}}\int dx\,\exp\left[-\frac{(x - np)^2}{2np(1 - p)}\right]\left(\frac{1}{2}\ln(2\pi np(1 - p)) + \frac{(x - np)^2}{2np(1 - p)}\right) = \frac{1}{2}\ln(2\pi np(1 - p)) + \frac{1}{2} = \frac{1}{2}\ln(2\pi e np(1 - p))
-\]</span></p>
 
 
 </section>
