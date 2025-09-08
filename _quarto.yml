@@ -37,6 +37,10 @@ website:
             href: 09_teorema_central_del_limite.qmd
           - text: "Entropía de Shannon"
             href: 10_entropia.qmd
+      - text: "Unidad 3"
+        menu:
+          - text: "Solución de Sistemas de Ecuaciones Lineales"
+            href: 11_solucion_sistemas_lineales.qmd
   sidebar:
     style: docked
     contents:
@@ -64,6 +68,10 @@ website:
             href: 09_teorema_central_del_limite.qmd
           - text: "Entropía de Shannon"
             href: 10_entropia.qmd
+      - section: "Unidad 3: Cálculo Numérico"
+        contents:
+          - text: "Solución de Sistemas de Ecuaciones Lineales"
+            href: 11_solucion_sistemas_lineales.qmd
 
 format:
   html:
