@@ -32,7 +32,7 @@ $$
 
 Lo más fácil es tomar el límite continuo de la binomial con $n = T/dt$ donde $dt$ es un intervalo infinitesimal, y $p = \lambda dt$
 $$
-\tilde{p}(k) = \lim_{dt\rightarrow\infty} \left(\lambda dt e^{-ik} + (1 - \lambda dt)\right)^{T/dt} = \exp\left[\lambda (e^{-ik} - 1)\right]\,.
+\tilde{p}(k) = \lim_{dt\rightarrow 0} \left(\lambda dt e^{-ik} + (1 - \lambda dt)\right)^{T/dt} = \exp\left[\lambda (e^{-ik} - 1)\right]\,.
 $$
 De aquí tenemos que
 $$
@@ -61,7 +61,7 @@ Esto quiere decir que todos los cumulantes son cero excepto los primeros dos. La
 
 # Varias variables aleatorias
 
-Estudiemos el caso de $n$ variables aleatorias $x_1,\dots,x_m$ que organizamos en un vector $\mathbf{x}$. Definimos la función de distribución conjunta de probabilidad para las varias variables $\rho(\mathbf{x})$, tal que
+Estudiemos el caso de $n$ variables aleatorias $x_1,\dots,x_n$ que organizamos en un vector $\mathbf{x}$. Definimos la función de distribución conjunta de probabilidad para las varias variables $\rho(\mathbf{x})$, tal que
 $$
 \int d^nx\,\rho(\mathbf{x}) = 1\,.
 $$

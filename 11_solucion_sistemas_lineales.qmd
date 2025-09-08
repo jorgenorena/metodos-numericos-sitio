@@ -1,0 +1,356 @@
+---
+title: Solución de Sistemas de Ecuaciones Lineales
+jupyter: python3
+lang: es
+---
+
+# Sistemas lineales
+
+Un sistema de $m$ ecuaciones lineales es un conjunto de ecuaciones de la forma
+$$
+\begin{align}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1,\\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2,\\
+\vdots\\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m,
+\end{align}
+$$
+
+Lo podemos escribir con notación matricial como $A\mathbf{x} = \mathbf{b}$, donde las componentes de la matriz $A$ son los coeficientes $a_{ij}$, el vector $\mathbf{x}$ tiene como componentes las incógnitas $x_i$ y el vector $\mathbf{b}$ tiene como componentes los términos independientes $b_i$.
+
+El sistema tiene una única solución si la matriz $A$ es invertible. Formalmente, podemos encontrar el vector $\mathbf{x}$ que satisface estas ecuaciones escribiendo $\mathbf{x} = A^{-1}\mathbf{b}$. Esto lo podemos hacer en Python:
+
+```{python}
+import numpy as np
+A = np.array([[3, 1], [1, 2]])
+b = np.array([9, 8])
+Ainv = np.linalg.inv(A)
+x = Ainv.dot(b)
+print(x)
+```
+
+Sin embargo, calcular la inversa de una matriz es computacionalmente muy costoso. En realidad no necesitamos la inversa completa, sino solo su producto con el vector $\mathbf{b}$. En la clase de hoy estudiaremos algunos métodos para lograrlo de forma más eficiente.
+
+## Sistemas triangulares
+
+Supongamos que tenemos el siguiente sistema
+
+$$
+\begin{pmatrix}
+3 & 0 & 0 \\
+1 & 2 & 0 \\
+4 & 5 & 6
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{pmatrix}
+=
+\begin{pmatrix}
+9 \\
+8 \\
+7
+\end{pmatrix}
+$$
+
+A esta matriz la llamamos una matriz triangular inferior. Este tipo de problemas es fácil de resolver. La primera ecuación nos da directamente $x_1 = 3$. La segunda nos da $2x_2 = 8 - x_1 = 5$, es decir, $x_2 = 2.5$. Finalmente, la tercera ecuación nos da $6x_3 = 7 - 4x_1 - 5x_2 = -10.5$, es decir, $x_3 = -1.75$. Esto lo podemos traducir a un algoritmo (llamado sustitución hacia adelante)
+
+$$
+\begin{align}
+x_1 &= \frac{b_1}{a_{11}} \\
+x_2 &= \frac{b_2 - a_{21}x_1}{a_{22}} \\
+x_3 &= \frac{b_3 - a_{31}x_1 - a_{32}x_2}{a_{33}} \\
+\vdots \\
+x_n &= \frac{b_n - a_{n1}x_1 - a_{n2}x_2 - \cdots - a_{n,n-1}x_{n-1}}{a_{nn}}\,,
+\end{align}
+$$
+
+que funciona siempre y cuando los elementos de la diagonal $a_{ii}$ sean distintos de cero. En Python: 
+
+```{python}
+def forwardsub(A, b):
+    n = A.shape[0]
+    x = np.zeros(n)
+    x[0] = b[0] / A[0, 0]
+    for i in range(1, n):
+        s = sum(A[i, j] * x[j] for j in range(i))
+        x[i] = (b[i] - s) / A[i,i]
+    return x
+```
+
+Veamos que funciona
+
+```{python}
+A = np.array([[3, 0, 0],
+              [1, 2, 0],
+              [4, 5, 6]])
+b = np.array([9, 8, 7])
+x = forwardsub(A, b)
+print(x)
+```
+
+De forma análoga, si tenemos una matriz triangular superior
+
+```{python}
+def backsub(A, b):
+    n = A.shape[0]
+    x = np.zeros(n)
+    x[-1] = b[-1] / A[-1, -1]
+    for i in range(n-2, -1, -1):
+        s = sum(A[i, j] * x[j] for j in range(i+1, n))
+        x[i] = (b[i] - s) / A[i,i]
+    return x
+```
+
+# Factorización LU
+
+El truco para resolver sistemas de ecuaciones lineales es factorizar la matriz $A$ en el producto de una matriz triangular inferior $L$ y una matriz triangular superior $U$, es decir, $A = LU$.
+
+Para ver como, primero consideremos el producto de dos matrices cualesquiera $A$ y $B$. Los vectores columna $\mathbf{a}_i$ son las columnas de $A$ y los vectores fila $\mathbf{b}^T_j$ son las filas de $B$. Entonces el producto $C = AB$ se puede escribir como la suma de productos externos
+$$
+C_{ij} = \mathbf{a}_i \mathbf{b}_j^T\,.
+$$
+Veamos un ejemplo con matrices $2\times 2$:
+$$
+\begin{pmatrix}
+c_{11} & c_{12} \\
+c_{21} & c_{22}
+\end{pmatrix}  =
+\begin{pmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{pmatrix}
+\begin{pmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22}
+\end{pmatrix} = \begin{pmatrix}
+a_{11} b{11} & a_{11} b_{12} \\
+a_{21} b_{11} & a_{21} b_{12}
+\end{pmatrix} + \begin{pmatrix}
+a_{12} b_{21} & a_{12} b_{22} \\
+a_{22} b_{21} & a_{22} b_{22}
+\end{pmatrix}\,.
+$$
+
+Entonces, para la multiplicación de una matriz triangular inferior $L$ por una matriz triangular superior $U$ todo se hace más sencillo. Por ejemplo en el caso 3x3 el producto externo $\mathbf{l}_3 \mathbf{u}_1^T$ tiene un solo elemento diferente de cero.
+
+Para aplicar estos hechos, hagamos un ejemplo.
+
+```{python}
+A = np.array([[2, 1, 1],
+              [4, -6, 0],
+              [-2, 7, 2]], dtype=float)
+L = np.identity(3, dtype=float)
+U = np.zeros((3, 3), dtype=float)
+```
+
+Primero escogemos que la primera fila de $U$ sea igual a la primera fila de $A$
+
+```{python}
+U[0, :] = A[0, :]
+display(U)
+```
+
+Ahora para $L$ escogemos que la primera columna sea igual a la primera columna de $A$ dividida por $u_{11}$ (de modo que al multiplicar $LU$ tenemos el elemento $A_{11}$ correcto).
+
+```{python}
+L[:, 0] = A[:, 0] / U[0, 0]
+display(L)
+```
+
+Luego le restamos esta contribución a $A$ para obtener una nueva matriz $A' = A - \mathbf{l}_1 \mathbf{u}_1^T$. Veamos qué nos queda
+
+```{python}
+A_prime = A - L@U
+display(A_prime)
+```
+
+Vemos que el primer renglón y la primera columna son ceros. Entonces podemos repetir el procedimiento con la submatriz $2\times 2$ restante
+
+```{python}
+U[1, 1:] = A_prime[1, 1:]
+L[1:, 1] = A_prime[1:, 1] / U[1, 1]
+A_prime2 = np.zeros((3,3))
+A_prime2[1:, 1:] = A_prime[1:, 1:] - L[1:,1:]@U[1:,1:]
+print(f"L:\n {L},\n U:\n {U},\n A':\n {A_prime2}")
+```
+
+Finalmente 
+```{python}
+U[2, 2] = A_prime2[2, 2]
+print(f"L:\n {L},\n U:\n {U}")
+```
+
+Verifiquemos
+
+```{python}
+display(A - L@U)
+```
+
+Ahora tenemos un algoritmo general
+
+```{python}
+def lufact(A):
+    n = A.shape[0]
+    L = np.eye(n, dtype=float)   # ones on diagonal
+    U = np.zeros((n, n), dtype=float)
+    Ak = A.copy().astype(float)
+
+    # Reduction by outer products
+    for k in range(n - 1):
+        U[k, :] = Ak[k, :]
+        pivot = U[k, k]
+        if pivot == 0:
+            raise ZeroDivisionError(f"Zero pivot encountered at index {k}")
+        L[:, k] = Ak[:, k] / pivot
+        Ak -= np.outer(L[:, k], U[k, :])
+
+    U[n - 1, n - 1] = Ak[n - 1, n - 1]
+    return L, U
+```
+
+Verifiquemos
+
+```{python}
+lufact(A)
+```
+
+Ya tenemos $A = LU$ y queremos resolver $A\mathbf{x} = \mathbf{b}$. sólo tenemos qu reescribir este problema como
+$$
+L\mathbf{z} = \mathbf{b}\,\quad U\mathbf{x} = \mathbf{z}\,,
+$$
+
+# Condicionamiento
+
+Para hablar de condicionamiento, primero necesitamos definir la norma de una matriz. Aquí usaremos la siguiente definición
+$$
+\|A\| = \max_{|\mathbf{n}\| = 1} \|A\mathbf{n}\|\,.
+$$
+Es decir, la norma es el máximo estiramiento que produce la matriz $A$ en un vector unitario. Note que $\|A\mathbf{v}\| \leq \|A\|\|\mathbf{v}\|$ para todo vector $\|\mathbf{v}\|$.
+
+Ahora consideremos que nuestro problema tiene errores numéricos en $\mathbf{b}$. Nos interesa saber cómo afectará la respuesta $\mathbf{x}$. El sistema modificado es
+
+$$
+A(\mathbf{x} + \delta \mathbf{x}) = \mathbf{b} + \delta \mathbf{b}\,.
+$$
+
+Nuestro interés es si al cambiar $\mathbf{b}$ en un cierto porcentaje, cuánto cambiará porcentualmente la solución. Esto lo obtenemos por medio del siguiente objeto: El cambio reativo en la solución partido por el cambio relativo en el vector $\mathbf{b}$ es
+$$
+\frac{\|\delta \mathbf{x}\|/\|\mathbf{x}\|}{\|\delta \mathbf{b}\|/\|\mathbf{b}\|} = \frac{\|A^{-1}\delta \mathbf{b}\| \|A\mathbf{x}\|}{\|\delta \mathbf{b}\|\|\mathbf{x}\|} \leq \|A^{-1}\|\|A\|\,.
+$$
+Entonces definimos el número de condición como
+$$
+\kappa(A) = \|A^{-1}\|\|A\|\,.
+$$
+
+Si $\kappa(A)$ es grande, un pequeño error relativo en $\mathbf{b}$ puede causar un gran error relativo en $\mathbf{x}$. Se puede demostrar que el mismo número de condición representa la sensibilidad de la solución a errores en la matriz $A$.
+
+# Eficiencia y estabilidad
+
+Para ver la eficiencia de este método, primero veamos la eficiencia de la factorización LU. En cada paso del algoritmo hacemos una resta de matrices y un producto externo. La resta de matrices cuesta $O(n^2)$ operaciones y el producto externo cuesta $O(n^2)$ operaciones. Como hacemos $n$ pasos, la factorización LU cuesta $O(n^3)$ operaciones.
+
+::: {.callout-info icon="false" collapse="true"}
+Para el i-ésimo paso del algoritmo de factorización LU, realizamos una resta de matrices $(n - i + 1) \times (n - i + 1)$ una división de cada elemento de un vector con $(n - i + 1)$ elementos. El total de operaciones en el i-ésimo paso es por lo tanto $(n - i + 1)^2 + (n - i + 1)$. Sumando sobre $i$ desde $1$ hasta $n-1$ obtenemos un polinomio cuyo término dominante es $n^3/3$. Por lo tanto, la factorización LU tiene una complejidad computacional de $O(n^3)$.
+:::
+
+Luego, resolver los sistemas triangulares necesitan $O(n^2)$ operaciones cada uno. Para verlo, en el algoritmo de sustitución hacia adelante, en el paso $i$ hacemos una suma de $i$ términos y una división. 
+
+Sin embargo, resulta que este método no es muy estable, incluso para matrices bien condicionadas. Hagamos un ejemplo
+
+```{python}
+A = np.array([[2, 0, 4], [-2, 1e-16, 2], [1, 15, 2]])
+L, U = lufact(A)
+b = np.array([1, 2, 3])
+z = forwardsub(L, b)
+x = backsub(U, z)
+print("nuestra aproximación:", x)
+```
+
+Comparado con la solución
+```{python}
+x_exact = np.linalg.solve(A, b)
+print("solución de numpy:", x_exact)
+```
+
+Esto a pesar de que el número de condición no es tan grande
+
+```{python}
+print("número de condición:", np.linalg.cond(A))
+```
+
+El problema es que estamos dividiendo por números muy pequeños en la factorización LU, lo que nos hace perder precisión. 
+
+## Factorización LU con pivoteo
+
+La solución es primero pivotear la matriz, es decir, intercambiar filas para que los elementos de la diagonal sean los más grandes posibles. Por ejemplo, cambiemos la segunda y tercera fila de $A$ para resolver el problema equivalente
+
+```{python}
+A = np.array([[2, 0, 4], [1, 15, 2], [-2, 1e-16, 2]])
+L, U = lufact(A)
+b = np.array([1, 3, 2])
+z = forwardsub(L, b)
+x = backsub(U, z)
+print("nueva aproximación:", x)
+```
+
+Entonces el truco es primero permutar las filas de $A$ para que los elementos de la diagonal sean los más grandes posibles. Esto se logra con una matriz de permutación $P$. Por ejemplo 
+$$
+P = \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & 1 & 0
+\end{pmatrix}\,,\quad 
+A = \begin{pmatrix}
+2 & 0 & 4 \\
+-2 & 1e-16 & 2 \\
+1 & 15 & 2
+\end{pmatrix}\,,\quad
+PA = \begin{pmatrix}
+2 & 0 & 4 \\
+1 & 15 & 2 \\
+-2 & 1e-16 & 2
+\end{pmatrix}\,.
+$$
+
+Entonces en realidad queremos factorizar $A = PLU$. Note que $PA\mathbf{x} = P\mathbf{b}$ es un sistema equivalente.
+
+Un algoritmo que lo logra es
+```{python}
+def plufact(A):
+    import numpy as np
+    A = np.asarray(A, dtype=float)
+    n = A.shape[0]
+    L = np.zeros((n, n), dtype=float)
+    U = np.zeros((n, n), dtype=float)
+    p = np.zeros(n, dtype=int)
+    Ak = A.copy()
+
+    for k in range(n - 1):
+        # Find pivot row for column k
+        p[k] = np.argmax(np.abs(Ak[:, k]))
+        # Place pivot row in U
+        U[k, :] = Ak[p[k], :]
+        # Compute multipliers for column k
+        L[:, k] = Ak[:, k] / U[k, k]
+        # Update Ak by outer product
+        Ak -= np.outer(L[:, k], U[k, :])
+
+    # Last pivot
+    p[n - 1] = np.argmax(np.abs(Ak[:, n - 1]))
+    U[n - 1, n - 1] = Ak[p[n - 1], n - 1]
+    L[:, n - 1] = Ak[:, n - 1] / U[n - 1, n - 1]
+
+    # Permute L rows according to p
+    Lp = L[p, :]
+
+    return p, L, U
+```
+
+Esto es lo que hace numpy
+```{python}
+P, L, U = scipy.linalg.lu(A, permute_l=False)
+print("L:\n", L, "\nU:\n", U)
+```
+
+Si tenemos que resolver $A\mathbf{x} = \mathbf{b}$ para muchos vectores $\mathbf{b}$, nos conviene hacer la factorización LU una sola vez (que cuesta $O(n^3)$), y luego para cada $\mathbf{b}$ resolver los dos sistemas triangulares (que cuestan solo $O(n^2)$ cada uno).
