@@ -213,6 +213,17 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-3" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 3</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-3">    
+        <li>
+    <a class="dropdown-item" href="./11_solucion_sistemas_lineales.html">
+ <span class="dropdown-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -318,6 +329,23 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 3: Cálculo Numérico</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_solucion_sistemas_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -391,7 +419,7 @@ window.Quarto = {
 <section id="poisson" class="level2">
 <h2 class="anchored" data-anchor-id="poisson">Poisson</h2>
 <p>Lo más fácil es tomar el límite continuo de la binomial con <span class="math inline">\(n = T/dt\)</span> donde <span class="math inline">\(dt\)</span> es un intervalo infinitesimal, y <span class="math inline">\(p = \lambda dt\)</span> <span class="math display">\[
-\tilde{p}(k) = \lim_{dt\rightarrow\infty} \left(\lambda dt e^{-ik} + (1 - \lambda dt)\right)^{T/dt} = \exp\left[\lambda (e^{-ik} - 1)\right]\,.
+\tilde{p}(k) = \lim_{dt\rightarrow 0} \left(\lambda dt e^{-ik} + (1 - \lambda dt)\right)^{T/dt} = \exp\left[\lambda (e^{-ik} - 1)\right]\,.
 \]</span> De aquí tenemos que <span class="math display">\[
 \ln \tilde{p}(k) = \lambda (e^{-ik} - 1) = \lambda\sum_{n=1}^\infty \frac{1}{n!}(-ik)^n
 \]</span> ¡Eso quiere decir que todos los cumulantes son iguales! <span class="math display">\[
@@ -412,7 +440,7 @@ k^2\sigma^2\right)
 </section>
 <section id="varias-variables-aleatorias" class="level1">
 <h1>Varias variables aleatorias</h1>
-<p>Estudiemos el caso de <span class="math inline">\(n\)</span> variables aleatorias <span class="math inline">\(x_1,\dots,x_m\)</span> que organizamos en un vector <span class="math inline">\(\mathbf{x}\)</span>. Definimos la función de distribución conjunta de probabilidad para las varias variables <span class="math inline">\(\rho(\mathbf{x})\)</span>, tal que <span class="math display">\[
+<p>Estudiemos el caso de <span class="math inline">\(n\)</span> variables aleatorias <span class="math inline">\(x_1,\dots,x_n\)</span> que organizamos en un vector <span class="math inline">\(\mathbf{x}\)</span>. Definimos la función de distribución conjunta de probabilidad para las varias variables <span class="math inline">\(\rho(\mathbf{x})\)</span>, tal que <span class="math display">\[
 \int d^nx\,\rho(\mathbf{x}) = 1\,.
 \]</span></p>
 <p>La PDF incondicional de las de las variables <span class="math inline">\(x_1,\dots,x_m\)</span> es <span class="math display">\[

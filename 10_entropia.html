@@ -213,6 +213,17 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-3" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 3</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-3">    
+        <li>
+    <a class="dropdown-item" href="./11_solucion_sistemas_lineales.html">
+ <span class="dropdown-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -318,6 +329,23 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 3: Cálculo Numérico</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_solucion_sistemas_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -404,7 +432,7 @@ window.Quarto = {
 H = -\sum_{i=1}^n p_i\log p_i\,.
 \]</span></p>
 <p>Resulta que la entropía de Shannon es mayor para distribuciones esparcidas igualmente entre eventos y menor para distribuciones concentradas en pocos eventos.</p>
-<div id="3fda9fbb" class="cell" data-execution_count="1">
+<div id="3fda9fbb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -525,14 +553,14 @@ H = -n\sum \frac{1}{8}\log\frac{1}{8} = n\log 8 = 3n\,.
 ``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``11110" = 6\,,\quad ``111110" = 7\,,\quad ``111111" = 8\,.
 \]</span> Es verdad que los símbolos menos probables son representados por más de 3 bits. Pero en promedio un mensaje tendrá longitud</li>
 </ol>
-<div id="f77e4752" class="cell" data-execution_count="2">
+<div id="f77e4752" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.5</span><span class="op">*</span><span class="dv">1</span><span class="op">+</span><span class="fl">0.3</span><span class="op">*</span><span class="dv">2</span><span class="op">+</span><span class="fl">0.1</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.05</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.025</span><span class="op">*</span><span class="dv">4</span><span class="op">+</span><span class="fl">0.0125</span><span class="op">*</span><span class="dv">5</span><span class="op">+</span><span class="fl">0.0065</span><span class="op">*</span><span class="dv">6</span><span class="op">+</span><span class="fl">0.006</span><span class="op">*</span><span class="dv">6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>1.7875000000000003</code></pre>
 </div>
 </div>
 <p>La entropía es</p>
-<div id="2fa9e4a7" class="cell" data-execution_count="3">
+<div id="2fa9e4a7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>np.log(<span class="fl">0.5</span>)<span class="op">-</span><span class="fl">0.3</span><span class="op">*</span>np.log(<span class="fl">0.3</span>)<span class="op">-</span><span class="fl">0.1</span><span class="op">*</span>np.log(<span class="fl">0.1</span>)<span class="op">-</span><span class="fl">0.05</span><span class="op">*</span>np.log(<span class="fl">0.05</span>)<span class="op">-</span><span class="fl">0.025</span><span class="op">*</span>np.log(<span class="fl">0.025</span>)<span class="op">-</span><span class="fl">0.0125</span><span class="op">*</span>np.log(<span class="fl">0.0125</span>)<span class="op">\</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">0.0065</span><span class="op">*</span>np.log(<span class="fl">0.0065</span>)<span class="op">-</span><span class="fl">0.006</span><span class="op">*</span>np.log(<span class="fl">0.006</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -574,7 +602,7 @@ H(x,y) = H(x) + H(y)\,,
 <section id="section-2" class="level2">
 <h2 class="anchored" data-anchor-id="section-2">5.3</h2>
 <p>La distribución de uso de letras en el español es (en porcentajes y orden alfabético):</p>
-<div id="d691cbe9" class="cell" data-execution_count="4">
+<div id="d691cbe9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[<span class="fl">12.53</span>,<span class="fl">1.42</span>,<span class="fl">4.68</span>,<span class="fl">5.86</span>,<span class="fl">13.68</span>,<span class="fl">0.69</span>,<span class="fl">1.01</span>,<span class="fl">0.70</span>,<span class="fl">6.25</span>,<span class="fl">0.44</span>,<span class="fl">0.02</span>,<span class="fl">4.97</span>,<span class="fl">3.15</span>,<span class="fl">6.71</span>,<span class="fl">0.31</span>,<span class="fl">8.68</span>,<span class="fl">2.51</span>,<span class="fl">0.88</span>,<span class="fl">6.87</span>,<span class="fl">7.98</span>,<span class="fl">4.63</span>,<span class="fl">3.93</span>,<span class="fl">0.90</span>,<span class="fl">0.01</span>,<span class="fl">0.22</span>,<span class="fl">0.90</span>,<span class="fl">0.52</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>[12.53,
