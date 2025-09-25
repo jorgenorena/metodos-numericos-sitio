@@ -118,7 +118,7 @@ $$
 Aquí $\lambda$ se llama un *multiplicador de Lagrange*.
 
 $$
-\nabla_j H = -\nabla_j \sum_i p_i \ln p_i = -\sum_i (1 + \ln p_i) \nabla_j p_i = \ln \frac{p_j}{p_1}\,,
+\nabla_j H = -\nabla_j \sum_i p_i \ln p_i = -\sum_i (1 + \ln p_i) \nabla_j p_i = -\ln \frac{p_j}{p_1}\,,
 $$
 
 $$
@@ -128,7 +128,7 @@ $$
 Juntando estas expresiones tenemos
 
 $$
-0 = \ln\frac{p_j}{p_1} - \lambda (A_j - A_1)\,,
+0 = \ln\frac{p_j}{p_1} + \lambda (A_j - A_1)\,,
 $$
 
 es decir
