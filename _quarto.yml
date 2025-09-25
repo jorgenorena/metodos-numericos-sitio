@@ -41,6 +41,8 @@ website:
         menu:
           - text: "Solución de Sistemas de Ecuaciones Lineales"
             href: 11_solucion_sistemas_lineales.qmd
+          - text: "Solución de Ecuaciones No Lineales"
+            href: 12_newton_y_biseccion.qmd
   sidebar:
     style: docked
     contents:
@@ -72,6 +74,8 @@ website:
         contents:
           - text: "Solución de Sistemas de Ecuaciones Lineales"
             href: 11_solucion_sistemas_lineales.qmd
+          - text: "Solución de Ecuaciones No Lineales"
+            href: 12_newton_y_biseccion.qmd
 
 format:
   html:

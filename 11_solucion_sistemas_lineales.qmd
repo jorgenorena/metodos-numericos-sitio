@@ -358,3 +358,45 @@ print("L:\n", L, "\nU:\n", U)
 ```
 
 Si tenemos que resolver $A\mathbf{x} = \mathbf{b}$ para muchos vectores $\mathbf{b}$, nos conviene hacer la factorización LU una sola vez (que cuesta $O(n^3)$), y luego para cada $\mathbf{b}$ resolver los dos sistemas triangulares (que cuestan solo $O(n^2)$ cada uno).
+
+# ¡Tareas!
+
+## Tarea 5.6
+
+## Tarea 5.7
+
+Demuestre que el número de condicionamiento de una matriz satisface $\kappa(AB) \leq \kappa(A)\kappa(B)$. Encuentre además un ejemplo donde no se cumple la igualdad.
+
+## Tarea 5.8
+
+Considere el sistema de ecuaciones $A\mathbf{x} = \mathbf{b}$, donde 
+$$
+A = \pmatrix{
+    1 & -1 & 0 & \alpha - \beta & \beta \\
+    0 & 1 & -1 & 0 & 0 \\
+    0 & 0 & 1 & -1 & 0 \\
+    0 & 0 & 0 & 1 & -1 \\
+    0 & 0 & 0 & 0 & 1
+}\,,\qquad
+\mathbf{b} = \pmatrix{
+    \alpha \\
+    0 \\
+    0 \\
+    0 \\
+    1
+}\,.
+$$
+
+Considere $\alpha = 0.1$ y los siguientes valores de $\beta = 10, 100, 10^3, ..., 10^12$. Produzca una tabla con las columnas $\beta$, $(x_1 - 1)$ y $\kappa(A)$. Explique.
+
+## Tarea 5.9
+
+Demuestre que si factorizamos una matriz de la forma $A = LU$, su determinante se puede escribir $\det(A) = \det(U) = \prod_i U_{ii}$. Escriba una función que use este hecho para calcular el determinante y verifique para tres matrices distintas.
+
+## Tarea 5.10
+
+Considere
+
+$$
+A = \pmatrix{}
+$$
