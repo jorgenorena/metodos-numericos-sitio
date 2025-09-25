@@ -785,6 +785,12 @@ U:
 <h1>¡Tareas!</h1>
 <section id="tarea-5.6" class="level2">
 <h2 class="anchored" data-anchor-id="tarea-5.6">Tarea 5.6</h2>
+<p>La inversión de una matriz <span class="math inline">\(A\)</span> de <span class="math inline">\(n \times n\)</span> usando el método de cofactores requiere calcular: <span class="math display">\[A^{-1} = \frac{1}{\det(A)} \text{adj}(A)\]</span> donde <span class="math inline">\(\text{adj}(A)\)</span> es la matriz adjunta (transpuesta de la matriz de cofactores).</p>
+<ol type="1">
+<li>Para calcular <span class="math inline">\(\det(A)\)</span> usando expansión por cofactores se requieren aproximadamente <span class="math inline">\(n!\)</span> operaciones. Explique por qué.</li>
+<li>Para calcular la matriz adjunta necesitamos <span class="math inline">\(n^2\)</span> determinantes de matrices <span class="math inline">\((n-1) \times (n-1)\)</span>, cada uno requiriendo <span class="math inline">\((n-1)!\)</span> operaciones. ¿Cuántas operaciones son en total?</li>
+<li>¿Para <span class="math inline">\(n\)</span> grande, cómo se comporta el total de operaciones?</li>
+</ol>
 </section>
 <section id="tarea-5.7" class="level2">
 <h2 class="anchored" data-anchor-id="tarea-5.7">Tarea 5.7</h2>
@@ -808,18 +814,24 @@ A = \pmatrix{
     1
 }\,.
 \]</span></p>
-<p>Considere <span class="math inline">\(\alpha = 0.1\)</span> y los siguientes valores de <span class="math inline">\(\beta = 10, 100, 10^3, ..., 10^12\)</span>. Produzca una tabla con las columnas <span class="math inline">\(\beta\)</span>, <span class="math inline">\((x_1 - 1)\)</span> y <span class="math inline">\(\kappa(A)\)</span>. Explique.</p>
+<p>Considere <span class="math inline">\(\alpha = 0.1\)</span> y los siguientes valores de <span class="math inline">\(\beta = 10, 100, 10^3, ..., 10^{12}\)</span>. Produzca una tabla con las columnas <span class="math inline">\(\beta\)</span>, <span class="math inline">\((x_1 - 1)\)</span> y <span class="math inline">\(\kappa(A)\)</span>, donde <span class="math inline">\(\mathbf{x}\)</span> se encuentra usando la factorización LU (sin la P). Explique.</p>
 </section>
 <section id="tarea-5.9" class="level2">
 <h2 class="anchored" data-anchor-id="tarea-5.9">Tarea 5.9</h2>
-<p>Demuestre que si factorizamos una matriz de la forma <span class="math inline">\(A = LU\)</span>, su determinante se puede escribir <span class="math inline">\(\det(A) = \det(U) = \prod_i U_{ii}\)</span>. Escriba una función que use este hecho para calcular el determinante y verifique para tres matrices distintas.</p>
+<p>Demuestre que si factorizamos una matriz de la forma <span class="math inline">\(A = LU\)</span> usando el algoritmo visto en clase, su determinante se puede escribir <span class="math inline">\(\det(A) = \det(U) = \prod_i U_{ii}\)</span>. Escriba una función que use este hecho para calcular el determinante y verifique para tres matrices distintas.</p>
 </section>
 <section id="tarea-5.10" class="level2">
 <h2 class="anchored" data-anchor-id="tarea-5.10">Tarea 5.10</h2>
-<p>Considere</p>
-<p><span class="math display">\[
-A = \pmatrix{}
+<p>Considere la matriz triangular inferior <span class="math display">\[
+A = \begin{pmatrix}
+2 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1.4 &amp; 0 &amp; 0 &amp; 0 \\
+1.4 &amp; 2 &amp; 1.1 &amp; 0 &amp; 0 \\
+2.3 &amp; 3.3 &amp; 3 &amp; 0.4 &amp; 0 \\
+0.3 &amp; 1 &amp; 5 &amp; 2 &amp; 3
+\end{pmatrix}
 \]</span></p>
+<p>Use el algoritmo visto en clase para encontrar la factorización LU de esta matriz. Explique por qué <span class="math inline">\(L \neq A\)</span> y por qué <span class="math inline">\(U\)</span> no es la matriz identidad.</p>
 
 
 </section>
