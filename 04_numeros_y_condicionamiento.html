@@ -401,10 +401,10 @@ window.Quarto = {
 <h1>Representación de números reales</h1>
 <p>El computador representa los números usando un sistema <strong>binario</strong>. Es decir, una lista de 1s y 0s. Las CPUs modernas usan 64 bits, cada uno de los cuales puede ser 0 o 1. Como esto es un número finito de información, la precisión del computador para guardar un número no es infinita y esto puede inducir errores.</p>
 <p>Para entender el problema, hagamos un ejemplo con 16 bits.</p>
-<div id="dd8c53bb" class="cell" data-execution_count="1">
+<div id="4bef91b3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="215c0756" class="cell" data-execution_count="2">
+<div id="78bf37a7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> np.float16(np.pi)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dos <span class="op">=</span> np.float16(<span class="dv">2</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cien <span class="op">=</span> np.float16(<span class="dv">100</span>)</span>
@@ -442,21 +442,21 @@ c = 2^4 + 2^3 + 2^1 = 26
 <li>Número más grande de 16 bits</li>
 </ul>
 <p>0 11110 1111111111</p>
-<div id="5d9649ef" class="cell" data-execution_count="3">
+<div id="9d7a9088" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">sum</span>((<span class="dv">1</span><span class="op">/</span><span class="fl">2.</span>)<span class="op">**</span>(np.arange(<span class="dv">1</span>,<span class="dv">11</span>)))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>np.float64(0.9990234375)</code></pre>
 </div>
 </div>
-<div id="2ee6a365" class="cell" data-execution_count="4">
+<div id="164e2ed7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">2</span><span class="op">**</span>(np.arange(<span class="dv">1</span>,<span class="dv">5</span>)))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>np.int64(30)</code></pre>
 </div>
 </div>
-<div id="1bde2886" class="cell" data-execution_count="5">
+<div id="7e74166d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span>(c <span class="op">-</span> <span class="dv">15</span>)<span class="op">*</span>(<span class="dv">1</span> <span class="op">+</span> f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>np.float64(65504.0)</code></pre>
@@ -466,7 +466,7 @@ c = 2^4 + 2^3 + 2^1 = 26
 <li>Número más pequeño de 16 bits</li>
 </ul>
 <p>1 11110 1111111111</p>
-<div id="dd6a2b07" class="cell" data-execution_count="6">
+<div id="6458422a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">2</span><span class="op">**</span>(c<span class="op">-</span><span class="dv">15</span>)<span class="op">*</span>(<span class="dv">1</span> <span class="op">+</span> f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>np.float64(-65504.0)</code></pre>
@@ -476,7 +476,7 @@ c = 2^4 + 2^3 + 2^1 = 26
 <li>Número más cercano a cero de 16 bits</li>
 </ul>
 <p>0 00000 0000000001</p>
-<div id="0592e8c8" class="cell" data-execution_count="7">
+<div id="59f2da50" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span>(<span class="dv">1</span><span class="op">-</span><span class="dv">15</span>)<span class="op">*</span>((<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>5.960464477539063e-08</code></pre>
@@ -486,7 +486,7 @@ c = 2^4 + 2^3 + 2^1 = 26
 <li>Cifras decimales de precisión de 16 bits</li>
 </ul>
 <p>0 00000 0000000001</p>
-<div id="7a83d495" class="cell" data-execution_count="8">
+<div id="450dab06" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">**</span>(<span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>0.0009765625</code></pre>
@@ -498,7 +498,7 @@ c = 2^4 + 2^3 + 2^1 = 26
 <section id="redondeo-truncación-error-absoluto-y-relativo" class="level2">
 <h2 class="anchored" data-anchor-id="redondeo-truncación-error-absoluto-y-relativo">Redondeo, truncación, error absoluto y relativo</h2>
 <p>Para explorar este problema, ignoremos por ahora el sistema <em>binario</em> y veamos lo que ocurre en el sistema <strong>decimal</strong>.</p>
-<div id="7970b18d" class="cell" data-execution_count="9">
+<div id="c10aa421" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>np.pi</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>3.141592653589793</code></pre>
@@ -508,26 +508,26 @@ c = 2^4 + 2^3 + 2^1 = 26
 <ul>
 <li>Truncar: Ignoramos las cifras adicionales, más allá de la <span class="math inline">\(n\)</span>-ésima cifra.</li>
 </ul>
-<div id="a1c52062" class="cell" data-execution_count="10">
+<div id="7247375a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pi_truncado <span class="op">=</span> <span class="fl">3.1415</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Redondear: Si la cifra <span class="math inline">\(n + 1\)</span> es menor a 5 truncamos, pero si la cifra <span class="math inline">\(n + 1\)</span> es mayor o igual que 5</li>
 </ul>
-<div id="687e8724" class="cell" data-execution_count="11">
+<div id="1106a1a9" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pi_redondeado <span class="op">=</span> <span class="fl">3.1416</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Al truncar o redondear cometemos un error. Podemos cuantificar el error de varias maneras:</p>
 <ul>
 <li>Error real: estimación - valor verdadero</li>
 </ul>
-<div id="5d2c7a1c" class="cell" data-execution_count="12">
+<div id="dd72383b" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pi_truncado <span class="op">-</span> np.pi</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>-9.265358979293481e-05</code></pre>
 </div>
 </div>
-<div id="395965f8" class="cell" data-execution_count="13">
+<div id="f0d182c0" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pi_redondeado <span class="op">-</span> np.pi</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>7.346410206832132e-06</code></pre>
@@ -536,13 +536,13 @@ c = 2^4 + 2^3 + 2^1 = 26
 <ul>
 <li>Error absoluto: |estimación - valor verdadero|</li>
 </ul>
-<div id="dc9e94a9" class="cell" data-execution_count="14">
+<div id="47001f6d" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">abs</span>(pi_truncado <span class="op">-</span> np.pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>np.float64(9.265358979293481e-05)</code></pre>
 </div>
 </div>
-<div id="712bc677" class="cell" data-execution_count="15">
+<div id="130527ae" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">abs</span>(pi_redondeado <span class="op">-</span> np.pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>np.float64(7.346410206832132e-06)</code></pre>
@@ -551,13 +551,13 @@ c = 2^4 + 2^3 + 2^1 = 26
 <ul>
 <li>Error relativo: |estimación - valor verdadero|/|valor verdadero|</li>
 </ul>
-<div id="8d818434" class="cell" data-execution_count="16">
+<div id="bad60639" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">abs</span>(pi_truncado <span class="op">-</span> np.pi)<span class="op">/</span>np.<span class="bu">abs</span>(np.pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>np.float64(2.9492553621508708e-05)</code></pre>
 </div>
 </div>
-<div id="f3ea065f" class="cell" data-execution_count="17">
+<div id="ac00a8fb" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">abs</span>(pi_redondeado <span class="op">-</span> np.pi)<span class="op">/</span>np.<span class="bu">abs</span>(np.pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>np.float64(2.3384349967961744e-06)</code></pre>
@@ -569,20 +569,20 @@ c = 2^4 + 2^3 + 2^1 = 26
 <p>El número más cercano a <span class="math inline">\(1\)</span> por la derecha en <span class="math inline">\(16\)</span> bits es</p>
 <pre><code>0 00000 0000000001</code></pre>
 <p>Restándole <span class="math inline">\(1\)</span>, este se llama el <span class="math inline">\(\epsilon\)</span> de máquina. En el caso de 16 bits es burdamente <span class="math inline">\(10^{-3}\)</span>. En el caso de 64 bits es <span class="math inline">\(\sim 10^{-16}\)</span> y en el caso de 32 bits es <span class="math inline">\(\sim 10^{-8}\)</span>. Esta es la máxima precisión que podemos alcanzar al operar con números representados de esta forma.</p>
-<div id="6f9dd052" class="cell" data-execution_count="18">
+<div id="fff3d186" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>np.finfo(np.float32).eps</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>np.float32(1.1920929e-07)</code></pre>
 </div>
 </div>
-<div id="5656d198" class="cell" data-execution_count="19">
+<div id="cbd8bc1a" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>np.finfo(np.float64).eps</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>np.float64(2.220446049250313e-16)</code></pre>
 </div>
 </div>
 <p>Cuidado, el verdadero error cometido es el <span class="math inline">\(\epsilon_{maq}\)</span> multiplicado por el exponente, tal que el error al usar números en <span class="math inline">\([1/2, 1)\)</span> es en realidad <span class="math inline">\(\epsilon_{maq}/2\)</span> por ejemplo.</p>
-<div id="d72e43da" class="cell" data-execution_count="20">
+<div id="5a9ee477" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> np.finfo(<span class="bu">float</span>).eps</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> eps<span class="op">/</span><span class="dv">2</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1.0</span> <span class="op">+</span> x) <span class="op">-</span> <span class="fl">1.0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -590,7 +590,7 @@ c = 2^4 + 2^3 + 2^1 = 26
 <pre><code>np.float64(0.0)</code></pre>
 </div>
 </div>
-<div id="30d371e8" class="cell" data-execution_count="21">
+<div id="1de71d78" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0</span> <span class="op">+</span> (x <span class="op">-</span> <span class="fl">1.0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>np.float64(1.1102230246251565e-16)</code></pre>
@@ -643,7 +643,7 @@ r_1^2 + 2a r_1\frac{dr_1}{da} + b\frac{dr_1}{da} = 0\,.
 \]</span></p>
 <p>Esto quiere decir que cuando las dos raíces están muy cerca comparadas con su tamaño, el número de condicionamiento se vuelve grande.</p>
 <p>Como ejemplo, busquemos las raices de <span class="math inline">\(\frac{1}{3}(x - 1)(x - 1 - e)\)</span> para <span class="math inline">\(e\)</span> pequeño. Si tomamos <span class="math inline">\(e = 1\times 10^{-6}\)</span> esperamos un número de condicionamiento <span class="math inline">\(e\)</span> y perdemos <span class="math inline">\(6\)</span> cifras de precisión.</p>
-<div id="08ea6f29" class="cell" data-execution_count="22">
+<div id="9b4c64a8" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="fl">1e-6</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, (<span class="op">-</span><span class="dv">2</span> <span class="op">-</span> e)<span class="op">/</span><span class="dv">3</span>, (<span class="dv">1</span> <span class="op">+</span> e)<span class="op">/</span><span class="dv">3</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -656,7 +656,7 @@ r_1^2 + 2a r_1\frac{dr_1}{da} + b\frac{dr_1}{da} = 0\,.
 </div>
 </div>
 <p>Veamos el error relativo</p>
-<div id="5c420027" class="cell" data-execution_count="23">
+<div id="23f1b35b" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>(r1 <span class="op">-</span> (<span class="dv">1</span> <span class="op">+</span> e))<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> e)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>np.float64(1.748501815656639e-10)</code></pre>

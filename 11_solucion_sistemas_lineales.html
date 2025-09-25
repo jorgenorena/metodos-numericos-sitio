@@ -366,6 +366,14 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#factorización-lu-con-pivoteo" id="toc-factorización-lu-con-pivoteo" class="nav-link" data-scroll-target="#factorización-lu-con-pivoteo">Factorización LU con pivoteo</a></li>
   </ul></li>
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">¡Tareas!</a>
+  <ul class="collapse">
+  <li><a href="#tarea-5.6" id="toc-tarea-5.6" class="nav-link" data-scroll-target="#tarea-5.6">Tarea 5.6</a></li>
+  <li><a href="#tarea-5.7" id="toc-tarea-5.7" class="nav-link" data-scroll-target="#tarea-5.7">Tarea 5.7</a></li>
+  <li><a href="#tarea-5.8" id="toc-tarea-5.8" class="nav-link" data-scroll-target="#tarea-5.8">Tarea 5.8</a></li>
+  <li><a href="#tarea-5.9" id="toc-tarea-5.9" class="nav-link" data-scroll-target="#tarea-5.9">Tarea 5.9</a></li>
+  <li><a href="#tarea-5.10" id="toc-tarea-5.10" class="nav-link" data-scroll-target="#tarea-5.10">Tarea 5.10</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -391,7 +399,7 @@ window.Quarto = {
 </header>
 
 
-<div id="7bb17078" class="cell" data-execution_count="1">
+<div id="7bb17078" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.linalg</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -407,7 +415,7 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;= b_m,
 \]</span></p>
 <p>Lo podemos escribir con notación matricial como <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>, donde las componentes de la matriz <span class="math inline">\(A\)</span> son los coeficientes <span class="math inline">\(a_{ij}\)</span>, el vector <span class="math inline">\(\mathbf{x}\)</span> tiene como componentes las incógnitas <span class="math inline">\(x_i\)</span> y el vector <span class="math inline">\(\mathbf{b}\)</span> tiene como componentes los términos independientes <span class="math inline">\(b_i\)</span>.</p>
 <p>El sistema tiene una única solución si la matriz <span class="math inline">\(A\)</span> es invertible. Formalmente, podemos encontrar el vector <span class="math inline">\(\mathbf{x}\)</span> que satisface estas ecuaciones escribiendo <span class="math inline">\(\mathbf{x} = A^{-1}\mathbf{b}\)</span>. Esto lo podemos hacer en Python:</p>
-<div id="1f0297ed" class="cell" data-execution_count="2">
+<div id="1f0297ed" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">2</span>]])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">9</span>, <span class="dv">8</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Ainv <span class="op">=</span> np.linalg.inv(A)</span>
@@ -450,7 +458,7 @@ x_n &amp;= \frac{b_n - a_{n1}x_1 - a_{n2}x_2 - \cdots - a_{n,n-1}x_{n-1}}{a_{nn}
 \end{align}
 \]</span></p>
 <p>que funciona siempre y cuando los elementos de la diagonal <span class="math inline">\(a_{ii}\)</span> sean distintos de cero. En Python:</p>
-<div id="2a2f3ba2" class="cell" data-execution_count="3">
+<div id="2a2f3ba2" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> forwardsub(A, b):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> A.shape[<span class="dv">0</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.zeros(n)</span>
@@ -461,7 +469,7 @@ x_n &amp;= \frac{b_n - a_{n1}x_1 - a_{n2}x_2 - \cdots - a_{n,n-1}x_{n-1}}{a_{nn}
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Veamos que funciona</p>
-<div id="a3ba5c40" class="cell" data-execution_count="4">
+<div id="a3ba5c40" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>],</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])</span>
@@ -473,7 +481,7 @@ x_n &amp;= \frac{b_n - a_{n1}x_1 - a_{n2}x_2 - \cdots - a_{n,n-1}x_{n-1}}{a_{nn}
 </div>
 </div>
 <p>De forma análoga, si tenemos una matriz triangular superior</p>
-<div id="531712cb" class="cell" data-execution_count="5">
+<div id="531712cb" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> backsub(A, b):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> A.shape[<span class="dv">0</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.zeros(n)</span>
@@ -503,7 +511,7 @@ a_{21} &amp; a_{22}
 b_{11} &amp; b_{12} \\
 b_{21} &amp; b_{22}
 \end{pmatrix} = \begin{pmatrix}
-a_{11} b{11} &amp; a_{11} b_{12} \\
+a_{11} b_{11} &amp; a_{11} b_{12} \\
 a_{21} b_{11} &amp; a_{21} b_{12}
 \end{pmatrix} + \begin{pmatrix}
 a_{12} b_{21} &amp; a_{12} b_{22} \\
@@ -512,7 +520,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 \]</span></p>
 <p>Entonces, para la multiplicación de una matriz triangular inferior <span class="math inline">\(L\)</span> por una matriz triangular superior <span class="math inline">\(U\)</span> todo se hace más sencillo. Por ejemplo en el caso 3x3 el producto externo <span class="math inline">\(\mathbf{l}_3 \mathbf{u}_1^T\)</span> tiene un solo elemento diferente de cero.</p>
 <p>Para aplicar estos hechos, hagamos un ejemplo.</p>
-<div id="8ea8094a" class="cell" data-execution_count="6">
+<div id="8ea8094a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">4</span>, <span class="op">-</span><span class="dv">6</span>, <span class="dv">0</span>],</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>              [<span class="op">-</span><span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">2</span>]], dtype<span class="op">=</span><span class="bu">float</span>)</span>
@@ -520,7 +528,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> np.zeros((<span class="dv">3</span>, <span class="dv">3</span>), dtype<span class="op">=</span><span class="bu">float</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Primero escogemos que la primera fila de <span class="math inline">\(U\)</span> sea igual a la primera fila de <span class="math inline">\(A\)</span></p>
-<div id="0ce21d10" class="cell" data-execution_count="7">
+<div id="0ce21d10" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>U[<span class="dv">0</span>, :] <span class="op">=</span> A[<span class="dv">0</span>, :]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>display(U)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -530,7 +538,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Ahora para <span class="math inline">\(L\)</span> escogemos que la primera columna sea igual a la primera columna de <span class="math inline">\(A\)</span> dividida por <span class="math inline">\(u_{11}\)</span> (de modo que al multiplicar <span class="math inline">\(LU\)</span> tenemos el elemento <span class="math inline">\(A_{11}\)</span> correcto).</p>
-<div id="ca8c63db" class="cell" data-execution_count="8">
+<div id="ca8c63db" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>L[:, <span class="dv">0</span>] <span class="op">=</span> A[:, <span class="dv">0</span>] <span class="op">/</span> U[<span class="dv">0</span>, <span class="dv">0</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>display(L)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -540,7 +548,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Luego le restamos esta contribución a <span class="math inline">\(A\)</span> para obtener una nueva matriz <span class="math inline">\(A' = A - \mathbf{l}_1 \mathbf{u}_1^T\)</span>. Veamos qué nos queda</p>
-<div id="e82943c5" class="cell" data-execution_count="9">
+<div id="e82943c5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>A_prime <span class="op">=</span> A <span class="op">-</span> L<span class="op">@</span>U</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>display(A_prime)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -550,7 +558,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Vemos que el primer renglón y la primera columna son ceros. Entonces podemos repetir el procedimiento con la submatriz <span class="math inline">\(2\times 2\)</span> restante</p>
-<div id="ba2796fd" class="cell" data-execution_count="10">
+<div id="ba2796fd" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>U[<span class="dv">1</span>, <span class="dv">1</span>:] <span class="op">=</span> A_prime[<span class="dv">1</span>, <span class="dv">1</span>:]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>L[<span class="dv">1</span>:, <span class="dv">1</span>] <span class="op">=</span> A_prime[<span class="dv">1</span>:, <span class="dv">1</span>] <span class="op">/</span> U[<span class="dv">1</span>, <span class="dv">1</span>]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>A_prime2 <span class="op">=</span> np.zeros((<span class="dv">3</span>,<span class="dv">3</span>))</span>
@@ -572,7 +580,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Finalmente</p>
-<div id="4d144750" class="cell" data-execution_count="11">
+<div id="4d144750" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>U[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">=</span> A_prime2[<span class="dv">2</span>, <span class="dv">2</span>]</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L:</span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>L<span class="sc">}</span><span class="ss">,</span><span class="ch">\n</span><span class="ss"> U:</span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>U<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -587,7 +595,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Verifiquemos</p>
-<div id="29b4d4e8" class="cell" data-execution_count="12">
+<div id="29b4d4e8" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>display(A <span class="op">-</span> L<span class="op">@</span>U)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>array([[0., 0., 0.],
@@ -596,7 +604,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Ahora tenemos un algoritmo general</p>
-<div id="921ec2d1" class="cell" data-execution_count="13">
+<div id="921ec2d1" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lufact(A):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> A.shape[<span class="dv">0</span>]</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> np.eye(n, dtype<span class="op">=</span><span class="bu">float</span>)   <span class="co"># ones on diagonal</span></span>
@@ -616,7 +624,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> L, U</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Verifiquemos</p>
-<div id="94c04650" class="cell" data-execution_count="14">
+<div id="94c04650" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lufact(A)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>(array([[ 1., -0.,  0.],
@@ -655,7 +663,7 @@ A(\mathbf{x} + \delta \mathbf{x}) = \mathbf{b} + \delta \mathbf{b}\,.
 </div>
 <p>Luego, resolver los sistemas triangulares necesitan <span class="math inline">\(O(n^2)\)</span> operaciones cada uno. Para verlo, en el algoritmo de sustitución hacia adelante, en el paso <span class="math inline">\(i\)</span> hacemos una suma de <span class="math inline">\(i\)</span> términos y una división.</p>
 <p>Sin embargo, resulta que este método no es muy estable, incluso para matrices bien condicionadas. Hagamos un ejemplo</p>
-<div id="6960571c" class="cell" data-execution_count="15">
+<div id="6960571c" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="fl">1e-16</span>, <span class="dv">2</span>], [<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">2</span>]])</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>L, U <span class="op">=</span> lufact(A)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
@@ -667,7 +675,7 @@ A(\mathbf{x} + \delta \mathbf{x}) = \mathbf{b} + \delta \mathbf{b}\,.
 </div>
 </div>
 <p>Comparado con la solución</p>
-<div id="2b781335" class="cell" data-execution_count="16">
+<div id="2b781335" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x_exact <span class="op">=</span> np.linalg.solve(A, b)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"solución de numpy:"</span>, x_exact)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -675,7 +683,7 @@ A(\mathbf{x} + \delta \mathbf{x}) = \mathbf{b} + \delta \mathbf{b}\,.
 </div>
 </div>
 <p>Esto a pesar de que el número de condición no es tan grande</p>
-<div id="6fdecfbb" class="cell" data-execution_count="17">
+<div id="6fdecfbb" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"número de condición:"</span>, np.linalg.cond(A))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>número de condición: 5.8287569461762825</code></pre>
@@ -685,7 +693,7 @@ A(\mathbf{x} + \delta \mathbf{x}) = \mathbf{b} + \delta \mathbf{b}\,.
 <section id="factorización-lu-con-pivoteo" class="level2">
 <h2 class="anchored" data-anchor-id="factorización-lu-con-pivoteo">Factorización LU con pivoteo</h2>
 <p>La solución es primero pivotear la matriz, es decir, intercambiar filas para que los elementos de la diagonal sean los más grandes posibles. Por ejemplo, cambiemos la segunda y tercera fila de <span class="math inline">\(A\)</span> para resolver el problema equivalente</p>
-<div id="9ba384dc" class="cell" data-execution_count="18">
+<div id="9ba384dc" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>], [<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">2</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="fl">1e-16</span>, <span class="dv">2</span>]])</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>L, U <span class="op">=</span> lufact(A)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>])</span>
@@ -715,7 +723,7 @@ PA = \begin{pmatrix}
 \]</span></p>
 <p>Entonces en realidad queremos factorizar <span class="math inline">\(A = PLU\)</span>. Note que <span class="math inline">\(PA\mathbf{x} = P\mathbf{b}\)</span> es un sistema equivalente.</p>
 <p>Un algoritmo que lo logra es</p>
-<div id="bf1336b4" class="cell" data-execution_count="19">
+<div id="bf1336b4" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plufact(A):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.asarray(A, dtype<span class="op">=</span><span class="bu">float</span>)</span>
@@ -746,7 +754,7 @@ PA = \begin{pmatrix}
 <span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p, L, U</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Esto es lo que hace numpy</p>
-<div id="b729ce96" class="cell" data-execution_count="20">
+<div id="b729ce96" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>P, L, U <span class="op">=</span> scipy.linalg.lu(A, permute_l<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"L:</span><span class="ch">\n</span><span class="st">"</span>, L, <span class="st">"</span><span class="ch">\n</span><span class="st">U:</span><span class="ch">\n</span><span class="st">"</span>, U)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -761,6 +769,130 @@ U:
 </div>
 </div>
 <p>Si tenemos que resolver <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> para muchos vectores <span class="math inline">\(\mathbf{b}\)</span>, nos conviene hacer la factorización LU una sola vez (que cuesta <span class="math inline">\(O(n^3)\)</span>), y luego para cada <span class="math inline">\(\mathbf{b}\)</span> resolver los dos sistemas triangulares (que cuestan solo <span class="math inline">\(O(n^2)\)</span> cada uno).</p>
+</section>
+</section>
+<section id="tareas" class="level1">
+<h1>¡Tareas!</h1>
+<section id="tarea-5.6" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-5.6">Tarea 5.6</h2>
+<p><strong>Conteo de operaciones: Inversión de matriz por cofactores vs.&nbsp;factorización LU</strong></p>
+<p>La inversión de una matriz <span class="math inline">\(A\)</span> de <span class="math inline">\(n \times n\)</span> usando el método de cofactores requiere calcular: <span class="math display">\[A^{-1} = \frac{1}{\det(A)} \text{adj}(A)\]</span> donde <span class="math inline">\(\text{adj}(A)\)</span> es la matriz adjunta (transpuesta de la matriz de cofactores).</p>
+<p><strong>Parte A: Análisis teórico</strong> 1. Para calcular <span class="math inline">\(\det(A)\)</span> usando expansión por cofactores se requieren aproximadamente <span class="math inline">\(n!\)</span> operaciones. Explique por qué. 2. Para calcular la matriz adjunta necesitamos <span class="math inline">\(n^2\)</span> determinantes de matrices <span class="math inline">\((n-1) \times (n-1)\)</span>, cada uno requiriendo <span class="math inline">\((n-1)!\)</span> operaciones. ¿Cuántas operaciones son en total? 3. Compare este conteo con las <span class="math inline">\(O(n^3)\)</span> operaciones de la factorización LU.</p>
+<p><strong>Parte B: Implementación y medición de tiempos</strong></p>
+<p>Implemente las siguientes funciones:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> det_cofactor(A):</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calcula determinante usando expansión por cofactores"""</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> A.shape[<span class="dv">0</span>]</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> A[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> A[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">*</span> A[<span class="dv">1</span>, <span class="dv">1</span>] <span class="op">-</span> A[<span class="dv">0</span>, <span class="dv">1</span>] <span class="op">*</span> A[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    det <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Crear submatriz eliminando fila 0 y columna j</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>        sub_A <span class="op">=</span> np.delete(np.delete(A, <span class="dv">0</span>, axis<span class="op">=</span><span class="dv">0</span>), j, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>        cofactor <span class="op">=</span> ((<span class="op">-</span><span class="dv">1</span>) <span class="op">**</span> j) <span class="op">*</span> det_cofactor(sub_A)</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>        det <span class="op">+=</span> A[<span class="dv">0</span>, j] <span class="op">*</span> cofactor</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> det</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> matrix_inv_cofactor(A):</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Invierte matriz usando cofactores (solo para matrices pequeñas)"""</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> A.shape[<span class="dv">0</span>]</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>    det_A <span class="op">=</span> det_cofactor(A)</span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(det_A) <span class="op">&lt;</span> <span class="fl">1e-10</span>:</span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Matriz singular"</span>)</span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>    adj_A <span class="op">=</span> np.zeros((n, n))</span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Calcular cofactor (i,j)</span></span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a>            sub_A <span class="op">=</span> np.delete(np.delete(A, i, axis<span class="op">=</span><span class="dv">0</span>), j, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a>            adj_A[j, i] <span class="op">=</span> ((<span class="op">-</span><span class="dv">1</span>) <span class="op">**</span> (i <span class="op">+</span> j)) <span class="op">*</span> det_cofactor(sub_A)</span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> adj_A <span class="op">/</span> det_A</span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para medir tiempos</span></span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_methods():</span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a>    sizes <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]  <span class="co"># No usar tamaños mayores para cofactores</span></span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a>    times_cofactor <span class="op">=</span> []</span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a>    times_lu <span class="op">=</span> []</span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a>    times_numpy <span class="op">=</span> []</span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> sizes:</span>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Crear matriz aleatoria bien condicionada</span></span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> np.random.randn(n, n)</span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> A <span class="op">@</span> A.T <span class="op">+</span> np.eye(n)  <span class="co"># Hacer simétrica positiva definida</span></span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Método de cofactores (solo para n &lt;= 6)</span></span>
+<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">6</span>:</span>
+<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a>            start <span class="op">=</span> time.time()</span>
+<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a>            inv_cofactor <span class="op">=</span> matrix_inv_cofactor(A)</span>
+<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a>            time_cofactor <span class="op">=</span> time.time() <span class="op">-</span> start</span>
+<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a>            times_cofactor.append(time_cofactor)</span>
+<span id="cb35-54"><a href="#cb35-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb35-55"><a href="#cb35-55" aria-hidden="true" tabindex="-1"></a>            times_cofactor.append(np.nan)</span>
+<span id="cb35-56"><a href="#cb35-56" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb35-57"><a href="#cb35-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Factorización LU</span></span>
+<span id="cb35-58"><a href="#cb35-58" aria-hidden="true" tabindex="-1"></a>        start <span class="op">=</span> time.time()</span>
+<span id="cb35-59"><a href="#cb35-59" aria-hidden="true" tabindex="-1"></a>        L, U <span class="op">=</span> lufact(A)</span>
+<span id="cb35-60"><a href="#cb35-60" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Resolver A*X = I columna por columna</span></span>
+<span id="cb35-61"><a href="#cb35-61" aria-hidden="true" tabindex="-1"></a>        I <span class="op">=</span> np.eye(n)</span>
+<span id="cb35-62"><a href="#cb35-62" aria-hidden="true" tabindex="-1"></a>        inv_lu <span class="op">=</span> np.zeros((n, n))</span>
+<span id="cb35-63"><a href="#cb35-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb35-64"><a href="#cb35-64" aria-hidden="true" tabindex="-1"></a>            z <span class="op">=</span> forwardsub(L, I[:, i])</span>
+<span id="cb35-65"><a href="#cb35-65" aria-hidden="true" tabindex="-1"></a>            inv_lu[:, i] <span class="op">=</span> backsub(U, z)</span>
+<span id="cb35-66"><a href="#cb35-66" aria-hidden="true" tabindex="-1"></a>        time_lu <span class="op">=</span> time.time() <span class="op">-</span> start</span>
+<span id="cb35-67"><a href="#cb35-67" aria-hidden="true" tabindex="-1"></a>        times_lu.append(time_lu)</span>
+<span id="cb35-68"><a href="#cb35-68" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb35-69"><a href="#cb35-69" aria-hidden="true" tabindex="-1"></a>        <span class="co"># NumPy (referencia)</span></span>
+<span id="cb35-70"><a href="#cb35-70" aria-hidden="true" tabindex="-1"></a>        start <span class="op">=</span> time.time()</span>
+<span id="cb35-71"><a href="#cb35-71" aria-hidden="true" tabindex="-1"></a>        inv_numpy <span class="op">=</span> np.linalg.inv(A)</span>
+<span id="cb35-72"><a href="#cb35-72" aria-hidden="true" tabindex="-1"></a>        time_numpy <span class="op">=</span> time.time() <span class="op">-</span> start</span>
+<span id="cb35-73"><a href="#cb35-73" aria-hidden="true" tabindex="-1"></a>        times_numpy.append(time_numpy)</span>
+<span id="cb35-74"><a href="#cb35-74" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb35-75"><a href="#cb35-75" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"n=</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">: Cofactores=</span><span class="sc">{</span>time_cofactor<span class="sc">:.6f}</span><span class="ss">s, LU=</span><span class="sc">{</span>time_lu<span class="sc">:.6f}</span><span class="ss">s, NumPy=</span><span class="sc">{</span>time_numpy<span class="sc">:.6f}</span><span class="ss">s"</span>)</span>
+<span id="cb35-76"><a href="#cb35-76" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-77"><a href="#cb35-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sizes, times_cofactor, times_lu, times_numpy</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Parte C: Análisis de resultados</strong> 1. Ejecute <code>compare_methods()</code> y haga una tabla con los tiempos. 2. Grafique los tiempos vs.&nbsp;el tamaño de la matriz en escala logarítmica. 3. ¿A partir de qué tamaño de matriz se vuelve impracticable el método de cofactores? 4. Estime empíricamente el orden de complejidad observado para cada método.</p>
+</section>
+<section id="tarea-5.7" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-5.7">Tarea 5.7</h2>
+<p>Demuestre que el número de condicionamiento de una matriz satisface <span class="math inline">\(\kappa(AB) \leq \kappa(A)\kappa(B)\)</span>. Encuentre además un ejemplo donde no se cumple la igualdad.</p>
+</section>
+<section id="tarea-5.8" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-5.8">Tarea 5.8</h2>
+<p>Considere el sistema de ecuaciones <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>, donde <span class="math display">\[
+A = \pmatrix{
+    1 &amp; -1 &amp; 0 &amp; \alpha - \beta &amp; \beta \\
+    0 &amp; 1 &amp; -1 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 1 &amp; -1 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 1 &amp; -1 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+}\,,\qquad
+\mathbf{b} = \pmatrix{
+    \alpha \\
+    0 \\
+    0 \\
+    0 \\
+    1
+}\,.
+\]</span></p>
+<p>Considere <span class="math inline">\(\alpha = 0.1\)</span> y los siguientes valores de <span class="math inline">\(\beta = 10, 100, 10^3, ..., 10^12\)</span>. Produzca una tabla con las columnas <span class="math inline">\(\beta\)</span>, <span class="math inline">\((x_1 - 1)\)</span> y <span class="math inline">\(\kappa(A)\)</span>. Explique.</p>
+</section>
+<section id="tarea-5.9" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-5.9">Tarea 5.9</h2>
+<p>Demuestre que si factorizamos una matriz de la forma <span class="math inline">\(A = LU\)</span>, su determinante se puede escribir <span class="math inline">\(\det(A) = \det(U) = \prod_i U_{ii}\)</span>. Escriba una función que use este hecho para calcular el determinante y verifique para tres matrices distintas.</p>
+</section>
+<section id="tarea-5.10" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-5.10">Tarea 5.10</h2>
+<p>Considere</p>
+<p><span class="math display">\[
+A = \pmatrix{}
+\]</span></p>
 
 
 </section>
