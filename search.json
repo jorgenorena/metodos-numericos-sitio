@@ -8,7 +8,7 @@
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Solución de Sistemas de Ecuaciones No Lineales"
+      "Solución de Ecuaciones No Lineales"
     ]
   },
   {
@@ -20,7 +20,7 @@
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Solución de Sistemas de Ecuaciones No Lineales"
+      "Solución de Ecuaciones No Lineales"
     ]
   },
   {
@@ -32,7 +32,7 @@
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Solución de Sistemas de Ecuaciones No Lineales"
+      "Solución de Ecuaciones No Lineales"
     ]
   },
   {
@@ -44,7 +44,7 @@
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Solución de Sistemas de Ecuaciones No Lineales"
+      "Solución de Ecuaciones No Lineales"
     ]
   },
   {
@@ -56,7 +56,7 @@
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Solución de Sistemas de Ecuaciones No Lineales"
+      "Solución de Ecuaciones No Lineales"
     ]
   },
   {
@@ -68,7 +68,7 @@
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Solución de Sistemas de Ecuaciones No Lineales"
+      "Solución de Ecuaciones No Lineales"
     ]
   },
   {
@@ -76,7 +76,7 @@
     "href": "07_distribuciones.html",
     "title": "Distribuciones de Probabilidad",
     "section": "",
-    "text": "Consideremos un experimento que puede dar un resultado positivo con probabilidad \\(p\\) o negativo con probabilidad \\(1 - p\\). Preguntamos cuál es la probabilidad de obtener \\(s\\) resultados positivos cuando se realiza el experimento \\(n\\) veces de manera independiente.\nA manera de ejemplo preguntemos primero cuál es la probabilidad de obtener \\(3\\) positivos cuando se realiza el experimento \\(4\\) veces. Estos tres resultados positivos pueden aparecer de las siguientes maneras \\[\n\\text{+++-},\\,\\text{++-+},\\,\\text{+-++},\\,\\text{-+++}\\,.\n\\] La probabilidad de obtener el primer resultado es \\[\np\\times p\\times p\\times (1-p) = p^3 (1-p)\\,.\n\\] La probabilidad de las otras tres posibilidades es igual y entonces \\[\nP(3;4,p) = 4 p^3(1-p)\\,.\n\\]\nLa fórmula general es\n\\[\nP(s;n,p) = \\frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}\n\\]\n\nfrom scipy.special import comb\n\ndef binomial(s, n, p):\n    return comb(n, s)*p**s*(1-p)**(n - s)\n\n\nimport matplotlib.pyplot as plt\n\n\ndef probs(n, p):\n    return [binomial(s, n, p) for s in range(n+1)]\n\n\nfig = plt.figure(figsize=(8,20), dpi= 100)\n\nax1 = fig.add_subplot(8,2,1)\nax2 = fig.add_subplot(8,2,2)\nax3 = fig.add_subplot(8,2,3)\nax4 = fig.add_subplot(8,2,4)\nax5 = fig.add_subplot(8,2,5)\nax6 = fig.add_subplot(8,2,6)\nax7 = fig.add_subplot(8,2,7)\nax8 = fig.add_subplot(8,2,8)\n\nax1.bar(range(4+1), probs(4,0.5))\nax2.bar(range(5+1), probs(5,0.5))\nax3.bar(range(15+1), probs(15,0.5))\nax4.bar(range(50+1), probs(50,0.5))\nax5.bar(range(5+1), probs(5,0.1))\nax6.bar(range(15+1), probs(15,0.1))\nax7.bar(range(5+1), probs(5,0.9))\nax8.bar(range(15+1), probs(15,0.9))\n        \nax1.set_title('s = 4, p = 0.5')\nax2.set_title('s = 5, p = 0.5')\nax3.set_title('s = 15, p = 0.5')\nax4.set_title('s = 50, p = 0.5')\nax5.set_title('s = 5, p = 0.1')\nax6.set_title('s = 15, p = 0.1')\nax7.set_title('s = 5, p = 0.9')\nax8.set_title('s = 15, p = 0.9')\n\nfig.tight_layout(pad=2.0)\n\n\nfig.show()\n\n/tmp/ipykernel_3863435/159021693.py:33: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  fig.show()\n\n\n\n\n\n\n\n\n\n\nValor esperado: \\(\\langle n \\rangle = rp\\)\nVarianza: \\(\\sigma^2 = np(1-p)\\)\n\n\nimport random\nimport numpy as np\n\ndef realizacion(r, p):\n    probs = np.random.rand(r)\n    return probs &lt; p\n\ndef num_exitos(num_realizaciones, r, p):\n    # probando me dí cuenta que al sumar me regresa el número\n    # de elementos que son True\n    return np.array([sum(realizacion(r, p)) for i in range(num_realizaciones)])\n\n\nnum_exitos(3, 10, 0.2).mean()\n\nnp.float64(1.3333333333333333)\n\n\n\nnum_exitos(10000, 10, 0.2).mean()\n\nnp.float64(2.0048)\n\n\n\nnum_exitos(10000, 10, 0.2).std()\n\nnp.float64(1.2826924767846735)\n\n\n\nnp.sqrt(10*0.2*0.8)\n\nnp.float64(1.2649110640673518)",
+    "text": "Consideremos un experimento que puede dar un resultado positivo con probabilidad \\(p\\) o negativo con probabilidad \\(1 - p\\). Preguntamos cuál es la probabilidad de obtener \\(s\\) resultados positivos cuando se realiza el experimento \\(n\\) veces de manera independiente.\nA manera de ejemplo preguntemos primero cuál es la probabilidad de obtener \\(3\\) positivos cuando se realiza el experimento \\(4\\) veces. Estos tres resultados positivos pueden aparecer de las siguientes maneras \\[\n\\text{+++-},\\,\\text{++-+},\\,\\text{+-++},\\,\\text{-+++}\\,.\n\\] La probabilidad de obtener el primer resultado es \\[\np\\times p\\times p\\times (1-p) = p^3 (1-p)\\,.\n\\] La probabilidad de las otras tres posibilidades es igual y entonces \\[\nP(3;4,p) = 4 p^3(1-p)\\,.\n\\]\nLa fórmula general es\n\\[\nP(s;n,p) = \\frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}\n\\]\n\nfrom scipy.special import comb\n\ndef binomial(s, n, p):\n    return comb(n, s)*p**s*(1-p)**(n - s)\n\n\nimport matplotlib.pyplot as plt\n\n\ndef probs(n, p):\n    return [binomial(s, n, p) for s in range(n+1)]\n\n\nfig = plt.figure(figsize=(8,20), dpi= 100)\n\nax1 = fig.add_subplot(8,2,1)\nax2 = fig.add_subplot(8,2,2)\nax3 = fig.add_subplot(8,2,3)\nax4 = fig.add_subplot(8,2,4)\nax5 = fig.add_subplot(8,2,5)\nax6 = fig.add_subplot(8,2,6)\nax7 = fig.add_subplot(8,2,7)\nax8 = fig.add_subplot(8,2,8)\n\nax1.bar(range(4+1), probs(4,0.5))\nax2.bar(range(5+1), probs(5,0.5))\nax3.bar(range(15+1), probs(15,0.5))\nax4.bar(range(50+1), probs(50,0.5))\nax5.bar(range(5+1), probs(5,0.1))\nax6.bar(range(15+1), probs(15,0.1))\nax7.bar(range(5+1), probs(5,0.9))\nax8.bar(range(15+1), probs(15,0.9))\n        \nax1.set_title('s = 4, p = 0.5')\nax2.set_title('s = 5, p = 0.5')\nax3.set_title('s = 15, p = 0.5')\nax4.set_title('s = 50, p = 0.5')\nax5.set_title('s = 5, p = 0.1')\nax6.set_title('s = 15, p = 0.1')\nax7.set_title('s = 5, p = 0.9')\nax8.set_title('s = 15, p = 0.9')\n\nfig.tight_layout(pad=2.0)\n\n\nfig.show()\n\n/tmp/ipykernel_3951240/159021693.py:33: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  fig.show()\n\n\n\n\n\n\n\n\n\n\nValor esperado: \\(\\langle n \\rangle = rp\\)\nVarianza: \\(\\sigma^2 = np(1-p)\\)\n\n\nimport random\nimport numpy as np\n\ndef realizacion(r, p):\n    probs = np.random.rand(r)\n    return probs &lt; p\n\ndef num_exitos(num_realizaciones, r, p):\n    # probando me dí cuenta que al sumar me regresa el número\n    # de elementos que son True\n    return np.array([sum(realizacion(r, p)) for i in range(num_realizaciones)])\n\n\nnum_exitos(3, 10, 0.2).mean()\n\nnp.float64(1.3333333333333333)\n\n\n\nnum_exitos(10000, 10, 0.2).mean()\n\nnp.float64(2.0026)\n\n\n\nnum_exitos(10000, 10, 0.2).std()\n\nnp.float64(1.274270913110709)\n\n\n\nnp.sqrt(10*0.2*0.8)\n\nnp.float64(1.2649110640673518)",
     "crumbs": [
       "Inicio",
       "Unidad 2: Probabilidad",
@@ -1454,7 +1454,7 @@
     "href": "11_solucion_sistemas_lineales.html#tarea-5.6",
     "title": "Solución de Sistemas de Ecuaciones Lineales",
     "section": "Tarea 5.6",
-    "text": "Tarea 5.6\nConteo de operaciones: Inversión de matriz por cofactores vs. factorización LU\nLa inversión de una matriz \\(A\\) de \\(n \\times n\\) usando el método de cofactores requiere calcular: \\[A^{-1} = \\frac{1}{\\det(A)} \\text{adj}(A)\\] donde \\(\\text{adj}(A)\\) es la matriz adjunta (transpuesta de la matriz de cofactores).\nParte A: Análisis teórico 1. Para calcular \\(\\det(A)\\) usando expansión por cofactores se requieren aproximadamente \\(n!\\) operaciones. Explique por qué. 2. Para calcular la matriz adjunta necesitamos \\(n^2\\) determinantes de matrices \\((n-1) \\times (n-1)\\), cada uno requiriendo \\((n-1)!\\) operaciones. ¿Cuántas operaciones son en total? 3. Compare este conteo con las \\(O(n^3)\\) operaciones de la factorización LU.\nParte B: Implementación y medición de tiempos\nImplemente las siguientes funciones:\nimport time\nimport numpy as np\n\ndef det_cofactor(A):\n    \"\"\"Calcula determinante usando expansión por cofactores\"\"\"\n    n = A.shape[0]\n    if n == 1:\n        return A[0, 0]\n    if n == 2:\n        return A[0, 0] * A[1, 1] - A[0, 1] * A[1, 0]\n    \n    det = 0\n    for j in range(n):\n        # Crear submatriz eliminando fila 0 y columna j\n        sub_A = np.delete(np.delete(A, 0, axis=0), j, axis=1)\n        cofactor = ((-1) ** j) * det_cofactor(sub_A)\n        det += A[0, j] * cofactor\n    return det\n\ndef matrix_inv_cofactor(A):\n    \"\"\"Invierte matriz usando cofactores (solo para matrices pequeñas)\"\"\"\n    n = A.shape[0]\n    det_A = det_cofactor(A)\n    if abs(det_A) &lt; 1e-10:\n        raise ValueError(\"Matriz singular\")\n    \n    adj_A = np.zeros((n, n))\n    for i in range(n):\n        for j in range(n):\n            # Calcular cofactor (i,j)\n            sub_A = np.delete(np.delete(A, i, axis=0), j, axis=1)\n            adj_A[j, i] = ((-1) ** (i + j)) * det_cofactor(sub_A)\n    \n    return adj_A / det_A\n\n# Función para medir tiempos\ndef compare_methods():\n    sizes = [2, 3, 4, 5, 6]  # No usar tamaños mayores para cofactores\n    times_cofactor = []\n    times_lu = []\n    times_numpy = []\n    \n    for n in sizes:\n        # Crear matriz aleatoria bien condicionada\n        A = np.random.randn(n, n)\n        A = A @ A.T + np.eye(n)  # Hacer simétrica positiva definida\n        \n        # Método de cofactores (solo para n &lt;= 6)\n        if n &lt;= 6:\n            start = time.time()\n            inv_cofactor = matrix_inv_cofactor(A)\n            time_cofactor = time.time() - start\n            times_cofactor.append(time_cofactor)\n        else:\n            times_cofactor.append(np.nan)\n        \n        # Factorización LU\n        start = time.time()\n        L, U = lufact(A)\n        # Resolver A*X = I columna por columna\n        I = np.eye(n)\n        inv_lu = np.zeros((n, n))\n        for i in range(n):\n            z = forwardsub(L, I[:, i])\n            inv_lu[:, i] = backsub(U, z)\n        time_lu = time.time() - start\n        times_lu.append(time_lu)\n        \n        # NumPy (referencia)\n        start = time.time()\n        inv_numpy = np.linalg.inv(A)\n        time_numpy = time.time() - start\n        times_numpy.append(time_numpy)\n        \n        print(f\"n={n}: Cofactores={time_cofactor:.6f}s, LU={time_lu:.6f}s, NumPy={time_numpy:.6f}s\")\n    \n    return sizes, times_cofactor, times_lu, times_numpy\nParte C: Análisis de resultados 1. Ejecute compare_methods() y haga una tabla con los tiempos. 2. Grafique los tiempos vs. el tamaño de la matriz en escala logarítmica. 3. ¿A partir de qué tamaño de matriz se vuelve impracticable el método de cofactores? 4. Estime empíricamente el orden de complejidad observado para cada método.",
+    "text": "Tarea 5.6",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
