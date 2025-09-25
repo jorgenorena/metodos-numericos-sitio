@@ -363,6 +363,14 @@ Si tenemos que resolver $A\mathbf{x} = \mathbf{b}$ para muchos vectores $\mathbf
 
 ## Tarea 5.6
 
+La inversión de una matriz $A$ de $n \times n$ usando el método de cofactores requiere calcular:
+$$A^{-1} = \frac{1}{\det(A)} \text{adj}(A)$$
+donde $\text{adj}(A)$ es la matriz adjunta (transpuesta de la matriz de cofactores).
+
+1. Para calcular $\det(A)$ usando expansión por cofactores se requieren aproximadamente $n!$ operaciones. Explique por qué.
+2. Para calcular la matriz adjunta necesitamos $n^2$ determinantes de matrices $(n-1) \times (n-1)$, cada uno requiriendo $(n-1)!$ operaciones. ¿Cuántas operaciones son en total?
+3. ¿Para $n$ grande, cómo se comporta el total de operaciones?
+
 ## Tarea 5.7
 
 Demuestre que el número de condicionamiento de una matriz satisface $\kappa(AB) \leq \kappa(A)\kappa(B)$. Encuentre además un ejemplo donde no se cumple la igualdad.
@@ -387,16 +395,23 @@ A = \pmatrix{
 }\,.
 $$
 
-Considere $\alpha = 0.1$ y los siguientes valores de $\beta = 10, 100, 10^3, ..., 10^12$. Produzca una tabla con las columnas $\beta$, $(x_1 - 1)$ y $\kappa(A)$. Explique.
+Considere $\alpha = 0.1$ y los siguientes valores de $\beta = 10, 100, 10^3, ..., 10^{12}$. Produzca una tabla con las columnas $\beta$, $(x_1 - 1)$ y $\kappa(A)$, donde $\mathbf{x}$ se encuentra usando la factorización LU (sin la P). Explique.
 
 ## Tarea 5.9
 
-Demuestre que si factorizamos una matriz de la forma $A = LU$, su determinante se puede escribir $\det(A) = \det(U) = \prod_i U_{ii}$. Escriba una función que use este hecho para calcular el determinante y verifique para tres matrices distintas.
+Demuestre que si factorizamos una matriz de la forma $A = LU$ usando el algoritmo visto en clase, su determinante se puede escribir $\det(A) = \det(U) = \prod_i U_{ii}$. Escriba una función que use este hecho para calcular el determinante y verifique para tres matrices distintas.
 
 ## Tarea 5.10
 
-Considere
+Considere la matriz triangular inferior
+$$
+A = \begin{pmatrix}
+2 & 0 & 0 & 0 & 0 \\ 
+1 & 1.4 & 0 & 0 & 0 \\ 
+1.4 & 2 & 1.1 & 0 & 0 \\ 
+2.3 & 3.3 & 3 & 0.4 & 0 \\ 
+0.3 & 1 & 5 & 2 & 3 
+\end{pmatrix}
+$$
 
-$$
-A = \pmatrix{}
-$$
+Use el algoritmo visto en clase para encontrar la factorización LU de esta matriz. Explique por qué $L \neq A$ y por qué $U$ no es la matriz identidad.
