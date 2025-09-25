@@ -4,49 +4,79 @@
     "href": "12_newton_y_biseccion.html",
     "title": "El método de bisección y el método de Newton",
     "section": "",
-    "text": "En muchos casos de interés queremos resolver una ecuación de una variable y la solución no se puede obtener de forma analítica. Por ejemplo al calcular las bandas de energía en un sólido de una dimensión se resuelve la siguiente ecuación\n\\[\nf(z) = \\cos(z) - \\frac{\\sin(z)}{z}\n\\]\nLa energía permitida satisface \\(-1 \\leq f(z) \\leq 1\\). Entonces para encontrar las bandas de energía basta encontrar los lugares que satisfacen \\(f(z) = \\pm 1\\). Pero no es posible hacerlo de forma analítica.\nEste tipo de problemas se pueden reducir a encontrar dónde una función es cero. Veremos algunas técnicas para lograrlo."
+    "text": "En muchos casos de interés queremos resolver una ecuación de una variable y la solución no se puede obtener de forma analítica. Por ejemplo al calcular las bandas de energía en un sólido de una dimensión se resuelve la siguiente ecuación\n\\[\nf(z) = \\cos(z) - \\frac{\\sin(z)}{z}\n\\]\nLa energía permitida satisface \\(-1 \\leq f(z) \\leq 1\\). Entonces para encontrar las bandas de energía basta encontrar los lugares que satisfacen \\(f(z) = \\pm 1\\). Pero no es posible hacerlo de forma analítica.\nEste tipo de problemas se pueden reducir a encontrar dónde una función es cero. Veremos algunas técnicas para lograrlo.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Solución de Sistemas de Ecuaciones No Lineales"
+    ]
   },
   {
     "objectID": "12_newton_y_biseccion.html#tarea-6.1",
     "href": "12_newton_y_biseccion.html#tarea-6.1",
     "title": "El método de bisección y el método de Newton",
     "section": "Tarea 6.1",
-    "text": "Tarea 6.1\nUse el método de bisección para encontrar un cero de la función\n\\[\nf(x) = 1 - \\cos(x) -\\frac{\\sin(x)}{x}\n\\]\nentre \\(-6.5\\) y \\(-6.0\\). Grafique el error relativo requerido al calcular el cero en función del número de iteraciones que necesita el método para converger. Compare con la cota teórica."
+    "text": "Tarea 6.1\nUse el método de bisección para encontrar un cero de la función\n\\[\nf(x) = 1 - \\cos(x) -\\frac{\\sin(x)}{x}\n\\]\nentre \\(-6.5\\) y \\(-6.0\\). Grafique el error relativo requerido al calcular el cero en función del número de iteraciones que necesita el método para converger. Compare con la cota teórica.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Solución de Sistemas de Ecuaciones No Lineales"
+    ]
   },
   {
     "objectID": "12_newton_y_biseccion.html#tarea-6.2",
     "href": "12_newton_y_biseccion.html#tarea-6.2",
     "title": "El método de bisección y el método de Newton",
     "section": "Tarea 6.2",
-    "text": "Tarea 6.2\nEncuentre un cero de la función\n\\[\nf(x) = 1 - \\cos(x) -\\frac{\\sin(x)}{x}\n\\]\nentre \\(-6.4\\) y \\(-6.0\\) usando el método de Newton y el método de bisección. Grafique el número de iteraciones requerido así como el tiempo requerido en función de la precisión para ambos métodos."
+    "text": "Tarea 6.2\nEncuentre un cero de la función\n\\[\nf(x) = 1 - \\cos(x) -\\frac{\\sin(x)}{x}\n\\]\nentre \\(-6.4\\) y \\(-6.0\\) usando el método de Newton y el método de bisección. Grafique el número de iteraciones requerido así como el tiempo requerido en función de la precisión para ambos métodos.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Solución de Sistemas de Ecuaciones No Lineales"
+    ]
   },
   {
     "objectID": "12_newton_y_biseccion.html#tarea-6.3",
     "href": "12_newton_y_biseccion.html#tarea-6.3",
     "title": "El método de bisección y el método de Newton",
     "section": "Tarea 6.3",
-    "text": "Tarea 6.3\nBusque un ejemplo de una función tal que el método de bisección con la condición \\(|p_n - p_{n-1}|/|p_n| &lt; \\epsilon\\) converge siempre a un valor que no es un cero de la función."
+    "text": "Tarea 6.3\nBusque un ejemplo de una función tal que el método de bisección con la condición \\(|p_n - p_{n-1}|/|p_n| &lt; \\epsilon\\) converge siempre a un valor que no es un cero de la función.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Solución de Sistemas de Ecuaciones No Lineales"
+    ]
   },
   {
     "objectID": "12_newton_y_biseccion.html#tarea-6.4",
     "href": "12_newton_y_biseccion.html#tarea-6.4",
     "title": "El método de bisección y el método de Newton",
     "section": "Tarea 6.4",
-    "text": "Tarea 6.4\nIntente escribir su propia versión del método de Newton, haciéndola lo más rápida posible. Luego compare el tiempo que tarda en resolver el ejemplo de clase (el cero de la función \\(f(x) = x - \\cos(x)\\)) con el tiempo que tarda el método de Newton que se encuentra en scipy."
+    "text": "Tarea 6.4\nIntente escribir su propia versión del método de Newton, haciéndola lo más rápida posible. Luego compare el tiempo que tarda en resolver el ejemplo de clase (el cero de la función \\(f(x) = x - \\cos(x)\\)) con el tiempo que tarda el método de Newton que se encuentra en scipy.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Solución de Sistemas de Ecuaciones No Lineales"
+    ]
   },
   {
     "objectID": "12_newton_y_biseccion.html#tarea-6.5",
     "href": "12_newton_y_biseccion.html#tarea-6.5",
     "title": "El método de bisección y el método de Newton",
     "section": "Tarea 6.5",
-    "text": "Tarea 6.5\nEjercicio 2.3.25, libro de Burden:\nEl modelo logístico de crecimimiento de poblaciones está descrito por una ecuación de la forma:\n\\[\nP(t) = \\frac{P_L}{1 - ce^{-k t}}\\,.\n\\]\nUse los datos correspondientes a 1960, 1970 y 1980 de la siguiente tabla para encontrar \\(c\\), \\(k\\) y \\(P_L\\) usando el método de la secante. Luego prediga los valores para 1990 y 2020. Compare la predicción para 1990 con los datos reales de la tabla.\n\n\n\nPoblación\nAño\n\n\n\n\n179 323\n1960\n\n\n203 302\n1970\n\n\n226 542\n1980\n\n\n249 633\n1990\n\n\n281 422\n2000\n\n\n308 746\n2010"
+    "text": "Tarea 6.5\nEjercicio 2.3.25, libro de Burden:\nEl modelo logístico de crecimimiento de poblaciones está descrito por una ecuación de la forma:\n\\[\nP(t) = \\frac{P_L}{1 - ce^{-k t}}\\,.\n\\]\nUse los datos correspondientes a 1960, 1970 y 1980 de la siguiente tabla para encontrar \\(c\\), \\(k\\) y \\(P_L\\) usando el método de la secante. Luego prediga los valores para 1990 y 2020. Compare la predicción para 1990 con los datos reales de la tabla.\n\n\n\nPoblación\nAño\n\n\n\n\n179 323\n1960\n\n\n203 302\n1970\n\n\n226 542\n1980\n\n\n249 633\n1990\n\n\n281 422\n2000\n\n\n308 746\n2010",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Solución de Sistemas de Ecuaciones No Lineales"
+    ]
   },
   {
     "objectID": "07_distribuciones.html",
     "href": "07_distribuciones.html",
     "title": "Distribuciones de Probabilidad",
     "section": "",
-    "text": "Consideremos un experimento que puede dar un resultado positivo con probabilidad \\(p\\) o negativo con probabilidad \\(1 - p\\). Preguntamos cuál es la probabilidad de obtener \\(s\\) resultados positivos cuando se realiza el experimento \\(n\\) veces de manera independiente.\nA manera de ejemplo preguntemos primero cuál es la probabilidad de obtener \\(3\\) positivos cuando se realiza el experimento \\(4\\) veces. Estos tres resultados positivos pueden aparecer de las siguientes maneras \\[\n\\text{+++-},\\,\\text{++-+},\\,\\text{+-++},\\,\\text{-+++}\\,.\n\\] La probabilidad de obtener el primer resultado es \\[\np\\times p\\times p\\times (1-p) = p^3 (1-p)\\,.\n\\] La probabilidad de las otras tres posibilidades es igual y entonces \\[\nP(3;4,p) = 4 p^3(1-p)\\,.\n\\]\nLa fórmula general es\n\\[\nP(s;n,p) = \\frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}\n\\]\n\nfrom scipy.special import comb\n\ndef binomial(s, n, p):\n    return comb(n, s)*p**s*(1-p)**(n - s)\n\n\nimport matplotlib.pyplot as plt\n\n\ndef probs(n, p):\n    return [binomial(s, n, p) for s in range(n+1)]\n\n\nfig = plt.figure(figsize=(8,20), dpi= 100)\n\nax1 = fig.add_subplot(8,2,1)\nax2 = fig.add_subplot(8,2,2)\nax3 = fig.add_subplot(8,2,3)\nax4 = fig.add_subplot(8,2,4)\nax5 = fig.add_subplot(8,2,5)\nax6 = fig.add_subplot(8,2,6)\nax7 = fig.add_subplot(8,2,7)\nax8 = fig.add_subplot(8,2,8)\n\nax1.bar(range(4+1), probs(4,0.5))\nax2.bar(range(5+1), probs(5,0.5))\nax3.bar(range(15+1), probs(15,0.5))\nax4.bar(range(50+1), probs(50,0.5))\nax5.bar(range(5+1), probs(5,0.1))\nax6.bar(range(15+1), probs(15,0.1))\nax7.bar(range(5+1), probs(5,0.9))\nax8.bar(range(15+1), probs(15,0.9))\n        \nax1.set_title('s = 4, p = 0.5')\nax2.set_title('s = 5, p = 0.5')\nax3.set_title('s = 15, p = 0.5')\nax4.set_title('s = 50, p = 0.5')\nax5.set_title('s = 5, p = 0.1')\nax6.set_title('s = 15, p = 0.1')\nax7.set_title('s = 5, p = 0.9')\nax8.set_title('s = 15, p = 0.9')\n\nfig.tight_layout(pad=2.0)\n\n\nfig.show()\n\n/tmp/ipykernel_3861667/159021693.py:33: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  fig.show()\n\n\n\n\n\n\n\n\n\n\nValor esperado: \\(\\langle n \\rangle = rp\\)\nVarianza: \\(\\sigma^2 = np(1-p)\\)\n\n\nimport random\nimport numpy as np\n\ndef realizacion(r, p):\n    probs = np.random.rand(r)\n    return probs &lt; p\n\ndef num_exitos(num_realizaciones, r, p):\n    # probando me dí cuenta que al sumar me regresa el número\n    # de elementos que son True\n    return np.array([sum(realizacion(r, p)) for i in range(num_realizaciones)])\n\n\nnum_exitos(3, 10, 0.2).mean()\n\nnp.float64(3.0)\n\n\n\nnum_exitos(10000, 10, 0.2).mean()\n\nnp.float64(1.9923)\n\n\n\nnum_exitos(10000, 10, 0.2).std()\n\nnp.float64(1.2834148822574871)\n\n\n\nnp.sqrt(10*0.2*0.8)\n\nnp.float64(1.2649110640673518)",
+    "text": "Consideremos un experimento que puede dar un resultado positivo con probabilidad \\(p\\) o negativo con probabilidad \\(1 - p\\). Preguntamos cuál es la probabilidad de obtener \\(s\\) resultados positivos cuando se realiza el experimento \\(n\\) veces de manera independiente.\nA manera de ejemplo preguntemos primero cuál es la probabilidad de obtener \\(3\\) positivos cuando se realiza el experimento \\(4\\) veces. Estos tres resultados positivos pueden aparecer de las siguientes maneras \\[\n\\text{+++-},\\,\\text{++-+},\\,\\text{+-++},\\,\\text{-+++}\\,.\n\\] La probabilidad de obtener el primer resultado es \\[\np\\times p\\times p\\times (1-p) = p^3 (1-p)\\,.\n\\] La probabilidad de las otras tres posibilidades es igual y entonces \\[\nP(3;4,p) = 4 p^3(1-p)\\,.\n\\]\nLa fórmula general es\n\\[\nP(s;n,p) = \\frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}\n\\]\n\nfrom scipy.special import comb\n\ndef binomial(s, n, p):\n    return comb(n, s)*p**s*(1-p)**(n - s)\n\n\nimport matplotlib.pyplot as plt\n\n\ndef probs(n, p):\n    return [binomial(s, n, p) for s in range(n+1)]\n\n\nfig = plt.figure(figsize=(8,20), dpi= 100)\n\nax1 = fig.add_subplot(8,2,1)\nax2 = fig.add_subplot(8,2,2)\nax3 = fig.add_subplot(8,2,3)\nax4 = fig.add_subplot(8,2,4)\nax5 = fig.add_subplot(8,2,5)\nax6 = fig.add_subplot(8,2,6)\nax7 = fig.add_subplot(8,2,7)\nax8 = fig.add_subplot(8,2,8)\n\nax1.bar(range(4+1), probs(4,0.5))\nax2.bar(range(5+1), probs(5,0.5))\nax3.bar(range(15+1), probs(15,0.5))\nax4.bar(range(50+1), probs(50,0.5))\nax5.bar(range(5+1), probs(5,0.1))\nax6.bar(range(15+1), probs(15,0.1))\nax7.bar(range(5+1), probs(5,0.9))\nax8.bar(range(15+1), probs(15,0.9))\n        \nax1.set_title('s = 4, p = 0.5')\nax2.set_title('s = 5, p = 0.5')\nax3.set_title('s = 15, p = 0.5')\nax4.set_title('s = 50, p = 0.5')\nax5.set_title('s = 5, p = 0.1')\nax6.set_title('s = 15, p = 0.1')\nax7.set_title('s = 5, p = 0.9')\nax8.set_title('s = 15, p = 0.9')\n\nfig.tight_layout(pad=2.0)\n\n\nfig.show()\n\n/tmp/ipykernel_3863435/159021693.py:33: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  fig.show()\n\n\n\n\n\n\n\n\n\n\nValor esperado: \\(\\langle n \\rangle = rp\\)\nVarianza: \\(\\sigma^2 = np(1-p)\\)\n\n\nimport random\nimport numpy as np\n\ndef realizacion(r, p):\n    probs = np.random.rand(r)\n    return probs &lt; p\n\ndef num_exitos(num_realizaciones, r, p):\n    # probando me dí cuenta que al sumar me regresa el número\n    # de elementos que son True\n    return np.array([sum(realizacion(r, p)) for i in range(num_realizaciones)])\n\n\nnum_exitos(3, 10, 0.2).mean()\n\nnp.float64(1.3333333333333333)\n\n\n\nnum_exitos(10000, 10, 0.2).mean()\n\nnp.float64(2.0048)\n\n\n\nnum_exitos(10000, 10, 0.2).std()\n\nnp.float64(1.2826924767846735)\n\n\n\nnp.sqrt(10*0.2*0.8)\n\nnp.float64(1.2649110640673518)",
     "crumbs": [
       "Inicio",
       "Unidad 2: Probabilidad",
