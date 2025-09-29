@@ -83,7 +83,7 @@ plt.plot(x, [lagrange(xi, puntos) for xi in x])
 ```{python}
 x = np.linspace(0.5, 10, 100)
 plt.plot(x, 1/x)
-plt.plot(x, [legendre(xi, puntos) for xi in x])
+plt.plot(x, [lagrange(xi, puntos) for xi in x])
 ```
 
 **Teorema:** (Teorema generalizado de Rolle) Si $f$ es una función continua y $n$ veces diferenciable sobre el intervalo $(a, b)$ y $f(x) = 0$ en $n + 1$ puntos diferentes en ese intervalo $x_o < x_1 < ... < x_n$, entonces existe un número $\xi \in (x_o, x_n)$ tal que $f^{(n)}(\xi) = 0$.
