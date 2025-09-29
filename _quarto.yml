@@ -43,6 +43,8 @@ website:
             href: 11_solucion_sistemas_lineales.qmd
           - text: "Solución de Ecuaciones No Lineales"
             href: 12_newton_y_biseccion.qmd
+          - text: "Interpolación"
+            href: 13_interpolacion.qmd
   sidebar:
     style: docked
     contents:
@@ -76,6 +78,8 @@ website:
             href: 11_solucion_sistemas_lineales.qmd
           - text: "Solución de Ecuaciones No Lineales"
             href: 12_newton_y_biseccion.qmd
+          - text: "Interpolación"
+            href: 13_interpolacion.qmd
 
 format:
   html:
