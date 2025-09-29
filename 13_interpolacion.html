@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Interpolación – Métodos Numéricos y Probabilidades 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Métodos Numéricos y Probabilidades 2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Acerca de</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-1">    
+        <li>
+    <a class="dropdown-item" href="./01_funcionamiento_cpu.html">
+ <span class="dropdown-text">Funcionamiento de la CPU</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02_python.html">
+ <span class="dropdown-text">Repaso de Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03_numpy_arrays.html">
+ <span class="dropdown-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04_numeros_y_condicionamiento.html">
+ <span class="dropdown-text">Representación de números y condicionamiento</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05_algoritmos_y_estabilidad.html">
+ <span class="dropdown-text">Algoritmos y estabilidad</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-2">    
+        <li>
+    <a class="dropdown-item" href="./06_definicion_probabilidad.html">
+ <span class="dropdown-text">Propiedades de la probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07_distribuciones.html">
+ <span class="dropdown-text">Distribuciones de probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08_varias_variables_aleatorias.html">
+ <span class="dropdown-text">Varias variables aleatorias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09_teorema_central_del_limite.html">
+ <span class="dropdown-text">Teorema central del límite</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./10_entropia.html">
+ <span class="dropdown-text">Entropía de Shannon</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-3" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 3</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-3">    
+        <li>
+    <a class="dropdown-item" href="./11_solucion_sistemas_lineales.html">
+ <span class="dropdown-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12_newton_y_biseccion.html">
+ <span class="dropdown-text">Solución de Ecuaciones No Lineales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./13_interpolacion.html">
+ <span class="dropdown-text">Interpolación</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11_solucion_sistemas_lineales.html">Unidad 3: Cálculo Numérico</a></li><li class="breadcrumb-item"><a href="./13_interpolacion.html">Interpolación</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 1: Introducción</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_funcionamiento_cpu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funcionamiento de la CPU</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_numpy_arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_numeros_y_condicionamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Representación de números y condicionamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_algoritmos_y_estabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmos y estabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 2: Probabilidad</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_definicion_probabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Propiedades de la probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_distribuciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distribuciones de probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_varias_variables_aleatorias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Varias variables aleatorias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_teorema_central_del_limite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Teorema central del límite</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_entropia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Entropía de Shannon</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 3: Cálculo Numérico</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_solucion_sistemas_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_newton_y_biseccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Ecuaciones No Lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_interpolacion.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Interpolación</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#interpolación-polinomial" id="toc-interpolación-polinomial" class="nav-link active" data-scroll-target="#interpolación-polinomial">Interpolación Polinomial</a></li>
+  <li><a href="#polinomios-de-lagrange" id="toc-polinomios-de-lagrange" class="nav-link" data-scroll-target="#polinomios-de-lagrange">Polinomios de Lagrange</a>
+  <ul class="collapse">
+  <li><a href="#diferencias-divididas" id="toc-diferencias-divididas" class="nav-link" data-scroll-target="#diferencias-divididas">Diferencias divididas</a></li>
+  </ul></li>
+  <li><a href="#polinomios-osculantes" id="toc-polinomios-osculantes" class="nav-link" data-scroll-target="#polinomios-osculantes">Polinomios osculantes</a></li>
+  <li><a href="#splines-cúbicas" id="toc-splines-cúbicas" class="nav-link" data-scroll-target="#splines-cúbicas">Splines cúbicas</a></li>
+  <li><a href="#scipy" id="toc-scipy" class="nav-link" data-scroll-target="#scipy">Scipy</a></li>
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">Tareas</a>
+  <ul class="collapse">
+  <li><a href="#tarea-6.6" id="toc-tarea-6.6" class="nav-link" data-scroll-target="#tarea-6.6">Tarea 6.6</a></li>
+  <li><a href="#tarea-6.7" id="toc-tarea-6.7" class="nav-link" data-scroll-target="#tarea-6.7">Tarea 6.7</a></li>
+  <li><a href="#tarea-6.8" id="toc-tarea-6.8" class="nav-link" data-scroll-target="#tarea-6.8">Tarea 6.8</a></li>
+  <li><a href="#tarea-6.9" id="toc-tarea-6.9" class="nav-link" data-scroll-target="#tarea-6.9">Tarea 6.9</a></li>
+  <li><a href="#tarea-6.10" id="toc-tarea-6.10" class="nav-link" data-scroll-target="#tarea-6.10">Tarea 6.10</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11_solucion_sistemas_lineales.html">Unidad 3: Cálculo Numérico</a></li><li class="breadcrumb-item"><a href="./13_interpolacion.html">Interpolación</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Interpolación</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="interpolación-polinomial" class="level1">
+<h1>Interpolación Polinomial</h1>
+<p>Las funciones genéricas son difíciles de integrar o derivar. Una manera de simplificar los cálculos es aproximar la función por medio de un polinomio cuyas derivadas e integrales son casi triviales.</p>
+<p>Por otro lado, en muchos casos calcular una función es numéricamente costoso. Podemos entonces calcularla en un número de puntos limitado y asumiendo que es lo suficientemente suave, obtener valores aproximados para cualquier otro punto. A esto se lo llama interpolar la función.</p>
+<p>Uno podría pensar que los polinomios de Taylor proveen una buena aproximación a las funciones.</p>
+<div id="9907a0d3" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c2b560c1" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="fl">0.2</span>, <span class="dv">4</span>, <span class="dv">100</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ex <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>x</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>tay0 <span class="op">=</span> np.full(<span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>tay1 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (x <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tay2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (x <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> (x <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>tay3 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (x <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> (x <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> (x <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, ex, label <span class="op">=</span> <span class="st">'exacta'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x, tay0, label <span class="op">=</span> <span class="st">'Taylor 0'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.plot(x, tay1, label <span class="op">=</span> <span class="st">'Taylor 1'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x, tay2, label <span class="op">=</span> <span class="st">'Taylor 2'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.plot(x, tay3, label <span class="op">=</span> <span class="st">'Taylor 3'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_interpolacion_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="polinomios-de-lagrange" class="level1">
+<h1>Polinomios de Lagrange</h1>
+<p>Dados <span class="math inline">\(n+1\)</span> puntos, hay un único polinomio de grado <span class="math inline">\(n\)</span> que pasa por todos esos puntos. Ese polinomio está dado por:</p>
+<p><span class="math display">\[
+P(x) = \sum_{i = 0}^n f(x_i) L_{n,i}(x)\,,
+\]</span></p>
+<p>donde</p>
+<p><span class="math display">\[
+L_{n,i}(x) = \prod_{j = 0, j \neq i}^n \frac{(x - x_j)}{(x_i - x_j)}
+\]</span></p>
+<div id="b05f6303" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lagrange(x, puntos):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Interpola una función que pasa por n puntos como un polinomio</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">    de Legendre y lo evalúa en el punto x. Los puntos deben ser</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    dados como una lista de tuplas (xi, f(xi)).</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    Lis <span class="op">=</span> np.ones(<span class="bu">len</span>(puntos))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    fs <span class="op">=</span> np.ones(<span class="bu">len</span>(puntos))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(puntos)):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        fs[i] <span class="op">=</span> puntos[i][<span class="dv">1</span>]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(puntos)):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> j <span class="op">!=</span> i:</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                Lis[i] <span class="op">*=</span> (x <span class="op">-</span> puntos[j][<span class="dv">0</span>])<span class="op">/</span>(puntos[i][<span class="dv">0</span>] <span class="op">-</span> puntos[j][<span class="dv">0</span>])</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(fs<span class="op">*</span>Lis)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f9ea1492" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> ((<span class="dv">2</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>), (<span class="fl">2.75</span>, <span class="dv">1</span><span class="op">/</span><span class="fl">2.75</span>), (<span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lagrange(<span class="dv">2</span>, puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>np.float64(0.5)</code></pre>
+</div>
+</div>
+<div id="e33d3783" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">100</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, <span class="dv">1</span><span class="op">/</span>x)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, [lagrange(xi, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_interpolacion_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="0c99bdca" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="fl">0.5</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, <span class="dv">1</span><span class="op">/</span>x)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, [lagrange(xi, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_interpolacion_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Teorema:</strong> (Teorema generalizado de Rolle) Si <span class="math inline">\(f\)</span> es una función continua y <span class="math inline">\(n\)</span> veces diferenciable sobre el intervalo <span class="math inline">\((a, b)\)</span> y <span class="math inline">\(f(x) = 0\)</span> en <span class="math inline">\(n + 1\)</span> puntos diferentes en ese intervalo <span class="math inline">\(x_o &lt; x_1 &lt; ... &lt; x_n\)</span>, entonces existe un número <span class="math inline">\(\xi \in (x_o, x_n)\)</span> tal que <span class="math inline">\(f^{(n)}(\xi) = 0\)</span>.</p>
+<p>La intuición es la siguiente: Hay <span class="math inline">\(n\)</span> lugares donde la primera derivada es cero (entre los ceros), luego hay <span class="math inline">\(n - 1\)</span> lugares donde la segunda derivada es cero (entre los ceros de la primera) y así sucesivamente.</p>
+<p><strong>Teorema:</strong> Sean <span class="math inline">\(x_0 &lt; x_1 &lt; ...&lt; x_n \in [a,b]\)</span> y <span class="math inline">\(f\)</span> una función <span class="math inline">\(C^{n+1}[a,b]\)</span>, entonces para cada <span class="math inline">\(x \in [a,b]\)</span>, existe un número <span class="math inline">\(\xi \in (x_0,x_n)\)</span> tal que</p>
+<p><span class="math display">\[
+f(x) = P(x) + \frac{f^{(n+1)}(\xi)}{(n+1)!}(x - x_0)(x - x_1)...(x - x_n)\,.
+\]</span></p>
+<p>Demostración: Si <span class="math inline">\(x = x_k\)</span> se cumple trivialmente. Sea</p>
+<p><span class="math display">\[
+g(t) = f(t) - P(t) - [f(x) - P(x)]\frac{(t - x_0)...(t - x_n)}{(x - x_0)...(x - x_n)}
+\]</span></p>
+<p>esta función es <span class="math inline">\(n + 1\)</span> veces diferenciable. Además <span class="math inline">\(g(x_k) = 0\)</span> y <span class="math inline">\(g(x) = 0\)</span>. Entonces por el teorema generalizado de Rolle existe un número <span class="math inline">\(\xi \in (x_0, x_n)\)</span> tal que <span class="math inline">\(g^{(n + 1)}(\xi) = 0\)</span> y entonces</p>
+<p><span class="math display">\[
+f^{(n+1)}(\xi) - P^{(n + 1)}(\xi) - [f(x) - P(x)]\frac{d^{n + 1}}{dt^{n+1}}\frac{(t - x_0)...(t - x_n)}{(x - x_0)...(x - x_n)} = 0
+\]</span></p>
+<p>y además</p>
+<p><span class="math display">\[
+\frac{d^{n+1}}{dt^{n+1}}\frac{(t - x_0)...(t - x_n)}{(x - x_0)...(x - x_n)} = \frac{(n + 1)!}{(x - x_0)...(x - x_n)}
+\]</span></p>
+<p>y entonces</p>
+<p><span class="math display">\[
+f^{(n + 1)}(\xi) - [f(x) - P(x)]\frac{(n + 1)!}{(x - x_0)...(x - x_n)} = 0
+\]</span></p>
+<p>despejando se obtiene el resultado.</p>
+<p><strong>Ejemplo:</strong> Queremos preparar una tabla de <span class="math inline">\(e^x\)</span> para puntos equidistantes entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span>. Pedimos que el error de una interpolación lineal entre dos puntos de la tabla sea menor a <span class="math inline">\(10^{-6}\)</span>, encontremos el número de puntos necesarios.</p>
+<p><span class="math display">\[
+|f(x) - P(x)| \leq \frac{f^{(2)}(\xi)}{2!}|(x - jh)(x - (j + 1)h)| \leq \frac{e}{2}|(x - jh)(x - (j + 1)h)|
+\]</span></p>
+<p>Para encontrar el máximo de <span class="math inline">\(|(x - jh)(x - (j + 1)h)|\)</span> definimos <span class="math inline">\(g(x) = (x - jh)(x - (j+1)h)\)</span> tal que</p>
+<p><span class="math display">\[
+g'(x) = 2\left(x - jh - \frac{h}{2}\right)
+\]</span></p>
+<p>que tiene un extremo en <span class="math inline">\(x = jh + h/2\)</span> para el cual <span class="math inline">\(g(x) = -h^2/4\)</span>, entonces</p>
+<p><span class="math display">\[
+|f(x) - P(x)| \leq \frac{e}{2}\frac{h^2}{4}.
+\]</span></p>
+<p>Si queremos que esto sea menor que <span class="math inline">\(10^{-6}\)</span> necesitamos que <span class="math inline">\(h \leq (8\times 10^{-6}/e)^{1/2}\)</span>, es decir más de <span class="math inline">\(1/(8\times 10^{-6}/e)^{1/2}\)</span> puntos.</p>
+<section id="diferencias-divididas" class="level2">
+<h2 class="anchored" data-anchor-id="diferencias-divididas">Diferencias divididas</h2>
+<p>Queremos obtener una lista de los coeficientes del polinomio de la forma</p>
+<p><span class="math display">\[
+P(x) = a_o + a_1 (x - x_o) + a_2 (x - x_o)(x - x_1) + ... + a_n (x - x_o)...(x - x_{n - 1})
+\]</span></p>
+<p>Claramente</p>
+<p><span class="math display">\[
+a_o = P(x_o) = f(x_o)
+\]</span></p>
+<p>continuando</p>
+<p><span class="math display">\[
+f(x_1) = P(x_1) = a_o + a_1 (x_1 - x_o)
+\]</span></p>
+<p>tal que</p>
+<p><span class="math display">\[
+a_1 = \frac{f(x_1) - f(x_o)}{x_1 - x_o} \equiv f[x_o, x_1]
+\]</span></p>
+<p>también</p>
+<p><span class="math display">\[
+f(x_2) = P(x_2) = a_o + a_1 (x_2 - x_o) + a_2 (x_2 - x_1)(x_2 - x_o)
+\]</span></p>
+<p>tal que</p>
+<p><span class="math display">\[
+a_2 = \frac{f(x_2) - f(x_o) - (f(x_1) - f(x_o))(x_2 - x_o)/(x_1 - x_o)}{(x_2 - x_1)(x_2 - x_o)}
+\]</span></p>
+<p>simplificando</p>
+<p><span class="math display">\[
+a_2 = \frac{(f(x_2) - f(x_o))/(x_2 - x_o) - (f(x_1) - f(x_o))/(x_1 - x_o)}{(x_2 - x_1)} = \frac{f[x_o, x_2] - f[x_o, x_1]}{(x_2 - x_1)} \equiv f[x_o, x_1, x_2]
+\]</span></p>
+<p>Se puede demostrar que</p>
+<p><span class="math display">\[
+a_k = f[x_o, x_1, ..., x_k] \equiv \frac{f[x_o, x_1,...,x_{k-2}, x_k] - f[x_o, x_1,...,x_{k-2},x_{k-1}]}{(x_k - x_{k-1})}
+\]</span></p>
+<div id="a06630ae" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> difer(puntos):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(puntos) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    Fs <span class="op">=</span> [np.zeros(n <span class="op">+</span> <span class="dv">1</span>)]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        Fs[<span class="dv">0</span>][i] <span class="op">=</span> puntos[i][<span class="dv">1</span>]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        Fs.append(np.zeros(n <span class="op">+</span> <span class="dv">1</span> <span class="op">-</span> i))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            Fs[j][i<span class="op">-</span>j] <span class="op">=</span> (Fs[j<span class="op">-</span><span class="dv">1</span>][i<span class="op">-</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> Fs[j<span class="op">-</span><span class="dv">1</span>][i<span class="op">-</span>j])<span class="op">/</span>(puntos[i][<span class="dv">0</span>] <span class="op">-</span> puntos[i<span class="op">-</span>j][<span class="dv">0</span>])</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [Fs[i][<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">+</span> <span class="dv">1</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="73cc088b" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="fl">0.7651977</span>], [<span class="fl">1.3</span>, <span class="fl">0.6200860</span>], [<span class="fl">1.6</span>, <span class="fl">0.4554022</span>], [<span class="fl">1.9</span>, <span class="fl">0.2818186</span>], [<span class="fl">2.2</span>, <span class="fl">0.1103623</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cec2b915" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> difer(puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4f6e4526" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>np.prod([i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>)])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>np.float64(1.0)</code></pre>
+</div>
+</div>
+<div id="537042a9" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poly(x, coefs):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(coef[n]<span class="op">*</span>np.prod([(x <span class="op">-</span> puntos[i,<span class="dv">0</span>]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coefs)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8239db43" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, [poly(xi, coef) <span class="cf">for</span> xi <span class="kw">in</span> x])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(puntos[:,<span class="dv">0</span>], puntos[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_interpolacion_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="polinomios-osculantes" class="level1">
+<h1>Polinomios osculantes</h1>
+<p>Ahora queremos requerir que nuestros polinomios no sólo pasen por todos los puntos entre los cuales se quiere interpolar, si no que además coincidan también sus derivadas. Este caso no se da con mucha frecuencia ya que es raro tener las derivadas de una función que se quiere interpolar, pero puede ser de alguna utilidad.</p>
+<p>Los polinomios que satisfacen</p>
+<p><span class="math display">\[
+P(x_i) = f(x_i)\,,\quad P'(x_i) = f'(x_i)\,,
+\]</span></p>
+<p>en <span class="math inline">\(n\)</span> puntos, se llaman polinomios de Hermite. Estos polinomios deben ser de grado <span class="math inline">\(2n\)</span> para satisfacer estas condiciones.</p>
+<p>Un modo de obtener los polinomios de Hermite es a través de las diferencias divididas. Sólo que ahora contamos cada punto dos veces: <span class="math inline">\(z_{2i} = z_{2i + 1} = x_i\)</span>. Además tomamos por definición</p>
+<p><span class="math display">\[
+f[z_{2i}, z_{2i + 1}] = f'(x_i).
+\]</span></p>
+<p>El polinomio de Hermite está entonces dado por</p>
+<p><span class="math display">\[
+P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
+\]</span></p>
+<div id="02bffecb" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c64fc21a" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hermite(puntos):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(puntos) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    zs <span class="op">=</span> np.zeros(<span class="dv">2</span><span class="op">*</span>n <span class="op">+</span> <span class="dv">2</span>) <span class="co"># Creamos el doble de puntos</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    Fs <span class="op">=</span> [np.zeros(<span class="dv">2</span><span class="op">*</span>n <span class="op">+</span> <span class="dv">2</span>), np.zeros(<span class="dv">2</span><span class="op">*</span>n <span class="op">+</span> <span class="dv">1</span>)] <span class="co"># Creamos las primeras columnas de f[]</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Llenamos las dos primeras columnas de f[]</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        zs[<span class="dv">2</span><span class="op">*</span>i] <span class="op">=</span> puntos[i][<span class="dv">0</span>]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        zs[<span class="dv">2</span><span class="op">*</span>i <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> puntos[i][<span class="dv">0</span>]</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        Fs[<span class="dv">0</span>][<span class="dv">2</span><span class="op">*</span>i] <span class="op">=</span> puntos[i][<span class="dv">1</span>]</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        Fs[<span class="dv">0</span>][<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> puntos[i][<span class="dv">1</span>]</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        Fs[<span class="dv">1</span>][<span class="dv">2</span><span class="op">*</span>i] <span class="op">=</span> puntos[i][<span class="dv">2</span>]</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>            Fs[<span class="dv">1</span>][<span class="dv">2</span><span class="op">*</span>i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> (Fs[<span class="dv">0</span>][<span class="dv">2</span><span class="op">*</span>i] <span class="op">-</span> Fs[<span class="dv">0</span>][<span class="dv">2</span><span class="op">*</span>i<span class="op">-</span><span class="dv">1</span>])<span class="op">/</span>(zs[<span class="dv">2</span><span class="op">*</span>i] <span class="op">-</span> zs[<span class="dv">2</span><span class="op">*</span>i<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculamos las diferencias divididas</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">2</span><span class="op">*</span>n <span class="op">+</span> <span class="dv">2</span>):</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        Fs.append(np.zeros(<span class="dv">2</span><span class="op">*</span>n <span class="op">+</span> <span class="dv">2</span> <span class="op">-</span> i))</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>            Fs[j][i<span class="op">-</span>j] <span class="op">=</span> (Fs[j<span class="op">-</span><span class="dv">1</span>][i<span class="op">-</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> Fs[j<span class="op">-</span><span class="dv">1</span>][i<span class="op">-</span>j])<span class="op">/</span>(zs[i] <span class="op">-</span> zs[i<span class="op">-</span>j])</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [Fs[i][<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span><span class="op">*</span>n <span class="op">+</span> <span class="dv">2</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="139827c8" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> [[<span class="fl">1.3</span>, <span class="fl">0.6200860</span>, <span class="op">-</span><span class="fl">0.5220232</span>], [<span class="fl">1.6</span>, <span class="fl">0.4554022</span>, <span class="op">-</span><span class="fl">0.5698959</span>], [<span class="fl">1.9</span>, <span class="fl">0.2818186</span>, <span class="op">-</span><span class="fl">0.5811571</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ac0cd530" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> hermite(puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ee7e8c64" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poly_hermite(x, coefs, puntos):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    zs <span class="op">=</span> [puntos[n<span class="op">//</span><span class="dv">2</span>][<span class="dv">0</span>] <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coefs))]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    terms <span class="op">=</span> [(x <span class="op">-</span> zs[i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coefs))]</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coefs)):</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> coefs[n]<span class="op">*</span>np.prod(terms[:n])</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="dc1915e9" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>poly_hermite(<span class="fl">1.5</span>, coefs, puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>np.float64(0.5118277017283951)</code></pre>
+</div>
+</div>
+<p>Hagamos un ejemplo. Interpolemos la función de <span class="math inline">\(1/x\)</span> entre <span class="math inline">\(0.2\)</span> y <span class="math inline">\(2\)</span> usando tres puntos usando un polinomio de Lagrange y luego usando un polinomio de Hermite.</p>
+<div id="92bf309f" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> difer(puntos):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(puntos) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    Fs <span class="op">=</span> [np.zeros(n <span class="op">+</span> <span class="dv">1</span>)]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        Fs[<span class="dv">0</span>][i] <span class="op">=</span> puntos[i][<span class="dv">1</span>]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        Fs.append(np.zeros(n <span class="op">+</span> <span class="dv">1</span> <span class="op">-</span> i))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>            Fs[j][i<span class="op">-</span>j] <span class="op">=</span> (Fs[j<span class="op">-</span><span class="dv">1</span>][i<span class="op">-</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> Fs[j<span class="op">-</span><span class="dv">1</span>][i<span class="op">-</span>j])<span class="op">/</span>(puntos[i][<span class="dv">0</span>] <span class="op">-</span> puntos[i<span class="op">-</span>j][<span class="dv">0</span>])</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [Fs[i][<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">+</span> <span class="dv">1</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="9ba4513b" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> np.array([[<span class="fl">0.5</span>, <span class="dv">1</span><span class="op">/</span><span class="fl">0.5</span>, <span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="fl">0.5</span><span class="op">**</span><span class="dv">2</span>], [<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>], [<span class="dv">2</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">4</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d50a9b96" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>coefs_lagrange <span class="op">=</span> difer(puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ec767caf" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poly_lagrange(x, coefs, puntos):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(coefs[n]<span class="op">*</span>np.prod([(x <span class="op">-</span> puntos[i,<span class="dv">0</span>]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coefs)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="87ddb1cb" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>coefs_hermite <span class="op">=</span> hermite(puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c30b3d8b" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="fl">0.15</span>, <span class="fl">2.5</span>, <span class="dv">100</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>exact <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>x</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> [poly_lagrange(xi, coefs_lagrange, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>her <span class="op">=</span> [poly_hermite(xi, coefs_hermite, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x, exact)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x, lag)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, her)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_interpolacion_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="splines-cúbicas" class="level1">
+<h1>Splines cúbicas</h1>
+<p>Los polinomios de alto orden tienen problemas al intentar interpolar una función. Intentemos un ejemplo tomando muchos puntos.</p>
+<div id="a066c6b6" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mini <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>maxi <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> <span class="dv">9</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>xp <span class="op">=</span> np.linspace(mini, maxi, order)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> np.array([[xi, np.sin(xi)<span class="op">/</span>xi] <span class="cf">for</span> xi <span class="kw">in</span> xp])</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>coefs_lagrange <span class="op">=</span> difer(puntos)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(mini, maxi, <span class="dv">100</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>exact <span class="op">=</span> np.sin(x)<span class="op">/</span>x</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> [poly_lagrange(xi, coefs_lagrange, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>plt.scatter(puntos[:,<span class="dv">0</span>], puntos[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>plt.plot(x, exact)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>plt.plot(x, lag)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_interpolacion_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Lo mismo ocurre cuando los puntos de datos contienen un error numérico.</p>
+<p>Por este motivo es más práctico hacer una interpolación de la función tramo por tramo.</p>
+<div id="d79bfd47" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_ind(x, puntos):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(puntos)):</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x <span class="op">&lt;</span> puntos[i,<span class="dv">0</span>] <span class="kw">and</span> i <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lin_interp(x, puntos):</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span> puntos[<span class="bu">len</span>(puntos)<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>]:</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> puntos[<span class="bu">len</span>(puntos)<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> x <span class="op">&lt;=</span> puntos[<span class="dv">0</span>,<span class="dv">0</span>]:</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> puntos[<span class="dv">0</span>,<span class="dv">1</span>]</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> find_ind(x, puntos)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    Lo <span class="op">=</span> puntos[i][<span class="dv">1</span>]<span class="op">*</span>(x <span class="op">-</span> puntos[i<span class="op">+</span><span class="dv">1</span>][<span class="dv">0</span>])<span class="op">/</span>(puntos[i][<span class="dv">0</span>] <span class="op">-</span> puntos[i<span class="op">+</span><span class="dv">1</span>][<span class="dv">0</span>])</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> puntos[i<span class="op">+</span><span class="dv">1</span>][<span class="dv">1</span>]<span class="op">*</span>(x <span class="op">-</span> puntos[i][<span class="dv">0</span>])<span class="op">/</span>(puntos[i<span class="op">+</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">-</span> puntos[i][<span class="dv">0</span>])</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Lo <span class="op">+</span> L1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0e602d0b" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mini <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>maxi <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> <span class="dv">9</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>xp <span class="op">=</span> np.linspace(mini, maxi, order)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> np.array([[xi, np.sin(xi)<span class="op">/</span>xi] <span class="cf">for</span> xi <span class="kw">in</span> xp])</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(mini, maxi, <span class="dv">100</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>exact <span class="op">=</span> np.sin(x)<span class="op">/</span>x</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>lin <span class="op">=</span> [lin_interp(xi, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>plt.scatter(puntos[:,<span class="dv">0</span>], puntos[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x, exact)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>plt.plot(x, lin)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_interpolacion_files/figure-html/cell-28-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Para lograr un mejor ajuste (más suave) podemos imponer más condiciones. Por ejemplo podemos pedir que la derivada sea igual a la derivada de la función que queremos interpolar. Pero con frecuencia no tenemos la derivada de la función.</p>
+<p>Sea <span class="math inline">\(S_i\)</span> el polinomio que interpola entre los puntos <span class="math inline">\(x_i\)</span> y <span class="math inline">\(x_{i+1}\)</span>. Podemos pedir que la derivada de la interpolación sea continua, es decir</p>
+<p><span class="math display">\[
+S_{i}'(x_{i+1}) = S_{i+1}'(x_{i+1})
+\]</span></p>
+<p>Estas son <span class="math inline">\(n - 2\)</span> condiciones adicionales (sobre las <span class="math inline">\(2n - 2\)</span> condiciones <span class="math inline">\(S_{i}(x_i) = f(x_i)\)</span> y <span class="math inline">\(S_{i}(x_{i+1}) = f(x_{i+1})\)</span>). Tendremos <span class="math inline">\(n-1\)</span> polinomios interpolantes, tal que para lograr imponer estas condiciones es neceario usar polinomios cuadráticos, cada uno de los cuales contiene tres coeficientes para un total de <span class="math inline">\(3n - 3\)</span>.</p>
+<p>El tipo de polinomios más usados tienen una condición sobre las anteriores</p>
+<p><span class="math display">\[
+S_{i}''(x_{i+1}) = S_{i+1}''(x_{i+1})
+\]</span></p>
+<p>Ahora tendremos <span class="math inline">\(4n - 6\)</span> condiciones. Para cumplirlas necesitamos polinomios de orden al menos cúbico, para un total de <span class="math inline">\(4n - 4\)</span> coeficientes libres. A estos polinomios se los llama splines cúbicas. Pero para fijarlos completamente falta una condición. Escogemos la que es más útil en la práctica</p>
+<p><span class="math display">\[
+S_0''(x_o) = S_{n-1}''(x_n) = 0
+\]</span></p>
+<p>A estas se las llama splines naturales. Se pueden encontrar resolviendo un sistema de <span class="math inline">\(4n - 4\)</span> ecuaciones.</p>
+<div id="63264c52" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spline_coefs(puntos):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(puntos) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> np.zeros(n)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        h[i] <span class="op">=</span> puntos[i <span class="op">+</span> <span class="dv">1</span>][<span class="dv">0</span>] <span class="op">-</span> puntos[i][<span class="dv">0</span>]</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> puntos[:,<span class="dv">1</span>]</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> np.zeros(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        alpha[i<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> (<span class="dv">3</span><span class="op">/</span>h[i])<span class="op">*</span>(a[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> a[i]) <span class="op">-</span> (<span class="dv">3</span><span class="op">/</span>h[i<span class="op">-</span><span class="dv">1</span>])<span class="op">*</span>(a[i] <span class="op">-</span> a[i<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Se resuelve un sistema de ecuaciones:</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> np.ones(n <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.zeros(n)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> np.zeros(n <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>        l[i] <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>(puntos[i<span class="op">+</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">-</span> puntos[i<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>]) <span class="op">-</span> h[i<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>mu[i<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>        mu[i] <span class="op">=</span> h[i]<span class="op">/</span>l[i]</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>        z[i] <span class="op">=</span> (alpha[i<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> h[i<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>z[i<span class="op">-</span><span class="dv">1</span>])<span class="op">/</span>l[i]</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> np.zeros(n)</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> np.zeros(n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> np.zeros(n)</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>        c[j] <span class="op">=</span> z[j] <span class="op">-</span> mu[j]<span class="op">*</span>c[j<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>        b[j] <span class="op">=</span> (a[j<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> a[j])<span class="op">/</span>h[j] <span class="op">-</span> h[j]<span class="op">*</span>(c[j<span class="op">+</span><span class="dv">1</span>] <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>c[j])<span class="op">/</span><span class="dv">3</span></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>        d[j] <span class="op">=</span> (c[j<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> c[j])<span class="op">/</span>(<span class="dv">3</span><span class="op">*</span>h[j])</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a, b, c, d</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="1a1ff23a" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spline_eval(x, coefs, puntos):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span> puntos[<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>]:</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> puntos[<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> x <span class="op">&lt;=</span> puntos[<span class="dv">0</span>,<span class="dv">0</span>]:</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> puntos[<span class="dv">0</span>,<span class="dv">1</span>]</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> find_ind(x, puntos)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    a, b, c, d <span class="op">=</span> coefs</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (a[i] <span class="op">+</span> b[i]<span class="op">*</span>(x <span class="op">-</span> puntos[i][<span class="dv">0</span>]) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>            c[i]<span class="op">*</span>(x <span class="op">-</span> puntos[i][<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> d[i]<span class="op">*</span>(x <span class="op">-</span> puntos[i][<span class="dv">0</span>])<span class="op">**</span><span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="2abbf6d4" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>mini <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>maxi <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> <span class="dv">9</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>xp <span class="op">=</span> np.linspace(mini, maxi, order)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> np.array([[xi, np.sin(xi)<span class="op">/</span>xi] <span class="cf">for</span> xi <span class="kw">in</span> xp])</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>coefs<span class="op">=</span> spline_coefs(puntos)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(mini, maxi, <span class="dv">100</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>exact <span class="op">=</span> np.sin(x)<span class="op">/</span>x</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>spline <span class="op">=</span> [spline_eval(xi, coefs, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>plt.scatter(puntos[:,<span class="dv">0</span>], puntos[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>plt.plot(x, exact)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>plt.plot(x, spline)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_interpolacion_files/figure-html/cell-31-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="scipy" class="level1">
+<h1>Scipy</h1>
+<div id="374e5a63" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tomado de: https://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> interp1d</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, num<span class="op">=</span><span class="dv">11</span>, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.cos(<span class="op">-</span>x<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="fl">9.0</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> interp1d(x, y)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>f2 <span class="op">=</span> interp1d(x, y, kind<span class="op">=</span><span class="st">'cubic'</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>xnew <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, num<span class="op">=</span><span class="dv">41</span>, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">'o'</span>, xnew, f(xnew), <span class="st">'-'</span>, xnew, f2(xnew), <span class="st">'--'</span>)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'data'</span>, <span class="st">'linear'</span>, <span class="st">'cubic'</span>], loc<span class="op">=</span><span class="st">'best'</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_interpolacion_files/figure-html/cell-32-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="tareas" class="level1">
+<h1>Tareas</h1>
+<section id="tarea-6.6" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-6.6">Tarea 6.6</h2>
+<p>Use cinco puntos equidistantes para encontrar un polinomio interpolante de la función <span class="math inline">\(f(x) = \sinh(x)\)</span> entre <span class="math inline">\(x = -5\)</span> y <span class="math inline">\(x = 5\)</span>. Grafique el polinomio. Estime el error cometido para cada <span class="math inline">\(x\)</span>, usando la fórmula de error de los polinomios de Legendre. Luego grafique <span class="math inline">\(|f(x) - P(x)|\)</span> y compare con el error estimado.</p>
+</section>
+<section id="tarea-6.7" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-6.7">Tarea 6.7</h2>
+<p>Use <span class="math inline">\(10\)</span> puntos equidistantes para encontrar un polinomio interpolante de la función <span class="math inline">\(f(x) = \tanh(x)\)</span> entre <span class="math inline">\(x = -10\)</span> y <span class="math inline">\(x = 10\)</span>. Compare el polinomio con la función obtenida. Explique.</p>
+</section>
+<section id="tarea-6.8" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-6.8">Tarea 6.8</h2>
+<p>Use una función interpolante para encontrar una buena aproximación a una gaussiana con <span class="math inline">\(\sigma = 1\)</span> y <span class="math inline">\(\mu = 0\)</span> entre <span class="math inline">\(x = 0\)</span> y <span class="math inline">\(x = 2\)</span>. ¿Se puede usar ese mismo polinomio para aproximar la gaussiana en <span class="math inline">\(x = 3\)</span>? De una respuesta cuantitativa y argumente.</p>
+</section>
+<section id="tarea-6.9" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-6.9">Tarea 6.9</h2>
+<p>Escriba un código similar a la interpolación lineal de la clase, pero que realice una interpolación cuadrática. Es decir, este código interpola usando una parábola para cada trío de puntos. Grafique sus resultados para el mismo ejemplo usado en la interpolación lineal.</p>
+</section>
+<section id="tarea-6.10" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-6.10">Tarea 6.10</h2>
+<p>Considere la función <span class="math inline">\(f(x) = 4 x^3 - 3x^2 + x -5\)</span>. Use sólo los dos puntos <span class="math inline">\(x = -1\)</span> y <span class="math inline">\(x = 1\)</span> para interpolar usando una spline cúbica entre <span class="math inline">\(x =-1\)</span> y <span class="math inline">\(x = 1\)</span>. Explique por qué la spline cúbica es diferente del polinomio original si ambos son polinomios cúbicos que pasan por los mismos puntos en <span class="math inline">\(x = -1\)</span> y <span class="math inline">\(x = 1\)</span>. Ahora repita la comparación usando la interpolación de splines por intervalos con <span class="math inline">\(4\)</span> puntos equidistantes en el mismo intervalo.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jorgenorena\.github\.io\/metodos-numericos-sitio\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

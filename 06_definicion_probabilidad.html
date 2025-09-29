@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.43">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -226,6 +226,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./12_newton_y_biseccion.html">
  <span class="dropdown-text">Solución de Ecuaciones No Lineales</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./13_interpolacion.html">
+ <span class="dropdown-text">Interpolación</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -354,6 +358,12 @@ window.Quarto = {
  <span class="menu-text">Solución de Ecuaciones No Lineales</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_interpolacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpolación</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -412,7 +422,7 @@ window.Quarto = {
 </header>
 
 
-<div id="123d1a0a" class="cell" data-execution_count="2">
+<div id="46ad312a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -482,7 +492,7 @@ P(A|B)P(B) = P(B|A)P(A)
 \]</span></p>
 <p>Para ver un ejemplo de su poder, supongamos que sabemos que los estudiantes de física son <span class="math inline">\(70\)</span> hombres y <span class="math inline">\(30\)</span> mujeres mientras que los estudiantes de química son <span class="math inline">\(141\)</span> hombres y <span class="math inline">\(153\)</span> mujeres. En el pasillo conocemos a un estudiante que está hablando de átomos (tal que es de física o química). Si este estudiante es mujer, ¿cuál es la probabilidad de que sea de física?</p>
 <p>Queremos calcular <span class="math inline">\(P(física|mujer)\)</span>, pero conocemos el objeto al revés <span class="math inline">\(P(mujer|física)\)</span>. ¿Cómo lo hacemos?</p>
-<div id="1cfc13d0" class="cell" data-execution_count="3">
+<div id="ddf8eb5c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>numero_estudiantes <span class="op">=</span> <span class="dv">141</span> <span class="op">+</span> <span class="dv">153</span> <span class="op">+</span> <span class="dv">70</span> <span class="op">+</span> <span class="dv">30</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>prob_mujer <span class="op">=</span> (<span class="dv">153</span> <span class="op">+</span> <span class="dv">30</span>)<span class="op">/</span>numero_estudiantes</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>prob_fisica <span class="op">=</span> <span class="dv">100</span><span class="op">/</span>numero_estudiantes</span>
@@ -563,25 +573,25 @@ m_n = \langle x^n \rangle = \int dx\,\rho(x)x^n\,.
 </ul>
 <p>Esto es porque parece tener menos patrones y repeticiones. En realidad es una representación del número <span class="math inline">\(\pi\)</span>.</p>
 <p>Se pueden obtener números verdaderamente aleatorios a partir de fenómenos físicos como rayos cósmicos, decaimiento de átomos, o incluso los estados electrónicos de algunos componentes del computador. También se pueden obtener números esencialmente aleatorios contando cuántas teclas ha presionado el usuario junto con el estado de la memoria RAM y el número del proceso en el sistema operativo (todo esto es determinista pero imposible de predecir en la práctica). En Python podemos acceder a tales números “verdaderamente” aleatorios:</p>
-<div id="dc8e6c98" class="cell" data-execution_count="4">
+<div id="c98515e1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> secrets</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>secrets.randbelow(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>2</code></pre>
+<pre><code>3</code></pre>
 </div>
 </div>
-<div id="695e01fc" class="cell" data-execution_count="5">
+<div id="74d7a7aa" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>secrets.randbits(<span class="dv">64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>1121979361033119556</code></pre>
+<pre><code>13485414310510998814</code></pre>
 </div>
 </div>
-<div id="df4a9f68" class="cell" data-execution_count="6">
+<div id="cd6ed597" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>secrets.choice(lista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>3</code></pre>
+<pre><code>5</code></pre>
 </div>
 </div>
 <p>Sin embargo estos números aleatorios son lentos de producir. En física, nos basta con que los números “parezcan” aleatorios. Es decir, que tenga buenas propiedades estadísticas y que no sea predecible.</p>
@@ -592,7 +602,7 @@ m_n = \langle x^n \rangle = \int dx\,\rho(x)x^n\,.
 <p><span class="math display">\[
 x_{n+1} = (a x_n + c)\mod(m)
 \]</span></p>
-<div id="8570e359" class="cell" data-execution_count="7">
+<div id="2145c6c9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># función (muy mala) que implementa el generador de congruencia lineal</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lcg():</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -615,7 +625,7 @@ x_{n+1} = (a x_n + c)\mod(m)
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lcg.xn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c6da37d0" class="cell" data-execution_count="8">
+<div id="6db3eeb3" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lcg.xn <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lcg()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -623,7 +633,7 @@ x_{n+1} = (a x_n + c)\mod(m)
 <pre><code>7</code></pre>
 </div>
 </div>
-<div id="5b5ca439" class="cell" data-execution_count="9">
+<div id="88b19eb0" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lcg.xn <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>aleatorios <span class="op">=</span> [lcg() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num)]</span>
@@ -631,12 +641,12 @@ x_{n+1} = (a x_n + c)\mod(m)
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="06_definicion_probabilidad_files/figure-html/cell-9-output-1.png" width="566" height="411" class="figure-img"></p>
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="d71e5702" class="cell" data-execution_count="10">
+<div id="4443417b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># función (mala) que implementa el generador de congruencia lineal</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lcg():</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -659,7 +669,7 @@ x_{n+1} = (a x_n + c)\mod(m)
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lcg.xn<span class="op">%</span><span class="dv">10</span> <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4201a8a1" class="cell" data-execution_count="11">
+<div id="84fc629a" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>lcg.xn <span class="op">=</span> <span class="dv">321</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>aleatorios <span class="op">=</span> [lcg() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num)]</span>
@@ -667,7 +677,7 @@ x_{n+1} = (a x_n + c)\mod(m)
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="06_definicion_probabilidad_files/figure-html/cell-11-output-1.png" width="566" height="411" class="figure-img"></p>
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -675,41 +685,41 @@ x_{n+1} = (a x_n + c)\mod(m)
 <p>Además, cuando se grafican las tuplas <span class="math inline">\((x_n, x_{n+1},\dots, x_{n + k})\)</span>, todos los puntos yacen en <span class="math inline">\(k - 1\)</span> planos. Esto hace predecible la secuencia y no muy aleatoria.</p>
 <p>Moraleja: <strong>No programar su propio generador aleatorio</strong>, si hay que hacerlo leer antes un libro dedicado a ello.</p>
 <p>Python usa un algoritmo más sofisticado llamado “Marsenne twister”. En cambio la librería estándar de C implementa un LCG.</p>
-<div id="7f353458" class="cell" data-execution_count="12">
+<div id="9d7db042" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2cd39122" class="cell" data-execution_count="13">
+<div id="23978672" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>random.randint(<span class="dv">1</span>,<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>13</code></pre>
+<pre><code>15</code></pre>
 </div>
 </div>
-<div id="2516f6cb" class="cell" data-execution_count="14">
+<div id="9baf30de" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>random.shuffle(lista)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>lista</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>['b', 'c', 'd', 'a']</code></pre>
+<pre><code>['d', 'a', 'b', 'c']</code></pre>
 </div>
 </div>
-<div id="dd45ab14" class="cell" data-execution_count="15">
+<div id="00eb24c6" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">10000</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(num), np.random.random(num))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="06_definicion_probabilidad_files/figure-html/cell-15-output-1.png" width="571" height="411" class="figure-img"></p>
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="dfc27a8c" class="cell" data-execution_count="16">
+<div id="5ff0e65b" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">10000</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(num), np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>num) <span class="op">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="06_definicion_probabilidad_files/figure-html/cell-16-output-1.png" width="566" height="411" class="figure-img"></p>
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -719,11 +729,11 @@ x_{n+1} = (a x_n + c)\mod(m)
 <h2 class="anchored" data-anchor-id="simulaciones-estilo-monte-carlo-de-probabilidades">Simulaciones estilo Monte Carlo de probabilidades</h2>
 <p>Describamos la probabilidad con un ejemplo:</p>
 <p>Supongamos que lanzamoos un dado y nos preguntamos cuál es la probabilidad de que caiga un número par.</p>
-<div id="6205ac98" class="cell" data-execution_count="17">
+<div id="cdfe32c6" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dado <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>}</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>par <span class="op">=</span> {<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0aeece8e" class="cell" data-execution_count="18">
+<div id="3bca1b4f" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prob(evento, espacio):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">''' </span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Regresa la probabilidad de que ocurra 'evento'.</span></span>
@@ -731,34 +741,34 @@ x_{n+1} = (a x_n + c)\mod(m)
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="bu">len</span>(evento <span class="op">&amp;</span> espacio)<span class="op">/</span><span class="bu">len</span>(espacio))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9e95bd08" class="cell" data-execution_count="19">
+<div id="8e81210a" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>prob(par, dado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>0.5</code></pre>
 </div>
 </div>
 <p>Para un ejemplo menos trivial, consideremos una urna con 23 bolas: 8 blancas, 6 azules, 9 rojas.</p>
-<div id="bccca467" class="cell" data-execution_count="20">
+<div id="b0fbf66f" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unir(color, numeros):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {color <span class="op">+</span> numero <span class="cf">for</span> numero <span class="kw">in</span> numeros}</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>urna <span class="op">=</span> unir(<span class="st">'B'</span>, <span class="st">'12345678'</span>) <span class="op">|</span> unir(<span class="st">'A'</span>, <span class="st">'123456'</span>) <span class="op">|</span> unir(<span class="st">'R'</span>, <span class="st">'123456789'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Se extraen 6 bolas de la urna sin reemplazo.</p>
-<div id="bf8e9a3b" class="cell" data-execution_count="21">
+<div id="f8d0c3ec" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>espacio <span class="op">=</span> <span class="bu">set</span>(itertools.permutations(urna, <span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nos preguntamos cuál es la probabilidad de obtener 6 bolas rojas</p>
-<div id="a2f5e235" class="cell" data-execution_count="22">
+<div id="8d8f943f" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> todos_rojos(evento):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> [i[<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> evento]</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s.count(<span class="st">'R'</span>) <span class="op">==</span> <span class="dv">6</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>rojos <span class="op">=</span> {e <span class="cf">for</span> e <span class="kw">in</span> espacio <span class="cf">if</span> todos_rojos(e)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="3129dc5d" class="cell" data-execution_count="23">
+<div id="cecc919c" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>prob(rojos, espacio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>0.0008321198252548367</code></pre>
@@ -766,7 +776,7 @@ x_{n+1} = (a x_n + c)\mod(m)
 </div>
 <p>Esto fue un cálculo a fuerza bruta. El problema es que si la urna tiene muchas bolas, el computador no va a ser capaz de calcular todos los elementos del espacio, se hace todo muy lento.</p>
 <p>Consideremos una urna con 2300 bolas: 800 blancas, 600 azules y 900 rojas.</p>
-<div id="2e06e246" class="cell" data-execution_count="24">
+<div id="ffa00e74" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unir(color, numero):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {color <span class="op">+</span> <span class="bu">str</span>(n <span class="op">+</span> <span class="dv">1</span>) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(numero)}</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -777,26 +787,26 @@ x_{n+1} = (a x_n + c)\mod(m)
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>espacio <span class="op">=</span> <span class="bu">set</span>(itertools.permutations(urna,<span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>El problema es que hay demasiadas combinaciones posibles. En estos casos lo que se hace es tomar un número de muestras al azar.</p>
-<div id="20898bef" class="cell" data-execution_count="25">
+<div id="67aebc86" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5f9d14f8" class="cell" data-execution_count="26">
+<div id="b60fd7da" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>muestra <span class="op">=</span> {<span class="bu">tuple</span>(random.choices(urna, k <span class="op">=</span> <span class="dv">6</span>)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100000</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fc374e04" class="cell" data-execution_count="27">
+<div id="1096f25f" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>rojos <span class="op">=</span> {e <span class="cf">for</span> e <span class="kw">in</span> muestra <span class="cf">if</span> todos_rojos(e)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0b1301ac" class="cell" data-execution_count="28">
+<div id="26634434" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>prob(rojos, muestra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
-<pre><code>0.00379</code></pre>
+<pre><code>0.00374</code></pre>
 </div>
 </div>
-<div id="f753fad4" class="cell" data-execution_count="29">
+<div id="a2d8c106" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ee171faa" class="cell" data-execution_count="30">
+<div id="78eff5c5" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sims <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> <span class="dv">200000</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> np.zeros(sims)</span>
@@ -810,21 +820,21 @@ x_{n+1} = (a x_n + c)\mod(m)
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="06_definicion_probabilidad_files/figure-html/cell-30-output-1.png" width="605" height="411" class="figure-img"></p>
+<p><img src="06_definicion_probabilidad_files/figure-html/cell-30-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="db186dda" class="cell" data-execution_count="31">
+<div id="d0b12d5b" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>probs.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
-<pre><code>np.float64(0.003608)</code></pre>
+<pre><code>np.float64(0.0035809999999999995)</code></pre>
 </div>
 </div>
-<div id="479376a3" class="cell" data-execution_count="32">
+<div id="fcc68aef" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>probs.std()<span class="op">/</span>probs.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
-<pre><code>np.float64(0.02877815809893737)</code></pre>
+<pre><code>np.float64(0.03458551147461027)</code></pre>
 </div>
 </div>
 </section>
@@ -850,7 +860,7 @@ x_{n+1} = (a x_n + c)\mod(m)
 <p>Ejercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.</p>
 <p>Se lanza un dado cargado, con probabilidades de <span class="math inline">\(\{0.1, 0.2, 0.2, 0.3, 0.1, 0.1\}\)</span> de obtener <span class="math inline">\(\{1, 2, 3, 4, 5, 6\}\)</span> respectivamente. Sea <span class="math inline">\(N\)</span> el resultado obtenido al lanzar el dado, luego de lo cual se lanza una moneda <span class="math inline">\(N\)</span> veces. Encuentre la probabilidad condicional de que <span class="math inline">\(N\)</span> sea impar dado que se obtuvo al menos una cara.</p>
 <p><strong>Pista</strong>: Si no quiere hacerlo analíticamente, construya primero la distribución de probabilidad con todos los resultados posibles junto con sus probabilidades, y luego use las siguientes funciones que definimos en clase.</p>
-<div id="c6f991a3" class="cell" data-execution_count="33">
+<div id="de0b831b" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prob(evento, dist):</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula la probabilidad de un evento a partir de una distribución. El evento debe ser una función que</span></span>
