@@ -47,6 +47,8 @@ website:
             href: 13_interpolacion.qmd
           - text: "Integración Numérica"
             href: 14_integracion_numerica.qmd
+          - text: "Quadratura de Gauss, integrales múltiples e impropias"
+            href: 15_integrales_multiples_impropias_y_gauss.qmd
   sidebar:
     style: docked
     contents:
@@ -84,6 +86,8 @@ website:
             href: 13_interpolacion.qmd
           - text: "Integración Numérica"
             href: 14_integracion_numerica.qmd
+          - text: "Quadratura de Gauss, integrales múltiples e impropias"
+            href: 15_integrales_multiples_impropias_y_gauss.qmd
 
 format:
   html:
