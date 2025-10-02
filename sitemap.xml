@@ -21,36 +21,40 @@
     <lastmod>2025-08-05T19:34:27.770Z</lastmod>
   </url>
   <url>
-    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/09_teorema_central_del_limite.html</loc>
-    <lastmod>2025-08-27T21:35:44.765Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/05_algoritmos_y_estabilidad.html</loc>
-    <lastmod>2025-08-20T20:37:54.825Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/06_definicion_probabilidad.html</loc>
-    <lastmod>2025-08-22T23:25:45.829Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/04_numeros_y_condicionamiento.html</loc>
-    <lastmod>2025-08-20T20:34:55.049Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/13_interpolacion.html</loc>
-    <lastmod>2025-10-02T09:12:28.098Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/plan.html</loc>
-    <lastmod>2025-08-05T19:34:27.772Z</lastmod>
+    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/14_integracion_numerica.html</loc>
+    <lastmod>2025-10-02T09:15:10.979Z</lastmod>
   </url>
   <url>
     <loc>https://jorgenorena.github.io/metodos-numericos-sitio/03_numpy_arrays.html</loc>
     <lastmod>2025-08-06T19:49:24.169Z</lastmod>
   </url>
   <url>
-    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/14_integracion_numerica.html</loc>
-    <lastmod>2025-10-02T09:15:10.979Z</lastmod>
+    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/plan.html</loc>
+    <lastmod>2025-08-05T19:34:27.772Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/13_interpolacion.html</loc>
+    <lastmod>2025-10-02T09:12:28.098Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/04_numeros_y_condicionamiento.html</loc>
+    <lastmod>2025-08-20T20:34:55.049Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/06_definicion_probabilidad.html</loc>
+    <lastmod>2025-08-22T23:25:45.829Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/05_algoritmos_y_estabilidad.html</loc>
+    <lastmod>2025-08-20T20:37:54.825Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/09_teorema_central_del_limite.html</loc>
+    <lastmod>2025-08-27T21:35:44.765Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jorgenorena.github.io/metodos-numericos-sitio/15_integrales_multiples_impropias_y_gauss.html</loc>
+    <lastmod>2025-10-02T09:42:20.612Z</lastmod>
   </url>
   <url>
     <loc>https://jorgenorena.github.io/metodos-numericos-sitio/02_python.html</loc>

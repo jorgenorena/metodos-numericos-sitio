@@ -76,7 +76,7 @@
     "href": "07_distribuciones.html",
     "title": "Distribuciones de Probabilidad",
     "section": "",
-    "text": "Consideremos un experimento que puede dar un resultado positivo con probabilidad \\(p\\) o negativo con probabilidad \\(1 - p\\). Preguntamos cuál es la probabilidad de obtener \\(s\\) resultados positivos cuando se realiza el experimento \\(n\\) veces de manera independiente.\nA manera de ejemplo preguntemos primero cuál es la probabilidad de obtener \\(3\\) positivos cuando se realiza el experimento \\(4\\) veces. Estos tres resultados positivos pueden aparecer de las siguientes maneras \\[\n\\text{+++-},\\,\\text{++-+},\\,\\text{+-++},\\,\\text{-+++}\\,.\n\\] La probabilidad de obtener el primer resultado es \\[\np\\times p\\times p\\times (1-p) = p^3 (1-p)\\,.\n\\] La probabilidad de las otras tres posibilidades es igual y entonces \\[\nP(3;4,p) = 4 p^3(1-p)\\,.\n\\]\nLa fórmula general es\n\\[\nP(s;n,p) = \\frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}\n\\]\n\nfrom scipy.special import comb\n\ndef binomial(s, n, p):\n    return comb(n, s)*p**s*(1-p)**(n - s)\n\n\nimport matplotlib.pyplot as plt\n\n\ndef probs(n, p):\n    return [binomial(s, n, p) for s in range(n+1)]\n\n\nfig = plt.figure(figsize=(8,20), dpi= 100)\n\nax1 = fig.add_subplot(8,2,1)\nax2 = fig.add_subplot(8,2,2)\nax3 = fig.add_subplot(8,2,3)\nax4 = fig.add_subplot(8,2,4)\nax5 = fig.add_subplot(8,2,5)\nax6 = fig.add_subplot(8,2,6)\nax7 = fig.add_subplot(8,2,7)\nax8 = fig.add_subplot(8,2,8)\n\nax1.bar(range(4+1), probs(4,0.5))\nax2.bar(range(5+1), probs(5,0.5))\nax3.bar(range(15+1), probs(15,0.5))\nax4.bar(range(50+1), probs(50,0.5))\nax5.bar(range(5+1), probs(5,0.1))\nax6.bar(range(15+1), probs(15,0.1))\nax7.bar(range(5+1), probs(5,0.9))\nax8.bar(range(15+1), probs(15,0.9))\n        \nax1.set_title('s = 4, p = 0.5')\nax2.set_title('s = 5, p = 0.5')\nax3.set_title('s = 15, p = 0.5')\nax4.set_title('s = 50, p = 0.5')\nax5.set_title('s = 5, p = 0.1')\nax6.set_title('s = 15, p = 0.1')\nax7.set_title('s = 5, p = 0.9')\nax8.set_title('s = 15, p = 0.9')\n\nfig.tight_layout(pad=2.0)\n\n\nfig.show()\n\n/tmp/ipykernel_44538/159021693.py:33: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  fig.show()\n\n\n\n\n\n\n\n\n\n\nValor esperado: \\(\\langle n \\rangle = rp\\)\nVarianza: \\(\\sigma^2 = np(1-p)\\)\n\n\nimport random\nimport numpy as np\n\ndef realizacion(r, p):\n    probs = np.random.rand(r)\n    return probs &lt; p\n\ndef num_exitos(num_realizaciones, r, p):\n    # probando me dí cuenta que al sumar me regresa el número\n    # de elementos que son True\n    return np.array([sum(realizacion(r, p)) for i in range(num_realizaciones)])\n\n\nnum_exitos(3, 10, 0.2).mean()\n\nnp.float64(2.3333333333333335)\n\n\n\nnum_exitos(10000, 10, 0.2).mean()\n\nnp.float64(1.986)\n\n\n\nnum_exitos(10000, 10, 0.2).std()\n\nnp.float64(1.259791248580494)\n\n\n\nnp.sqrt(10*0.2*0.8)\n\nnp.float64(1.2649110640673518)",
+    "text": "Consideremos un experimento que puede dar un resultado positivo con probabilidad \\(p\\) o negativo con probabilidad \\(1 - p\\). Preguntamos cuál es la probabilidad de obtener \\(s\\) resultados positivos cuando se realiza el experimento \\(n\\) veces de manera independiente.\nA manera de ejemplo preguntemos primero cuál es la probabilidad de obtener \\(3\\) positivos cuando se realiza el experimento \\(4\\) veces. Estos tres resultados positivos pueden aparecer de las siguientes maneras \\[\n\\text{+++-},\\,\\text{++-+},\\,\\text{+-++},\\,\\text{-+++}\\,.\n\\] La probabilidad de obtener el primer resultado es \\[\np\\times p\\times p\\times (1-p) = p^3 (1-p)\\,.\n\\] La probabilidad de las otras tres posibilidades es igual y entonces \\[\nP(3;4,p) = 4 p^3(1-p)\\,.\n\\]\nLa fórmula general es\n\\[\nP(s;n,p) = \\frac{n!}{s!(n-s)!} p^s (1-p)^{n - s}\n\\]\n\nfrom scipy.special import comb\n\ndef binomial(s, n, p):\n    return comb(n, s)*p**s*(1-p)**(n - s)\n\n\nimport matplotlib.pyplot as plt\n\n\ndef probs(n, p):\n    return [binomial(s, n, p) for s in range(n+1)]\n\n\nfig = plt.figure(figsize=(8,20), dpi= 100)\n\nax1 = fig.add_subplot(8,2,1)\nax2 = fig.add_subplot(8,2,2)\nax3 = fig.add_subplot(8,2,3)\nax4 = fig.add_subplot(8,2,4)\nax5 = fig.add_subplot(8,2,5)\nax6 = fig.add_subplot(8,2,6)\nax7 = fig.add_subplot(8,2,7)\nax8 = fig.add_subplot(8,2,8)\n\nax1.bar(range(4+1), probs(4,0.5))\nax2.bar(range(5+1), probs(5,0.5))\nax3.bar(range(15+1), probs(15,0.5))\nax4.bar(range(50+1), probs(50,0.5))\nax5.bar(range(5+1), probs(5,0.1))\nax6.bar(range(15+1), probs(15,0.1))\nax7.bar(range(5+1), probs(5,0.9))\nax8.bar(range(15+1), probs(15,0.9))\n        \nax1.set_title('s = 4, p = 0.5')\nax2.set_title('s = 5, p = 0.5')\nax3.set_title('s = 15, p = 0.5')\nax4.set_title('s = 50, p = 0.5')\nax5.set_title('s = 5, p = 0.1')\nax6.set_title('s = 15, p = 0.1')\nax7.set_title('s = 5, p = 0.9')\nax8.set_title('s = 15, p = 0.9')\n\nfig.tight_layout(pad=2.0)\n\n\nfig.show()\n\n/tmp/ipykernel_64585/159021693.py:33: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  fig.show()\n\n\n\n\n\n\n\n\n\n\nValor esperado: \\(\\langle n \\rangle = rp\\)\nVarianza: \\(\\sigma^2 = np(1-p)\\)\n\n\nimport random\nimport numpy as np\n\ndef realizacion(r, p):\n    probs = np.random.rand(r)\n    return probs &lt; p\n\ndef num_exitos(num_realizaciones, r, p):\n    # probando me dí cuenta que al sumar me regresa el número\n    # de elementos que son True\n    return np.array([sum(realizacion(r, p)) for i in range(num_realizaciones)])\n\n\nnum_exitos(3, 10, 0.2).mean()\n\nnp.float64(2.3333333333333335)\n\n\n\nnum_exitos(10000, 10, 0.2).mean()\n\nnp.float64(2.0049)\n\n\n\nnum_exitos(10000, 10, 0.2).std()\n\nnp.float64(1.2661936028901741)\n\n\n\nnp.sqrt(10*0.2*0.8)\n\nnp.float64(1.2649110640673518)",
     "crumbs": [
       "Inicio",
       "Unidad 2: Probabilidad",
@@ -391,564 +391,100 @@
     "text": "Versión: 0.0.1 (trabajo en progreso)\nEstas son las notas de clases del curso de Métodos Numéricos y Probabilidades 2025. El curso es parte del plan de estudios de la licenciatura en física de la Pontificia Universidad Católica de Valparaíso, Chile. Dictado por el profesor Jorge Noreña, el curso cubre temas fundamentales de métodos numéricos y probabilidad aplicados a la física.\nUna pequeña parte de estos apuntes fue escrita con la ayuda de inteligencia artificial, revisado y corregido por el profesor."
   },
   {
-    "objectID": "09_teorema_central_del_limite.html",
-    "href": "09_teorema_central_del_limite.html",
-    "title": "Teorema central del límite",
+    "objectID": "14_integracion_numerica.html",
+    "href": "14_integracion_numerica.html",
+    "title": "Integrales Numéricas",
     "section": "",
-    "text": "import numpy as np\nimport math\nimport matplotlib.pyplot as plt\nfrom scipy.special import comb",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Teorema central del límite"
-    ]
-  },
-  {
-    "objectID": "09_teorema_central_del_limite.html#section",
-    "href": "09_teorema_central_del_limite.html#section",
-    "title": "Teorema central del límite",
-    "section": "4.6",
-    "text": "4.6\nUn grupo de investigación hace muchas mediciones del número de halos galácticos para cada intervalo de masa. Usando el teorema central del límite y la distribución gaussiana concluyen que hay demasiados halos muy masivos (de los cuales hay muy pocos), tal que es necesario repensar el modelo cosmológico. Comente sobre este resultado.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Teorema central del límite"
-    ]
-  },
-  {
-    "objectID": "09_teorema_central_del_limite.html#section-1",
-    "href": "09_teorema_central_del_limite.html#section-1",
-    "title": "Teorema central del límite",
-    "section": "4.7",
-    "text": "4.7\nLa distribución de las fluctuaciones de temperatura \\(\\delta T (\\ell, m)\\) de la radiación cósmica de fondo sigue una distribución gaussiana para cada pareja \\((\\ell, m)\\). Aquí \\(\\ell\\) y \\(m\\) corresponden a una descomposición de los ángulos sobre la esfera celeste. Ambos son números enteros y satisfacen \\(\\ell \\geq 0\\) y \\(-\\ell \\leq m \\leq \\ell\\). Normalmente se grafica algo proporcional a \\(\\delta T^2\\) promediado sobre todos los valores de \\(m\\), para diferentes valores de \\(\\ell\\). Explique por qué se usa una gaussiana para modelar los errores sobre \\(\\delta T^2\\) sólo para \\(\\ell &gt; 30\\). Haga una simulación para apoyar su resultado suponiendo que la distribución de cada pareja es uniforme (en realidad es una distribución \\(\\chi^2\\) pero use la uniforme por simplicidad).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Teorema central del límite"
-    ]
-  },
-  {
-    "objectID": "09_teorema_central_del_limite.html#section-2",
-    "href": "09_teorema_central_del_limite.html#section-2",
-    "title": "Teorema central del límite",
-    "section": "4.8",
-    "text": "4.8\nUn borracho da un paso a la izquierda con probabilidad \\(0.5\\) y un paso a la derecha con probabilidad \\(0.5\\). Cada paso mide \\(1\\) metro. ¿Cuál es la distancia típica a la cual se encontrará el borracho luego de dar \\(N\\) pasos para \\(N\\) grande?",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Teorema central del límite"
-    ]
-  },
-  {
-    "objectID": "09_teorema_central_del_limite.html#section-3",
-    "href": "09_teorema_central_del_limite.html#section-3",
-    "title": "Teorema central del límite",
-    "section": "4.9",
-    "text": "4.9\nVeinte números aleatorios se extraen de una distribución uniforme entre \\(0\\) y \\(1\\).\n\nUse monte carlo para estimar la probabilidad de que la suma de los veinte números esté entre \\(9\\) y \\(10\\). Ídem entre \\(15\\) y \\(16\\).\nUse el teorema central del límite para estimar la misma probabilidad.\n\nRecuerde estimar el error de la simulación así como cuantificar con errores relativos la diferencia entre la simulación y la gaussiana.\nComente sobre su resultado.\nPista:\n\\[\n\\int_0^a dx\\,e^{-x^2} = \\frac{\\sqrt{\\pi}}{2}\\text{erf}(a)\\,,\n\\]\ndonde \\(\\text{erf}\\) es la una función especial llamada la función de error. Esta función se puede llamar usando el módulo scipy.special.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Teorema central del límite"
-    ]
-  },
-  {
-    "objectID": "09_teorema_central_del_limite.html#section-4",
-    "href": "09_teorema_central_del_limite.html#section-4",
-    "title": "Teorema central del límite",
-    "section": "4.10",
-    "text": "4.10\nDiscuta el teorema central del límite en el caso en el cual las variables no son idénticamente distribuidas. Por ejemplo, si tenemos muchas variables \\(x_i\\), ¿cómo podría fallar el teorema si los cumulantes dependen de \\(i\\)?",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Teorema central del límite"
-    ]
-  },
-  {
-    "objectID": "05_algoritmos_y_estabilidad.html",
-    "href": "05_algoritmos_y_estabilidad.html",
-    "title": "Algoritmos y estabilidad",
-    "section": "",
-    "text": "Evaluamos los algoritmos según tres criterios: Eficiencia, convergencia y estabilidad.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Algoritmos y estabilidad"
-    ]
-  },
-  {
-    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.6",
-    "href": "05_algoritmos_y_estabilidad.html#tarea-2.6",
-    "title": "Algoritmos y estabilidad",
-    "section": "Tarea 2.6",
-    "text": "Tarea 2.6\nDiscuta la estabilidad de los problemas presentados en las tareas 2.3 y 2.4.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Algoritmos y estabilidad"
-    ]
-  },
-  {
-    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.7",
-    "href": "05_algoritmos_y_estabilidad.html#tarea-2.7",
-    "title": "Algoritmos y estabilidad",
-    "section": "Tarea 2.7",
-    "text": "Tarea 2.7\nA partir de los siguientes códigos, explique si el número de pasos es \\(\\mathcal{O}(n^c)\\) (y cuánto vale \\(c\\)), \\(\\mathcal{O}(\\log_2 n)\\) o \\(\\mathcal{O}(2^n)\\) y por qué. Pista: Para el último código aumente n y vea cómo cambia el número de pasos s. Grafique n contra s e intente deducir a qué corresponde.\nn = 1000\ns = 0 \nfor i in range(n):\n    for j in range(n):\n        if i &lt; j:\n            s = s + i + j\nn = 1000\ns = 0\nfor i in range(n):\n    for j in range(i):\n        s = s + i + j\nCuidado, consulte en internet lo que hace el enunciado sum() antes de responder\nn = 1000\ns = 0\nfor i in range(n):\n    s = s + i + sum(range(n))\n\nn = 100000\nsmall = 0\np = 146\nattempt = n//2\nnot_found = True\ns = 0\nwhile not_found:\n    s = s + 1\n    if attempt &gt; p:\n        n = attempt\n    elif attempt &lt; p:\n        small = attempt\n    else:\n        print('Encontré', attempt, 'luego de', s, 'pasos')\n        break\n    attempt = (n + small)//2\n\nEncontré 146 luego de 11 pasos",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Algoritmos y estabilidad"
-    ]
-  },
-  {
-    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.8",
-    "href": "05_algoritmos_y_estabilidad.html#tarea-2.8",
-    "title": "Algoritmos y estabilidad",
-    "section": "Tarea 2.8",
-    "text": "Tarea 2.8\nEjercicio 1.4.1 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nLas dos fórmulas siguientes son matemáticamente equivalentes\n\\[\n  f(x) = \\frac{1 - \\cos(x)}{\\sin(x)}\\,,\\quad g(x) = \\frac{2\\sin^2(x/2)}{\\sin(x)}\\,.\n\\]\nSin embargo sugieren algoritmos para su cálculo que se comportan de manera distinta en aritmética de punto flotante.\n\nEncuentre el número de condicionamiento de \\(f(x)\\) respecto a pequeños cambios en \\(x\\). Como son equivalentes, este es el mismo para \\(g(x)\\).\nCalcule \\(f(10^{-6})\\) usando una cadena de cuatro operaciones elementales (sumas, restas, multiplicaciones, divisiones, funciones trigonométricas). Calcule el número de condicionamiento de cada una.\nRepita lo mismo para \\(g(10^{-6})\\), que requiere seis operaciones elementales.\nBasado en lo anterior, compare ambos resultados y discuta cuál es más preciso.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Algoritmos y estabilidad"
-    ]
-  },
-  {
-    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.9",
-    "href": "05_algoritmos_y_estabilidad.html#tarea-2.9",
-    "title": "Algoritmos y estabilidad",
-    "section": "Tarea 2.9",
-    "text": "Tarea 2.9\nEjercicio 1.4.2 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nSea \\(f(x) = \\frac{e^x - 1}{x}\\).\n\nEncuentre el número de condicionamiento. ¿Cuál es su máximo entre \\(-1 \\leq x \\leq 1\\)?\nUse el algoritmo obvio\n(e**x - 1)/x\npara calcular \\(f(x)\\) para \\(x = 10^{-2}, 10^{-3}, 10^{-4}, ..., 10^{-8}\\).\nRepita lo mismo usando en cambio los primeros ocho términos de la serie de Taylor \\[\nf(x) \\approx 1 + \\frac{1}{2}x + \\frac{1}{3!}x^3 + \\dots + \\frac{1}{8!}x^7\\,.\n\\]\nHaga una tabla de las diferencias relativas entre ambos métodos. ¿Cuál es más preciso y por qué?",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Algoritmos y estabilidad"
-    ]
-  },
-  {
-    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.10",
-    "href": "05_algoritmos_y_estabilidad.html#tarea-2.10",
-    "title": "Algoritmos y estabilidad",
-    "section": "Tarea 2.10",
-    "text": "Tarea 2.10\nCompare la convergencia de dos algoritmos para aproximar \\(\\sqrt{2}\\) resolviendo \\(f(x) = x^2 − 2 = 0\\)\nBisección en el intervalo [1, 2]: Este método lo veremos más adelante, aquí hay una implementación:\nN = 20\nf = lambda x: x**2 - 2.0\ntrue = np.sqrt(2)\n\n# Método de bisección\na, b = 1.0, 2.0\nerr_bis = np.empty(N)\nx_bis_hist = []\n\nfor k in range(N):\n    c = 0.5*(a + b)\n    x_bis_hist.append(c)\n    err_bis[k] = abs(c - true)\n    if f(a)*f(c) &lt;= 0:\n        b = c\n    else:\n        a = c\nLa aproximación se guarda en x_bis_hist para cada iteración.\nNewton (método babilónico): El resultado de la iteración \\(k+1\\) se calcula a partir de la anterior de esta manera: \\(x_{k+1} = \\frac{1}{2}(x_k + \\frac{2}{x_k})\\)\n\nImplemente el método babilónico partiendo desde \\(x_0 = 2.0\\) y guarde la aproximación en cada iteración.\nCalcule el error absoluto \\(|x_k − \\sqrt{2}|\\) para ambos métodos y grafíquelo en una escala apropiada que nos permita compararlos.\nComente por qué el error del método de Newton/Babilónico deja de disminuir durante las últimas iteraciones.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Algoritmos y estabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html",
-    "href": "06_definicion_probabilidad.html",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "",
-    "text": "import matplotlib.pyplot as plt\nimport numpy as np",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#definición",
-    "href": "06_definicion_probabilidad.html#definición",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Definición",
-    "text": "Definición\nMatemáticamente la probabilidad es la asignación de una medida a un conjunto \\(\\mathcal{S}\\). Es decir, a cada subconjunto \\(E\\) del conjunto le asignamos un número \\(p(E)\\) tal que\n\n\\(p(E) \\geq 0\\) para todo \\(E\\).\n\\(p(A \\cup B) = p(A) + p(B)\\)\n\\(p(\\mathcal{S}) = 1\\)\n\nCuando el conjunto \\(\\mathcal{S}\\) es discreto, le asignamos a cada elemento un número entre \\(0\\) y \\(1\\) tal que la suma de todos los elementos sea \\(1\\).\nCuando el conjunto \\(\\mathcal{S}\\) es un subconjunto continuo de los reales, le asignamos una densidad de probabilidad tal que la probabilidad del intervalo \\((a,b) \\subset \\mathcal{S}\\) es \\[\np((a,b)) = \\int_a^b dx\\,\\rho(x)\\,.\n\\] La función de distribución de probabilidad a veces se llama la PDF por su sigla en inglés.\nMás allá de la definición matemática, uno puede preguntarse por el significado de la probabilidad. Esta pregunta también es práctica, porque nos gustaría saber cómo asignarle una probabilidad a cada evento. Hay dos interpretaciones\n\nObjetiva: La probabilidad es obtenida experimentalmente. Si realizamos un experimento un número \\(N\\) de veces y obtenemos el resultado \\(A\\) un número \\(N_A\\) veces, decimos que la probabilidad de obtener \\(A\\) es \\[\nP(A) = \\lim_{N\\rightarrow \\infty} \\frac{N_A}{N}\\,.\n\\] Esta definición es idealizada ya que nunca podemos realizar un experimento infinitas veces.\nSubjetiva: Las probabilidades nos dan una estima basada en la incertidumbre debida a la ignorancia sobre los procesos.\n\nNormalmente asumimos, a falta de más información, que todos los resultados son igualmente probables. Si hacemos esto la probabilidad es la fracción de eventos favorables.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#propiedades-básicas",
-    "href": "06_definicion_probabilidad.html#propiedades-básicas",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Propiedades básicas",
-    "text": "Propiedades básicas\nDefinimos primero la probabilidad condicional de que ocurra \\(A\\) dado que ocurre \\(B\\): \\(P(A|B)\\)\nEjemplo: La probabilidad de que al lanzar un dado dos veces el segundo resultado sea par dado que la suma de ambos es 6.\nLanzar dos dados tiene 36 posibles resultados. La probabilidad la tomamos como la fracción que cumple lo pedido.\nEntre los 36 resultados, tomemos aquellos que cumplen B (la suma de ambos resultados es 6):\n\\[\n1, 5\\,;\\quad 2, 4\\,;\\quad 3, 3\\,;\\quad 4, 2\\,;\\quad 5, 1\\,.\n\\]\nLa probabilidad condicional es la fracción de estos 5 que cumple la condición A (el segundo es par). Estos son 2. Por lo tanto la probabilidad es \\(2/5\\).\nLa probabilidad conjunta es la probabilidad de que ocurran dos eventos.\nEn el ejemplo anterior, la probabilidad de que el segundo resultado sea par y la suma de ambos sea 6 es la fracción del total que cumple estas dos condiciones. Es decir \\(2/36\\).\nEn general tenemos que\n\\[\nP(AB) = P(A|B)P(B)\n\\]\nPodemos verificar que se cumple para el ejemplo anterior.\nEsto tiene sentido ya que \\(P(B)\\) es la fracción que cumple B, y \\(P(A|B)\\) es la fracción entre todos los que cumplen B de aquellos que cumplen A.\nOtro problema, ¿cuál es la probabilidad de que la suma sea 6 o que el segundo resultado sea par?\nSi lo pensamos un segundo\n\\[\nP(A\\cup B) = P(A) + P(B) - P(AB)\n\\]\nEsto es porque al sumar los que cumplen A y los que cumplen B, estamos contando dos veces los que cumplen ambos.\nDecimos que dos eventos son independientes cuando \\(P(A|B) = P(A)\\). En ese caso \\(P(AB) = P(A)P(B)\\).\nDecimos que dos eventos son mutuamente excluyentes cuando \\(P(AB) = 0\\). En ese caso \\(P(A\\cup B) = P(A) + P(B)\\).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#teorema-de-bayes",
-    "href": "06_definicion_probabilidad.html#teorema-de-bayes",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Teorema de Bayes",
-    "text": "Teorema de Bayes\nEste teorema es tal vez el teorema famoso más sencillo de demostrar:\n\\[\nP(A|B) = \\frac{P(B|A) P(A)}{P(B)}\n\\]\nDemostración:\n\\[\nP(AB) = P(BA)\n\\]\nentonces\n\\[\nP(A|B)P(B) = P(B|A)P(A)\n\\]\nPara ver un ejemplo de su poder, supongamos que sabemos que los estudiantes de física son \\(70\\) hombres y \\(30\\) mujeres mientras que los estudiantes de química son \\(141\\) hombres y \\(153\\) mujeres. En el pasillo conocemos a un estudiante que está hablando de átomos (tal que es de física o química). Si este estudiante es mujer, ¿cuál es la probabilidad de que sea de física?\nQueremos calcular \\(P(física|mujer)\\), pero conocemos el objeto al revés \\(P(mujer|física)\\). ¿Cómo lo hacemos?\n\nnumero_estudiantes = 141 + 153 + 70 + 30\nprob_mujer = (153 + 30)/numero_estudiantes\nprob_fisica = 100/numero_estudiantes\nprob_mujer_dado_fisica = 30/100\n\nprob_mujer_dado_fisica*prob_fisica/prob_mujer\n\n0.16393442622950818",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#una-variable-aleatoria",
-    "href": "06_definicion_probabilidad.html#una-variable-aleatoria",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Una variable aleatoria",
-    "text": "Una variable aleatoria\nUn número \\(x\\) que puede tomar valores dentro del conjunto \\(\\mathcal{S}\\) se llama una variable aleatoria. En física es más común usar variables aleatorias continuas, es decir \\(\\mathcal{S} = \\mathbb{R}\\). Podemos caracterizar esta variable con varias propiedades:\n\nLa función cumulativa de probabilidad es \\(P(x) = p((-\\infty, x))\\). Claramente \\(P(-\\infty) = 0\\) y \\(P(\\infty) = 1\\). Note que \\(\\frac{d P}{dx}(x) = \\rho(x)\\).\nEl valor esperado de alguna cantidad \\(F(x)\\) es \\[\n\\langle F \\rangle = \\int_{-\\infty}^{\\infty}dx\\,\\rho(x)F(x)\\,.\n\\]\nPodemos cambiar de variable definiendo \\(y(x)\\). La distribución de probabilidad de esta variable es \\[\n\\rho(y) = \\left|\\frac{\\partial x}{\\partial y}\\right|\\rho(x)\\,.\n\\]\n\nEjemplo: Sea \\(\\rho(x) = \\lambda \\exp(-\\lambda|x|)/2\\). Note que \\(\\int_{-\\infty}^\\infty dx\\,\\rho(x) = 1\\). Tomemos \\(y = x^2\\), entonces también \\(\\left|\\frac{\\partial x}{\\partial y}\\right| = \\frac{1}{2\\sqrt{y}}\\).\nComo hay dos valores de \\(x\\) que corresponden al mismo valor de \\(y\\), la probabilidad de \\(y\\) será la suma de esas dos posibilidades: \\[\n\\rho(y) = 2\\frac{\\lambda}{2}\\exp(-\\lambda\\sqrt{y})\\frac{1}{2\\sqrt{y}} = \\frac{\\lambda \\exp(-\\lambda \\sqrt{y})}{2\\sqrt{y}}\\,.\n\\]",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#momentos-y-cumulantes",
-    "href": "06_definicion_probabilidad.html#momentos-y-cumulantes",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Momentos y cumulantes",
-    "text": "Momentos y cumulantes\nUna propiedad importante de una distribución de probabilidad son sus momentos \\[\nm_n = \\langle x^n \\rangle = \\int dx\\,\\rho(x)x^n\\,.\n\\]\nLa función característica es la transformada de Fourier de la densidad de probabilidad \\[\n\\tilde{\\rho}(k) = \\langle e^{-ikx} \\rangle = \\int dx\\,\\rho(x) e^{-ikx}\\,.\n\\] La PDF se puede recuperar a partir de la función característica tomando la transformada inversa \\[\n\\rho(x) = \\frac{1}{2\\pi}\\int_{-\\infty}^\\infty dk\\,\\rho(k) e^{ikx}\\,.\n\\] Los momentos de la distribución se pueden obtener expandiendo en potencias de \\(k\\) \\[\n\\tilde{\\rho}(k) = \\left\\langle \\sum_{n=0}^\\infty \\frac{(-ik)^n}{n!}x^n\\right\\rangle = \\sum_{n=0}^\\infty \\frac{(-ik)^n}{n!}\\langle x^n\\rangle\\,.\n\\]\nLos cumulantes son valores esperados conexos. Es decir, le restamos a los momentos la información contenida en momentos de orden inferior: \\[\\begin{align*}\n\\langle x \\rangle_c &= \\langle x\\rangle\\,,\\\\\n\\langle x^2 \\rangle_c &= \\langle x^2 \\rangle - \\langle x \\rangle^2\\,,\\\\\n\\langle x^3 \\rangle_c &= \\langle x^3 \\rangle - 3 \\langle x^2\\rangle_c \\langle x \\rangle - \\langle x\\rangle^3\\,,\\\\\n\\langle x^4 \\rangle_c &= \\langle x^4 \\rangle - 4 \\langle x^4\\rangle_c \\langle x \\rangle - 6\\langle x^2\\rangle_c^2 - 6 \\langle x^2\\rangle_c \\langle x \\rangle^2 - \\langle x\\rangle^4\\,.\n\\end{align*}\\] En general, estos cumulantes se definen como proveniendo del logaritmo de la función característica \\[\n\\ln \\tilde{\\rho}(k) = \\sum_{n=1}^\\infty \\frac{(-ik)^n}{n!}\\langle x^n\\rangle_c\\,.\n\\]\nEl segundo cumulante \\(\\sigma^2 = \\langle x^2 \\rangle_c\\) se llama la varianza de la distribución y representa cuánto está esparcida. Si llamamos \\(x_o = \\langle x \\rangle\\) tenemos \\[\n\\langle (x - x_o)^2 \\rangle = \\langle x^2 \\rangle - 2 \\langle x x_o \\rangle + \\langle x_o^2 \\rangle = \\langle x^2 \\rangle - x_o^2 = \\langle x^2 \\rangle_c\\,.\n\\] La varianza es el valor esperado de la desviación al cuadrado. Es decir, nos dice en promedio cual es la desviación al cuadrado de un punto respecto a \\(x_o\\).\nDemostración (opcional):\n\\[\n\\sum_{n=0}^\\infty \\frac{(-ik)^n}{n!}\\langle x^n\\rangle = \\exp\\left[\\sum_{n=1}^\\infty\\frac{(-ik)^n}{n!}\\langle x^n\\rangle_c\\right] = \\prod_n \\sum_{p_n}\\left[\\frac{(-ik)^{np_n}}{p_n!}\\left(\\frac{\\langle x^n \\rangle_c}{n!}\\right)^{p_n}\\right]\\,.\n\\]\nIgualando las potencias de \\(k\\) del lado izquierdo y derecho obtenemos\n\\[\n\\langle x^n \\rangle = \\sum'_{p_n} m! \\prod_n \\frac{1}{p_n!(n!)^{p_n}}\\langle x^n \\rangle_c^{p_n}\\,.\n\\]\nLa suma primada se refiere al hecho que sumamos sobre todos los valores de \\(p_n\\) tales que \\(\\sum n p_n = m\\).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#generadores-de-números-aleatorios",
-    "href": "06_definicion_probabilidad.html#generadores-de-números-aleatorios",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Generadores de números aleatorios",
-    "text": "Generadores de números aleatorios\nTomado completamente de:\n\nhttp://users.dimi.uniud.it/~alberto.policriti/home/sites/default/files/ASD/prng-slides.pdf\nhttps://www.eg.bucknell.edu/~xmeng/Course/CS6337/Note/master/node40.html\nhttps://realpython.com/python-random/\n\nEste es un tema sumamente interesante. Se le dedican libros enteros y es crucial para las simulaciones en física y estadística. Así mismo es una parte central de la criptografía moderna. Sin embargo, yo no soy un experto y este no es el tema central del curso, así que seremos un poco superficiales.\nDe las siguientes dos secuencias, la segunda parece más aleatoria:\n\n0101010101010101010101010101010101010101\n0010010000111111011010101000100010000101\n\nEsto es porque parece tener menos patrones y repeticiones. En realidad es una representación del número \\(\\pi\\).\nSe pueden obtener números verdaderamente aleatorios a partir de fenómenos físicos como rayos cósmicos, decaimiento de átomos, o incluso los estados electrónicos de algunos componentes del computador. También se pueden obtener números esencialmente aleatorios contando cuántas teclas ha presionado el usuario junto con el estado de la memoria RAM y el número del proceso en el sistema operativo (todo esto es determinista pero imposible de predecir en la práctica). En Python podemos acceder a tales números “verdaderamente” aleatorios:\n\nimport secrets\n\nsecrets.randbelow(10)\n\n2\n\n\n\nsecrets.randbits(64)\n\n1121979361033119556\n\n\n\nlista = [1,2,3,4,5,6]\nsecrets.choice(lista)\n\n3\n\n\nSin embargo estos números aleatorios son lentos de producir. En física, nos basta con que los números “parezcan” aleatorios. Es decir, que tenga buenas propiedades estadísticas y que no sea predecible.\nPor ejemplo, pedimos que la variable aleatoria \\(x_i \\in [0,N]\\) esté distribuida de manera uniforme. Es decir, si tomo \\(n\\) muestras, y divido el intervalo \\([0,N]\\) en \\(m\\) subintervalos, en promedio cada subintervalo contiene \\(n/m\\) muestras.\nA los números que no son aleatorios pero parecen aleatorios se los llama números pseudo-aleatorios. Para generarlos se usan funciones que no tengan patrones fáciles de discernir y que sean caóticas (para condiciones iniciales cercanas producen secuencias muy diferentes).\nEl punto en la secuencia se llama el “estado”. Como el número de bits es finito, el “estado” tarde o temprano se repite. Las secuencias de números aleatorios tienen un período. Queremos que ese período sea lo más largo posible.\nEjemplo sencillo: Generadores de congruencia lineal.\n\\[\nx_{n+1} = (a x_n + c)\\mod(m)\n\\]\n\n# función (muy mala) que implementa el generador de congruencia lineal\ndef lcg():\n    \n    # Variables que definen el generador\n    a = 7 # intentar todos los números de 2 a 9\n    c = 0\n    m = 11 # intentar 10 y 11, ojalá grande para dar un período grande\n    \n    # Esto intenta ejecutar un pedazo de código, y si encuentra un error\n    # ejecuta lo que hay luego de \"except\"\n    try:\n        # queremos que el estado no se borre cuando la función termine,\n        # de esa manera logramos que la función nos de el siguiente valor\n        # en la secuencia.\n        lcg.xn = (a*lcg.xn + c)%m\n    except(AttributeError):\n        # Habrá un error cuando lcg.xn no tenga un valor\n        print('Error: No se ha fijado la semilla.')\n        return\n        \n    return lcg.xn\n\n\nlcg.xn = 1\n\nlcg()\n\n7\n\n\n\nlcg.xn = 4\nnum = 100\naleatorios = [lcg() for i in range(num)]\nplt.scatter(range(num), aleatorios)\n\n\n\n\n\n\n\n\n\n# función (mala) que implementa el generador de congruencia lineal\ndef lcg():\n    \n    # Variables que definen el generador\n    a = 7**5\n    c = 0\n    m = 2**31 - 1   # si es primo es más fácil obtener períodos grandes\n    \n    # Esto intenta ejecutar un pedazo de código, y si encuentra un error\n    # ejecuta lo que hay luego de \"except\"\n    try:\n        # queremos que el estado no se borre cuando la función termine,\n        # de esa manera logramos que la función nos de el siguiente valor\n        # en la secuencia.\n        lcg.xn = (a*lcg.xn + c)%m\n    except(AttributeError):\n        # Habrá un error cuando lcg.xn no tenga un valor\n        print('Error: No se ha fijado la semilla.')\n        return\n        \n    return lcg.xn%10 + 1\n\n\nlcg.xn = 321\nnum = 100\naleatorios = [lcg() for i in range(num)]\nplt.scatter(range(num), aleatorios)\n\n\n\n\n\n\n\n\nAdemás, cuando se grafican las tuplas \\((x_n, x_{n+1},\\dots, x_{n + k})\\), todos los puntos yacen en \\(k - 1\\) planos. Esto hace predecible la secuencia y no muy aleatoria.\nMoraleja: No programar su propio generador aleatorio, si hay que hacerlo leer antes un libro dedicado a ello.\nPython usa un algoritmo más sofisticado llamado “Marsenne twister”. En cambio la librería estándar de C implementa un LCG.\n\nimport random\n\n\nrandom.randint(1,100)\n\n13\n\n\n\nlista = ['a', 'b', 'c', 'd']\nrandom.shuffle(lista)\nlista\n\n['b', 'c', 'd', 'a']\n\n\n\nnum = 10000\nplt.scatter(range(num), np.random.random(num))\n\n\n\n\n\n\n\n\n\nnum = 10000\nplt.scatter(range(num), np.random.randint(10, size=num) + 1)",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#simulaciones-estilo-monte-carlo-de-probabilidades",
-    "href": "06_definicion_probabilidad.html#simulaciones-estilo-monte-carlo-de-probabilidades",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Simulaciones estilo Monte Carlo de probabilidades",
-    "text": "Simulaciones estilo Monte Carlo de probabilidades\nDescribamos la probabilidad con un ejemplo:\nSupongamos que lanzamoos un dado y nos preguntamos cuál es la probabilidad de que caiga un número par.\n\ndado = {1, 2, 3, 4, 5, 6}\npar = {2, 4, 6}\n\n\ndef prob(evento, espacio):\n    ''' \n    Regresa la probabilidad de que ocurra 'evento'.\n    Los argumentos deben ser conjuntos.    \n    '''\n    return (len(evento & espacio)/len(espacio))\n\n\nprob(par, dado)\n\n0.5\n\n\nPara un ejemplo menos trivial, consideremos una urna con 23 bolas: 8 blancas, 6 azules, 9 rojas.\n\ndef unir(color, numeros):\n    return {color + numero for numero in numeros}\n\nurna = unir('B', '12345678') | unir('A', '123456') | unir('R', '123456789')\n\nSe extraen 6 bolas de la urna sin reemplazo.\n\nimport itertools\n\nespacio = set(itertools.permutations(urna, 6))\n\nNos preguntamos cuál es la probabilidad de obtener 6 bolas rojas\n\ndef todos_rojos(evento):\n    s = [i[0] for i in evento]\n    return s.count('R') == 6\n\nrojos = {e for e in espacio if todos_rojos(e)}\n\n\nprob(rojos, espacio)\n\n0.0008321198252548367\n\n\nEsto fue un cálculo a fuerza bruta. El problema es que si la urna tiene muchas bolas, el computador no va a ser capaz de calcular todos los elementos del espacio, se hace todo muy lento.\nConsideremos una urna con 2300 bolas: 800 blancas, 600 azules y 900 rojas.\n\ndef unir(color, numero):\n    return {color + str(n + 1) for n in range(numero)}\n\nurna = list(unir('B', 800) | unir('A', 600) | unir('R', 900))\n\nExtraemos 6 bolas\n# Cuidado, correr esto colapsa el computador\n\nespacio = set(itertools.permutations(urna,6))\nEl problema es que hay demasiadas combinaciones posibles. En estos casos lo que se hace es tomar un número de muestras al azar.\n\nimport random\n\n\nmuestra = {tuple(random.choices(urna, k = 6)) for i in range(100000)}\n\n\nrojos = {e for e in muestra if todos_rojos(e)}\n\n\nprob(rojos, muestra)\n\n0.00379\n\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n\nsims = 10\npuntos = 200000\nprobs = np.zeros(sims)\n\nfor i in range(sims):\n    muestra = {tuple(random.choices(urna, k = 6)) for i in range(puntos)}\n    rojos = {e for e in muestra if todos_rojos(e)}\n    probs[i] = prob(rojos, muestra)\n\nplt.plot(np.arange(sims), probs)\n\n\n\n\n\n\n\n\n\nprobs.mean()\n\nnp.float64(0.003608)\n\n\n\nprobs.std()/probs.mean()\n\nnp.float64(0.02877815809893737)",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#tarea-3.1",
-    "href": "06_definicion_probabilidad.html#tarea-3.1",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Tarea 3.1",
-    "text": "Tarea 3.1\nEn el problema de la urna con23 bolas, al extraer 6 de ellas sin reemplazo.\n\n¿Cuál es la probabilidad de que entre las tres primeras no haya ninguna roja?\n¿Cuál es la probabilidad de sacar dos bolas de cada color?",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#tarea-3.2",
-    "href": "06_definicion_probabilidad.html#tarea-3.2",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Tarea 3.2",
-    "text": "Tarea 3.2\nRepita el problema de la urna pero con reemplazo. Es decir, luego de sacar cada bola esta se vuelve a poner en la urna. Si se extraen cuatro bolas de la urna, ¿cuál es la probabilidad de que todas sean rojas? Responda este problema escribiendo un código, modificando las funciones escritas en la clase para tomar en cuenta el reemplazo.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#tarea-3.3",
-    "href": "06_definicion_probabilidad.html#tarea-3.3",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Tarea 3.3",
-    "text": "Tarea 3.3\nEjercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.\nSe lanza un dado cargado, con probabilidades de \\(\\{0.1, 0.2, 0.2, 0.3, 0.1, 0.1\\}\\) de obtener \\(\\{1, 2, 3, 4, 5, 6\\}\\) respectivamente. Sea \\(N\\) el resultado obtenido al lanzar el dado, luego de lo cual se lanza una moneda \\(N\\) veces. Encuentre la probabilidad condicional de que \\(N\\) sea impar dado que se obtuvo al menos una cara.\nPista: Si no quiere hacerlo analíticamente, construya primero la distribución de probabilidad con todos los resultados posibles junto con sus probabilidades, y luego use las siguientes funciones que definimos en clase.\n\ndef prob(evento, dist):\n    '''\n    Calcula la probabilidad de un evento a partir de una distribución. El evento debe ser una función que\n    regresa verdadero o falso y la distribución debe ser un diccionario (evento: frecuencia)\n    '''\n    \n    conjunto = {e for e in dist.keys() if evento(e)}\n    total = sum(d for d in dist.values())\n    frec = sum(dist[e] for e in conjunto)\n    return frec/total\n\n\ndef prob_cond(A, B, dist):\n    \n    conjuntoB = {e for e in dist.keys() if B(e)}\n    conjuntoA = {e for e in conjuntoB if A(e)}\n    frec_B = sum(dist[e] for e in conjuntoB)\n    frec = sum(dist[e] for e in conjuntoA)\n    return frec/frec_B",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#tarea-3.4",
-    "href": "06_definicion_probabilidad.html#tarea-3.4",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Tarea 3.4",
-    "text": "Tarea 3.4\nEjercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.\nEn una cierta población, el \\(20\\%\\) de las personas tiene una enfermedad. Se hace un examen a los miembros de la población que tiene la característica de dar positivo el \\(90\\%\\) de las veces si la persona tiene la enfermedad y el \\(30\\%\\) de las veces si la persona no tiene la enfermedad (falso positivo). A los que dan positivo se les suministra una droga que puede causar manchas rojas en la piel en un \\(20\\%\\) de los pacientes.\nSi una persona tiene esas manchas rojas. ¿Cuál es la probabilidad de que haya tenido la enfermedad?",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "06_definicion_probabilidad.html#tarea-3.5",
-    "href": "06_definicion_probabilidad.html#tarea-3.5",
-    "title": "Definiciones básicas de probabilidad",
-    "section": "Tarea 3.5",
-    "text": "Tarea 3.5\nEjercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.\nDe las \\(100\\) personas de una aldea, \\(50\\) siempre dicen la verdad, \\(30\\) siempre mienten y \\(20\\) siempre se niegan a responder. Se toma una muestra de \\(30\\) personas sin reemplazo. Encuentre la probabilidad de que esta muestra contenga \\(10\\) personas de cada categoría.\nPara resolver este ejercicio es necesario hacer una simulación estilo Monte Carlo ya que el número de elementos en el espacio de resultados es demasiadoo grande. Estime el error cometido al hacer el cálculo de esta manera y obtenga un error razonable.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2: Probabilidad",
-      "Propiedades de la probabilidad"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html",
-    "href": "04_numeros_y_condicionamiento.html",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "",
-    "text": "El computador representa los números usando un sistema binario. Es decir, una lista de 1s y 0s. Las CPUs modernas usan 64 bits, cada uno de los cuales puede ser 0 o 1. Como esto es un número finito de información, la precisión del computador para guardar un número no es infinita y esto puede inducir errores.\nPara entender el problema, hagamos un ejemplo con 16 bits.\n\nimport numpy as np\n\n\npi = np.float16(np.pi)\ndos = np.float16(2)\ncien = np.float16(100)\ncien*np.sin(dos*pi)\n\nnp.float16(-0.1935)\n\n\n\n\nPara guardar un número real en la memoria de un pc se usa la siguiente representación\n\\[\n(-1)^s 2^{n} (1 + f)\\,,\n\\]\ndonde \\(s\\) es el signo, \\(n\\) es el exponente, y la mantisa \\(f\\) es \\(f = \\sum_{i=1}^d b_i 2^{-i}\\).\nEl exponente normalmente se define como \\(n = c - 2^{k-1} + 1\\), donde \\(k\\) es el número de bits en la representación.\n\n\n\nPara ilustrar el tipo de dificultades que esto introduce es engorroso trabajar con números tan grandes. Por eso trabajamos con números de 16 bits (como si estuviéramos en los años 90). Un número de este estilo es\n1 11010 1111000100\nEl primer dígito es \\(s\\), los siguientes cinco forman \\(c\\) y los siguientes diez forman \\(f\\) de manera análoga a la de antes. En nuestro ejemplo tenemos\n\\[\nf = \\left(\\frac{1}{2}\\right)^1 + \\left(\\frac{1}{2}\\right)^2 + \\left(\\frac{1}{2}\\right)^3 + \\left(\\frac{1}{2}\\right)^4 + \\left(\\frac{1}{2}\\right)^8 = 0.94140625\n\\]\n\\[\nc = 2^4 + 2^3 + 2^1 = 26\n\\]\nEl número total está dado por \\[(-1)^s 2^{c - 15} (1 + f)\\]\nEl número de nuestro ejemplo es\n\\[\n(-1)\\times 2^{26 - 15} 1.94140625 = -3976\n\\]\n\nNúmero más grande de 16 bits\n\n0 11110 1111111111\n\nf = sum((1/2.)**(np.arange(1,11)))\nf\n\nnp.float64(0.9990234375)\n\n\n\nc = sum(2**(np.arange(1,5)))\nc\n\nnp.int64(30)\n\n\n\n2**(c - 15)*(1 + f)\n\nnp.float64(65504.0)\n\n\n\nNúmero más pequeño de 16 bits\n\n1 11110 1111111111\n\n-2**(c-15)*(1 + f)\n\nnp.float64(-65504.0)\n\n\n\nNúmero más cercano a cero de 16 bits\n\n0 00000 0000000001\n\n2**(1-15)*((1/2)**10)\n\n5.960464477539063e-08\n\n\n\nCifras decimales de precisión de 16 bits\n\n0 00000 0000000001\n\n(1/2)**(10)\n\n0.0009765625\n\n\nAlgo análogo ocurre para números representados con 64 bits sólo que ahora tenemos más bits disponibles para el exponente y la mantisa, lo que nos da más precisión. En ese caso tenemos 15 cifras de precisión. Hoy en día se usan también números de 32 bits para algunos cálculos, estos tienen aproximadamente 7 cifras de precisión.\nSi el lector está interesado, puede consultar cómo el uso de números aún más pequeños ha resurgido en el contexto de modelos de inteligencia artificial. Esto acelera los modelos. En esos casos se usa una mantisa más pequeña porque lo importante es el orden de magnitud del número.\n\n\n\nPara explorar este problema, ignoremos por ahora el sistema binario y veamos lo que ocurre en el sistema decimal.\n\nnp.pi\n\n3.141592653589793\n\n\nEn este caso, si queremos representar el número \\(\\pi\\) con una cierta cantidad \\(n\\) de cifras significativas podemos hacer dos cosas:\n\nTruncar: Ignoramos las cifras adicionales, más allá de la \\(n\\)-ésima cifra.\n\n\npi_truncado = 3.1415\n\n\nRedondear: Si la cifra \\(n + 1\\) es menor a 5 truncamos, pero si la cifra \\(n + 1\\) es mayor o igual que 5\n\n\npi_redondeado = 3.1416\n\nAl truncar o redondear cometemos un error. Podemos cuantificar el error de varias maneras:\n\nError real: estimación - valor verdadero\n\n\npi_truncado - np.pi\n\n-9.265358979293481e-05\n\n\n\npi_redondeado - np.pi\n\n7.346410206832132e-06\n\n\n\nError absoluto: |estimación - valor verdadero|\n\n\nnp.abs(pi_truncado - np.pi)\n\nnp.float64(9.265358979293481e-05)\n\n\n\nnp.abs(pi_redondeado - np.pi)\n\nnp.float64(7.346410206832132e-06)\n\n\n\nError relativo: |estimación - valor verdadero|/|valor verdadero|\n\n\nnp.abs(pi_truncado - np.pi)/np.abs(np.pi)\n\nnp.float64(2.9492553621508708e-05)\n\n\n\nnp.abs(pi_redondeado - np.pi)/np.abs(np.pi)\n\nnp.float64(2.3384349967961744e-06)\n\n\n\n\n\nEl número más cercano a \\(1\\) por la derecha en \\(16\\) bits es\n0 00000 0000000001\nRestándole \\(1\\), este se llama el \\(\\epsilon\\) de máquina. En el caso de 16 bits es burdamente \\(10^{-3}\\). En el caso de 64 bits es \\(\\sim 10^{-16}\\) y en el caso de 32 bits es \\(\\sim 10^{-8}\\). Esta es la máxima precisión que podemos alcanzar al operar con números representados de esta forma.\n\nnp.finfo(np.float32).eps\n\nnp.float32(1.1920929e-07)\n\n\n\nnp.finfo(np.float64).eps\n\nnp.float64(2.220446049250313e-16)\n\n\nCuidado, el verdadero error cometido es el \\(\\epsilon_{maq}\\) multiplicado por el exponente, tal que el error al usar números en \\([1/2, 1)\\) es en realidad \\(\\epsilon_{maq}/2\\) por ejemplo.\n\neps = np.finfo(float).eps\nx = eps/2\n(1.0 + x) - 1.0\n\nnp.float64(0.0)\n\n\n\n1.0 + (x - 1.0)\n\nnp.float64(1.1102230246251565e-16)\n\n\nSegún el estándar IEEE 754, los resultados de las sumas, restas, multiplicaciones y divisiones de números de punto flotante en el computador deben dar un resultado igual a hacer el cálculo con números reales y luego redondear a la precisión de la representación.\n\n\n\n\n\n\nAdvertencia\n\n\n\nComo vimos con el ejemplo de arriba, todo esto quiere decir que dos resultados matemáticamente equivalentes no dan necesariamente el mismo resultado si se usa aritmética de punto flotante.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html#representación-binaria-de-números-decimales",
-    "href": "04_numeros_y_condicionamiento.html#representación-binaria-de-números-decimales",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "",
-    "text": "Para guardar un número real en la memoria de un pc se usa la siguiente representación\n\\[\n(-1)^s 2^{n} (1 + f)\\,,\n\\]\ndonde \\(s\\) es el signo, \\(n\\) es el exponente, y la mantisa \\(f\\) es \\(f = \\sum_{i=1}^d b_i 2^{-i}\\).\nEl exponente normalmente se define como \\(n = c - 2^{k-1} + 1\\), donde \\(k\\) es el número de bits en la representación.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html#números-de-16-bits",
-    "href": "04_numeros_y_condicionamiento.html#números-de-16-bits",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "",
-    "text": "Para ilustrar el tipo de dificultades que esto introduce es engorroso trabajar con números tan grandes. Por eso trabajamos con números de 16 bits (como si estuviéramos en los años 90). Un número de este estilo es\n1 11010 1111000100\nEl primer dígito es \\(s\\), los siguientes cinco forman \\(c\\) y los siguientes diez forman \\(f\\) de manera análoga a la de antes. En nuestro ejemplo tenemos\n\\[\nf = \\left(\\frac{1}{2}\\right)^1 + \\left(\\frac{1}{2}\\right)^2 + \\left(\\frac{1}{2}\\right)^3 + \\left(\\frac{1}{2}\\right)^4 + \\left(\\frac{1}{2}\\right)^8 = 0.94140625\n\\]\n\\[\nc = 2^4 + 2^3 + 2^1 = 26\n\\]\nEl número total está dado por \\[(-1)^s 2^{c - 15} (1 + f)\\]\nEl número de nuestro ejemplo es\n\\[\n(-1)\\times 2^{26 - 15} 1.94140625 = -3976\n\\]\n\nNúmero más grande de 16 bits\n\n0 11110 1111111111\n\nf = sum((1/2.)**(np.arange(1,11)))\nf\n\nnp.float64(0.9990234375)\n\n\n\nc = sum(2**(np.arange(1,5)))\nc\n\nnp.int64(30)\n\n\n\n2**(c - 15)*(1 + f)\n\nnp.float64(65504.0)\n\n\n\nNúmero más pequeño de 16 bits\n\n1 11110 1111111111\n\n-2**(c-15)*(1 + f)\n\nnp.float64(-65504.0)\n\n\n\nNúmero más cercano a cero de 16 bits\n\n0 00000 0000000001\n\n2**(1-15)*((1/2)**10)\n\n5.960464477539063e-08\n\n\n\nCifras decimales de precisión de 16 bits\n\n0 00000 0000000001\n\n(1/2)**(10)\n\n0.0009765625\n\n\nAlgo análogo ocurre para números representados con 64 bits sólo que ahora tenemos más bits disponibles para el exponente y la mantisa, lo que nos da más precisión. En ese caso tenemos 15 cifras de precisión. Hoy en día se usan también números de 32 bits para algunos cálculos, estos tienen aproximadamente 7 cifras de precisión.\nSi el lector está interesado, puede consultar cómo el uso de números aún más pequeños ha resurgido en el contexto de modelos de inteligencia artificial. Esto acelera los modelos. En esos casos se usa una mantisa más pequeña porque lo importante es el orden de magnitud del número.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html#redondeo-truncación-error-absoluto-y-relativo",
-    "href": "04_numeros_y_condicionamiento.html#redondeo-truncación-error-absoluto-y-relativo",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "",
-    "text": "Para explorar este problema, ignoremos por ahora el sistema binario y veamos lo que ocurre en el sistema decimal.\n\nnp.pi\n\n3.141592653589793\n\n\nEn este caso, si queremos representar el número \\(\\pi\\) con una cierta cantidad \\(n\\) de cifras significativas podemos hacer dos cosas:\n\nTruncar: Ignoramos las cifras adicionales, más allá de la \\(n\\)-ésima cifra.\n\n\npi_truncado = 3.1415\n\n\nRedondear: Si la cifra \\(n + 1\\) es menor a 5 truncamos, pero si la cifra \\(n + 1\\) es mayor o igual que 5\n\n\npi_redondeado = 3.1416\n\nAl truncar o redondear cometemos un error. Podemos cuantificar el error de varias maneras:\n\nError real: estimación - valor verdadero\n\n\npi_truncado - np.pi\n\n-9.265358979293481e-05\n\n\n\npi_redondeado - np.pi\n\n7.346410206832132e-06\n\n\n\nError absoluto: |estimación - valor verdadero|\n\n\nnp.abs(pi_truncado - np.pi)\n\nnp.float64(9.265358979293481e-05)\n\n\n\nnp.abs(pi_redondeado - np.pi)\n\nnp.float64(7.346410206832132e-06)\n\n\n\nError relativo: |estimación - valor verdadero|/|valor verdadero|\n\n\nnp.abs(pi_truncado - np.pi)/np.abs(np.pi)\n\nnp.float64(2.9492553621508708e-05)\n\n\n\nnp.abs(pi_redondeado - np.pi)/np.abs(np.pi)\n\nnp.float64(2.3384349967961744e-06)",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html#aritmética-de-dígitos-finitos",
-    "href": "04_numeros_y_condicionamiento.html#aritmética-de-dígitos-finitos",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "",
-    "text": "El número más cercano a \\(1\\) por la derecha en \\(16\\) bits es\n0 00000 0000000001\nRestándole \\(1\\), este se llama el \\(\\epsilon\\) de máquina. En el caso de 16 bits es burdamente \\(10^{-3}\\). En el caso de 64 bits es \\(\\sim 10^{-16}\\) y en el caso de 32 bits es \\(\\sim 10^{-8}\\). Esta es la máxima precisión que podemos alcanzar al operar con números representados de esta forma.\n\nnp.finfo(np.float32).eps\n\nnp.float32(1.1920929e-07)\n\n\n\nnp.finfo(np.float64).eps\n\nnp.float64(2.220446049250313e-16)\n\n\nCuidado, el verdadero error cometido es el \\(\\epsilon_{maq}\\) multiplicado por el exponente, tal que el error al usar números en \\([1/2, 1)\\) es en realidad \\(\\epsilon_{maq}/2\\) por ejemplo.\n\neps = np.finfo(float).eps\nx = eps/2\n(1.0 + x) - 1.0\n\nnp.float64(0.0)\n\n\n\n1.0 + (x - 1.0)\n\nnp.float64(1.1102230246251565e-16)\n\n\nSegún el estándar IEEE 754, los resultados de las sumas, restas, multiplicaciones y divisiones de números de punto flotante en el computador deben dar un resultado igual a hacer el cálculo con números reales y luego redondear a la precisión de la representación.\n\n\n\n\n\n\nAdvertencia\n\n\n\nComo vimos con el ejemplo de arriba, todo esto quiere decir que dos resultados matemáticamente equivalentes no dan necesariamente el mismo resultado si se usa aritmética de punto flotante.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.1",
-    "href": "04_numeros_y_condicionamiento.html#tarea-2.1",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "Tarea 2.1",
-    "text": "Tarea 2.1\nSuponga que usamos 64 bits para representar un número de punto flotante. Queremos resolver un problema numérico con número de condicionamiento \\(\\kappa \\sim 10^6\\). Esto lo llevamos a un laboratorio donde el aparato de medida tiene una precisión relativa de seis cifras decimales.\n\n¿Podemos usar el resultado de este cálculo para comparar con el experimento?\nSi queremos reducir el tamaño que ocupa el número en la memoria RAM, ¿podemos cambiar nuestra representación a una de 32 bits?",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.2",
-    "href": "04_numeros_y_condicionamiento.html#tarea-2.2",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "Tarea 2.2",
-    "text": "Tarea 2.2\nEjercicio 1.2.3 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nCalcule el número de condicionamiento para cada una de las siguientes funciones e identifique todos los valores de \\(x\\) para los cuales \\(\\kappa_f(x) \\rightarrow \\infty\\) (incluyendo posiblemente los límites \\(x \\rightarrow \\pm \\infty\\))\n\n\\(f(x) = \\tanh(x)\\).\n\\(f(x) = \\frac{e^x - 1}{x}\\).\n\\(f(x) = \\frac{1 - \\cos(x)}{x}\\).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.3",
-    "href": "04_numeros_y_condicionamiento.html#tarea-2.3",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "Tarea 2.3",
-    "text": "Tarea 2.3\nEn ciertos cálculos importantes en cosmología surge un problema análogo al siguiente. Queremos calcular algunas integrales\n\\[\nI_{1} = \\int_{0}^{q_{max}} q^2\\left(\\frac{1}{q^5} + \\frac{3}{q}\\right)\\,dq\n\\]\n\\[\nI_{2} = \\int_{0}^{q_{max}} q^2\\left(\\frac{-1}{q^5} + \\frac{1}{q}\\right)\\,dq\n\\]\nEstas integrales se pueden aproximar numéricamente por medio de su suma ) \\[\n\\int_0^{q_{max}} f(q)\\,dq \\approx \\frac{q_{max}}{N} \\sum_{i = 1}^{N} f\\left(i\\times\\frac{q_{max}}{N}\\right)\n\\]\nProfundizaremos en el cálculo numérico de integrales más adelante.\nLa cantidad de interés es \\(I = I_{1} + I_{2}\\).\n\nUsando \\(q_{max} = 0.1\\) y \\(N = 500000\\), calcule ambas integrales por separado usando la aproximación, y luego súmelas.\nLa suma de las integrales \\(I\\) se puede escribir como la integral de la suma de los integrandos:\n\n\\[\nI = \\int_0^{q_{max}} q^2 \\frac{4}{q}\\,dq\n\\]\nCalcule \\(I\\) de esta manera usando la aproximación.\n\n¿Por qué son diferentes los resultados? Compare con el resultado exacto de la integral \\(I\\).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.4",
-    "href": "04_numeros_y_condicionamiento.html#tarea-2.4",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "Tarea 2.4",
-    "text": "Tarea 2.4\nEjercicio 1.3.1 del libro de Burden: Use números de punto flotante de 16 bits para calcular las siguientes sumas. Explique por qué ambos métodos en cada caso dan resultados diferentes y cuál es la más correcta.\n\n\\(\\sum_{n = 1}^{100}\\frac{1}{n^2}\\) primero de la forma \\(1 + \\frac{1}{4} + \\frac{1}{9} + \\dots + \\frac{1}{10^4}\\) y luego en la forma \\(\\frac{1}{10^4} + \\dots + \\frac{1}{9} + \\frac{1}{4} + 1\\).\n\\(\\sum_{n = 1}^{100}\\frac{1}{n^3}\\) primero de la forma \\(1 + \\frac{1}{8} + \\frac{1}{27} + \\dots + \\frac{1}{10^6}\\) y luego en la forma \\(\\frac{1}{10^6} + \\dots + \\frac{1}{27} + \\frac{1}{8} + 1\\).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.5",
-    "href": "04_numeros_y_condicionamiento.html#tarea-2.5",
-    "title": "Representación de números y número de condicionamiento",
-    "section": "Tarea 2.5",
-    "text": "Tarea 2.5\nEjercicio 1.2.6 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nEncuentre el número de condicionamiento para el problema de encontrar las raices del polinomio cuadrático \\(p(x) = ax^2 + bx + c\\) bajo cambios al coeficiente \\(b\\).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1: Introducción",
-      "Representación de números y condicionamiento"
-    ]
-  },
-  {
-    "objectID": "13_interpolacion.html",
-    "href": "13_interpolacion.html",
-    "title": "Interpolación",
-    "section": "",
-    "text": "Las funciones genéricas son difíciles de integrar o derivar. Una manera de simplificar los cálculos es aproximar la función por medio de un polinomio cuyas derivadas e integrales son casi triviales.\nPor otro lado, en muchos casos calcular una función es numéricamente costoso. Podemos entonces calcularla en un número de puntos limitado y asumiendo que es lo suficientemente suave, obtener valores aproximados para cualquier otro punto. A esto se lo llama interpolar la función.\nUno podría pensar que los polinomios de Taylor proveen una buena aproximación a las funciones.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\nx = np.linspace(0.2, 4, 100)\nex = 1/x\ntay0 = np.full(100, 1)\ntay1 = 1 - (x - 1)\ntay2 = 1 - (x - 1) + (x - 1)**2\ntay3 = 1 - (x - 1) + (x - 1)**2 - (x - 1)**3\n\nplt.plot(x, ex, label = 'exacta')\nplt.plot(x, tay0, label = 'Taylor 0')\nplt.plot(x, tay1, label = 'Taylor 1')\nplt.plot(x, tay2, label = 'Taylor 2')\nplt.plot(x, tay3, label = 'Taylor 3')\n\nplt.legend()",
+    "text": "Incluso para funciones sencillas puede no ser posible obtener una respuesta analítica (“a mano”) para sus integrales. Por eso son importantes los métodos de integración. Empezaremos por los más sencillos.\nimport numpy as np\nimport matplotlib.pyplot as plt",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Interpolación"
+      "Integración Numérica"
     ]
   },
   {
-    "objectID": "13_interpolacion.html#diferencias-divididas",
-    "href": "13_interpolacion.html#diferencias-divididas",
-    "title": "Interpolación",
-    "section": "Diferencias divididas",
-    "text": "Diferencias divididas\nQueremos obtener una lista de los coeficientes del polinomio de la forma\n\\[\nP(x) = a_o + a_1 (x - x_o) + a_2 (x - x_o)(x - x_1) + ... + a_n (x - x_o)...(x - x_{n - 1})\n\\]\nClaramente\n\\[\na_o = P(x_o) = f(x_o)\n\\]\ncontinuando\n\\[\nf(x_1) = P(x_1) = a_o + a_1 (x_1 - x_o)\n\\]\ntal que\n\\[\na_1 = \\frac{f(x_1) - f(x_o)}{x_1 - x_o} \\equiv f[x_o, x_1]\n\\]\ntambién\n\\[\nf(x_2) = P(x_2) = a_o + a_1 (x_2 - x_o) + a_2 (x_2 - x_1)(x_2 - x_o)\n\\]\ntal que\n\\[\na_2 = \\frac{f(x_2) - f(x_o) - (f(x_1) - f(x_o))(x_2 - x_o)/(x_1 - x_o)}{(x_2 - x_1)(x_2 - x_o)}\n\\]\nsimplificando\n\\[\na_2 = \\frac{(f(x_2) - f(x_o))/(x_2 - x_o) - (f(x_1) - f(x_o))/(x_1 - x_o)}{(x_2 - x_1)} = \\frac{f[x_o, x_2] - f[x_o, x_1]}{(x_2 - x_1)} \\equiv f[x_o, x_1, x_2]\n\\]\nSe puede demostrar que\n\\[\na_k = f[x_o, x_1, ..., x_k] \\equiv \\frac{f[x_o, x_1,...,x_{k-2}, x_k] - f[x_o, x_1,...,x_{k-2},x_{k-1}]}{(x_k - x_{k-1})}\n\\]\n\ndef difer(puntos):\n    \n    n = len(puntos) - 1\n    Fs = [np.zeros(n + 1)]\n    for i in range(n + 1):\n        Fs[0][i] = puntos[i][1]\n    for i in range(1, n + 1):\n        Fs.append(np.zeros(n + 1 - i))\n        for j in range(1, i + 1):\n            Fs[j][i-j] = (Fs[j-1][i-j+1] - Fs[j-1][i-j])/(puntos[i][0] - puntos[i-j][0])\n    \n    return [Fs[i][0] for i in range(n + 1)]\n\n\npuntos = np.array([[1, 0.7651977], [1.3, 0.6200860], [1.6, 0.4554022], [1.9, 0.2818186], [2.2, 0.1103623]])\n\n\ncoef = difer(puntos)\n\n\nnp.prod([i for i in range(0)])\n\nnp.float64(1.0)\n\n\n\ndef poly(x, coefs):\n    return sum(coef[n]*np.prod([(x - puntos[i,0]) for i in range(n)]) for n in range(len(coefs)))\n\n\nx = np.linspace(0, 5, 100)\nplt.plot(x, [poly(xi, coef) for xi in x])\nplt.scatter(puntos[:,0], puntos[:,1], color='red')",
+    "objectID": "14_integracion_numerica.html#estabilidad-de-los-métodos-por-polinomios-interpolantes",
+    "href": "14_integracion_numerica.html#estabilidad-de-los-métodos-por-polinomios-interpolantes",
+    "title": "Integrales Numéricas",
+    "section": "Estabilidad de los métodos por polinomios interpolantes",
+    "text": "Estabilidad de los métodos por polinomios interpolantes\nEl error de redondeo o intrínseco de estos métodos no cambia al cambiar \\(h\\). Esto quiere decir que el método es estable, pero cuando el error del método es lo comparable con el error intrínseco no se gana nada con reducir \\(h\\) ulteriormente.\nDeduscamos este hecho para la regla de Simpson. Si \\(f(x_i) = \\tilde{f}(x_i) + e_i\\) y si además \\(e_i \\leq \\epsilon\\) tenemos\n\\[\ne(h) = \\left|\\frac{h}{3}\\left[e_o + 2\\sum_{i=1}^{n/2-1} e_{2i} + 4\\sum_{i=1}^{n/2} e_{2i-1} + e_n\\right]\\right| \\leq \\frac{h}{3}\\left|\\epsilon + 2\\left(\\frac{n}{2} - 1\\right)\\epsilon + 4\\frac{n}{2}\\epsilon + \\epsilon\\right| = \\frac{h}{3}3n\\epsilon = (b - a)\\epsilon\n\\]",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Interpolación"
+      "Integración Numérica"
     ]
   },
   {
-    "objectID": "13_interpolacion.html#tarea-6.6",
-    "href": "13_interpolacion.html#tarea-6.6",
-    "title": "Interpolación",
-    "section": "Tarea 6.6",
-    "text": "Tarea 6.6\nUse cinco puntos equidistantes para encontrar un polinomio interpolante de la función \\(f(x) = \\sinh(x)\\) entre \\(x = -5\\) y \\(x = 5\\). Grafique el polinomio. Estime el error cometido para cada \\(x\\), usando la fórmula de error de los polinomios de Legendre. Luego grafique \\(|f(x) - P(x)|\\) y compare con el error estimado.",
+    "objectID": "14_integracion_numerica.html#método-de-cuadratura-adaptativa",
+    "href": "14_integracion_numerica.html#método-de-cuadratura-adaptativa",
+    "title": "Integrales Numéricas",
+    "section": "Método de cuadratura adaptativa",
+    "text": "Método de cuadratura adaptativa\nEl método de paso adaptativo consiste en aproximar la integral como un polinomio interpolante en varios intervalos. El tamaño de cada intervalo es tal que el error cometido allí sea menor que una tolerancia \\(\\epsilon/f\\), donde \\(f\\) es la fracción del rango de integración ocupada por el intervalo \\(f = (b-a)/h\\). De esta forma, la suma de la aproximación en todos los subintervalos tiene un error menor que \\(\\epsilon\\).\nTenemos entonces dos tareas:\n\nEstimar el error cometido en una aproximación dada.\nDividir el rango de integración para lograr el error requerido.\n\nPara estimar el error habría que usar la fórmula de error de las aproximaciones de la clase pasada. El problema es que éstas involucran derivadas de alto orden. Recordemos la regla de simpson\n\\[\n\\int_{a}^{b} dx\\,f(x) = \\frac{h}{3}(f(a) + 4f(a + h) + f(b)) - \\frac{h^5}{90}f^{(4)}(\\xi) \\equiv S_o  - \\frac{h^5}{90}f^{(4)}(\\xi)\n\\]\nEn general es difícil calcular la cuarta derivada, y estimarla numéricamente puede costar muchas evaluaciones de la función (además de ser inestable). Lo que podemos hacer es dividir el rango de integración a la mitad, y luego usar la regla de Simpson en cada mitad para obtener:\n\\[\n\\int_a^b dx\\,f(x) = \\frac{h}{6}(f(a) + 4f(a + h/2) + 2f(a + h) + 4f(a + 3h/2) + f(b)) - \\frac{1}{16}\\frac{h^5}{90}f^{(4)}(\\bar{\\xi}) \\equiv S_1  - \\frac{1}{16}\\frac{h^5}{90}f^{(4)}(\\xi)\n\\]\nSi asumimos que \\(f^{(4)}(\\bar{\\xi}) \\approx f^{(4)}(\\xi)\\), tenemos\n\\[\n\\frac{15}{16}\\frac{h^5}{90}f^{(4)}(\\xi) = S_o - S_1\n\\]\ny entonces el error cometido al usar la aproximación S_1 es\n\\[\nS_1 - \\int_a^b dx\\,f(x) = \\frac{1}{15}(S_o - S_1)\n\\]\nPara determinar los intervalos de integración la estrategia es:\n\nCalcular la integral y el error en un intervalo.\nSi el error es mayor que la tolerancia, dividir el intervalo a la mitad.\nRepetir los pasos 1 y 2 para cada subintervalo.\n\n\nclass MaxIterations(Exception):\n    pass\n\ndef adaptive(f, a, b, tol, N=100_000):\n    \n    # Variables iniciales\n    approx = 0\n    i = 0\n    toli = [10*tol]\n    ai = [a]\n    hi = [(b - a)/2]\n    fai = [f(a)]\n    fbi = [f(b)]\n    fci = [f(a + hi[i])]\n    S0i = [hi[i]*(fai[i] + 4*fci[i] + fbi[i])/3]\n    Li = [1]\n    \n        \n    \n    while i &gt;= 0:\n        \n        fd = f(ai[i] + hi[i]/2)\n        fe = f(ai[i] + 3*hi[i]/2)\n        S1 = hi[i]*(fai[i] + 4*fd + fci[i])/6\n        S2 = hi[i]*(fci[i] + 4*fe + fbi[i])/6\n        ai_prec = ai[i]\n        hi_prec = hi[i]\n        fai_prec = fai[i]\n        fbi_prec = fbi[i]\n        fci_prec = fci[i]\n        toli_prec = toli[i]\n        S0i_prec = S0i[i]\n        Li_prec = Li[i]\n        \n        i -= 1\n        if abs(S1 + S2 - S0i_prec) &lt; toli_prec:\n            approx += S1 + S2\n        else:\n            if Li_prec &gt;= N:\n                raise MaxIterations(\"Alcanzado máximo número de iteraciones.\")\n            \n            # Intervalo derecho\n            i += 1\n            if i &gt;= len(ai): # A veces hay que ampliar la lista\n                ai.append(ai_prec + hi_prec)\n                fai.append(fci_prec)\n                fci.append(fe)\n                fbi.append(fbi_prec)\n                hi.append(hi_prec/2)\n                toli.append(toli_prec/2)\n                S0i.append(S2)\n                Li.append(Li_prec + 1)\n            else:\n                ai[i] = ai_prec + hi_prec\n                fai[i] = fci_prec\n                fci[i] = fe\n                fbi[i] = fbi_prec\n                hi[i] = hi_prec/2\n                toli[i] = toli_prec/2\n                S0i[i] = S2\n                Li[i] = Li_prec + 1\n                \n            # Intervalo izquierdo\n            i += 1\n            if i &gt;= len(ai):\n                ai.append(ai_prec)\n                fai.append(fai_prec)\n                fci.append(fd)\n                fbi.append(fci_prec)\n                hi.append(hi[i-1])\n                toli.append(toli[i-1])\n                S0i.append(S1)\n                Li.append(Li[i-1])\n            else:\n                ai[i] = ai_prec\n                fai[i] = fai_prec\n                fci[i] = fd\n                fbi[i] = fci_prec\n                hi[i] = hi[i-1]\n                toli[i] = toli[i-1]\n                S0i[i] = S1\n                Li[i] = Li[i-1]\n                \n    return approx\n\n\nadaptive(np.cos, 0, 1, 0.00000001)\n\nnp.float64(0.8414709892666887)",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Interpolación"
+      "Integración Numérica"
     ]
   },
   {
-    "objectID": "13_interpolacion.html#tarea-6.7",
-    "href": "13_interpolacion.html#tarea-6.7",
-    "title": "Interpolación",
-    "section": "Tarea 6.7",
-    "text": "Tarea 6.7\nUse \\(10\\) puntos equidistantes para encontrar un polinomio interpolante de la función \\(f(x) = \\tanh(x)\\) entre \\(x = -10\\) y \\(x = 10\\). Compare el polinomio con la función obtenida. Explique.",
+    "objectID": "14_integracion_numerica.html#tarea-7.1",
+    "href": "14_integracion_numerica.html#tarea-7.1",
+    "title": "Integrales Numéricas",
+    "section": "Tarea 7.1",
+    "text": "Tarea 7.1\nEjercicio 4.4.22 del libro de Burden de análisis numérico.\nLa ecuación\n\\[\n\\int_0^x dt\\,\\frac{1}{\\sqrt{2\\pi}}e^{-t^2/2} = 0.45\\,,\n\\]\nse puede resolver para \\(x\\) usando el método de Newton. Para lograrlo es necesario evaluar la función\n\\[\nf(p) = \\int_0^p dt\\,\\frac{1}{\\sqrt{2\\pi}}e^{-t^2/2} - 0.45\\,.\n\\]\nUse el método compuesto del trapecio para evaluar esta función y luego use el método de Newton para encontrar \\(x\\) con una precisión de \\(10^{-5}\\).",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Interpolación"
+      "Integración Numérica"
     ]
   },
   {
-    "objectID": "13_interpolacion.html#tarea-6.8",
-    "href": "13_interpolacion.html#tarea-6.8",
-    "title": "Interpolación",
-    "section": "Tarea 6.8",
-    "text": "Tarea 6.8\nUse una función interpolante para encontrar una buena aproximación a una gaussiana con \\(\\sigma = 1\\) y \\(\\mu = 0\\) entre \\(x = 0\\) y \\(x = 2\\). ¿Se puede usar ese mismo polinomio para aproximar la gaussiana en \\(x = 3\\)? De una respuesta cuantitativa y argumente.",
+    "objectID": "14_integracion_numerica.html#tarea-7.2",
+    "href": "14_integracion_numerica.html#tarea-7.2",
+    "title": "Integrales Numéricas",
+    "section": "Tarea 7.2",
+    "text": "Tarea 7.2\nUse el método compuesto de Simpson y el método compuesto del trapecio para encontrar la siguiente integral\n\\[\n\\int_0^4 \\frac{dx}{\\sqrt{x^2 + 16}}\n\\]\nCompare con el resultado exacto para obtener el error cometido. Grafique el error en función de \\(h\\) para ambos métodos y compare con las fórmulas de error.",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Interpolación"
+      "Integración Numérica"
     ]
   },
   {
-    "objectID": "13_interpolacion.html#tarea-6.9",
-    "href": "13_interpolacion.html#tarea-6.9",
-    "title": "Interpolación",
-    "section": "Tarea 6.9",
-    "text": "Tarea 6.9\nEscriba un código similar a la interpolación lineal de la clase, pero que realice una interpolación cuadrática. Es decir, este código interpola usando una parábola para cada trío de puntos. Grafique sus resultados para el mismo ejemplo usado en la interpolación lineal.",
+    "objectID": "14_integracion_numerica.html#tarea-7.3",
+    "href": "14_integracion_numerica.html#tarea-7.3",
+    "title": "Integrales Numéricas",
+    "section": "Tarea 7.3",
+    "text": "Tarea 7.3\nSuponga que la medición de un cierto proceso físico da como resultado la siguiente expresión\n\\[\np(x) = \\sin x + n(x)\n\\]\ndonde \\(n\\) es el error experimental que podemos describir como un número aleatorio, para cada valor de \\(x\\), tomado de una distribución gaussiana con media \\(0\\) y desviación estándar \\(10^{-5}\\). Queremos calcular la integral\n\\[\n\\int_0^1 dx\\,p(x)\\,.\n\\]\nUse el método compuesto de Simpson para calcular esta integral. El verdadero valor de esta integral es \\(1-\\cos(1)\\). Grafique el error cometido en función de \\(h\\). ¿Se puede lograr una precisión de \\(10^{-7}\\)? ¿Por qué?",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Interpolación"
+      "Integración Numérica"
     ]
   },
   {
-    "objectID": "13_interpolacion.html#tarea-6.10",
-    "href": "13_interpolacion.html#tarea-6.10",
-    "title": "Interpolación",
-    "section": "Tarea 6.10",
-    "text": "Tarea 6.10\nConsidere la función \\(f(x) = 4 x^3 - 3x^2 + x -5\\). Use sólo los dos puntos \\(x = -1\\) y \\(x = 1\\) para interpolar usando una spline cúbica entre \\(x =-1\\) y \\(x = 1\\). Explique por qué la spline cúbica es diferente del polinomio original si ambos son polinomios cúbicos que pasan por los mismos puntos en \\(x = -1\\) y \\(x = 1\\). Ahora repita la comparación usando la interpolación de splines por intervalos con \\(4\\) puntos equidistantes en el mismo intervalo.",
+    "objectID": "14_integracion_numerica.html#tarea-7.4",
+    "href": "14_integracion_numerica.html#tarea-7.4",
+    "title": "Integrales Numéricas",
+    "section": "Tarea 7.4",
+    "text": "Tarea 7.4\nCalcule la integral de la función Gaussiana \\(f(x) = \\frac{1}{\\sqrt{2\\pi}}e^{-x^2/2}\\) en el intervalo \\((0, 3)\\). Use el método de cuadratura adaptativa implementado en clase para varias tolerancias. Compare con el valor exacto y grafique el error cometido en función de la tolerancia. ¿Es lo que esperaba?\nPara obtener el valor exacto, busque información sobre la llamada “función de error”.",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Interpolación"
+      "Integración Numérica"
     ]
   },
   {
-    "objectID": "plan.html",
-    "href": "plan.html",
-    "title": "Métodos Numéricos y Probabilidades",
-    "section": "",
-    "text": "Las (los) físicas (os) siempre han llevado la punta de lanza del desarrollo tecnológico. Desde la revolución industrial hasta el desarrollo de la computación cuántica, los (las) físicos (as) han tenido un manejo profundo de la tecnología que les permite hacer nuevos descubrimientos o inventos. Esto es aún más cierto en el siglo XXI, en el cual la mayoría de las (los) licenciadas (os) en física de los países de alto desarrollo tecnológico trabajan en el sector privado creando y mejorando las herramientas informáticas, financieras y estadísticas que usamos todos los días. Esto se debe a que a lo largo de sus carreras adquieren un conocimiento íntimo de la tecnología de punta al intentar aplicarla a problemas científicos abiertos.\nSon muy pocos los problemas que admiten una solución sencilla de lápiz y papel. Para la mayoría de nuevos desarrollos es necesario usar el computador. Esto es verdad tanto para analizar los datos obtenidos en los experimentos, como para resolver las ecuaciones diferenciales que aparecen en la física teórica. Incluso quienes hacen un trabajo puramente analítico se apoyan en herramientas computacionales para los cálculos que son cada vez más complejos.\nEn este curso aprenderemos a usar las herramientas numéricas disponibles para atacar problemas físicos y al hacerlo aprenderemos a usar plataformas, paquetes y lenguajes de programación modernos.\n\n\n\n\nR. L. Burden, D. J. Faires, A. M. Burden, “Numerical Analysis”, 10ma edición, Cengage Learning, 2016 (NA)\nT. A. Driscoll, R. J. Braun, “Funamentals of Numerical Computation”, 2da edición, SIAM, 2022 (FNC)\nB. R. Martin, “Statistics for Physical Sciences”. Elsevier, 2012 (S)\nA. B. Downey, “Think Python,” 2da edición, O’Reilly, 2015. (TP)\n\n\n\n\nSe indican las fechas y temas de cada clase, junto con las secciones de los libros a las que corresponden.\n1- Introducción\n\n¿Cómo funciona una CPU?, 7 de agosto.\nRepaso de Python, 12 de agosto.\nNumpy y arrays, 14 de agosto.\nRepresentación binaria de números decimales, número de condicionamiento 19 de agosto\nAlgoritmos y estabilidad 21 de agosto\n\n2- Probabilidades\n\nPropiedades básicas de la probabilidad, 26 de agosto\nDistribuciones de probabilidad, 28 de agosto\nVarias variables aleatorias, 2 de septiembre\nSuma de muchas variables aleatorias y teorema central del límite, 4 de septiembre\nInformación y entropía, 9 de septiembre\n\nPrueba: 23 de septiembre\n3- Cálculo numérico\n\nSolución de sistemas de ecuaciones lineales: Inversión de matrices, 11 de septiembre\nBúsqueda de raíces: Métodos de bisección y Newton, 25 de septiembre\nInterpolación, 30 de septiembre\nDerivadas numéricas y autodiferenciación, 2 de octubre\nIntegración numérica simple y adaptativa, 7 de octubre\nIntegración numérica por método de Gauss, 9 de octubre\n\nPrueba: 16 de octubre\n4- Solución numérica de ecuaciones diferenciales ordinarias\n\nMétodos de Euler y Taylor, 14 de octubre\nMétodo de Runge Kutta, 21 de octubre\nMétodo de Runge Kutta adaptativo, 23 de octubre\nMétodos de múltiples pasos y método de Adams, 4 de noviembre\nSistemas de ecuaciones diferenciales y ecuaciones de alto orden, 6 de noviembre\n\nPrueba: 13 de noviembre\n5- Optimización y otros algoritmos importantes\n\nAjuste de curvas y bondad de ajuste, 11 de noviembre\nOptimización por descenso de gradiente, 18 de noviembre\nIntroducción a las redes neuronales, 20 de noviembre\nMétodos de Monte Carlo y/o transformada rápida de Fourier, 25 de noviembre\n\nRecuperativa: 27 de noviembre Examen: Definido por Instituto\n\n\n\nLa evaluación se hará por tareas y pruebas.\nAl final de cada clase habrán 5 tareas para un total de 10 tareas cada dos clases. De estas 10 tareas se le asignará de forma aleatoria una tarea a cada estudiante. De esta manera el estudiante deberá entregar aproximadamente 11 tareas a lo largo del curso. El 50% de la nota final es el promedio de las notas de las tareas.\nLas tareas se entregan dos clases después de haber sido asignadas.\nSe evaluará lo siguiente:\nEl código funciona (4 puntos): Si el código pedido hace lo que deberíacumplir sin errores en ningún caso, la estudiante obtendrá los 4 puntos. Si existen casos especiales en los cuales el código no funciona, pero funciona en la mayoría de los casos, la estudiante obtendrá 3 puntos. Si el código no funciona pero el error es menor (algún detalle de sintaxis, alguna variable mal nombrada, alguna excepción de Python difícil de prever), el estudiante obtendrá 2 puntos. Si el código no funciona el estudiante obtendrá 1 punto. Si no entrega la tarea el estudiante obtendrá 0 puntos.\nEl código es legible (+2 puntos): Si el código está comentado en cada paso el estudiante obtendrá +1 punto. Si el código es fácil de entender, está bien organizado, las variables tienen nombres que corresponden a lo que representan la estudiante obtendrá +1 punto.\nLa nota de la tarea = # de puntos + 1.\nLa otra mitad de la nota será el promedio de tres pruebas realizadas a lo largo del semestre. Las pruebas consisten en ejercicios sencillos basados en lo visto en clase y en las tareas.\nLas siguientes son las fechas de las pruebas:\nPrueba: 10 de septiembre Prueba: 5 de noviembre Prueba: 25 de noviembre Recuperativa: 26 de noviembre Examen: 10 de diciembre\n\n\n\nLos estudiantes no están obligados a ir a las ayudantías, pero obviamente quien asista estará mejor preparado para las pruebas y los exámenes porque sabrá cuáles son los problemas que entran. Las tareas se entregarán en formato electrónico por medio de la plataforma GitHub. Se usa esta en vez del Aula Virtual dado su uso extenso en el mundo profesional.\nHágale preguntas al profesor a la dirección jorge.norena@pucv.cl, o en el horario de atención. Hacer preguntas ayuda a aprender y hace más ameno el trabajo del profesor. La clase empieza puntual si hay al menos un estudiante presente, por respeto a los que llegan a tiempo.\n\n\n\nPOR FAVOR HAGAN PREGUNTAS DURANTE LA CLASE, LAS AYUDANTÍAS, POR CORREO ELECTRÓNICO, EN LOS HORARIOS DE ATENCIÓN Y POR CUALQUIER OTRO MEDIO QUE PUEDA.\nSi quiere conversar hágalo por chat en su teléfono para que el ruido no distraiga a los demás. Use el teléfono para tomarle fotos a la pizarra cuando quiera recordar algo.\n\n\n\nPuede en cualquier momento hacer preguntas por correo electrónico.\nCorreo electrónico profesor: jorge.norena@pucv.cl Correo electrónico de la ayudante:\nTambién puede pasar por la oficina del profesor en cualquier momento.\nEl horario de atención reservado es una hora después de cada clase."
-  },
-  {
-    "objectID": "plan.html#motivación",
-    "href": "plan.html#motivación",
-    "title": "Métodos Numéricos y Probabilidades",
-    "section": "",
-    "text": "Las (los) físicas (os) siempre han llevado la punta de lanza del desarrollo tecnológico. Desde la revolución industrial hasta el desarrollo de la computación cuántica, los (las) físicos (as) han tenido un manejo profundo de la tecnología que les permite hacer nuevos descubrimientos o inventos. Esto es aún más cierto en el siglo XXI, en el cual la mayoría de las (los) licenciadas (os) en física de los países de alto desarrollo tecnológico trabajan en el sector privado creando y mejorando las herramientas informáticas, financieras y estadísticas que usamos todos los días. Esto se debe a que a lo largo de sus carreras adquieren un conocimiento íntimo de la tecnología de punta al intentar aplicarla a problemas científicos abiertos.\nSon muy pocos los problemas que admiten una solución sencilla de lápiz y papel. Para la mayoría de nuevos desarrollos es necesario usar el computador. Esto es verdad tanto para analizar los datos obtenidos en los experimentos, como para resolver las ecuaciones diferenciales que aparecen en la física teórica. Incluso quienes hacen un trabajo puramente analítico se apoyan en herramientas computacionales para los cálculos que son cada vez más complejos.\nEn este curso aprenderemos a usar las herramientas numéricas disponibles para atacar problemas físicos y al hacerlo aprenderemos a usar plataformas, paquetes y lenguajes de programación modernos."
-  },
-  {
-    "objectID": "plan.html#lecturas-sugeridas",
-    "href": "plan.html#lecturas-sugeridas",
-    "title": "Métodos Numéricos y Probabilidades",
-    "section": "",
-    "text": "R. L. Burden, D. J. Faires, A. M. Burden, “Numerical Analysis”, 10ma edición, Cengage Learning, 2016 (NA)\nT. A. Driscoll, R. J. Braun, “Funamentals of Numerical Computation”, 2da edición, SIAM, 2022 (FNC)\nB. R. Martin, “Statistics for Physical Sciences”. Elsevier, 2012 (S)\nA. B. Downey, “Think Python,” 2da edición, O’Reilly, 2015. (TP)"
-  },
-  {
-    "objectID": "plan.html#programa",
-    "href": "plan.html#programa",
-    "title": "Métodos Numéricos y Probabilidades",
-    "section": "",
-    "text": "Se indican las fechas y temas de cada clase, junto con las secciones de los libros a las que corresponden.\n1- Introducción\n\n¿Cómo funciona una CPU?, 7 de agosto.\nRepaso de Python, 12 de agosto.\nNumpy y arrays, 14 de agosto.\nRepresentación binaria de números decimales, número de condicionamiento 19 de agosto\nAlgoritmos y estabilidad 21 de agosto\n\n2- Probabilidades\n\nPropiedades básicas de la probabilidad, 26 de agosto\nDistribuciones de probabilidad, 28 de agosto\nVarias variables aleatorias, 2 de septiembre\nSuma de muchas variables aleatorias y teorema central del límite, 4 de septiembre\nInformación y entropía, 9 de septiembre\n\nPrueba: 23 de septiembre\n3- Cálculo numérico\n\nSolución de sistemas de ecuaciones lineales: Inversión de matrices, 11 de septiembre\nBúsqueda de raíces: Métodos de bisección y Newton, 25 de septiembre\nInterpolación, 30 de septiembre\nDerivadas numéricas y autodiferenciación, 2 de octubre\nIntegración numérica simple y adaptativa, 7 de octubre\nIntegración numérica por método de Gauss, 9 de octubre\n\nPrueba: 16 de octubre\n4- Solución numérica de ecuaciones diferenciales ordinarias\n\nMétodos de Euler y Taylor, 14 de octubre\nMétodo de Runge Kutta, 21 de octubre\nMétodo de Runge Kutta adaptativo, 23 de octubre\nMétodos de múltiples pasos y método de Adams, 4 de noviembre\nSistemas de ecuaciones diferenciales y ecuaciones de alto orden, 6 de noviembre\n\nPrueba: 13 de noviembre\n5- Optimización y otros algoritmos importantes\n\nAjuste de curvas y bondad de ajuste, 11 de noviembre\nOptimización por descenso de gradiente, 18 de noviembre\nIntroducción a las redes neuronales, 20 de noviembre\nMétodos de Monte Carlo y/o transformada rápida de Fourier, 25 de noviembre\n\nRecuperativa: 27 de noviembre Examen: Definido por Instituto"
-  },
-  {
-    "objectID": "plan.html#evaluación",
-    "href": "plan.html#evaluación",
-    "title": "Métodos Numéricos y Probabilidades",
-    "section": "",
-    "text": "La evaluación se hará por tareas y pruebas.\nAl final de cada clase habrán 5 tareas para un total de 10 tareas cada dos clases. De estas 10 tareas se le asignará de forma aleatoria una tarea a cada estudiante. De esta manera el estudiante deberá entregar aproximadamente 11 tareas a lo largo del curso. El 50% de la nota final es el promedio de las notas de las tareas.\nLas tareas se entregan dos clases después de haber sido asignadas.\nSe evaluará lo siguiente:\nEl código funciona (4 puntos): Si el código pedido hace lo que deberíacumplir sin errores en ningún caso, la estudiante obtendrá los 4 puntos. Si existen casos especiales en los cuales el código no funciona, pero funciona en la mayoría de los casos, la estudiante obtendrá 3 puntos. Si el código no funciona pero el error es menor (algún detalle de sintaxis, alguna variable mal nombrada, alguna excepción de Python difícil de prever), el estudiante obtendrá 2 puntos. Si el código no funciona el estudiante obtendrá 1 punto. Si no entrega la tarea el estudiante obtendrá 0 puntos.\nEl código es legible (+2 puntos): Si el código está comentado en cada paso el estudiante obtendrá +1 punto. Si el código es fácil de entender, está bien organizado, las variables tienen nombres que corresponden a lo que representan la estudiante obtendrá +1 punto.\nLa nota de la tarea = # de puntos + 1.\nLa otra mitad de la nota será el promedio de tres pruebas realizadas a lo largo del semestre. Las pruebas consisten en ejercicios sencillos basados en lo visto en clase y en las tareas.\nLas siguientes son las fechas de las pruebas:\nPrueba: 10 de septiembre Prueba: 5 de noviembre Prueba: 25 de noviembre Recuperativa: 26 de noviembre Examen: 10 de diciembre"
-  },
-  {
-    "objectID": "plan.html#normas",
-    "href": "plan.html#normas",
-    "title": "Métodos Numéricos y Probabilidades",
-    "section": "",
-    "text": "Los estudiantes no están obligados a ir a las ayudantías, pero obviamente quien asista estará mejor preparado para las pruebas y los exámenes porque sabrá cuáles son los problemas que entran. Las tareas se entregarán en formato electrónico por medio de la plataforma GitHub. Se usa esta en vez del Aula Virtual dado su uso extenso en el mundo profesional.\nHágale preguntas al profesor a la dirección jorge.norena@pucv.cl, o en el horario de atención. Hacer preguntas ayuda a aprender y hace más ameno el trabajo del profesor. La clase empieza puntual si hay al menos un estudiante presente, por respeto a los que llegan a tiempo."
-  },
-  {
-    "objectID": "plan.html#recomendaciones",
-    "href": "plan.html#recomendaciones",
-    "title": "Métodos Numéricos y Probabilidades",
-    "section": "",
-    "text": "POR FAVOR HAGAN PREGUNTAS DURANTE LA CLASE, LAS AYUDANTÍAS, POR CORREO ELECTRÓNICO, EN LOS HORARIOS DE ATENCIÓN Y POR CUALQUIER OTRO MEDIO QUE PUEDA.\nSi quiere conversar hágalo por chat en su teléfono para que el ruido no distraiga a los demás. Use el teléfono para tomarle fotos a la pizarra cuando quiera recordar algo."
-  },
-  {
-    "objectID": "plan.html#horarios-de-atención-y-contacto",
-    "href": "plan.html#horarios-de-atención-y-contacto",
-    "title": "Métodos Numéricos y Probabilidades",
-    "section": "",
-    "text": "Puede en cualquier momento hacer preguntas por correo electrónico.\nCorreo electrónico profesor: jorge.norena@pucv.cl Correo electrónico de la ayudante:\nTambién puede pasar por la oficina del profesor en cualquier momento.\nEl horario de atención reservado es una hora después de cada clase."
+    "objectID": "14_integracion_numerica.html#tarea-7.5",
+    "href": "14_integracion_numerica.html#tarea-7.5",
+    "title": "Integrales Numéricas",
+    "section": "Tarea 7.5",
+    "text": "Tarea 7.5\nCalcule la integral del seno entre \\(0\\) y \\(1\\). Para ello use el método compuesto de Simpson y la cuadratura adaptativa implementada en clase. Hágalo para varias precisiones y grafique el tiempo que tardan ambos métodos en función de la precisión. (Para la precisión del método de Simpson es necesario usar la fórmula de error para calcular el número \\(n\\) de intervalos).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Integración Numérica"
+    ]
   },
   {
     "objectID": "03_numpy_arrays.html",
@@ -1143,99 +679,647 @@
     ]
   },
   {
-    "objectID": "14_integracion_numerica.html",
-    "href": "14_integracion_numerica.html",
-    "title": "Integrales Numéricas",
+    "objectID": "plan.html",
+    "href": "plan.html",
+    "title": "Métodos Numéricos y Probabilidades",
     "section": "",
-    "text": "Incluso para funciones sencillas puede no ser posible obtener una respuesta analítica (“a mano”) para sus integrales. Por eso son importantes los métodos de integración. Empezaremos por los más sencillos.\nimport numpy as np\nimport matplotlib.pyplot as plt",
+    "text": "Las (los) físicas (os) siempre han llevado la punta de lanza del desarrollo tecnológico. Desde la revolución industrial hasta el desarrollo de la computación cuántica, los (las) físicos (as) han tenido un manejo profundo de la tecnología que les permite hacer nuevos descubrimientos o inventos. Esto es aún más cierto en el siglo XXI, en el cual la mayoría de las (los) licenciadas (os) en física de los países de alto desarrollo tecnológico trabajan en el sector privado creando y mejorando las herramientas informáticas, financieras y estadísticas que usamos todos los días. Esto se debe a que a lo largo de sus carreras adquieren un conocimiento íntimo de la tecnología de punta al intentar aplicarla a problemas científicos abiertos.\nSon muy pocos los problemas que admiten una solución sencilla de lápiz y papel. Para la mayoría de nuevos desarrollos es necesario usar el computador. Esto es verdad tanto para analizar los datos obtenidos en los experimentos, como para resolver las ecuaciones diferenciales que aparecen en la física teórica. Incluso quienes hacen un trabajo puramente analítico se apoyan en herramientas computacionales para los cálculos que son cada vez más complejos.\nEn este curso aprenderemos a usar las herramientas numéricas disponibles para atacar problemas físicos y al hacerlo aprenderemos a usar plataformas, paquetes y lenguajes de programación modernos.\n\n\n\n\nR. L. Burden, D. J. Faires, A. M. Burden, “Numerical Analysis”, 10ma edición, Cengage Learning, 2016 (NA)\nT. A. Driscoll, R. J. Braun, “Funamentals of Numerical Computation”, 2da edición, SIAM, 2022 (FNC)\nB. R. Martin, “Statistics for Physical Sciences”. Elsevier, 2012 (S)\nA. B. Downey, “Think Python,” 2da edición, O’Reilly, 2015. (TP)\n\n\n\n\nSe indican las fechas y temas de cada clase, junto con las secciones de los libros a las que corresponden.\n1- Introducción\n\n¿Cómo funciona una CPU?, 7 de agosto.\nRepaso de Python, 12 de agosto.\nNumpy y arrays, 14 de agosto.\nRepresentación binaria de números decimales, número de condicionamiento 19 de agosto\nAlgoritmos y estabilidad 21 de agosto\n\n2- Probabilidades\n\nPropiedades básicas de la probabilidad, 26 de agosto\nDistribuciones de probabilidad, 28 de agosto\nVarias variables aleatorias, 2 de septiembre\nSuma de muchas variables aleatorias y teorema central del límite, 4 de septiembre\nInformación y entropía, 9 de septiembre\n\nPrueba: 23 de septiembre\n3- Cálculo numérico\n\nSolución de sistemas de ecuaciones lineales: Inversión de matrices, 11 de septiembre\nBúsqueda de raíces: Métodos de bisección y Newton, 25 de septiembre\nInterpolación, 30 de septiembre\nDerivadas numéricas y autodiferenciación, 2 de octubre\nIntegración numérica simple y adaptativa, 7 de octubre\nIntegración numérica por método de Gauss, 9 de octubre\n\nPrueba: 16 de octubre\n4- Solución numérica de ecuaciones diferenciales ordinarias\n\nMétodos de Euler y Taylor, 14 de octubre\nMétodo de Runge Kutta, 21 de octubre\nMétodo de Runge Kutta adaptativo, 23 de octubre\nMétodos de múltiples pasos y método de Adams, 4 de noviembre\nSistemas de ecuaciones diferenciales y ecuaciones de alto orden, 6 de noviembre\n\nPrueba: 13 de noviembre\n5- Optimización y otros algoritmos importantes\n\nAjuste de curvas y bondad de ajuste, 11 de noviembre\nOptimización por descenso de gradiente, 18 de noviembre\nIntroducción a las redes neuronales, 20 de noviembre\nMétodos de Monte Carlo y/o transformada rápida de Fourier, 25 de noviembre\n\nRecuperativa: 27 de noviembre Examen: Definido por Instituto\n\n\n\nLa evaluación se hará por tareas y pruebas.\nAl final de cada clase habrán 5 tareas para un total de 10 tareas cada dos clases. De estas 10 tareas se le asignará de forma aleatoria una tarea a cada estudiante. De esta manera el estudiante deberá entregar aproximadamente 11 tareas a lo largo del curso. El 50% de la nota final es el promedio de las notas de las tareas.\nLas tareas se entregan dos clases después de haber sido asignadas.\nSe evaluará lo siguiente:\nEl código funciona (4 puntos): Si el código pedido hace lo que deberíacumplir sin errores en ningún caso, la estudiante obtendrá los 4 puntos. Si existen casos especiales en los cuales el código no funciona, pero funciona en la mayoría de los casos, la estudiante obtendrá 3 puntos. Si el código no funciona pero el error es menor (algún detalle de sintaxis, alguna variable mal nombrada, alguna excepción de Python difícil de prever), el estudiante obtendrá 2 puntos. Si el código no funciona el estudiante obtendrá 1 punto. Si no entrega la tarea el estudiante obtendrá 0 puntos.\nEl código es legible (+2 puntos): Si el código está comentado en cada paso el estudiante obtendrá +1 punto. Si el código es fácil de entender, está bien organizado, las variables tienen nombres que corresponden a lo que representan la estudiante obtendrá +1 punto.\nLa nota de la tarea = # de puntos + 1.\nLa otra mitad de la nota será el promedio de tres pruebas realizadas a lo largo del semestre. Las pruebas consisten en ejercicios sencillos basados en lo visto en clase y en las tareas.\nLas siguientes son las fechas de las pruebas:\nPrueba: 10 de septiembre Prueba: 5 de noviembre Prueba: 25 de noviembre Recuperativa: 26 de noviembre Examen: 10 de diciembre\n\n\n\nLos estudiantes no están obligados a ir a las ayudantías, pero obviamente quien asista estará mejor preparado para las pruebas y los exámenes porque sabrá cuáles son los problemas que entran. Las tareas se entregarán en formato electrónico por medio de la plataforma GitHub. Se usa esta en vez del Aula Virtual dado su uso extenso en el mundo profesional.\nHágale preguntas al profesor a la dirección jorge.norena@pucv.cl, o en el horario de atención. Hacer preguntas ayuda a aprender y hace más ameno el trabajo del profesor. La clase empieza puntual si hay al menos un estudiante presente, por respeto a los que llegan a tiempo.\n\n\n\nPOR FAVOR HAGAN PREGUNTAS DURANTE LA CLASE, LAS AYUDANTÍAS, POR CORREO ELECTRÓNICO, EN LOS HORARIOS DE ATENCIÓN Y POR CUALQUIER OTRO MEDIO QUE PUEDA.\nSi quiere conversar hágalo por chat en su teléfono para que el ruido no distraiga a los demás. Use el teléfono para tomarle fotos a la pizarra cuando quiera recordar algo.\n\n\n\nPuede en cualquier momento hacer preguntas por correo electrónico.\nCorreo electrónico profesor: jorge.norena@pucv.cl Correo electrónico de la ayudante:\nTambién puede pasar por la oficina del profesor en cualquier momento.\nEl horario de atención reservado es una hora después de cada clase."
+  },
+  {
+    "objectID": "plan.html#motivación",
+    "href": "plan.html#motivación",
+    "title": "Métodos Numéricos y Probabilidades",
+    "section": "",
+    "text": "Las (los) físicas (os) siempre han llevado la punta de lanza del desarrollo tecnológico. Desde la revolución industrial hasta el desarrollo de la computación cuántica, los (las) físicos (as) han tenido un manejo profundo de la tecnología que les permite hacer nuevos descubrimientos o inventos. Esto es aún más cierto en el siglo XXI, en el cual la mayoría de las (los) licenciadas (os) en física de los países de alto desarrollo tecnológico trabajan en el sector privado creando y mejorando las herramientas informáticas, financieras y estadísticas que usamos todos los días. Esto se debe a que a lo largo de sus carreras adquieren un conocimiento íntimo de la tecnología de punta al intentar aplicarla a problemas científicos abiertos.\nSon muy pocos los problemas que admiten una solución sencilla de lápiz y papel. Para la mayoría de nuevos desarrollos es necesario usar el computador. Esto es verdad tanto para analizar los datos obtenidos en los experimentos, como para resolver las ecuaciones diferenciales que aparecen en la física teórica. Incluso quienes hacen un trabajo puramente analítico se apoyan en herramientas computacionales para los cálculos que son cada vez más complejos.\nEn este curso aprenderemos a usar las herramientas numéricas disponibles para atacar problemas físicos y al hacerlo aprenderemos a usar plataformas, paquetes y lenguajes de programación modernos."
+  },
+  {
+    "objectID": "plan.html#lecturas-sugeridas",
+    "href": "plan.html#lecturas-sugeridas",
+    "title": "Métodos Numéricos y Probabilidades",
+    "section": "",
+    "text": "R. L. Burden, D. J. Faires, A. M. Burden, “Numerical Analysis”, 10ma edición, Cengage Learning, 2016 (NA)\nT. A. Driscoll, R. J. Braun, “Funamentals of Numerical Computation”, 2da edición, SIAM, 2022 (FNC)\nB. R. Martin, “Statistics for Physical Sciences”. Elsevier, 2012 (S)\nA. B. Downey, “Think Python,” 2da edición, O’Reilly, 2015. (TP)"
+  },
+  {
+    "objectID": "plan.html#programa",
+    "href": "plan.html#programa",
+    "title": "Métodos Numéricos y Probabilidades",
+    "section": "",
+    "text": "Se indican las fechas y temas de cada clase, junto con las secciones de los libros a las que corresponden.\n1- Introducción\n\n¿Cómo funciona una CPU?, 7 de agosto.\nRepaso de Python, 12 de agosto.\nNumpy y arrays, 14 de agosto.\nRepresentación binaria de números decimales, número de condicionamiento 19 de agosto\nAlgoritmos y estabilidad 21 de agosto\n\n2- Probabilidades\n\nPropiedades básicas de la probabilidad, 26 de agosto\nDistribuciones de probabilidad, 28 de agosto\nVarias variables aleatorias, 2 de septiembre\nSuma de muchas variables aleatorias y teorema central del límite, 4 de septiembre\nInformación y entropía, 9 de septiembre\n\nPrueba: 23 de septiembre\n3- Cálculo numérico\n\nSolución de sistemas de ecuaciones lineales: Inversión de matrices, 11 de septiembre\nBúsqueda de raíces: Métodos de bisección y Newton, 25 de septiembre\nInterpolación, 30 de septiembre\nDerivadas numéricas y autodiferenciación, 2 de octubre\nIntegración numérica simple y adaptativa, 7 de octubre\nIntegración numérica por método de Gauss, 9 de octubre\n\nPrueba: 16 de octubre\n4- Solución numérica de ecuaciones diferenciales ordinarias\n\nMétodos de Euler y Taylor, 14 de octubre\nMétodo de Runge Kutta, 21 de octubre\nMétodo de Runge Kutta adaptativo, 23 de octubre\nMétodos de múltiples pasos y método de Adams, 4 de noviembre\nSistemas de ecuaciones diferenciales y ecuaciones de alto orden, 6 de noviembre\n\nPrueba: 13 de noviembre\n5- Optimización y otros algoritmos importantes\n\nAjuste de curvas y bondad de ajuste, 11 de noviembre\nOptimización por descenso de gradiente, 18 de noviembre\nIntroducción a las redes neuronales, 20 de noviembre\nMétodos de Monte Carlo y/o transformada rápida de Fourier, 25 de noviembre\n\nRecuperativa: 27 de noviembre Examen: Definido por Instituto"
+  },
+  {
+    "objectID": "plan.html#evaluación",
+    "href": "plan.html#evaluación",
+    "title": "Métodos Numéricos y Probabilidades",
+    "section": "",
+    "text": "La evaluación se hará por tareas y pruebas.\nAl final de cada clase habrán 5 tareas para un total de 10 tareas cada dos clases. De estas 10 tareas se le asignará de forma aleatoria una tarea a cada estudiante. De esta manera el estudiante deberá entregar aproximadamente 11 tareas a lo largo del curso. El 50% de la nota final es el promedio de las notas de las tareas.\nLas tareas se entregan dos clases después de haber sido asignadas.\nSe evaluará lo siguiente:\nEl código funciona (4 puntos): Si el código pedido hace lo que deberíacumplir sin errores en ningún caso, la estudiante obtendrá los 4 puntos. Si existen casos especiales en los cuales el código no funciona, pero funciona en la mayoría de los casos, la estudiante obtendrá 3 puntos. Si el código no funciona pero el error es menor (algún detalle de sintaxis, alguna variable mal nombrada, alguna excepción de Python difícil de prever), el estudiante obtendrá 2 puntos. Si el código no funciona el estudiante obtendrá 1 punto. Si no entrega la tarea el estudiante obtendrá 0 puntos.\nEl código es legible (+2 puntos): Si el código está comentado en cada paso el estudiante obtendrá +1 punto. Si el código es fácil de entender, está bien organizado, las variables tienen nombres que corresponden a lo que representan la estudiante obtendrá +1 punto.\nLa nota de la tarea = # de puntos + 1.\nLa otra mitad de la nota será el promedio de tres pruebas realizadas a lo largo del semestre. Las pruebas consisten en ejercicios sencillos basados en lo visto en clase y en las tareas.\nLas siguientes son las fechas de las pruebas:\nPrueba: 10 de septiembre Prueba: 5 de noviembre Prueba: 25 de noviembre Recuperativa: 26 de noviembre Examen: 10 de diciembre"
+  },
+  {
+    "objectID": "plan.html#normas",
+    "href": "plan.html#normas",
+    "title": "Métodos Numéricos y Probabilidades",
+    "section": "",
+    "text": "Los estudiantes no están obligados a ir a las ayudantías, pero obviamente quien asista estará mejor preparado para las pruebas y los exámenes porque sabrá cuáles son los problemas que entran. Las tareas se entregarán en formato electrónico por medio de la plataforma GitHub. Se usa esta en vez del Aula Virtual dado su uso extenso en el mundo profesional.\nHágale preguntas al profesor a la dirección jorge.norena@pucv.cl, o en el horario de atención. Hacer preguntas ayuda a aprender y hace más ameno el trabajo del profesor. La clase empieza puntual si hay al menos un estudiante presente, por respeto a los que llegan a tiempo."
+  },
+  {
+    "objectID": "plan.html#recomendaciones",
+    "href": "plan.html#recomendaciones",
+    "title": "Métodos Numéricos y Probabilidades",
+    "section": "",
+    "text": "POR FAVOR HAGAN PREGUNTAS DURANTE LA CLASE, LAS AYUDANTÍAS, POR CORREO ELECTRÓNICO, EN LOS HORARIOS DE ATENCIÓN Y POR CUALQUIER OTRO MEDIO QUE PUEDA.\nSi quiere conversar hágalo por chat en su teléfono para que el ruido no distraiga a los demás. Use el teléfono para tomarle fotos a la pizarra cuando quiera recordar algo."
+  },
+  {
+    "objectID": "plan.html#horarios-de-atención-y-contacto",
+    "href": "plan.html#horarios-de-atención-y-contacto",
+    "title": "Métodos Numéricos y Probabilidades",
+    "section": "",
+    "text": "Puede en cualquier momento hacer preguntas por correo electrónico.\nCorreo electrónico profesor: jorge.norena@pucv.cl Correo electrónico de la ayudante:\nTambién puede pasar por la oficina del profesor en cualquier momento.\nEl horario de atención reservado es una hora después de cada clase."
+  },
+  {
+    "objectID": "13_interpolacion.html",
+    "href": "13_interpolacion.html",
+    "title": "Interpolación",
+    "section": "",
+    "text": "Las funciones genéricas son difíciles de integrar o derivar. Una manera de simplificar los cálculos es aproximar la función por medio de un polinomio cuyas derivadas e integrales son casi triviales.\nPor otro lado, en muchos casos calcular una función es numéricamente costoso. Podemos entonces calcularla en un número de puntos limitado y asumiendo que es lo suficientemente suave, obtener valores aproximados para cualquier otro punto. A esto se lo llama interpolar la función.\nUno podría pensar que los polinomios de Taylor proveen una buena aproximación a las funciones.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\nx = np.linspace(0.2, 4, 100)\nex = 1/x\ntay0 = np.full(100, 1)\ntay1 = 1 - (x - 1)\ntay2 = 1 - (x - 1) + (x - 1)**2\ntay3 = 1 - (x - 1) + (x - 1)**2 - (x - 1)**3\n\nplt.plot(x, ex, label = 'exacta')\nplt.plot(x, tay0, label = 'Taylor 0')\nplt.plot(x, tay1, label = 'Taylor 1')\nplt.plot(x, tay2, label = 'Taylor 2')\nplt.plot(x, tay3, label = 'Taylor 3')\n\nplt.legend()",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Integración Numérica"
+      "Interpolación"
     ]
   },
   {
-    "objectID": "14_integracion_numerica.html#estabilidad-de-los-métodos-por-polinomios-interpolantes",
-    "href": "14_integracion_numerica.html#estabilidad-de-los-métodos-por-polinomios-interpolantes",
-    "title": "Integrales Numéricas",
-    "section": "Estabilidad de los métodos por polinomios interpolantes",
-    "text": "Estabilidad de los métodos por polinomios interpolantes\nEl error de redondeo o intrínseco de estos métodos no cambia al cambiar \\(h\\). Esto quiere decir que el método es estable, pero cuando el error del método es lo comparable con el error intrínseco no se gana nada con reducir \\(h\\) ulteriormente.\nDeduscamos este hecho para la regla de Simpson. Si \\(f(x_i) = \\tilde{f}(x_i) + e_i\\) y si además \\(e_i \\leq \\epsilon\\) tenemos\n\\[\ne(h) = \\left|\\frac{h}{3}\\left[e_o + 2\\sum_{i=1}^{n/2-1} e_{2i} + 4\\sum_{i=1}^{n/2} e_{2i-1} + e_n\\right]\\right| \\leq \\frac{h}{3}\\left|\\epsilon + 2\\left(\\frac{n}{2} - 1\\right)\\epsilon + 4\\frac{n}{2}\\epsilon + \\epsilon\\right| = \\frac{h}{3}3n\\epsilon = (b - a)\\epsilon\n\\]",
+    "objectID": "13_interpolacion.html#diferencias-divididas",
+    "href": "13_interpolacion.html#diferencias-divididas",
+    "title": "Interpolación",
+    "section": "Diferencias divididas",
+    "text": "Diferencias divididas\nQueremos obtener una lista de los coeficientes del polinomio de la forma\n\\[\nP(x) = a_o + a_1 (x - x_o) + a_2 (x - x_o)(x - x_1) + ... + a_n (x - x_o)...(x - x_{n - 1})\n\\]\nClaramente\n\\[\na_o = P(x_o) = f(x_o)\n\\]\ncontinuando\n\\[\nf(x_1) = P(x_1) = a_o + a_1 (x_1 - x_o)\n\\]\ntal que\n\\[\na_1 = \\frac{f(x_1) - f(x_o)}{x_1 - x_o} \\equiv f[x_o, x_1]\n\\]\ntambién\n\\[\nf(x_2) = P(x_2) = a_o + a_1 (x_2 - x_o) + a_2 (x_2 - x_1)(x_2 - x_o)\n\\]\ntal que\n\\[\na_2 = \\frac{f(x_2) - f(x_o) - (f(x_1) - f(x_o))(x_2 - x_o)/(x_1 - x_o)}{(x_2 - x_1)(x_2 - x_o)}\n\\]\nsimplificando\n\\[\na_2 = \\frac{(f(x_2) - f(x_o))/(x_2 - x_o) - (f(x_1) - f(x_o))/(x_1 - x_o)}{(x_2 - x_1)} = \\frac{f[x_o, x_2] - f[x_o, x_1]}{(x_2 - x_1)} \\equiv f[x_o, x_1, x_2]\n\\]\nSe puede demostrar que\n\\[\na_k = f[x_o, x_1, ..., x_k] \\equiv \\frac{f[x_o, x_1,...,x_{k-2}, x_k] - f[x_o, x_1,...,x_{k-2},x_{k-1}]}{(x_k - x_{k-1})}\n\\]\n\ndef difer(puntos):\n    \n    n = len(puntos) - 1\n    Fs = [np.zeros(n + 1)]\n    for i in range(n + 1):\n        Fs[0][i] = puntos[i][1]\n    for i in range(1, n + 1):\n        Fs.append(np.zeros(n + 1 - i))\n        for j in range(1, i + 1):\n            Fs[j][i-j] = (Fs[j-1][i-j+1] - Fs[j-1][i-j])/(puntos[i][0] - puntos[i-j][0])\n    \n    return [Fs[i][0] for i in range(n + 1)]\n\n\npuntos = np.array([[1, 0.7651977], [1.3, 0.6200860], [1.6, 0.4554022], [1.9, 0.2818186], [2.2, 0.1103623]])\n\n\ncoef = difer(puntos)\n\n\nnp.prod([i for i in range(0)])\n\nnp.float64(1.0)\n\n\n\ndef poly(x, coefs):\n    return sum(coef[n]*np.prod([(x - puntos[i,0]) for i in range(n)]) for n in range(len(coefs)))\n\n\nx = np.linspace(0, 5, 100)\nplt.plot(x, [poly(xi, coef) for xi in x])\nplt.scatter(puntos[:,0], puntos[:,1], color='red')",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Integración Numérica"
+      "Interpolación"
     ]
   },
   {
-    "objectID": "14_integracion_numerica.html#método-de-cuadratura-adaptativa",
-    "href": "14_integracion_numerica.html#método-de-cuadratura-adaptativa",
-    "title": "Integrales Numéricas",
-    "section": "Método de cuadratura adaptativa",
-    "text": "Método de cuadratura adaptativa\nEl método de paso adaptativo consiste en aproximar la integral como un polinomio interpolante en varios intervalos. El tamaño de cada intervalo es tal que el error cometido allí sea menor que una tolerancia \\(\\epsilon/f\\), donde \\(f\\) es la fracción del rango de integración ocupada por el intervalo \\(f = (b-a)/h\\). De esta forma, la suma de la aproximación en todos los subintervalos tiene un error menor que \\(\\epsilon\\).\nTenemos entonces dos tareas:\n\nEstimar el error cometido en una aproximación dada.\nDividir el rango de integración para lograr el error requerido.\n\nPara estimar el error habría que usar la fórmula de error de las aproximaciones de la clase pasada. El problema es que éstas involucran derivadas de alto orden. Recordemos la regla de simpson\n\\[\n\\int_{a}^{b} dx\\,f(x) = \\frac{h}{3}(f(a) + 4f(a + h) + f(b)) - \\frac{h^5}{90}f^{(4)}(\\xi) \\equiv S_o  - \\frac{h^5}{90}f^{(4)}(\\xi)\n\\]\nEn general es difícil calcular la cuarta derivada, y estimarla numéricamente puede costar muchas evaluaciones de la función (además de ser inestable). Lo que podemos hacer es dividir el rango de integración a la mitad, y luego usar la regla de Simpson en cada mitad para obtener:\n\\[\n\\int_a^b dx\\,f(x) = \\frac{h}{6}(f(a) + 4f(a + h/2) + 2f(a + h) + 4f(a + 3h/2) + f(b)) - \\frac{1}{16}\\frac{h^5}{90}f^{(4)}(\\bar{\\xi}) \\equiv S_1  - \\frac{1}{16}\\frac{h^5}{90}f^{(4)}(\\xi)\n\\]\nSi asumimos que \\(f^{(4)}(\\bar{\\xi}) \\approx f^{(4)}(\\xi)\\), tenemos\n\\[\n\\frac{15}{16}\\frac{h^5}{90}f^{(4)}(\\xi) = S_o - S_1\n\\]\ny entonces el error cometido al usar la aproximación S_1 es\n\\[\nS_1 - \\int_a^b dx\\,f(x) = \\frac{1}{15}(S_o - S_1)\n\\]\nPara determinar los intervalos de integración la estrategia es:\n\nCalcular la integral y el error en un intervalo.\nSi el error es mayor que la tolerancia, dividir el intervalo a la mitad.\nRepetir los pasos 1 y 2 para cada subintervalo.\n\n\nclass MaxIterations(Exception):\n    pass\n\ndef adaptive(f, a, b, tol, N=100_000):\n    \n    # Variables iniciales\n    approx = 0\n    i = 0\n    toli = [10*tol]\n    ai = [a]\n    hi = [(b - a)/2]\n    fai = [f(a)]\n    fbi = [f(b)]\n    fci = [f(a + hi[i])]\n    S0i = [hi[i]*(fai[i] + 4*fci[i] + fbi[i])/3]\n    Li = [1]\n    \n        \n    \n    while i &gt;= 0:\n        \n        fd = f(ai[i] + hi[i]/2)\n        fe = f(ai[i] + 3*hi[i]/2)\n        S1 = hi[i]*(fai[i] + 4*fd + fci[i])/6\n        S2 = hi[i]*(fci[i] + 4*fe + fbi[i])/6\n        ai_prec = ai[i]\n        hi_prec = hi[i]\n        fai_prec = fai[i]\n        fbi_prec = fbi[i]\n        fci_prec = fci[i]\n        toli_prec = toli[i]\n        S0i_prec = S0i[i]\n        Li_prec = Li[i]\n        \n        i -= 1\n        if abs(S1 + S2 - S0i_prec) &lt; toli_prec:\n            approx += S1 + S2\n        else:\n            if Li_prec &gt;= N:\n                raise MaxIterations(\"Alcanzado máximo número de iteraciones.\")\n            \n            # Intervalo derecho\n            i += 1\n            if i &gt;= len(ai): # A veces hay que ampliar la lista\n                ai.append(ai_prec + hi_prec)\n                fai.append(fci_prec)\n                fci.append(fe)\n                fbi.append(fbi_prec)\n                hi.append(hi_prec/2)\n                toli.append(toli_prec/2)\n                S0i.append(S2)\n                Li.append(Li_prec + 1)\n            else:\n                ai[i] = ai_prec + hi_prec\n                fai[i] = fci_prec\n                fci[i] = fe\n                fbi[i] = fbi_prec\n                hi[i] = hi_prec/2\n                toli[i] = toli_prec/2\n                S0i[i] = S2\n                Li[i] = Li_prec + 1\n                \n            # Intervalo izquierdo\n            i += 1\n            if i &gt;= len(ai):\n                ai.append(ai_prec)\n                fai.append(fai_prec)\n                fci.append(fd)\n                fbi.append(fci_prec)\n                hi.append(hi[i-1])\n                toli.append(toli[i-1])\n                S0i.append(S1)\n                Li.append(Li[i-1])\n            else:\n                ai[i] = ai_prec\n                fai[i] = fai_prec\n                fci[i] = fd\n                fbi[i] = fci_prec\n                hi[i] = hi[i-1]\n                toli[i] = toli[i-1]\n                S0i[i] = S1\n                Li[i] = Li[i-1]\n                \n    return approx\n\n\nadaptive(np.cos, 0, 1, 0.00000001)\n\nnp.float64(0.8414709892666887)",
+    "objectID": "13_interpolacion.html#tarea-6.6",
+    "href": "13_interpolacion.html#tarea-6.6",
+    "title": "Interpolación",
+    "section": "Tarea 6.6",
+    "text": "Tarea 6.6\nUse cinco puntos equidistantes para encontrar un polinomio interpolante de la función \\(f(x) = \\sinh(x)\\) entre \\(x = -5\\) y \\(x = 5\\). Grafique el polinomio. Estime el error cometido para cada \\(x\\), usando la fórmula de error de los polinomios de Legendre. Luego grafique \\(|f(x) - P(x)|\\) y compare con el error estimado.",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Integración Numérica"
+      "Interpolación"
     ]
   },
   {
-    "objectID": "14_integracion_numerica.html#tarea-7.1",
-    "href": "14_integracion_numerica.html#tarea-7.1",
-    "title": "Integrales Numéricas",
-    "section": "Tarea 7.1",
-    "text": "Tarea 7.1\nEjercicio 4.4.22 del libro de Burden de análisis numérico.\nLa ecuación\n\\[\n\\int_0^x dt\\,\\frac{1}{\\sqrt{2\\pi}}e^{-t^2/2} = 0.45\\,,\n\\]\nse puede resolver para \\(x\\) usando el método de Newton. Para lograrlo es necesario evaluar la función\n\\[\nf(p) = \\int_0^p dt\\,\\frac{1}{\\sqrt{2\\pi}}e^{-t^2/2} - 0.45\\,.\n\\]\nUse el método compuesto del trapecio para evaluar esta función y luego use el método de Newton para encontrar \\(x\\) con una precisión de \\(10^{-5}\\).",
+    "objectID": "13_interpolacion.html#tarea-6.7",
+    "href": "13_interpolacion.html#tarea-6.7",
+    "title": "Interpolación",
+    "section": "Tarea 6.7",
+    "text": "Tarea 6.7\nUse \\(10\\) puntos equidistantes para encontrar un polinomio interpolante de la función \\(f(x) = \\tanh(x)\\) entre \\(x = -10\\) y \\(x = 10\\). Compare el polinomio con la función obtenida. Explique.",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Integración Numérica"
+      "Interpolación"
     ]
   },
   {
-    "objectID": "14_integracion_numerica.html#tarea-7.2",
-    "href": "14_integracion_numerica.html#tarea-7.2",
-    "title": "Integrales Numéricas",
-    "section": "Tarea 7.2",
-    "text": "Tarea 7.2\nUse el método compuesto de Simpson y el método compuesto del trapecio para encontrar la siguiente integral\n\\[\n\\int_0^4 \\frac{dx}{\\sqrt{x^2 + 16}}\n\\]\nCompare con el resultado exacto para obtener el error cometido. Grafique el error en función de \\(h\\) para ambos métodos y compare con las fórmulas de error.",
+    "objectID": "13_interpolacion.html#tarea-6.8",
+    "href": "13_interpolacion.html#tarea-6.8",
+    "title": "Interpolación",
+    "section": "Tarea 6.8",
+    "text": "Tarea 6.8\nUse una función interpolante para encontrar una buena aproximación a una gaussiana con \\(\\sigma = 1\\) y \\(\\mu = 0\\) entre \\(x = 0\\) y \\(x = 2\\). ¿Se puede usar ese mismo polinomio para aproximar la gaussiana en \\(x = 3\\)? De una respuesta cuantitativa y argumente.",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Integración Numérica"
+      "Interpolación"
     ]
   },
   {
-    "objectID": "14_integracion_numerica.html#tarea-7.3",
-    "href": "14_integracion_numerica.html#tarea-7.3",
-    "title": "Integrales Numéricas",
-    "section": "Tarea 7.3",
-    "text": "Tarea 7.3\nSuponga que la medición de un cierto proceso físico da como resultado la siguiente expresión\n\\[\np(x) = \\sin x + n(x)\n\\]\ndonde \\(n\\) es el error experimental que podemos describir como un número aleatorio, para cada valor de \\(x\\), tomado de una distribución gaussiana con media \\(0\\) y desviación estándar \\(10^{-5}\\). Queremos calcular la integral\n\\[\n\\int_0^1 dx\\,p(x)\\,.\n\\]\nUse el método compuesto de Simpson para calcular esta integral. El verdadero valor de esta integral es \\(1-\\cos(1)\\). Grafique el error cometido en función de \\(h\\). ¿Se puede lograr una precisión de \\(10^{-7}\\)? ¿Por qué?",
+    "objectID": "13_interpolacion.html#tarea-6.9",
+    "href": "13_interpolacion.html#tarea-6.9",
+    "title": "Interpolación",
+    "section": "Tarea 6.9",
+    "text": "Tarea 6.9\nEscriba un código similar a la interpolación lineal de la clase, pero que realice una interpolación cuadrática. Es decir, este código interpola usando una parábola para cada trío de puntos. Grafique sus resultados para el mismo ejemplo usado en la interpolación lineal.",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Integración Numérica"
+      "Interpolación"
     ]
   },
   {
-    "objectID": "14_integracion_numerica.html#tarea-7.4",
-    "href": "14_integracion_numerica.html#tarea-7.4",
-    "title": "Integrales Numéricas",
-    "section": "Tarea 7.4",
-    "text": "Tarea 7.4\nCalcule la integral de la función Gaussiana \\(f(x) = \\frac{1}{\\sqrt{2\\pi}}e^{-x^2/2}\\) en el intervalo \\((0, 3)\\). Use el método de cuadratura adaptativa implementado en clase para varias tolerancias. Compare con el valor exacto y grafique el error cometido en función de la tolerancia. ¿Es lo que esperaba?\nPara obtener el valor exacto, busque información sobre la llamada “función de error”.",
+    "objectID": "13_interpolacion.html#tarea-6.10",
+    "href": "13_interpolacion.html#tarea-6.10",
+    "title": "Interpolación",
+    "section": "Tarea 6.10",
+    "text": "Tarea 6.10\nConsidere la función \\(f(x) = 4 x^3 - 3x^2 + x -5\\). Use sólo los dos puntos \\(x = -1\\) y \\(x = 1\\) para interpolar usando una spline cúbica entre \\(x =-1\\) y \\(x = 1\\). Explique por qué la spline cúbica es diferente del polinomio original si ambos son polinomios cúbicos que pasan por los mismos puntos en \\(x = -1\\) y \\(x = 1\\). Ahora repita la comparación usando la interpolación de splines por intervalos con \\(4\\) puntos equidistantes en el mismo intervalo.",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Integración Numérica"
+      "Interpolación"
     ]
   },
   {
-    "objectID": "14_integracion_numerica.html#tarea-7.5",
-    "href": "14_integracion_numerica.html#tarea-7.5",
-    "title": "Integrales Numéricas",
-    "section": "Tarea 7.5",
-    "text": "Tarea 7.5\nCalcule la integral del seno entre \\(0\\) y \\(1\\). Para ello use el método compuesto de Simpson y la cuadratura adaptativa implementada en clase. Hágalo para varias precisiones y grafique el tiempo que tardan ambos métodos en función de la precisión. (Para la precisión del método de Simpson es necesario usar la fórmula de error para calcular el número \\(n\\) de intervalos).",
+    "objectID": "04_numeros_y_condicionamiento.html",
+    "href": "04_numeros_y_condicionamiento.html",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "",
+    "text": "El computador representa los números usando un sistema binario. Es decir, una lista de 1s y 0s. Las CPUs modernas usan 64 bits, cada uno de los cuales puede ser 0 o 1. Como esto es un número finito de información, la precisión del computador para guardar un número no es infinita y esto puede inducir errores.\nPara entender el problema, hagamos un ejemplo con 16 bits.\n\nimport numpy as np\n\n\npi = np.float16(np.pi)\ndos = np.float16(2)\ncien = np.float16(100)\ncien*np.sin(dos*pi)\n\nnp.float16(-0.1935)\n\n\n\n\nPara guardar un número real en la memoria de un pc se usa la siguiente representación\n\\[\n(-1)^s 2^{n} (1 + f)\\,,\n\\]\ndonde \\(s\\) es el signo, \\(n\\) es el exponente, y la mantisa \\(f\\) es \\(f = \\sum_{i=1}^d b_i 2^{-i}\\).\nEl exponente normalmente se define como \\(n = c - 2^{k-1} + 1\\), donde \\(k\\) es el número de bits en la representación.\n\n\n\nPara ilustrar el tipo de dificultades que esto introduce es engorroso trabajar con números tan grandes. Por eso trabajamos con números de 16 bits (como si estuviéramos en los años 90). Un número de este estilo es\n1 11010 1111000100\nEl primer dígito es \\(s\\), los siguientes cinco forman \\(c\\) y los siguientes diez forman \\(f\\) de manera análoga a la de antes. En nuestro ejemplo tenemos\n\\[\nf = \\left(\\frac{1}{2}\\right)^1 + \\left(\\frac{1}{2}\\right)^2 + \\left(\\frac{1}{2}\\right)^3 + \\left(\\frac{1}{2}\\right)^4 + \\left(\\frac{1}{2}\\right)^8 = 0.94140625\n\\]\n\\[\nc = 2^4 + 2^3 + 2^1 = 26\n\\]\nEl número total está dado por \\[(-1)^s 2^{c - 15} (1 + f)\\]\nEl número de nuestro ejemplo es\n\\[\n(-1)\\times 2^{26 - 15} 1.94140625 = -3976\n\\]\n\nNúmero más grande de 16 bits\n\n0 11110 1111111111\n\nf = sum((1/2.)**(np.arange(1,11)))\nf\n\nnp.float64(0.9990234375)\n\n\n\nc = sum(2**(np.arange(1,5)))\nc\n\nnp.int64(30)\n\n\n\n2**(c - 15)*(1 + f)\n\nnp.float64(65504.0)\n\n\n\nNúmero más pequeño de 16 bits\n\n1 11110 1111111111\n\n-2**(c-15)*(1 + f)\n\nnp.float64(-65504.0)\n\n\n\nNúmero más cercano a cero de 16 bits\n\n0 00000 0000000001\n\n2**(1-15)*((1/2)**10)\n\n5.960464477539063e-08\n\n\n\nCifras decimales de precisión de 16 bits\n\n0 00000 0000000001\n\n(1/2)**(10)\n\n0.0009765625\n\n\nAlgo análogo ocurre para números representados con 64 bits sólo que ahora tenemos más bits disponibles para el exponente y la mantisa, lo que nos da más precisión. En ese caso tenemos 15 cifras de precisión. Hoy en día se usan también números de 32 bits para algunos cálculos, estos tienen aproximadamente 7 cifras de precisión.\nSi el lector está interesado, puede consultar cómo el uso de números aún más pequeños ha resurgido en el contexto de modelos de inteligencia artificial. Esto acelera los modelos. En esos casos se usa una mantisa más pequeña porque lo importante es el orden de magnitud del número.\n\n\n\nPara explorar este problema, ignoremos por ahora el sistema binario y veamos lo que ocurre en el sistema decimal.\n\nnp.pi\n\n3.141592653589793\n\n\nEn este caso, si queremos representar el número \\(\\pi\\) con una cierta cantidad \\(n\\) de cifras significativas podemos hacer dos cosas:\n\nTruncar: Ignoramos las cifras adicionales, más allá de la \\(n\\)-ésima cifra.\n\n\npi_truncado = 3.1415\n\n\nRedondear: Si la cifra \\(n + 1\\) es menor a 5 truncamos, pero si la cifra \\(n + 1\\) es mayor o igual que 5\n\n\npi_redondeado = 3.1416\n\nAl truncar o redondear cometemos un error. Podemos cuantificar el error de varias maneras:\n\nError real: estimación - valor verdadero\n\n\npi_truncado - np.pi\n\n-9.265358979293481e-05\n\n\n\npi_redondeado - np.pi\n\n7.346410206832132e-06\n\n\n\nError absoluto: |estimación - valor verdadero|\n\n\nnp.abs(pi_truncado - np.pi)\n\nnp.float64(9.265358979293481e-05)\n\n\n\nnp.abs(pi_redondeado - np.pi)\n\nnp.float64(7.346410206832132e-06)\n\n\n\nError relativo: |estimación - valor verdadero|/|valor verdadero|\n\n\nnp.abs(pi_truncado - np.pi)/np.abs(np.pi)\n\nnp.float64(2.9492553621508708e-05)\n\n\n\nnp.abs(pi_redondeado - np.pi)/np.abs(np.pi)\n\nnp.float64(2.3384349967961744e-06)\n\n\n\n\n\nEl número más cercano a \\(1\\) por la derecha en \\(16\\) bits es\n0 00000 0000000001\nRestándole \\(1\\), este se llama el \\(\\epsilon\\) de máquina. En el caso de 16 bits es burdamente \\(10^{-3}\\). En el caso de 64 bits es \\(\\sim 10^{-16}\\) y en el caso de 32 bits es \\(\\sim 10^{-8}\\). Esta es la máxima precisión que podemos alcanzar al operar con números representados de esta forma.\n\nnp.finfo(np.float32).eps\n\nnp.float32(1.1920929e-07)\n\n\n\nnp.finfo(np.float64).eps\n\nnp.float64(2.220446049250313e-16)\n\n\nCuidado, el verdadero error cometido es el \\(\\epsilon_{maq}\\) multiplicado por el exponente, tal que el error al usar números en \\([1/2, 1)\\) es en realidad \\(\\epsilon_{maq}/2\\) por ejemplo.\n\neps = np.finfo(float).eps\nx = eps/2\n(1.0 + x) - 1.0\n\nnp.float64(0.0)\n\n\n\n1.0 + (x - 1.0)\n\nnp.float64(1.1102230246251565e-16)\n\n\nSegún el estándar IEEE 754, los resultados de las sumas, restas, multiplicaciones y divisiones de números de punto flotante en el computador deben dar un resultado igual a hacer el cálculo con números reales y luego redondear a la precisión de la representación.\n\n\n\n\n\n\nAdvertencia\n\n\n\nComo vimos con el ejemplo de arriba, todo esto quiere decir que dos resultados matemáticamente equivalentes no dan necesariamente el mismo resultado si se usa aritmética de punto flotante.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "04_numeros_y_condicionamiento.html#representación-binaria-de-números-decimales",
+    "href": "04_numeros_y_condicionamiento.html#representación-binaria-de-números-decimales",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "",
+    "text": "Para guardar un número real en la memoria de un pc se usa la siguiente representación\n\\[\n(-1)^s 2^{n} (1 + f)\\,,\n\\]\ndonde \\(s\\) es el signo, \\(n\\) es el exponente, y la mantisa \\(f\\) es \\(f = \\sum_{i=1}^d b_i 2^{-i}\\).\nEl exponente normalmente se define como \\(n = c - 2^{k-1} + 1\\), donde \\(k\\) es el número de bits en la representación.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "04_numeros_y_condicionamiento.html#números-de-16-bits",
+    "href": "04_numeros_y_condicionamiento.html#números-de-16-bits",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "",
+    "text": "Para ilustrar el tipo de dificultades que esto introduce es engorroso trabajar con números tan grandes. Por eso trabajamos con números de 16 bits (como si estuviéramos en los años 90). Un número de este estilo es\n1 11010 1111000100\nEl primer dígito es \\(s\\), los siguientes cinco forman \\(c\\) y los siguientes diez forman \\(f\\) de manera análoga a la de antes. En nuestro ejemplo tenemos\n\\[\nf = \\left(\\frac{1}{2}\\right)^1 + \\left(\\frac{1}{2}\\right)^2 + \\left(\\frac{1}{2}\\right)^3 + \\left(\\frac{1}{2}\\right)^4 + \\left(\\frac{1}{2}\\right)^8 = 0.94140625\n\\]\n\\[\nc = 2^4 + 2^3 + 2^1 = 26\n\\]\nEl número total está dado por \\[(-1)^s 2^{c - 15} (1 + f)\\]\nEl número de nuestro ejemplo es\n\\[\n(-1)\\times 2^{26 - 15} 1.94140625 = -3976\n\\]\n\nNúmero más grande de 16 bits\n\n0 11110 1111111111\n\nf = sum((1/2.)**(np.arange(1,11)))\nf\n\nnp.float64(0.9990234375)\n\n\n\nc = sum(2**(np.arange(1,5)))\nc\n\nnp.int64(30)\n\n\n\n2**(c - 15)*(1 + f)\n\nnp.float64(65504.0)\n\n\n\nNúmero más pequeño de 16 bits\n\n1 11110 1111111111\n\n-2**(c-15)*(1 + f)\n\nnp.float64(-65504.0)\n\n\n\nNúmero más cercano a cero de 16 bits\n\n0 00000 0000000001\n\n2**(1-15)*((1/2)**10)\n\n5.960464477539063e-08\n\n\n\nCifras decimales de precisión de 16 bits\n\n0 00000 0000000001\n\n(1/2)**(10)\n\n0.0009765625\n\n\nAlgo análogo ocurre para números representados con 64 bits sólo que ahora tenemos más bits disponibles para el exponente y la mantisa, lo que nos da más precisión. En ese caso tenemos 15 cifras de precisión. Hoy en día se usan también números de 32 bits para algunos cálculos, estos tienen aproximadamente 7 cifras de precisión.\nSi el lector está interesado, puede consultar cómo el uso de números aún más pequeños ha resurgido en el contexto de modelos de inteligencia artificial. Esto acelera los modelos. En esos casos se usa una mantisa más pequeña porque lo importante es el orden de magnitud del número.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "04_numeros_y_condicionamiento.html#redondeo-truncación-error-absoluto-y-relativo",
+    "href": "04_numeros_y_condicionamiento.html#redondeo-truncación-error-absoluto-y-relativo",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "",
+    "text": "Para explorar este problema, ignoremos por ahora el sistema binario y veamos lo que ocurre en el sistema decimal.\n\nnp.pi\n\n3.141592653589793\n\n\nEn este caso, si queremos representar el número \\(\\pi\\) con una cierta cantidad \\(n\\) de cifras significativas podemos hacer dos cosas:\n\nTruncar: Ignoramos las cifras adicionales, más allá de la \\(n\\)-ésima cifra.\n\n\npi_truncado = 3.1415\n\n\nRedondear: Si la cifra \\(n + 1\\) es menor a 5 truncamos, pero si la cifra \\(n + 1\\) es mayor o igual que 5\n\n\npi_redondeado = 3.1416\n\nAl truncar o redondear cometemos un error. Podemos cuantificar el error de varias maneras:\n\nError real: estimación - valor verdadero\n\n\npi_truncado - np.pi\n\n-9.265358979293481e-05\n\n\n\npi_redondeado - np.pi\n\n7.346410206832132e-06\n\n\n\nError absoluto: |estimación - valor verdadero|\n\n\nnp.abs(pi_truncado - np.pi)\n\nnp.float64(9.265358979293481e-05)\n\n\n\nnp.abs(pi_redondeado - np.pi)\n\nnp.float64(7.346410206832132e-06)\n\n\n\nError relativo: |estimación - valor verdadero|/|valor verdadero|\n\n\nnp.abs(pi_truncado - np.pi)/np.abs(np.pi)\n\nnp.float64(2.9492553621508708e-05)\n\n\n\nnp.abs(pi_redondeado - np.pi)/np.abs(np.pi)\n\nnp.float64(2.3384349967961744e-06)",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "04_numeros_y_condicionamiento.html#aritmética-de-dígitos-finitos",
+    "href": "04_numeros_y_condicionamiento.html#aritmética-de-dígitos-finitos",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "",
+    "text": "El número más cercano a \\(1\\) por la derecha en \\(16\\) bits es\n0 00000 0000000001\nRestándole \\(1\\), este se llama el \\(\\epsilon\\) de máquina. En el caso de 16 bits es burdamente \\(10^{-3}\\). En el caso de 64 bits es \\(\\sim 10^{-16}\\) y en el caso de 32 bits es \\(\\sim 10^{-8}\\). Esta es la máxima precisión que podemos alcanzar al operar con números representados de esta forma.\n\nnp.finfo(np.float32).eps\n\nnp.float32(1.1920929e-07)\n\n\n\nnp.finfo(np.float64).eps\n\nnp.float64(2.220446049250313e-16)\n\n\nCuidado, el verdadero error cometido es el \\(\\epsilon_{maq}\\) multiplicado por el exponente, tal que el error al usar números en \\([1/2, 1)\\) es en realidad \\(\\epsilon_{maq}/2\\) por ejemplo.\n\neps = np.finfo(float).eps\nx = eps/2\n(1.0 + x) - 1.0\n\nnp.float64(0.0)\n\n\n\n1.0 + (x - 1.0)\n\nnp.float64(1.1102230246251565e-16)\n\n\nSegún el estándar IEEE 754, los resultados de las sumas, restas, multiplicaciones y divisiones de números de punto flotante en el computador deben dar un resultado igual a hacer el cálculo con números reales y luego redondear a la precisión de la representación.\n\n\n\n\n\n\nAdvertencia\n\n\n\nComo vimos con el ejemplo de arriba, todo esto quiere decir que dos resultados matemáticamente equivalentes no dan necesariamente el mismo resultado si se usa aritmética de punto flotante.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.1",
+    "href": "04_numeros_y_condicionamiento.html#tarea-2.1",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "Tarea 2.1",
+    "text": "Tarea 2.1\nSuponga que usamos 64 bits para representar un número de punto flotante. Queremos resolver un problema numérico con número de condicionamiento \\(\\kappa \\sim 10^6\\). Esto lo llevamos a un laboratorio donde el aparato de medida tiene una precisión relativa de seis cifras decimales.\n\n¿Podemos usar el resultado de este cálculo para comparar con el experimento?\nSi queremos reducir el tamaño que ocupa el número en la memoria RAM, ¿podemos cambiar nuestra representación a una de 32 bits?",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.2",
+    "href": "04_numeros_y_condicionamiento.html#tarea-2.2",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "Tarea 2.2",
+    "text": "Tarea 2.2\nEjercicio 1.2.3 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nCalcule el número de condicionamiento para cada una de las siguientes funciones e identifique todos los valores de \\(x\\) para los cuales \\(\\kappa_f(x) \\rightarrow \\infty\\) (incluyendo posiblemente los límites \\(x \\rightarrow \\pm \\infty\\))\n\n\\(f(x) = \\tanh(x)\\).\n\\(f(x) = \\frac{e^x - 1}{x}\\).\n\\(f(x) = \\frac{1 - \\cos(x)}{x}\\).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.3",
+    "href": "04_numeros_y_condicionamiento.html#tarea-2.3",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "Tarea 2.3",
+    "text": "Tarea 2.3\nEn ciertos cálculos importantes en cosmología surge un problema análogo al siguiente. Queremos calcular algunas integrales\n\\[\nI_{1} = \\int_{0}^{q_{max}} q^2\\left(\\frac{1}{q^5} + \\frac{3}{q}\\right)\\,dq\n\\]\n\\[\nI_{2} = \\int_{0}^{q_{max}} q^2\\left(\\frac{-1}{q^5} + \\frac{1}{q}\\right)\\,dq\n\\]\nEstas integrales se pueden aproximar numéricamente por medio de su suma ) \\[\n\\int_0^{q_{max}} f(q)\\,dq \\approx \\frac{q_{max}}{N} \\sum_{i = 1}^{N} f\\left(i\\times\\frac{q_{max}}{N}\\right)\n\\]\nProfundizaremos en el cálculo numérico de integrales más adelante.\nLa cantidad de interés es \\(I = I_{1} + I_{2}\\).\n\nUsando \\(q_{max} = 0.1\\) y \\(N = 500000\\), calcule ambas integrales por separado usando la aproximación, y luego súmelas.\nLa suma de las integrales \\(I\\) se puede escribir como la integral de la suma de los integrandos:\n\n\\[\nI = \\int_0^{q_{max}} q^2 \\frac{4}{q}\\,dq\n\\]\nCalcule \\(I\\) de esta manera usando la aproximación.\n\n¿Por qué son diferentes los resultados? Compare con el resultado exacto de la integral \\(I\\).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.4",
+    "href": "04_numeros_y_condicionamiento.html#tarea-2.4",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "Tarea 2.4",
+    "text": "Tarea 2.4\nEjercicio 1.3.1 del libro de Burden: Use números de punto flotante de 16 bits para calcular las siguientes sumas. Explique por qué ambos métodos en cada caso dan resultados diferentes y cuál es la más correcta.\n\n\\(\\sum_{n = 1}^{100}\\frac{1}{n^2}\\) primero de la forma \\(1 + \\frac{1}{4} + \\frac{1}{9} + \\dots + \\frac{1}{10^4}\\) y luego en la forma \\(\\frac{1}{10^4} + \\dots + \\frac{1}{9} + \\frac{1}{4} + 1\\).\n\\(\\sum_{n = 1}^{100}\\frac{1}{n^3}\\) primero de la forma \\(1 + \\frac{1}{8} + \\frac{1}{27} + \\dots + \\frac{1}{10^6}\\) y luego en la forma \\(\\frac{1}{10^6} + \\dots + \\frac{1}{27} + \\frac{1}{8} + 1\\).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "04_numeros_y_condicionamiento.html#tarea-2.5",
+    "href": "04_numeros_y_condicionamiento.html#tarea-2.5",
+    "title": "Representación de números y número de condicionamiento",
+    "section": "Tarea 2.5",
+    "text": "Tarea 2.5\nEjercicio 1.2.6 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nEncuentre el número de condicionamiento para el problema de encontrar las raices del polinomio cuadrático \\(p(x) = ax^2 + bx + c\\) bajo cambios al coeficiente \\(b\\).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Representación de números y condicionamiento"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html",
+    "href": "06_definicion_probabilidad.html",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "",
+    "text": "import matplotlib.pyplot as plt\nimport numpy as np",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#definición",
+    "href": "06_definicion_probabilidad.html#definición",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Definición",
+    "text": "Definición\nMatemáticamente la probabilidad es la asignación de una medida a un conjunto \\(\\mathcal{S}\\). Es decir, a cada subconjunto \\(E\\) del conjunto le asignamos un número \\(p(E)\\) tal que\n\n\\(p(E) \\geq 0\\) para todo \\(E\\).\n\\(p(A \\cup B) = p(A) + p(B)\\)\n\\(p(\\mathcal{S}) = 1\\)\n\nCuando el conjunto \\(\\mathcal{S}\\) es discreto, le asignamos a cada elemento un número entre \\(0\\) y \\(1\\) tal que la suma de todos los elementos sea \\(1\\).\nCuando el conjunto \\(\\mathcal{S}\\) es un subconjunto continuo de los reales, le asignamos una densidad de probabilidad tal que la probabilidad del intervalo \\((a,b) \\subset \\mathcal{S}\\) es \\[\np((a,b)) = \\int_a^b dx\\,\\rho(x)\\,.\n\\] La función de distribución de probabilidad a veces se llama la PDF por su sigla en inglés.\nMás allá de la definición matemática, uno puede preguntarse por el significado de la probabilidad. Esta pregunta también es práctica, porque nos gustaría saber cómo asignarle una probabilidad a cada evento. Hay dos interpretaciones\n\nObjetiva: La probabilidad es obtenida experimentalmente. Si realizamos un experimento un número \\(N\\) de veces y obtenemos el resultado \\(A\\) un número \\(N_A\\) veces, decimos que la probabilidad de obtener \\(A\\) es \\[\nP(A) = \\lim_{N\\rightarrow \\infty} \\frac{N_A}{N}\\,.\n\\] Esta definición es idealizada ya que nunca podemos realizar un experimento infinitas veces.\nSubjetiva: Las probabilidades nos dan una estima basada en la incertidumbre debida a la ignorancia sobre los procesos.\n\nNormalmente asumimos, a falta de más información, que todos los resultados son igualmente probables. Si hacemos esto la probabilidad es la fracción de eventos favorables.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#propiedades-básicas",
+    "href": "06_definicion_probabilidad.html#propiedades-básicas",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Propiedades básicas",
+    "text": "Propiedades básicas\nDefinimos primero la probabilidad condicional de que ocurra \\(A\\) dado que ocurre \\(B\\): \\(P(A|B)\\)\nEjemplo: La probabilidad de que al lanzar un dado dos veces el segundo resultado sea par dado que la suma de ambos es 6.\nLanzar dos dados tiene 36 posibles resultados. La probabilidad la tomamos como la fracción que cumple lo pedido.\nEntre los 36 resultados, tomemos aquellos que cumplen B (la suma de ambos resultados es 6):\n\\[\n1, 5\\,;\\quad 2, 4\\,;\\quad 3, 3\\,;\\quad 4, 2\\,;\\quad 5, 1\\,.\n\\]\nLa probabilidad condicional es la fracción de estos 5 que cumple la condición A (el segundo es par). Estos son 2. Por lo tanto la probabilidad es \\(2/5\\).\nLa probabilidad conjunta es la probabilidad de que ocurran dos eventos.\nEn el ejemplo anterior, la probabilidad de que el segundo resultado sea par y la suma de ambos sea 6 es la fracción del total que cumple estas dos condiciones. Es decir \\(2/36\\).\nEn general tenemos que\n\\[\nP(AB) = P(A|B)P(B)\n\\]\nPodemos verificar que se cumple para el ejemplo anterior.\nEsto tiene sentido ya que \\(P(B)\\) es la fracción que cumple B, y \\(P(A|B)\\) es la fracción entre todos los que cumplen B de aquellos que cumplen A.\nOtro problema, ¿cuál es la probabilidad de que la suma sea 6 o que el segundo resultado sea par?\nSi lo pensamos un segundo\n\\[\nP(A\\cup B) = P(A) + P(B) - P(AB)\n\\]\nEsto es porque al sumar los que cumplen A y los que cumplen B, estamos contando dos veces los que cumplen ambos.\nDecimos que dos eventos son independientes cuando \\(P(A|B) = P(A)\\). En ese caso \\(P(AB) = P(A)P(B)\\).\nDecimos que dos eventos son mutuamente excluyentes cuando \\(P(AB) = 0\\). En ese caso \\(P(A\\cup B) = P(A) + P(B)\\).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#teorema-de-bayes",
+    "href": "06_definicion_probabilidad.html#teorema-de-bayes",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Teorema de Bayes",
+    "text": "Teorema de Bayes\nEste teorema es tal vez el teorema famoso más sencillo de demostrar:\n\\[\nP(A|B) = \\frac{P(B|A) P(A)}{P(B)}\n\\]\nDemostración:\n\\[\nP(AB) = P(BA)\n\\]\nentonces\n\\[\nP(A|B)P(B) = P(B|A)P(A)\n\\]\nPara ver un ejemplo de su poder, supongamos que sabemos que los estudiantes de física son \\(70\\) hombres y \\(30\\) mujeres mientras que los estudiantes de química son \\(141\\) hombres y \\(153\\) mujeres. En el pasillo conocemos a un estudiante que está hablando de átomos (tal que es de física o química). Si este estudiante es mujer, ¿cuál es la probabilidad de que sea de física?\nQueremos calcular \\(P(física|mujer)\\), pero conocemos el objeto al revés \\(P(mujer|física)\\). ¿Cómo lo hacemos?\n\nnumero_estudiantes = 141 + 153 + 70 + 30\nprob_mujer = (153 + 30)/numero_estudiantes\nprob_fisica = 100/numero_estudiantes\nprob_mujer_dado_fisica = 30/100\n\nprob_mujer_dado_fisica*prob_fisica/prob_mujer\n\n0.16393442622950818",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#una-variable-aleatoria",
+    "href": "06_definicion_probabilidad.html#una-variable-aleatoria",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Una variable aleatoria",
+    "text": "Una variable aleatoria\nUn número \\(x\\) que puede tomar valores dentro del conjunto \\(\\mathcal{S}\\) se llama una variable aleatoria. En física es más común usar variables aleatorias continuas, es decir \\(\\mathcal{S} = \\mathbb{R}\\). Podemos caracterizar esta variable con varias propiedades:\n\nLa función cumulativa de probabilidad es \\(P(x) = p((-\\infty, x))\\). Claramente \\(P(-\\infty) = 0\\) y \\(P(\\infty) = 1\\). Note que \\(\\frac{d P}{dx}(x) = \\rho(x)\\).\nEl valor esperado de alguna cantidad \\(F(x)\\) es \\[\n\\langle F \\rangle = \\int_{-\\infty}^{\\infty}dx\\,\\rho(x)F(x)\\,.\n\\]\nPodemos cambiar de variable definiendo \\(y(x)\\). La distribución de probabilidad de esta variable es \\[\n\\rho(y) = \\left|\\frac{\\partial x}{\\partial y}\\right|\\rho(x)\\,.\n\\]\n\nEjemplo: Sea \\(\\rho(x) = \\lambda \\exp(-\\lambda|x|)/2\\). Note que \\(\\int_{-\\infty}^\\infty dx\\,\\rho(x) = 1\\). Tomemos \\(y = x^2\\), entonces también \\(\\left|\\frac{\\partial x}{\\partial y}\\right| = \\frac{1}{2\\sqrt{y}}\\).\nComo hay dos valores de \\(x\\) que corresponden al mismo valor de \\(y\\), la probabilidad de \\(y\\) será la suma de esas dos posibilidades: \\[\n\\rho(y) = 2\\frac{\\lambda}{2}\\exp(-\\lambda\\sqrt{y})\\frac{1}{2\\sqrt{y}} = \\frac{\\lambda \\exp(-\\lambda \\sqrt{y})}{2\\sqrt{y}}\\,.\n\\]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#momentos-y-cumulantes",
+    "href": "06_definicion_probabilidad.html#momentos-y-cumulantes",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Momentos y cumulantes",
+    "text": "Momentos y cumulantes\nUna propiedad importante de una distribución de probabilidad son sus momentos \\[\nm_n = \\langle x^n \\rangle = \\int dx\\,\\rho(x)x^n\\,.\n\\]\nLa función característica es la transformada de Fourier de la densidad de probabilidad \\[\n\\tilde{\\rho}(k) = \\langle e^{-ikx} \\rangle = \\int dx\\,\\rho(x) e^{-ikx}\\,.\n\\] La PDF se puede recuperar a partir de la función característica tomando la transformada inversa \\[\n\\rho(x) = \\frac{1}{2\\pi}\\int_{-\\infty}^\\infty dk\\,\\rho(k) e^{ikx}\\,.\n\\] Los momentos de la distribución se pueden obtener expandiendo en potencias de \\(k\\) \\[\n\\tilde{\\rho}(k) = \\left\\langle \\sum_{n=0}^\\infty \\frac{(-ik)^n}{n!}x^n\\right\\rangle = \\sum_{n=0}^\\infty \\frac{(-ik)^n}{n!}\\langle x^n\\rangle\\,.\n\\]\nLos cumulantes son valores esperados conexos. Es decir, le restamos a los momentos la información contenida en momentos de orden inferior: \\[\\begin{align*}\n\\langle x \\rangle_c &= \\langle x\\rangle\\,,\\\\\n\\langle x^2 \\rangle_c &= \\langle x^2 \\rangle - \\langle x \\rangle^2\\,,\\\\\n\\langle x^3 \\rangle_c &= \\langle x^3 \\rangle - 3 \\langle x^2\\rangle_c \\langle x \\rangle - \\langle x\\rangle^3\\,,\\\\\n\\langle x^4 \\rangle_c &= \\langle x^4 \\rangle - 4 \\langle x^4\\rangle_c \\langle x \\rangle - 6\\langle x^2\\rangle_c^2 - 6 \\langle x^2\\rangle_c \\langle x \\rangle^2 - \\langle x\\rangle^4\\,.\n\\end{align*}\\] En general, estos cumulantes se definen como proveniendo del logaritmo de la función característica \\[\n\\ln \\tilde{\\rho}(k) = \\sum_{n=1}^\\infty \\frac{(-ik)^n}{n!}\\langle x^n\\rangle_c\\,.\n\\]\nEl segundo cumulante \\(\\sigma^2 = \\langle x^2 \\rangle_c\\) se llama la varianza de la distribución y representa cuánto está esparcida. Si llamamos \\(x_o = \\langle x \\rangle\\) tenemos \\[\n\\langle (x - x_o)^2 \\rangle = \\langle x^2 \\rangle - 2 \\langle x x_o \\rangle + \\langle x_o^2 \\rangle = \\langle x^2 \\rangle - x_o^2 = \\langle x^2 \\rangle_c\\,.\n\\] La varianza es el valor esperado de la desviación al cuadrado. Es decir, nos dice en promedio cual es la desviación al cuadrado de un punto respecto a \\(x_o\\).\nDemostración (opcional):\n\\[\n\\sum_{n=0}^\\infty \\frac{(-ik)^n}{n!}\\langle x^n\\rangle = \\exp\\left[\\sum_{n=1}^\\infty\\frac{(-ik)^n}{n!}\\langle x^n\\rangle_c\\right] = \\prod_n \\sum_{p_n}\\left[\\frac{(-ik)^{np_n}}{p_n!}\\left(\\frac{\\langle x^n \\rangle_c}{n!}\\right)^{p_n}\\right]\\,.\n\\]\nIgualando las potencias de \\(k\\) del lado izquierdo y derecho obtenemos\n\\[\n\\langle x^n \\rangle = \\sum'_{p_n} m! \\prod_n \\frac{1}{p_n!(n!)^{p_n}}\\langle x^n \\rangle_c^{p_n}\\,.\n\\]\nLa suma primada se refiere al hecho que sumamos sobre todos los valores de \\(p_n\\) tales que \\(\\sum n p_n = m\\).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#generadores-de-números-aleatorios",
+    "href": "06_definicion_probabilidad.html#generadores-de-números-aleatorios",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Generadores de números aleatorios",
+    "text": "Generadores de números aleatorios\nTomado completamente de:\n\nhttp://users.dimi.uniud.it/~alberto.policriti/home/sites/default/files/ASD/prng-slides.pdf\nhttps://www.eg.bucknell.edu/~xmeng/Course/CS6337/Note/master/node40.html\nhttps://realpython.com/python-random/\n\nEste es un tema sumamente interesante. Se le dedican libros enteros y es crucial para las simulaciones en física y estadística. Así mismo es una parte central de la criptografía moderna. Sin embargo, yo no soy un experto y este no es el tema central del curso, así que seremos un poco superficiales.\nDe las siguientes dos secuencias, la segunda parece más aleatoria:\n\n0101010101010101010101010101010101010101\n0010010000111111011010101000100010000101\n\nEsto es porque parece tener menos patrones y repeticiones. En realidad es una representación del número \\(\\pi\\).\nSe pueden obtener números verdaderamente aleatorios a partir de fenómenos físicos como rayos cósmicos, decaimiento de átomos, o incluso los estados electrónicos de algunos componentes del computador. También se pueden obtener números esencialmente aleatorios contando cuántas teclas ha presionado el usuario junto con el estado de la memoria RAM y el número del proceso en el sistema operativo (todo esto es determinista pero imposible de predecir en la práctica). En Python podemos acceder a tales números “verdaderamente” aleatorios:\n\nimport secrets\n\nsecrets.randbelow(10)\n\n2\n\n\n\nsecrets.randbits(64)\n\n1121979361033119556\n\n\n\nlista = [1,2,3,4,5,6]\nsecrets.choice(lista)\n\n3\n\n\nSin embargo estos números aleatorios son lentos de producir. En física, nos basta con que los números “parezcan” aleatorios. Es decir, que tenga buenas propiedades estadísticas y que no sea predecible.\nPor ejemplo, pedimos que la variable aleatoria \\(x_i \\in [0,N]\\) esté distribuida de manera uniforme. Es decir, si tomo \\(n\\) muestras, y divido el intervalo \\([0,N]\\) en \\(m\\) subintervalos, en promedio cada subintervalo contiene \\(n/m\\) muestras.\nA los números que no son aleatorios pero parecen aleatorios se los llama números pseudo-aleatorios. Para generarlos se usan funciones que no tengan patrones fáciles de discernir y que sean caóticas (para condiciones iniciales cercanas producen secuencias muy diferentes).\nEl punto en la secuencia se llama el “estado”. Como el número de bits es finito, el “estado” tarde o temprano se repite. Las secuencias de números aleatorios tienen un período. Queremos que ese período sea lo más largo posible.\nEjemplo sencillo: Generadores de congruencia lineal.\n\\[\nx_{n+1} = (a x_n + c)\\mod(m)\n\\]\n\n# función (muy mala) que implementa el generador de congruencia lineal\ndef lcg():\n    \n    # Variables que definen el generador\n    a = 7 # intentar todos los números de 2 a 9\n    c = 0\n    m = 11 # intentar 10 y 11, ojalá grande para dar un período grande\n    \n    # Esto intenta ejecutar un pedazo de código, y si encuentra un error\n    # ejecuta lo que hay luego de \"except\"\n    try:\n        # queremos que el estado no se borre cuando la función termine,\n        # de esa manera logramos que la función nos de el siguiente valor\n        # en la secuencia.\n        lcg.xn = (a*lcg.xn + c)%m\n    except(AttributeError):\n        # Habrá un error cuando lcg.xn no tenga un valor\n        print('Error: No se ha fijado la semilla.')\n        return\n        \n    return lcg.xn\n\n\nlcg.xn = 1\n\nlcg()\n\n7\n\n\n\nlcg.xn = 4\nnum = 100\naleatorios = [lcg() for i in range(num)]\nplt.scatter(range(num), aleatorios)\n\n\n\n\n\n\n\n\n\n# función (mala) que implementa el generador de congruencia lineal\ndef lcg():\n    \n    # Variables que definen el generador\n    a = 7**5\n    c = 0\n    m = 2**31 - 1   # si es primo es más fácil obtener períodos grandes\n    \n    # Esto intenta ejecutar un pedazo de código, y si encuentra un error\n    # ejecuta lo que hay luego de \"except\"\n    try:\n        # queremos que el estado no se borre cuando la función termine,\n        # de esa manera logramos que la función nos de el siguiente valor\n        # en la secuencia.\n        lcg.xn = (a*lcg.xn + c)%m\n    except(AttributeError):\n        # Habrá un error cuando lcg.xn no tenga un valor\n        print('Error: No se ha fijado la semilla.')\n        return\n        \n    return lcg.xn%10 + 1\n\n\nlcg.xn = 321\nnum = 100\naleatorios = [lcg() for i in range(num)]\nplt.scatter(range(num), aleatorios)\n\n\n\n\n\n\n\n\nAdemás, cuando se grafican las tuplas \\((x_n, x_{n+1},\\dots, x_{n + k})\\), todos los puntos yacen en \\(k - 1\\) planos. Esto hace predecible la secuencia y no muy aleatoria.\nMoraleja: No programar su propio generador aleatorio, si hay que hacerlo leer antes un libro dedicado a ello.\nPython usa un algoritmo más sofisticado llamado “Marsenne twister”. En cambio la librería estándar de C implementa un LCG.\n\nimport random\n\n\nrandom.randint(1,100)\n\n13\n\n\n\nlista = ['a', 'b', 'c', 'd']\nrandom.shuffle(lista)\nlista\n\n['b', 'c', 'd', 'a']\n\n\n\nnum = 10000\nplt.scatter(range(num), np.random.random(num))\n\n\n\n\n\n\n\n\n\nnum = 10000\nplt.scatter(range(num), np.random.randint(10, size=num) + 1)",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#simulaciones-estilo-monte-carlo-de-probabilidades",
+    "href": "06_definicion_probabilidad.html#simulaciones-estilo-monte-carlo-de-probabilidades",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Simulaciones estilo Monte Carlo de probabilidades",
+    "text": "Simulaciones estilo Monte Carlo de probabilidades\nDescribamos la probabilidad con un ejemplo:\nSupongamos que lanzamoos un dado y nos preguntamos cuál es la probabilidad de que caiga un número par.\n\ndado = {1, 2, 3, 4, 5, 6}\npar = {2, 4, 6}\n\n\ndef prob(evento, espacio):\n    ''' \n    Regresa la probabilidad de que ocurra 'evento'.\n    Los argumentos deben ser conjuntos.    \n    '''\n    return (len(evento & espacio)/len(espacio))\n\n\nprob(par, dado)\n\n0.5\n\n\nPara un ejemplo menos trivial, consideremos una urna con 23 bolas: 8 blancas, 6 azules, 9 rojas.\n\ndef unir(color, numeros):\n    return {color + numero for numero in numeros}\n\nurna = unir('B', '12345678') | unir('A', '123456') | unir('R', '123456789')\n\nSe extraen 6 bolas de la urna sin reemplazo.\n\nimport itertools\n\nespacio = set(itertools.permutations(urna, 6))\n\nNos preguntamos cuál es la probabilidad de obtener 6 bolas rojas\n\ndef todos_rojos(evento):\n    s = [i[0] for i in evento]\n    return s.count('R') == 6\n\nrojos = {e for e in espacio if todos_rojos(e)}\n\n\nprob(rojos, espacio)\n\n0.0008321198252548367\n\n\nEsto fue un cálculo a fuerza bruta. El problema es que si la urna tiene muchas bolas, el computador no va a ser capaz de calcular todos los elementos del espacio, se hace todo muy lento.\nConsideremos una urna con 2300 bolas: 800 blancas, 600 azules y 900 rojas.\n\ndef unir(color, numero):\n    return {color + str(n + 1) for n in range(numero)}\n\nurna = list(unir('B', 800) | unir('A', 600) | unir('R', 900))\n\nExtraemos 6 bolas\n# Cuidado, correr esto colapsa el computador\n\nespacio = set(itertools.permutations(urna,6))\nEl problema es que hay demasiadas combinaciones posibles. En estos casos lo que se hace es tomar un número de muestras al azar.\n\nimport random\n\n\nmuestra = {tuple(random.choices(urna, k = 6)) for i in range(100000)}\n\n\nrojos = {e for e in muestra if todos_rojos(e)}\n\n\nprob(rojos, muestra)\n\n0.00379\n\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n\nsims = 10\npuntos = 200000\nprobs = np.zeros(sims)\n\nfor i in range(sims):\n    muestra = {tuple(random.choices(urna, k = 6)) for i in range(puntos)}\n    rojos = {e for e in muestra if todos_rojos(e)}\n    probs[i] = prob(rojos, muestra)\n\nplt.plot(np.arange(sims), probs)\n\n\n\n\n\n\n\n\n\nprobs.mean()\n\nnp.float64(0.003608)\n\n\n\nprobs.std()/probs.mean()\n\nnp.float64(0.02877815809893737)",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.1",
+    "href": "06_definicion_probabilidad.html#tarea-3.1",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.1",
+    "text": "Tarea 3.1\nEn el problema de la urna con23 bolas, al extraer 6 de ellas sin reemplazo.\n\n¿Cuál es la probabilidad de que entre las tres primeras no haya ninguna roja?\n¿Cuál es la probabilidad de sacar dos bolas de cada color?",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.2",
+    "href": "06_definicion_probabilidad.html#tarea-3.2",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.2",
+    "text": "Tarea 3.2\nRepita el problema de la urna pero con reemplazo. Es decir, luego de sacar cada bola esta se vuelve a poner en la urna. Si se extraen cuatro bolas de la urna, ¿cuál es la probabilidad de que todas sean rojas? Responda este problema escribiendo un código, modificando las funciones escritas en la clase para tomar en cuenta el reemplazo.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.3",
+    "href": "06_definicion_probabilidad.html#tarea-3.3",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.3",
+    "text": "Tarea 3.3\nEjercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.\nSe lanza un dado cargado, con probabilidades de \\(\\{0.1, 0.2, 0.2, 0.3, 0.1, 0.1\\}\\) de obtener \\(\\{1, 2, 3, 4, 5, 6\\}\\) respectivamente. Sea \\(N\\) el resultado obtenido al lanzar el dado, luego de lo cual se lanza una moneda \\(N\\) veces. Encuentre la probabilidad condicional de que \\(N\\) sea impar dado que se obtuvo al menos una cara.\nPista: Si no quiere hacerlo analíticamente, construya primero la distribución de probabilidad con todos los resultados posibles junto con sus probabilidades, y luego use las siguientes funciones que definimos en clase.\n\ndef prob(evento, dist):\n    '''\n    Calcula la probabilidad de un evento a partir de una distribución. El evento debe ser una función que\n    regresa verdadero o falso y la distribución debe ser un diccionario (evento: frecuencia)\n    '''\n    \n    conjunto = {e for e in dist.keys() if evento(e)}\n    total = sum(d for d in dist.values())\n    frec = sum(dist[e] for e in conjunto)\n    return frec/total\n\n\ndef prob_cond(A, B, dist):\n    \n    conjuntoB = {e for e in dist.keys() if B(e)}\n    conjuntoA = {e for e in conjuntoB if A(e)}\n    frec_B = sum(dist[e] for e in conjuntoB)\n    frec = sum(dist[e] for e in conjuntoA)\n    return frec/frec_B",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.4",
+    "href": "06_definicion_probabilidad.html#tarea-3.4",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.4",
+    "text": "Tarea 3.4\nEjercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.\nEn una cierta población, el \\(20\\%\\) de las personas tiene una enfermedad. Se hace un examen a los miembros de la población que tiene la característica de dar positivo el \\(90\\%\\) de las veces si la persona tiene la enfermedad y el \\(30\\%\\) de las veces si la persona no tiene la enfermedad (falso positivo). A los que dan positivo se les suministra una droga que puede causar manchas rojas en la piel en un \\(20\\%\\) de los pacientes.\nSi una persona tiene esas manchas rojas. ¿Cuál es la probabilidad de que haya tenido la enfermedad?",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "06_definicion_probabilidad.html#tarea-3.5",
+    "href": "06_definicion_probabilidad.html#tarea-3.5",
+    "title": "Definiciones básicas de probabilidad",
+    "section": "Tarea 3.5",
+    "text": "Tarea 3.5\nEjercicio sacado de “Basic Probability Theory”, R. B. Ash, Dover, 1970.\nDe las \\(100\\) personas de una aldea, \\(50\\) siempre dicen la verdad, \\(30\\) siempre mienten y \\(20\\) siempre se niegan a responder. Se toma una muestra de \\(30\\) personas sin reemplazo. Encuentre la probabilidad de que esta muestra contenga \\(10\\) personas de cada categoría.\nPara resolver este ejercicio es necesario hacer una simulación estilo Monte Carlo ya que el número de elementos en el espacio de resultados es demasiadoo grande. Estime el error cometido al hacer el cálculo de esta manera y obtenga un error razonable.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Propiedades de la probabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html",
+    "href": "05_algoritmos_y_estabilidad.html",
+    "title": "Algoritmos y estabilidad",
+    "section": "",
+    "text": "Evaluamos los algoritmos según tres criterios: Eficiencia, convergencia y estabilidad.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.6",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.6",
+    "title": "Algoritmos y estabilidad",
+    "section": "Tarea 2.6",
+    "text": "Tarea 2.6\nDiscuta la estabilidad de los problemas presentados en las tareas 2.3 y 2.4.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.7",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.7",
+    "title": "Algoritmos y estabilidad",
+    "section": "Tarea 2.7",
+    "text": "Tarea 2.7\nA partir de los siguientes códigos, explique si el número de pasos es \\(\\mathcal{O}(n^c)\\) (y cuánto vale \\(c\\)), \\(\\mathcal{O}(\\log_2 n)\\) o \\(\\mathcal{O}(2^n)\\) y por qué. Pista: Para el último código aumente n y vea cómo cambia el número de pasos s. Grafique n contra s e intente deducir a qué corresponde.\nn = 1000\ns = 0 \nfor i in range(n):\n    for j in range(n):\n        if i &lt; j:\n            s = s + i + j\nn = 1000\ns = 0\nfor i in range(n):\n    for j in range(i):\n        s = s + i + j\nCuidado, consulte en internet lo que hace el enunciado sum() antes de responder\nn = 1000\ns = 0\nfor i in range(n):\n    s = s + i + sum(range(n))\n\nn = 100000\nsmall = 0\np = 146\nattempt = n//2\nnot_found = True\ns = 0\nwhile not_found:\n    s = s + 1\n    if attempt &gt; p:\n        n = attempt\n    elif attempt &lt; p:\n        small = attempt\n    else:\n        print('Encontré', attempt, 'luego de', s, 'pasos')\n        break\n    attempt = (n + small)//2\n\nEncontré 146 luego de 11 pasos",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.8",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.8",
+    "title": "Algoritmos y estabilidad",
+    "section": "Tarea 2.8",
+    "text": "Tarea 2.8\nEjercicio 1.4.1 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nLas dos fórmulas siguientes son matemáticamente equivalentes\n\\[\n  f(x) = \\frac{1 - \\cos(x)}{\\sin(x)}\\,,\\quad g(x) = \\frac{2\\sin^2(x/2)}{\\sin(x)}\\,.\n\\]\nSin embargo sugieren algoritmos para su cálculo que se comportan de manera distinta en aritmética de punto flotante.\n\nEncuentre el número de condicionamiento de \\(f(x)\\) respecto a pequeños cambios en \\(x\\). Como son equivalentes, este es el mismo para \\(g(x)\\).\nCalcule \\(f(10^{-6})\\) usando una cadena de cuatro operaciones elementales (sumas, restas, multiplicaciones, divisiones, funciones trigonométricas). Calcule el número de condicionamiento de cada una.\nRepita lo mismo para \\(g(10^{-6})\\), que requiere seis operaciones elementales.\nBasado en lo anterior, compare ambos resultados y discuta cuál es más preciso.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.9",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.9",
+    "title": "Algoritmos y estabilidad",
+    "section": "Tarea 2.9",
+    "text": "Tarea 2.9\nEjercicio 1.4.2 del libro “Fundamentals of Numerical Computation: Julia Edition” de Driscoll y Braun.\nSea \\(f(x) = \\frac{e^x - 1}{x}\\).\n\nEncuentre el número de condicionamiento. ¿Cuál es su máximo entre \\(-1 \\leq x \\leq 1\\)?\nUse el algoritmo obvio\n(e**x - 1)/x\npara calcular \\(f(x)\\) para \\(x = 10^{-2}, 10^{-3}, 10^{-4}, ..., 10^{-8}\\).\nRepita lo mismo usando en cambio los primeros ocho términos de la serie de Taylor \\[\nf(x) \\approx 1 + \\frac{1}{2}x + \\frac{1}{3!}x^3 + \\dots + \\frac{1}{8!}x^7\\,.\n\\]\nHaga una tabla de las diferencias relativas entre ambos métodos. ¿Cuál es más preciso y por qué?",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "05_algoritmos_y_estabilidad.html#tarea-2.10",
+    "href": "05_algoritmos_y_estabilidad.html#tarea-2.10",
+    "title": "Algoritmos y estabilidad",
+    "section": "Tarea 2.10",
+    "text": "Tarea 2.10\nCompare la convergencia de dos algoritmos para aproximar \\(\\sqrt{2}\\) resolviendo \\(f(x) = x^2 − 2 = 0\\)\nBisección en el intervalo [1, 2]: Este método lo veremos más adelante, aquí hay una implementación:\nN = 20\nf = lambda x: x**2 - 2.0\ntrue = np.sqrt(2)\n\n# Método de bisección\na, b = 1.0, 2.0\nerr_bis = np.empty(N)\nx_bis_hist = []\n\nfor k in range(N):\n    c = 0.5*(a + b)\n    x_bis_hist.append(c)\n    err_bis[k] = abs(c - true)\n    if f(a)*f(c) &lt;= 0:\n        b = c\n    else:\n        a = c\nLa aproximación se guarda en x_bis_hist para cada iteración.\nNewton (método babilónico): El resultado de la iteración \\(k+1\\) se calcula a partir de la anterior de esta manera: \\(x_{k+1} = \\frac{1}{2}(x_k + \\frac{2}{x_k})\\)\n\nImplemente el método babilónico partiendo desde \\(x_0 = 2.0\\) y guarde la aproximación en cada iteración.\nCalcule el error absoluto \\(|x_k − \\sqrt{2}|\\) para ambos métodos y grafíquelo en una escala apropiada que nos permita compararlos.\nComente por qué el error del método de Newton/Babilónico deja de disminuir durante las últimas iteraciones.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1: Introducción",
+      "Algoritmos y estabilidad"
+    ]
+  },
+  {
+    "objectID": "09_teorema_central_del_limite.html",
+    "href": "09_teorema_central_del_limite.html",
+    "title": "Teorema central del límite",
+    "section": "",
+    "text": "import numpy as np\nimport math\nimport matplotlib.pyplot as plt\nfrom scipy.special import comb",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Teorema central del límite"
+    ]
+  },
+  {
+    "objectID": "09_teorema_central_del_limite.html#section",
+    "href": "09_teorema_central_del_limite.html#section",
+    "title": "Teorema central del límite",
+    "section": "4.6",
+    "text": "4.6\nUn grupo de investigación hace muchas mediciones del número de halos galácticos para cada intervalo de masa. Usando el teorema central del límite y la distribución gaussiana concluyen que hay demasiados halos muy masivos (de los cuales hay muy pocos), tal que es necesario repensar el modelo cosmológico. Comente sobre este resultado.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Teorema central del límite"
+    ]
+  },
+  {
+    "objectID": "09_teorema_central_del_limite.html#section-1",
+    "href": "09_teorema_central_del_limite.html#section-1",
+    "title": "Teorema central del límite",
+    "section": "4.7",
+    "text": "4.7\nLa distribución de las fluctuaciones de temperatura \\(\\delta T (\\ell, m)\\) de la radiación cósmica de fondo sigue una distribución gaussiana para cada pareja \\((\\ell, m)\\). Aquí \\(\\ell\\) y \\(m\\) corresponden a una descomposición de los ángulos sobre la esfera celeste. Ambos son números enteros y satisfacen \\(\\ell \\geq 0\\) y \\(-\\ell \\leq m \\leq \\ell\\). Normalmente se grafica algo proporcional a \\(\\delta T^2\\) promediado sobre todos los valores de \\(m\\), para diferentes valores de \\(\\ell\\). Explique por qué se usa una gaussiana para modelar los errores sobre \\(\\delta T^2\\) sólo para \\(\\ell &gt; 30\\). Haga una simulación para apoyar su resultado suponiendo que la distribución de cada pareja es uniforme (en realidad es una distribución \\(\\chi^2\\) pero use la uniforme por simplicidad).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Teorema central del límite"
+    ]
+  },
+  {
+    "objectID": "09_teorema_central_del_limite.html#section-2",
+    "href": "09_teorema_central_del_limite.html#section-2",
+    "title": "Teorema central del límite",
+    "section": "4.8",
+    "text": "4.8\nUn borracho da un paso a la izquierda con probabilidad \\(0.5\\) y un paso a la derecha con probabilidad \\(0.5\\). Cada paso mide \\(1\\) metro. ¿Cuál es la distancia típica a la cual se encontrará el borracho luego de dar \\(N\\) pasos para \\(N\\) grande?",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Teorema central del límite"
+    ]
+  },
+  {
+    "objectID": "09_teorema_central_del_limite.html#section-3",
+    "href": "09_teorema_central_del_limite.html#section-3",
+    "title": "Teorema central del límite",
+    "section": "4.9",
+    "text": "4.9\nVeinte números aleatorios se extraen de una distribución uniforme entre \\(0\\) y \\(1\\).\n\nUse monte carlo para estimar la probabilidad de que la suma de los veinte números esté entre \\(9\\) y \\(10\\). Ídem entre \\(15\\) y \\(16\\).\nUse el teorema central del límite para estimar la misma probabilidad.\n\nRecuerde estimar el error de la simulación así como cuantificar con errores relativos la diferencia entre la simulación y la gaussiana.\nComente sobre su resultado.\nPista:\n\\[\n\\int_0^a dx\\,e^{-x^2} = \\frac{\\sqrt{\\pi}}{2}\\text{erf}(a)\\,,\n\\]\ndonde \\(\\text{erf}\\) es la una función especial llamada la función de error. Esta función se puede llamar usando el módulo scipy.special.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Teorema central del límite"
+    ]
+  },
+  {
+    "objectID": "09_teorema_central_del_limite.html#section-4",
+    "href": "09_teorema_central_del_limite.html#section-4",
+    "title": "Teorema central del límite",
+    "section": "4.10",
+    "text": "4.10\nDiscuta el teorema central del límite en el caso en el cual las variables no son idénticamente distribuidas. Por ejemplo, si tenemos muchas variables \\(x_i\\), ¿cómo podría fallar el teorema si los cumulantes dependen de \\(i\\)?",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2: Probabilidad",
+      "Teorema central del límite"
+    ]
+  },
+  {
+    "objectID": "15_integrales_multiples_impropias_y_gauss.html",
+    "href": "15_integrales_multiples_impropias_y_gauss.html",
+    "title": "Cuadratura de Gauss, integrales múltiples e impropias",
+    "section": "",
+    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom scipy.special import factorial",
     "crumbs": [
       "Inicio",
       "Unidad 3: Cálculo Numérico",
-      "Integración Numérica"
+      "Quadratura de Gauss, integrales múltiples e impropias"
+    ]
+  },
+  {
+    "objectID": "15_integrales_multiples_impropias_y_gauss.html#scipy",
+    "href": "15_integrales_multiples_impropias_y_gauss.html#scipy",
+    "title": "Cuadratura de Gauss, integrales múltiples e impropias",
+    "section": "Scipy",
+    "text": "Scipy\n\nfrom scipy import integrate\nx2 = lambda x: x**2\nintegrate.quad(x2, 0, 4)\n\n(21.333333333333336, 2.368475785867001e-13)\n\n\n\nprint(4**3 / 3.)\n\n21.333333333333332\n\n\nTambién tiene argumentos epsrel y epsabs que determinan el error relativo y absoluto requerido. Si se quiere que únicamente alcance el error relativo sin dar importancia al error absoluto, es necesario poner epsabs=0.\n\nfrom scipy import integrate\nf = lambda x: np.cos(10*x)/np.sqrt(x**2 + 16)\nintegrate.quad(f, 0, 2, epsrel=1e-12, epsabs=0)\n\n(0.020326609246501794, 3.4486265738461702e-15)\n\n\nEl algoritmo que usa por defecto es una especie de cuadratura adaptativa, donde en cada intervalo aplica una método similar a la cuadratura gaussiana de orden 21.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Quadratura de Gauss, integrales múltiples e impropias"
+    ]
+  },
+  {
+    "objectID": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.6",
+    "href": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.6",
+    "title": "Cuadratura de Gauss, integrales múltiples e impropias",
+    "section": "Tarea 7.6",
+    "text": "Tarea 7.6\nCalcule la siguiente integral\n\\[\n\\int_{0.1}^1 dx\\,\\frac{\\ln(x)}{\\sqrt{\\cos^2(x) + \\tanh(x)}}\n\\]\nHágalo usando la cuadratura adaptativa de la clase pasada y el integrador de scipy. Grafique los tiempos que tardan ambos en función de la precisión pedida.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Quadratura de Gauss, integrales múltiples e impropias"
+    ]
+  },
+  {
+    "objectID": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.7",
+    "href": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.7",
+    "title": "Cuadratura de Gauss, integrales múltiples e impropias",
+    "section": "Tarea 7.7",
+    "text": "Tarea 7.7\nEscriba un código que implemente una cuadratura gaussiana compuesta. Es decir, divide el rango de integración en \\(n\\) subintervalos y aplica una cuadratura gaussiana en cada uno.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Quadratura de Gauss, integrales múltiples e impropias"
+    ]
+  },
+  {
+    "objectID": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.8",
+    "href": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.8",
+    "title": "Cuadratura de Gauss, integrales múltiples e impropias",
+    "section": "Tarea 7.8",
+    "text": "Tarea 7.8\nUse un método numérico para calcular la siguiente integral\n\\[\n\\int_0^\\infty dx\\,\\frac{\\log(x)}{\\sqrt{x + 5x^3}}\n\\]\nPista: Al aislar la divergencia, escriba \\(\\log(x)f(x)/x^p\\), luego expanda en Taylor \\(f(x)\\) y las integrales resultantes con integrandos del tipo \\(x^n \\log(x)\\) tienen solución analítica.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Quadratura de Gauss, integrales múltiples e impropias"
+    ]
+  },
+  {
+    "objectID": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.9",
+    "href": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.9",
+    "title": "Cuadratura de Gauss, integrales múltiples e impropias",
+    "section": "Tarea 7.9",
+    "text": "Tarea 7.9\nCalcule la siguiente integral usando el método de Gauss visto en clase:\n\\[\n\\int_1^\\infty dx\\,\\int_1^\\infty dy\\, \\frac{\\tan^{-1}(xy)}{y^2 (x^{3/2}+1)}\n\\]\nPista: La \\(\\tan^{-1}(x)\\) tiende a una constante cuando \\(x \\rightarrow \\infty\\) tal que al aislar la divergencia, se puede reemplazar por la constante.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Quadratura de Gauss, integrales múltiples e impropias"
+    ]
+  },
+  {
+    "objectID": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.10",
+    "href": "15_integrales_multiples_impropias_y_gauss.html#tarea-7.10",
+    "title": "Cuadratura de Gauss, integrales múltiples e impropias",
+    "section": "Tarea 7.10",
+    "text": "Tarea 7.10\nEscriba un código que calcule integrales triples usando una cuadratura gaussiana, y úselo para calcular en coordenadas cartesianas la carga total al interior de una esfera de radio \\(R = 1\\) con densidad \\(\\rho(x, y, z) = \\sqrt{x^2 + y^2 + z^2}\\). Compare su resultado con el valor exacto.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 3: Cálculo Numérico",
+      "Quadratura de Gauss, integrales múltiples e impropias"
     ]
   },
   {
