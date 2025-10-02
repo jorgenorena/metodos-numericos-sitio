@@ -45,6 +45,8 @@ website:
             href: 12_newton_y_biseccion.qmd
           - text: "Interpolación"
             href: 13_interpolacion.qmd
+          - text: "Integración Numérica"
+            href: 14_integracion_numerica.qmd
   sidebar:
     style: docked
     contents:
@@ -80,6 +82,8 @@ website:
             href: 12_newton_y_biseccion.qmd
           - text: "Interpolación"
             href: 13_interpolacion.qmd
+          - text: "Integración Numérica"
+            href: 14_integracion_numerica.qmd
 
 format:
   html:
