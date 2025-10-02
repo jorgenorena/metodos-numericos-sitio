@@ -7,6 +7,7 @@ lang: es
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.special import factorial
 ```
 
 # Cuadratura gaussiana
@@ -423,12 +424,12 @@ $$
 $$
 
 ```{python}
-poly = sum(1/((n + 0.5)*np.math.factorial(n)) for n in range(5))
+poly = sum(1/((n + 0.5)*factorial(n)) for n in range(5))
 
 def fp(x):
     if x == 0:
         return 0
-    pol = sum(1/(np.math.factorial(n))*x**n for n in range(5))
+    pol = sum(1/(factorial(n))*x**n for n in range(5))
     return (np.exp(x) - pol)/np.sqrt(x)
 
 gauss_quad_5(fp, 0, 1) + poly
