@@ -445,7 +445,7 @@ window.Quarto = {
 </header>
 
 
-<div id="78fa8670" class="cell" data-execution_count="1">
+<div id="78fa8670" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> factorial</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -534,7 +534,7 @@ P(x_i) = R(x_i)
 <p><span class="math display">\[
 \int_{-1}^1dx\,P(x) = \sum_{i=1}^n P(x_i) \int_{-1}^1dx\,\prod_{j = 1,j\neq i}^n \frac{x - x_j}{x_i-x_j}
 \]</span></p>
-<div id="d95a8807" class="cell" data-execution_count="2">
+<div id="d95a8807" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gauss_quad_5(f, a, b):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> x(t):</span>
@@ -545,7 +545,7 @@ P(x_i) = R(x_i)
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((b<span class="op">-</span>a)<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span><span class="bu">sum</span>(c[i]<span class="op">*</span>f(x(r[i])) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d4dfdb27" class="cell" data-execution_count="3">
+<div id="d4dfdb27" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gauss_quad_5(np.cos, <span class="dv">0</span>, <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>np.float64(0.9092974272317184)</code></pre>
@@ -553,7 +553,7 @@ P(x_i) = R(x_i)
 </div>
 <section id="scipy" class="level2">
 <h2 class="anchored" data-anchor-id="scipy">Scipy</h2>
-<div id="404453d3" class="cell" data-execution_count="4">
+<div id="404453d3" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> integrate</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> <span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>integrate.quad(x2, <span class="dv">0</span>, <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -561,14 +561,14 @@ P(x_i) = R(x_i)
 <pre><code>(21.333333333333336, 2.368475785867001e-13)</code></pre>
 </div>
 </div>
-<div id="ade0bb00" class="cell" data-execution_count="5">
+<div id="ade0bb00" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">4</span><span class="op">**</span><span class="dv">3</span> <span class="op">/</span> <span class="fl">3.</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>21.333333333333332</code></pre>
 </div>
 </div>
 <p>También tiene argumentos epsrel y epsabs que determinan el error relativo y absoluto requerido. Si se quiere que únicamente alcance el error relativo sin dar importancia al error absoluto, es necesario poner epsabs=0.</p>
-<div id="545c0bee" class="cell" data-execution_count="6">
+<div id="545c0bee" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> integrate</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x: np.cos(<span class="dv">10</span><span class="op">*</span>x)<span class="op">/</span>np.sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">16</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>integrate.quad(f, <span class="dv">0</span>, <span class="dv">2</span>, epsrel<span class="op">=</span><span class="fl">1e-12</span>, epsabs<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -599,7 +599,7 @@ P(x_i) = R(x_i)
 \Bigg\}
 \end{aligned}
 \]</span></p>
-<div id="924561af" class="cell" data-execution_count="7">
+<div id="924561af" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simpson2(f, a, b, c, d, n, m):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>n</span>
@@ -625,17 +625,17 @@ P(x_i) = R(x_i)
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h<span class="op">*</span>k<span class="op">*</span>resultado<span class="op">/</span><span class="dv">9</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7a10ab6e" class="cell" data-execution_count="8">
+<div id="7a10ab6e" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, y):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.cos(x)<span class="op">*</span>np.cos(y)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c2e4002e" class="cell" data-execution_count="9">
+<div id="c2e4002e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>simpson2(f, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>np.float64(0.7080742059596224)</code></pre>
 </div>
 </div>
-<div id="7db51f95" class="cell" data-execution_count="10">
+<div id="7db51f95" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>np.sin(<span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>np.float64(0.7080734182735712)</code></pre>
@@ -651,7 +651,7 @@ P(x_i) = R(x_i)
 \int_a^b dx\,\int_{c(x)}^{d(x)}dy\,f(x,y)
 \]</span></p>
 <p>De esta forma, basta evaluar la función <span class="math inline">\(f\)</span> en estas funciones de los bordes <span class="math inline">\(c(x)\)</span> y <span class="math inline">\(d(x)\)</span>. Mejoremos entonces el código anterior.</p>
-<div id="33703136" class="cell" data-execution_count="11">
+<div id="33703136" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simpson2(f, a, b, c, d, n, m):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>n</span>
@@ -680,7 +680,7 @@ P(x_i) = R(x_i)
 <span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h<span class="op">*</span>resultado<span class="op">/</span><span class="dv">9</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Se puede hacer lo mismo con la cuadratura gaussiana (esta versión además tiene menos operaciones que la cuadratura gaussiana hecha como lo habíamos programado arriba):</p>
-<div id="231c56d3" class="cell" data-execution_count="12">
+<div id="231c56d3" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gauss_quad_5_2d(f, a, b, c, d):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    cg <span class="op">=</span> [<span class="fl">0.2369268850</span>, <span class="fl">0.4786286705</span>, <span class="fl">0.5688888889</span>, <span class="fl">0.4786286705</span>, <span class="fl">0.2369268850</span>]</span>
@@ -701,17 +701,17 @@ P(x_i) = R(x_i)
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h1<span class="op">*</span>result</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="be30024e" class="cell" data-execution_count="13">
+<div id="be30024e" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, y):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(y<span class="op">/</span>x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4ab07970" class="cell" data-execution_count="14">
+<div id="4ab07970" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>simpson2(f, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">3</span>, <span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>np.float64(0.033305461281902184)</code></pre>
 </div>
 </div>
-<div id="54a767da" class="cell" data-execution_count="15">
+<div id="54a767da" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gauss_quad_5_2d(f, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">3</span>, <span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>np.float64(0.033305566114962486)</code></pre>
@@ -721,7 +721,7 @@ P(x_i) = R(x_i)
 <p><span class="math display">\[
 \int dx\,\int_{x^3}^{x^2}dy\,e^{y/x} = -\frac{1}{2}e^{x^2} + e^x(-1+x)
 \]</span></p>
-<div id="bd72fed1" class="cell" data-execution_count="16">
+<div id="bd72fed1" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exacta(x):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>np.exp(x<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> np.exp(x)<span class="op">*</span>(<span class="op">-</span><span class="dv">1</span><span class="op">+</span>x)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -744,19 +744,19 @@ P(x_i) = R(x_i)
 <p><span class="math display">\[
 \int_0^1 dx\,\frac{x - 1}{\sqrt{x}} = -\frac{4}{3}
 \]</span></p>
-<div id="d65fa39e" class="cell" data-execution_count="17">
+<div id="d65fa39e" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">4</span><span class="op">/</span><span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>-1.3333333333333333</code></pre>
 </div>
 </div>
-<div id="f1d15f53" class="cell" data-execution_count="18">
+<div id="f1d15f53" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trapecio(f, a, b, n):</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b <span class="op">-</span> a)<span class="op">/</span>n</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    fx <span class="op">=</span> f(np.linspace(a<span class="op">+</span>h, b<span class="op">-</span>h, n<span class="op">-</span><span class="dv">1</span>, endpoint<span class="op">=</span><span class="va">True</span>))</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (h<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>(f(a) <span class="op">+</span> <span class="dv">2</span><span class="op">*</span><span class="bu">sum</span>(fx) <span class="op">+</span> f(b))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5888eb7a" class="cell" data-execution_count="19">
+<div id="5888eb7a" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>np.sqrt(x)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -770,7 +770,7 @@ P(x_i) = R(x_i)
 </div>
 </div>
 <p>O da resultados con un error grande</p>
-<div id="50127a5a" class="cell" data-execution_count="20">
+<div id="50127a5a" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gauss_quad_5(f, a, b):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> x(t):</span>
@@ -781,7 +781,7 @@ P(x_i) = R(x_i)
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((b<span class="op">-</span>a)<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span><span class="bu">sum</span>(c[i]<span class="op">*</span>f(x(r[i])) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="51a7b361" class="cell" data-execution_count="21">
+<div id="51a7b361" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gauss_quad_5(f, <span class="dv">0</span>, <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>np.float64(-1.1743030904176726)</code></pre>
@@ -808,7 +808,7 @@ g(x) \approx P_m(x) = \sum_{n=0}^m \frac{1}{n!}(x - a)^n \frac{d^ng}{dx^n}(a)
 <p><span class="math display">\[
 \frac{d^n e^x}{dx^n} = e^x
 \]</span></p>
-<div id="a13f8e9b" class="cell" data-execution_count="22">
+<div id="a13f8e9b" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>poly <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span><span class="op">/</span>((n <span class="op">+</span> <span class="fl">0.5</span>)<span class="op">*</span>factorial(n)) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>))</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fp(x):</span>
@@ -822,7 +822,7 @@ g(x) \approx P_m(x) = \sum_{n=0}^m \frac{1}{n!}(x - a)^n \frac{d^ng}{dx^n}(a)
 <pre><code>np.float64(2.9253034921633922)</code></pre>
 </div>
 </div>
-<div id="36f83a03" class="cell" data-execution_count="23">
+<div id="36f83a03" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(x)<span class="op">/</span>np.sqrt(x)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -832,13 +832,13 @@ g(x) \approx P_m(x) = \sum_{n=0}^m \frac{1}{n!}(x - a)^n \frac{d^ng}{dx^n}(a)
 </div>
 </div>
 <p>A veces no es práctico calcular los polinomios de Taylor, en estos casos debemos recurrir a las derivadas numéricas, que sin embargo son inestables. Una alternativa es introducir un corte a la integral pero se pierde control sobre la precisión</p>
-<div id="940f7888" class="cell" data-execution_count="24">
+<div id="940f7888" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> punto_medio(f, a, b, n):</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>n</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    fx <span class="op">=</span> f(np.linspace(a <span class="op">+</span> h<span class="op">/</span><span class="dv">2</span>, b <span class="op">-</span> h<span class="op">/</span><span class="dv">2</span>, n, endpoint<span class="op">=</span><span class="va">True</span>))</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h<span class="op">*</span><span class="bu">sum</span>(fx)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="71256678" class="cell" data-execution_count="25">
+<div id="71256678" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(x)<span class="op">/</span>np.sqrt(x)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -864,7 +864,7 @@ g(x) \approx P_m(x) = \sum_{n=0}^m \frac{1}{n!}(x - a)^n \frac{d^ng}{dx^n}(a)
 </div>
 </div>
 </div>
-<div id="db4a0a9d" class="cell" data-execution_count="26">
+<div id="db4a0a9d" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(x)<span class="op">/</span>np.sqrt(x)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>

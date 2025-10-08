@@ -418,7 +418,14 @@ window.Quarto = {
   <li><a href="#autodiferenciación-en-modo-directo" id="toc-autodiferenciación-en-modo-directo" class="nav-link" data-scroll-target="#autodiferenciación-en-modo-directo">Autodiferenciación en modo directo</a></li>
   <li><a href="#autodiferenciación-en-modo-inverso" id="toc-autodiferenciación-en-modo-inverso" class="nav-link" data-scroll-target="#autodiferenciación-en-modo-inverso">Autodiferenciación en modo inverso</a></li>
   </ul></li>
-  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">Tareas</a></li>
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">Tareas</a>
+  <ul class="collapse">
+  <li><a href="#tarea-8.1" id="toc-tarea-8.1" class="nav-link" data-scroll-target="#tarea-8.1">Tarea 8.1</a></li>
+  <li><a href="#tarea-8.2" id="toc-tarea-8.2" class="nav-link" data-scroll-target="#tarea-8.2">Tarea 8.2</a></li>
+  <li><a href="#tarea-8.3" id="toc-tarea-8.3" class="nav-link" data-scroll-target="#tarea-8.3">Tarea 8.3</a></li>
+  <li><a href="#tarea-8.4" id="toc-tarea-8.4" class="nav-link" data-scroll-target="#tarea-8.4">Tarea 8.4</a></li>
+  <li><a href="#tarea-8.5" id="toc-tarea-8.5" class="nav-link" data-scroll-target="#tarea-8.5">Tarea 8.5</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -446,7 +453,7 @@ window.Quarto = {
 
 <p>En muchos casos la derivada de una función es fácil de calcular. Sin embargo con frecuencia la función se conoce sólo en algunos puntos (por ejemplo cuando es el resultado de una medición o de una simulación) y los métodos numéricos para tomar derivadas pueden resultar muy útiles.</p>
 <p>Además, las derivadas numéricas forman parte fundamental de la solución numérica a ecuaciones diferenciales parciales (para modelar el clima, la fusión de dos agujeros negros, el colapso estelar, la turbulencia, entre muchos otros fenómenos). También son la base de los métodos de optimización en los cuales se basa el aprendizaje automático.</p>
-<div id="5fe925a8" class="cell" data-execution_count="1">
+<div id="7601eb35" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -470,7 +477,7 @@ f'(x_o) = \frac{f(x_o + h) - f(x_o)}{h} - \frac{1}{2}h f''(\xi)
 <p><span class="math display">\[
 \left|f'(x_o) - \frac{f(x_o + h) - f(x_o)}{h}\right| \leq \frac{h}{2}\,\text{max}_{x\in[x_o, x_o+h]}\,|f''(x)|
 \]</span></p>
-<div id="e48ed35e" class="cell" data-execution_count="2">
+<div id="109b37b4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv2p(f, x, h):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">+</span> h) <span class="op">-</span> f(x))<span class="op">/</span>h</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -478,7 +485,7 @@ f'(x_o) = \frac{f(x_o + h) - f(x_o)}{h} - \frac{1}{2}h f''(\xi)
 <p><span class="math display">\[
 f'(x_o) = \frac{f(x_o) - f(x_o - h)}{h} + \frac{1}{2}h f''(\xi)
 \]</span></p>
-<div id="21411d26" class="cell" data-execution_count="3">
+<div id="c2ecb573" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">100</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>exactas <span class="op">=</span> np.cos(x)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>aprox2 <span class="op">=</span> [deriv2p(np.sin, xi, <span class="fl">0.2</span>) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
@@ -497,32 +504,24 @@ f'(x_o) = \frac{f(x_o) - f(x_o - h)}{h} + \frac{1}{2}h f''(\xi)
 </section>
 <section id="fórmulas-de-más-puntos" class="level2">
 <h2 class="anchored" data-anchor-id="fórmulas-de-más-puntos">Fórmulas de más puntos</h2>
-<p>Podemos usar los polinomios de Legendre para encontrar fórmulas que involucran más puntos. Estas pueden ser más lentas porque necesitan un mayor número de evaluaciones de la función, pero son más precisas como veremos.</p>
-<p>El polinomio de orden dos es</p>
+<p>Para obtener una mejor precisión, podemos usar expansiones de Taylor a orden más alto. Tomemos</p>
 <p><span class="math display">\[
-f(x) = f(x_o) L_{2,0}(x) + f(x_1) L_{2,1}(x) + f(x_2) L_{2,2}(x) + \frac{1}{6}f^{(3)}(\xi)(x - x_o)(x - x_1)(x - x_2)\,.
+f(x_o + h) = f(x_o) + h f'(x_o) + \frac{1}{2}h^2 f''(\xi) + \frac{h^3}{6}f^{(3)}(\xi)
 \]</span></p>
+<p>Di queremos obtener <span class="math inline">\(f'(x_o)\)</span>, tenemos que combinar esta expresión con la evaluación en otros puntos para cancelar los términos proporcionales a <span class="math inline">\(f(x_o)\)</span> y <span class="math inline">\(f''(x_o)\)</span>. En este caso es fácil</p>
 <p><span class="math display">\[
-L_{2,0}(x) = \frac{(x - x_1)(x - x_2)}{(x_o - x_1)(x_o - x_2)}\,,\quad L_{2,1}(x) = \frac{(x - x_o)(x - x_2)}{(x_1 - x_o)(x_1 - x_2)}\,,\quad L_{2,2}(x) = \frac{(x - x_o)(x - x_1)}{(x_2 - x_o)(x_2 - x_1)}\,.
-\]</span></p>
-<p>Tomando <span class="math inline">\(x_o = x_o - h\)</span>, <span class="math inline">\(x_1 = x_o\)</span> y <span class="math inline">\(x_2 = x_o + h\)</span> obtenemos</p>
-<p><span class="math display">\[
-f(x) = f(x_o - h) \frac{(x - x_o)(x - x_o - h)}{2h^2} - f(x_o) \frac{(x - x_o - h)(x - x_o + h)}{h^2} + f(x_o + h) \frac{(x - x_o + h)(x - x_o)}{2h^2} + \frac{1}{6}f^{(3)}(\xi)(x - x_o)(x - x_o - h)(x - x_o + h)
+f(x_o + h) - f(x_o - h) = 2h f'(x_o) + \mathcal{O}(h^3)\,,
 \]</span></p>
 <p>tal que</p>
-<p><span class="math display">\[
-f'(x_o) = - f(x_o - h)\frac{h}{2h^2} + f(x_o + h)\frac{h}{2h^2} - \frac{h^2}{6}f^{(3)}(\xi)
-\]</span></p>
-<p>simplificando</p>
 <p><span class="math display">\[
 f'(x_o) =\frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right) + \frac{h^2}{6}f^{(3)}(\xi)
 \]</span></p>
 <p>¡Obtenemos una mayor precisión (error cuadrático) haciendo un número igual de evaluaciones que la fórmula de dos puntos!</p>
-<div id="84e376b3" class="cell" data-execution_count="4">
+<div id="3cba4294" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3p(f, x, h):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">+</span> h) <span class="op">-</span> f(x <span class="op">-</span> h))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="baf866eb" class="cell" data-execution_count="5">
+<div id="b215c526" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">100</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>exactas <span class="op">=</span> np.cos(x)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>aprox2 <span class="op">=</span> [deriv2p(np.sin, xi, <span class="fl">0.2</span>) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
@@ -539,29 +538,21 @@ f'(x_o) =\frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right) + \frac{h^2}{6}f^{(3)}
 </div>
 </div>
 </div>
-<p>Tomando <span class="math inline">\(x_1 = x_o + h\)</span> y <span class="math inline">\(x_2 = x_o + 2h\)</span> obtenemos</p>
-<p><span class="math display">\[
-f(x) = f(x_o) \frac{(x - x_o - h)(x - x_o - 2h)}{2h^2} - f(x_o + h) \frac{(x - x_o)(x - x_o - 2h)}{h^2} + f(x_o + 2h) \frac{(x - x_o)(x - x_o - h)}{2h^2} + \frac{1}{6}f^{(3)}(\xi)(x - x_o)(x - x_o - h)(x - x_o - 2h)
-\]</span></p>
-<p>tal que</p>
-<p><span class="math display">\[
-f'(x_o) = - f(x_o)\frac{3h}{2h^2} + f(x_o + h) \frac{2h}{h^2} - f(x_o + 2h)\frac{h}{2h^2} + \frac{h^2}{3}f^{(3)}(\xi)
-\]</span></p>
-<p>simplificando</p>
+<p>Podemos encontrar otras expresiones para la derivada usando otras combinaciones de las expansiones de Taylor. Por ejemplo</p>
 <p><span class="math display">\[
 f'(x_o) =\frac{1}{2h}\left(- 3f(x_o) + 4f(x_o + h) - f(x_o + 2h)\right) + \frac{h^2}{3}f^{(3)}(\xi)
 \]</span></p>
 <p>Esta fórmula sirve para estimar la derivada de una función en los bordes, cuando no conocemos <span class="math inline">\(f(x)\)</span> para <span class="math inline">\(x &lt; x_o\)</span>. También se puede usar cuando no conocemos la función para <span class="math inline">\(x &gt; x_o\)</span>, en cuyo caso reemplazamos <span class="math inline">\(h \rightarrow -h\)</span>. Tiene dos desventajas respecto a la anterior: Necesita tres evaluaciones y el error es aproximadamente el doble.</p>
-<div id="70bbf1cc" class="cell" data-execution_count="6">
+<div id="3bbe526a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3p_extremo(f, x, h):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="op">-</span><span class="dv">3</span><span class="op">*</span>f(x) <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>f(x <span class="op">+</span> h) <span class="op">-</span> f(x <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>h))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>También podemos usar polinomios de más alto orden para obtener fórmulas de más puntos. Por ejemplo la fórmula de tres puntos tiene un error <span class="math inline">\((h^4/30)f^{(5)}(\xi)\)</span>.</p>
-<div id="3a5e6c73" class="cell" data-execution_count="7">
+<div id="f32f6e63" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv5p(f, x, h):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>h) <span class="op">-</span> <span class="dv">8</span><span class="op">*</span>f(x <span class="op">-</span> h) <span class="op">+</span> <span class="dv">8</span><span class="op">*</span>f(x <span class="op">+</span> h) <span class="op">-</span> f(x <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>h))<span class="op">/</span>(<span class="dv">12</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="68c4275e" class="cell" data-execution_count="8">
+<div id="19c6746d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv5p_extremo(f, x, h):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="op">-</span><span class="dv">25</span><span class="op">*</span>f(x) <span class="op">+</span> <span class="dv">48</span><span class="op">*</span>f(x <span class="op">+</span> h) <span class="op">-</span> <span class="dv">36</span><span class="op">*</span>f(x <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>h) <span class="op">+</span> <span class="dv">16</span><span class="op">*</span>f(x <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>h) <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>f(x <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>h))<span class="op">/</span>(<span class="dv">12</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -577,7 +568,7 @@ f(x_o + h) + f(x_o - h) = 2f(x_o) + f''(x_o)h^2 + \frac{1}{12}f^{(4)}(\xi)h^4\,.
 <p><span class="math display">\[
 f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1}{12}f^{(4)}(\xi)h^2
 \]</span></p>
-<div id="58cec7ce" class="cell" data-execution_count="9">
+<div id="dc6e0048" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> segunda_deriv(f, x, h):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">+</span> h) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>f(x) <span class="op">+</span> f(x <span class="op">-</span> h))<span class="op">/</span>(h<span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -589,12 +580,12 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 \left|f'(x_o) - \frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right)\right| \leq \left|\frac{1}{2h}(\delta(x_o + h) - \delta(x_o - h))\right| + \frac{h^2}{6} M \leq \frac{\Delta}{h} + \frac{h^2}{6} M
 \]</span></p>
 <p>¡Al disminuir <span class="math inline">\(h\)</span> aumentamos el primer término de este error!</p>
-<div id="4452a5e2" class="cell" data-execution_count="10">
+<div id="bf882cf1" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.1</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>datos_r <span class="op">=</span> np.sin(x) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="dv">40</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>datos_e <span class="op">=</span> np.sin(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="89d5a390" class="cell" data-execution_count="11">
+<div id="ffafb2c2" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, datos_e)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, datos_r)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -605,7 +596,7 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 </div>
 </div>
 </div>
-<div id="7a78d17b" class="cell" data-execution_count="12">
+<div id="37b2c24e" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3_datos(fxo, fx2, h):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fx2 <span class="op">-</span> fxo)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,7 +617,7 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> deriv</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fx2 <span class="op">-</span> fxo)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c6e6ea6b" class="cell" data-execution_count="13">
+<div id="ba0e152f" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">20</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="dv">4</span><span class="op">/</span>num</span>
@@ -656,7 +647,7 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 <h2 class="anchored" data-anchor-id="la-idea-detrás-de-la-autodiferenciación">La idea detrás de la autodiferenciación</h2>
 <p>La idea es sencilla: Conocemos las derivadas de cualquier función sencilla y para las demás usamos la regla de la cadena.</p>
 <p>Por ejemplo, supongamos que queremos tomar la derivada del coseno. Existen librerías que tuenen tabuladas las derivadas para muchas funciones. Aquí usamos <code>jax</code>.</p>
-<div id="5d189dbf" class="cell" data-execution_count="14">
+<div id="7c110717" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># derivada_cos_autodiff_vs_finitas.py</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparar derivadas con autodiff (JAX) y con diferencias finitas para cos(x)</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -687,24 +678,23 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Gráfico ---</span></span>
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">4</span>))</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>plt.plot(x, df_real, label<span class="op">=</span><span class="st">"Analítica  d/dx cos(x) = -sin(x)"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>plt.plot(x, df_fd,   <span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Diferencias finitas (np.gradient)"</span>)</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>plt.plot(x, df_ad,   <span class="st">":"</span>, label<span class="op">=</span><span class="st">"Autodiff con JAX (grad)"</span>)</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"derivada"</span>)</span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Derivada de cos(x): autodiff vs diferencias finitas"</span>)</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Errores L2 ---</span></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> error_L2(a, b):</span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(np.mean((a <span class="op">-</span> b)<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Error L2 comparado con -sin(x):"</span>)</span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Diferencias finitas : </span><span class="sc">{</span>error_L2(df_fd, df_real)<span class="sc">:.3e}</span><span class="ss">"</span>)</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Autodiff (JAX)      : </span><span class="sc">{</span>error_L2(df_ad, df_real)<span class="sc">:.3e}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>plt.plot(x, df_fd<span class="op">/</span>df_real <span class="op">-</span> <span class="dv">1</span>,   <span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Diferencias finitas (np.gradient)"</span>)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>plt.plot(x, df_ad<span class="op">/</span>df_real <span class="op">-</span> <span class="dv">1</span>,   <span class="st">":"</span>, label<span class="op">=</span><span class="st">"Autodiff con JAX (grad)"</span>)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"derivada"</span>)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Error relativo de la derivada de cos(x)"</span>)</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Errores L2 ---</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> error_L2(a, b):</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(np.mean((a <span class="op">-</span> b)<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Error L2 comparado con -sin(x):"</span>)</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Diferencias finitas : </span><span class="sc">{</span>error_L2(df_fd, df_real)<span class="sc">:.3e}</span><span class="ss">"</span>)</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Autodiff (JAX)      : </span><span class="sc">{</span>error_L2(df_ad, df_real)<span class="sc">:.3e}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -793,8 +783,108 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 </section>
 <section id="tareas" class="level1">
 <h1>Tareas</h1>
+<section id="tarea-8.1" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.1">Tarea 8.1</h2>
+<p>Los siguientes datos corresponden al cálculo numérico de una cierta propiedad estadística de la distribución de materia en el universo (el espectro de potencias) <span class="math inline">\(P(k)\)</span> (segunda columna) en función del modo de Fourier <span class="math inline">\(k\)</span> (primera columna).</p>
+<p>Use la derivada numérica para encontrar <span class="math inline">\(d\ln P/d\ln k\)</span> en cada punto (es decir, la derivada del logaritmo de <span class="math inline">\(P\)</span> respecto a <span class="math inline">\(y\)</span> donde <span class="math inline">\(y = \ln k\)</span>).</p>
+<p>Para estimar el error cometido en esta derivada numérica compare el resultado de la fórmula a tres puntos con el resultado de la fórmula a cinco puntos. Será necesario usar las fórmulas a tres y cinco puntos en los extremos que se encuentran en este mismo notebook.</p>
+<div id="a12fa53b" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> np.array([       [<span class="fl">5.531683013105e-04</span>,       <span class="fl">1.070304113861e+12</span>], </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">5.910227121702e-04</span>,       <span class="fl">1.139622191891e+12</span>], </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">6.315688849627e-04</span>,       <span class="fl">1.213481232452e+12</span>], </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">6.750065137883e-04</span>,       <span class="fl">1.292169597309e+12</span>], </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">7.215301959429e-04</span>,       <span class="fl">1.375954296780e+12</span>], </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">7.713235180257e-04</span>,       <span class="fl">1.465069697719e+12</span>], </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">8.245525173319e-04</span>,       <span class="fl">1.559705507566e+12</span>], </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">8.813589235833e-04</span>,       <span class="fl">1.659994890361e+12</span>], </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">9.418537183337e-04</span>,       <span class="fl">1.766003776663e+12</span>], </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.006111625261e-03</span>,       <span class="fl">1.877722471320e+12</span>], </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.074167130425e-03</span>,       <span class="fl">1.995060685935e+12</span>], </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.146012510269e-03</span>,       <span class="fl">2.117846703996e+12</span>], </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.221598126720e-03</span>,       <span class="fl">2.245831037960e+12</span>], </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.300834972303e-03</span>,       <span class="fl">2.378694410099e+12</span>], </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.383599172303e-03</span>,       <span class="fl">2.516052095865e+12</span>], </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.469737934874e-03</span>,       <span class="fl">2.657475892684e+12</span>], </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.559076324033e-03</span>,       <span class="fl">2.802524407596e+12</span>], </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.651424225675e-03</span>,       <span class="fl">2.950729179407e+12</span>], </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.746582964833e-03</span>,       <span class="fl">3.101618970269e+12</span>], </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.844351177716e-03</span>,       <span class="fl">3.254730780491e+12</span>], </span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.944529704896e-03</span>,       <span class="fl">3.409618695392e+12</span>], </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">2.046925420592e-03</span>,       <span class="fl">3.565860320889e+12</span>], </span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">2.151354028418e-03</span>,       <span class="fl">3.723061333248e+12</span>], </span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">2.257641930146e-03</span>,       <span class="fl">3.880858018481e+12</span>] ])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tarea-8.2" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.2">Tarea 8.2</h2>
+<p>Encuentre la separación óptima entre puntos para el ejemplo con ruido hecho en clase.</p>
+</section>
+<section id="tarea-8.3" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.3">Tarea 8.3</h2>
+<p>Considere la función:</p>
+<p><span class="math display">\[
+f(x, y) = \ln(xy) + x^2 y - \cos(y)
+\]</span></p>
+<ul>
+<li>Construya el grafo computacional que representa la función.</li>
+<li>Realice una pasada hacia adelante para calcular los valores de todas las variables intermedias en el punto $ x = 2 $, $ y = 1 $.</li>
+<li>Simultáneamente, calcule las derivadas con respecto a $ x $ en cada nodo utilizando las reglas de autodiferenciación en modo directo.</li>
+</ul>
+</section>
+<section id="tarea-8.4" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.4">Tarea 8.4</h2>
+<p>Dada la función:</p>
+<p><span class="math display">\[
+f(u, v) = e^{uv} + u \sin(v) + v^3
+\]</span></p>
+<ul>
+<li>Construya el grafo computacional con nodos para cada operación, indicando claramente las dependencias y descomponiéndolo en nodos.</li>
+<li>Realice una pasada hacia adelante en el punto <span class="math inline">\(u = 0\)</span> <span class="math inline">\(v = \pi/2\)</span>, calcule y registre el valor de cada nodo.</li>
+<li>Realice una pasada hacia atrás, inicializando la derivada del nodo de salida en el resultado obtenido en el paso anterior y propagando gradientes hacia atrás a través del grafo utilizando la regla de la cadena.</li>
+<li>Calcule los valores finales de $ $ y $ $.</li>
+</ul>
+</section>
+<section id="tarea-8.5" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.5">Tarea 8.5</h2>
+<p>Considere los siguientes datos que son el resultado de cinco simulaciones muy costosas.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\sigma\)</span></th>
+<th><span class="math inline">\(n\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(0.75\)</span></td>
+<td><span class="math inline">\(1.1324\times 10^{-3}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0.77\)</span></td>
+<td><span class="math inline">\(1.1376\times 10^{-3}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(0.79\)</span></td>
+<td><span class="math inline">\(1.1386\times 10^{-3}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0.81\)</span></td>
+<td><span class="math inline">\(1.1454\times 10^{-3}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(0.83\)</span></td>
+<td><span class="math inline">\(1.1474\times 10^{-3}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Estime la derivada de <span class="math inline">\(n\)</span> respecto a <span class="math inline">\(\sigma\)</span> así como el error cometido en <span class="math inline">\(\sigma = 0.79\)</span>.</p>
+<p>Para estimar la derivada, use la fórmula a tres puntos dada en clase.</p>
+<p>Para estimar el error use la fórmula de error. Esta fórmula del error contiene una tercera derivada. Esta tercera derivada se puede obtener a partir de una fórmula a cinco puntos para la tercera derivada.</p>
+<p>Para encontrar la expresión para la tercera derivada a cinco puntos use la expansión en Taylor de <span class="math inline">\(f(x_o + h)\)</span>, <span class="math inline">\(f(x_o - h)\)</span>, <span class="math inline">\(f(x_o + 2h)\)</span> y <span class="math inline">\(f(x_o - 2h)\)</span>.</p>
+<p>Además considere el hecho que <span class="math inline">\(n\)</span> tiene un ruido (<span class="math inline">\(\Delta n = 10^{-6}\)</span>). Compare con lo anterior para saber si el tamaño <span class="math inline">\(h\)</span> del paso fue el adecuado. ¿Es necesario un paso más pequeño o más grande?</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
