@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Derivadas numéricas – Métodos Numéricos y Probabilidades 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Métodos Numéricos y Probabilidades 2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Acerca de</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-1">    
+        <li>
+    <a class="dropdown-item" href="./01_funcionamiento_cpu.html">
+ <span class="dropdown-text">Funcionamiento de la CPU</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02_python.html">
+ <span class="dropdown-text">Repaso de Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03_numpy_arrays.html">
+ <span class="dropdown-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04_numeros_y_condicionamiento.html">
+ <span class="dropdown-text">Representación de números y condicionamiento</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05_algoritmos_y_estabilidad.html">
+ <span class="dropdown-text">Algoritmos y estabilidad</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-2">    
+        <li>
+    <a class="dropdown-item" href="./06_definicion_probabilidad.html">
+ <span class="dropdown-text">Propiedades de la probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07_distribuciones.html">
+ <span class="dropdown-text">Distribuciones de probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08_varias_variables_aleatorias.html">
+ <span class="dropdown-text">Varias variables aleatorias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09_teorema_central_del_limite.html">
+ <span class="dropdown-text">Teorema central del límite</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./10_entropia.html">
+ <span class="dropdown-text">Entropía de Shannon</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-3" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 3</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-3">    
+        <li>
+    <a class="dropdown-item" href="./11_solucion_sistemas_lineales.html">
+ <span class="dropdown-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12_newton_y_biseccion.html">
+ <span class="dropdown-text">Solución de Ecuaciones No Lineales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./13_interpolacion.html">
+ <span class="dropdown-text">Interpolación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./14_integracion_numerica.html">
+ <span class="dropdown-text">Integración Numérica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./15_integrales_multiples_impropias_y_gauss.html">
+ <span class="dropdown-text">Quadratura de Gauss, integrales múltiples e impropias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./16_derivadas.html">
+ <span class="dropdown-text">Derivadas numéricas</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11_solucion_sistemas_lineales.html">Unidad 3: Cálculo Numérico</a></li><li class="breadcrumb-item"><a href="./16_derivadas.html">Derivadas numéricas</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 1: Introducción</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_funcionamiento_cpu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funcionamiento de la CPU</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_numpy_arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_numeros_y_condicionamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Representación de números y condicionamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_algoritmos_y_estabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmos y estabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 2: Probabilidad</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_definicion_probabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Propiedades de la probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_distribuciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distribuciones de probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_varias_variables_aleatorias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Varias variables aleatorias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_teorema_central_del_limite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Teorema central del límite</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_entropia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Entropía de Shannon</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 3: Cálculo Numérico</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_solucion_sistemas_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_newton_y_biseccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Ecuaciones No Lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_interpolacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpolación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14_integracion_numerica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integración Numérica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15_integrales_multiples_impropias_y_gauss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quadratura de Gauss, integrales múltiples e impropias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16_derivadas.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Derivadas numéricas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#diferencias-finitas" id="toc-diferencias-finitas" class="nav-link active" data-scroll-target="#diferencias-finitas">Diferencias finitas</a>
+  <ul class="collapse">
+  <li><a href="#fórmula-de-dos-puntos" id="toc-fórmula-de-dos-puntos" class="nav-link" data-scroll-target="#fórmula-de-dos-puntos">Fórmula de dos puntos</a></li>
+  <li><a href="#fórmulas-de-más-puntos" id="toc-fórmulas-de-más-puntos" class="nav-link" data-scroll-target="#fórmulas-de-más-puntos">Fórmulas de más puntos</a></li>
+  <li><a href="#las-diferencias-finitas-son-inestables-y-ruidosas" id="toc-las-diferencias-finitas-son-inestables-y-ruidosas" class="nav-link" data-scroll-target="#las-diferencias-finitas-son-inestables-y-ruidosas">Las diferencias finitas son inestables y ruidosas</a></li>
+  </ul></li>
+  <li><a href="#autodiff" id="toc-autodiff" class="nav-link" data-scroll-target="#autodiff">Autodiff</a>
+  <ul class="collapse">
+  <li><a href="#la-idea-detrás-de-la-autodiferenciación" id="toc-la-idea-detrás-de-la-autodiferenciación" class="nav-link" data-scroll-target="#la-idea-detrás-de-la-autodiferenciación">La idea detrás de la autodiferenciación</a></li>
+  <li><a href="#autodiferenciación-en-modo-directo" id="toc-autodiferenciación-en-modo-directo" class="nav-link" data-scroll-target="#autodiferenciación-en-modo-directo">Autodiferenciación en modo directo</a></li>
+  <li><a href="#autodiferenciación-en-modo-inverso" id="toc-autodiferenciación-en-modo-inverso" class="nav-link" data-scroll-target="#autodiferenciación-en-modo-inverso">Autodiferenciación en modo inverso</a></li>
+  </ul></li>
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">Tareas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11_solucion_sistemas_lineales.html">Unidad 3: Cálculo Numérico</a></li><li class="breadcrumb-item"><a href="./16_derivadas.html">Derivadas numéricas</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Derivadas numéricas</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>En muchos casos la derivada de una función es fácil de calcular. Sin embargo con frecuencia la función se conoce sólo en algunos puntos (por ejemplo cuando es el resultado de una medición o de una simulación) y los métodos numéricos para tomar derivadas pueden resultar muy útiles.</p>
+<p>Además, las derivadas numéricas forman parte fundamental de la solución numérica a ecuaciones diferenciales parciales (para modelar el clima, la fusión de dos agujeros negros, el colapso estelar, la turbulencia, entre muchos otros fenómenos). También son la base de los métodos de optimización en los cuales se basa el aprendizaje automático.</p>
+<div id="5fe925a8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="diferencias-finitas" class="level1">
+<h1>Diferencias finitas</h1>
+<section id="fórmula-de-dos-puntos" class="level2">
+<h2 class="anchored" data-anchor-id="fórmula-de-dos-puntos">Fórmula de dos puntos</h2>
+<p>Recordemos la definición de la derivada</p>
+<p><span class="math display">\[
+f'(x_o) = \lim_{h\rightarrow 0}\frac{f(x_o + h) - f(x_o)}{h}
+\]</span></p>
+<p>Podemos entonces tomar un <span class="math inline">\(h\)</span> lo suficientemente pequeño. Para obtener una estimación del error usamos la expansión de Taylor</p>
+<p><span class="math display">\[
+f(x_o + h) = f(x_o) + h f'(x_o) + \frac{1}{2}h^2 f''(\xi)
+\]</span></p>
+<p>tal que</p>
+<p><span class="math display">\[
+f'(x_o) = \frac{f(x_o + h) - f(x_o)}{h} - \frac{1}{2}h f''(\xi)
+\]</span></p>
+<p>El error es entonces</p>
+<p><span class="math display">\[
+\left|f'(x_o) - \frac{f(x_o + h) - f(x_o)}{h}\right| \leq \frac{h}{2}\,\text{max}_{x\in[x_o, x_o+h]}\,|f''(x)|
+\]</span></p>
+<div id="e48ed35e" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv2p(f, x, h):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">+</span> h) <span class="op">-</span> f(x))<span class="op">/</span>h</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>También podríamos haber usado</p>
+<p><span class="math display">\[
+f'(x_o) = \frac{f(x_o) - f(x_o - h)}{h} + \frac{1}{2}h f''(\xi)
+\]</span></p>
+<div id="21411d26" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">100</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>exactas <span class="op">=</span> np.cos(x)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>aprox2 <span class="op">=</span> [deriv2p(np.sin, xi, <span class="fl">0.2</span>) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.plot(x, exactas, label<span class="op">=</span><span class="st">'Exacta'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x, aprox2, label<span class="op">=</span><span class="st">'Orden 2'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_derivadas_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fórmulas-de-más-puntos" class="level2">
+<h2 class="anchored" data-anchor-id="fórmulas-de-más-puntos">Fórmulas de más puntos</h2>
+<p>Podemos usar los polinomios de Legendre para encontrar fórmulas que involucran más puntos. Estas pueden ser más lentas porque necesitan un mayor número de evaluaciones de la función, pero son más precisas como veremos.</p>
+<p>El polinomio de orden dos es</p>
+<p><span class="math display">\[
+f(x) = f(x_o) L_{2,0}(x) + f(x_1) L_{2,1}(x) + f(x_2) L_{2,2}(x) + \frac{1}{6}f^{(3)}(\xi)(x - x_o)(x - x_1)(x - x_2)\,.
+\]</span></p>
+<p><span class="math display">\[
+L_{2,0}(x) = \frac{(x - x_1)(x - x_2)}{(x_o - x_1)(x_o - x_2)}\,,\quad L_{2,1}(x) = \frac{(x - x_o)(x - x_2)}{(x_1 - x_o)(x_1 - x_2)}\,,\quad L_{2,2}(x) = \frac{(x - x_o)(x - x_1)}{(x_2 - x_o)(x_2 - x_1)}\,.
+\]</span></p>
+<p>Tomando <span class="math inline">\(x_o = x_o - h\)</span>, <span class="math inline">\(x_1 = x_o\)</span> y <span class="math inline">\(x_2 = x_o + h\)</span> obtenemos</p>
+<p><span class="math display">\[
+f(x) = f(x_o - h) \frac{(x - x_o)(x - x_o - h)}{2h^2} - f(x_o) \frac{(x - x_o - h)(x - x_o + h)}{h^2} + f(x_o + h) \frac{(x - x_o + h)(x - x_o)}{2h^2} + \frac{1}{6}f^{(3)}(\xi)(x - x_o)(x - x_o - h)(x - x_o + h)
+\]</span></p>
+<p>tal que</p>
+<p><span class="math display">\[
+f'(x_o) = - f(x_o - h)\frac{h}{2h^2} + f(x_o + h)\frac{h}{2h^2} - \frac{h^2}{6}f^{(3)}(\xi)
+\]</span></p>
+<p>simplificando</p>
+<p><span class="math display">\[
+f'(x_o) =\frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right) + \frac{h^2}{6}f^{(3)}(\xi)
+\]</span></p>
+<p>¡Obtenemos una mayor precisión (error cuadrático) haciendo un número igual de evaluaciones que la fórmula de dos puntos!</p>
+<div id="84e376b3" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3p(f, x, h):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">+</span> h) <span class="op">-</span> f(x <span class="op">-</span> h))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="baf866eb" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">100</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>exactas <span class="op">=</span> np.cos(x)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>aprox2 <span class="op">=</span> [deriv2p(np.sin, xi, <span class="fl">0.2</span>) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>aprox3 <span class="op">=</span> [deriv3p(np.sin, xi, <span class="fl">0.2</span>) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x, exactas <span class="op">-</span> aprox2, label<span class="op">=</span><span class="st">'Orden 2'</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x, exactas <span class="op">-</span> aprox3, label<span class="op">=</span><span class="st">'Orden 3'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_derivadas_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Tomando <span class="math inline">\(x_1 = x_o + h\)</span> y <span class="math inline">\(x_2 = x_o + 2h\)</span> obtenemos</p>
+<p><span class="math display">\[
+f(x) = f(x_o) \frac{(x - x_o - h)(x - x_o - 2h)}{2h^2} - f(x_o + h) \frac{(x - x_o)(x - x_o - 2h)}{h^2} + f(x_o + 2h) \frac{(x - x_o)(x - x_o - h)}{2h^2} + \frac{1}{6}f^{(3)}(\xi)(x - x_o)(x - x_o - h)(x - x_o - 2h)
+\]</span></p>
+<p>tal que</p>
+<p><span class="math display">\[
+f'(x_o) = - f(x_o)\frac{3h}{2h^2} + f(x_o + h) \frac{2h}{h^2} - f(x_o + 2h)\frac{h}{2h^2} + \frac{h^2}{3}f^{(3)}(\xi)
+\]</span></p>
+<p>simplificando</p>
+<p><span class="math display">\[
+f'(x_o) =\frac{1}{2h}\left(- 3f(x_o) + 4f(x_o + h) - f(x_o + 2h)\right) + \frac{h^2}{3}f^{(3)}(\xi)
+\]</span></p>
+<p>Esta fórmula sirve para estimar la derivada de una función en los bordes, cuando no conocemos <span class="math inline">\(f(x)\)</span> para <span class="math inline">\(x &lt; x_o\)</span>. También se puede usar cuando no conocemos la función para <span class="math inline">\(x &gt; x_o\)</span>, en cuyo caso reemplazamos <span class="math inline">\(h \rightarrow -h\)</span>. Tiene dos desventajas respecto a la anterior: Necesita tres evaluaciones y el error es aproximadamente el doble.</p>
+<div id="70bbf1cc" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3p_extremo(f, x, h):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="op">-</span><span class="dv">3</span><span class="op">*</span>f(x) <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>f(x <span class="op">+</span> h) <span class="op">-</span> f(x <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>h))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>También podemos usar polinomios de más alto orden para obtener fórmulas de más puntos. Por ejemplo la fórmula de tres puntos tiene un error <span class="math inline">\((h^4/30)f^{(5)}(\xi)\)</span>.</p>
+<div id="3a5e6c73" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv5p(f, x, h):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>h) <span class="op">-</span> <span class="dv">8</span><span class="op">*</span>f(x <span class="op">-</span> h) <span class="op">+</span> <span class="dv">8</span><span class="op">*</span>f(x <span class="op">+</span> h) <span class="op">-</span> f(x <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>h))<span class="op">/</span>(<span class="dv">12</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="68c4275e" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv5p_extremo(f, x, h):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="op">-</span><span class="dv">25</span><span class="op">*</span>f(x) <span class="op">+</span> <span class="dv">48</span><span class="op">*</span>f(x <span class="op">+</span> h) <span class="op">-</span> <span class="dv">36</span><span class="op">*</span>f(x <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>h) <span class="op">+</span> <span class="dv">16</span><span class="op">*</span>f(x <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>h) <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>f(x <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>h))<span class="op">/</span>(<span class="dv">12</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>De manera análoga se pueden deducir fórmulas para derivadas de más alto orden (que necesitarán una mayor número de evaluaciones). Si consideramos la expansión de Taylor</p>
+<p><span class="math display">\[
+f(x_o + h) = f(x_o) + f'(x_o)h + \frac{1}{2}f''(x_o)h^2 + \frac{1}{6}f^{(3)}(x_o)h^3 + \frac{1}{24}f^{(4)}(\xi)h^4
+\]</span></p>
+<p>de donde vemos que</p>
+<p><span class="math display">\[
+f(x_o + h) + f(x_o - h) = 2f(x_o) + f''(x_o)h^2 + \frac{1}{12}f^{(4)}(\xi)h^4\,.
+\]</span></p>
+<p>y entonces</p>
+<p><span class="math display">\[
+f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1}{12}f^{(4)}(\xi)h^2
+\]</span></p>
+<div id="58cec7ce" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> segunda_deriv(f, x, h):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">+</span> h) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>f(x) <span class="op">+</span> f(x <span class="op">-</span> h))<span class="op">/</span>(h<span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="las-diferencias-finitas-son-inestables-y-ruidosas" class="level2">
+<h2 class="anchored" data-anchor-id="las-diferencias-finitas-son-inestables-y-ruidosas">Las diferencias finitas son inestables y ruidosas</h2>
+<p>Las derivadas numéricas sufren de una inestabilidad respecto a los errores de redondeo. Para verlo consideremos la fórmula a tres puntos y supongamos que el error de redondeo (o un error de la simulación) está acotado por un valor <span class="math inline">\(e\)</span> y <span class="math inline">\(f(x) = \tilde{f}(x) + \delta(x)\)</span> donde <span class="math inline">\(\tilde{f}\)</span> es el verdadero valor, tal que <span class="math inline">\(\delta(x) \leq \Delta\)</span>. Entonces</p>
+<p><span class="math display">\[
+\left|f'(x_o) - \frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right)\right| \leq \left|\frac{1}{2h}(\delta(x_o + h) - \delta(x_o - h))\right| + \frac{h^2}{6} M \leq \frac{\Delta}{h} + \frac{h^2}{6} M
+\]</span></p>
+<p>¡Al disminuir <span class="math inline">\(h\)</span> aumentamos el primer término de este error!</p>
+<div id="4452a5e2" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>datos_r <span class="op">=</span> np.sin(x) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="dv">40</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>datos_e <span class="op">=</span> np.sin(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="89d5a390" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, datos_e)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, datos_r)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_derivadas_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="7a78d17b" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3_datos(fxo, fx2, h):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fx2 <span class="op">-</span> fxo)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3_borde_datos(fxo, fx1, fx2, h):</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="op">-</span><span class="dv">3</span><span class="op">*</span>fxo <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>fx1 <span class="op">-</span> fx2)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv_datos(fx, h):</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(fx)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    deriv <span class="op">=</span> np.zeros(n)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            deriv[i] <span class="op">=</span> deriv3_borde_datos(fx[<span class="dv">0</span>], fx[<span class="dv">1</span>], fx[<span class="dv">2</span>], h)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> i <span class="op">==</span> n <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            deriv[i] <span class="op">=</span> deriv3_borde_datos(fx[n<span class="op">-</span><span class="dv">1</span>], fx[n<span class="op">-</span><span class="dv">2</span>], fx[n<span class="op">-</span><span class="dv">3</span>], <span class="op">-</span>h)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            deriv[i] <span class="op">=</span> deriv3_datos(fx[i<span class="op">-</span><span class="dv">1</span>], fx[i<span class="op">+</span><span class="dv">1</span>], h)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> deriv</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fx2 <span class="op">-</span> fxo)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c6e6ea6b" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">20</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="dv">4</span><span class="op">/</span>num</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>datos_e <span class="op">=</span> np.sin(x)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>datos_r <span class="op">=</span> np.sin(x) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.001</span>, num)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x, deriv_datos(datos_e, h) <span class="op">-</span> np.cos(x))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x, deriv_datos(datos_r, h) <span class="op">-</span> np.cos(x))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_derivadas_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="autodiff" class="level1">
+<h1>Autodiff</h1>
+<p>Existe un método que solo recientemente goza de atención (gracias a su aplicación en aprendizaje automático) que permite el cálculo <em>exacto</em> de derivadas de manera automática (sin tener que calcular nada a mano). Además no tiene ninguna inestabilidad numérica. Adicionalmente, para un gran número de variables es más eficiente.</p>
+<p>Sin embargo tiene dos desventajas:</p>
+<ul>
+<li><p>Si te dan la función como una lista de números, no se puede aplicar. Es necesario conocer la función o calcularla al mismo tiempo que la derivada.</p></li>
+<li><p>Requiere típicamente más memoria RAM.</p></li>
+</ul>
+<section id="la-idea-detrás-de-la-autodiferenciación" class="level2">
+<h2 class="anchored" data-anchor-id="la-idea-detrás-de-la-autodiferenciación">La idea detrás de la autodiferenciación</h2>
+<p>La idea es sencilla: Conocemos las derivadas de cualquier función sencilla y para las demás usamos la regla de la cadena.</p>
+<p>Por ejemplo, supongamos que queremos tomar la derivada del coseno. Existen librerías que tuenen tabuladas las derivadas para muchas funciones. Aquí usamos <code>jax</code>.</p>
+<div id="5d189dbf" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># derivada_cos_autodiff_vs_finitas.py</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparar derivadas con autodiff (JAX) y con diferencias finitas para cos(x)</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> grad, vmap</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Función ---</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.cos(x)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Derivada con autodiff (JAX) ---</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>df_dx_scalar <span class="op">=</span> grad(f)          <span class="co"># derivada escalar</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>df_dx_ad <span class="op">=</span> vmap(df_dx_scalar)   <span class="co"># vectorizar para arreglos</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Malla y verdad analítica ---</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">400</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>f_real <span class="op">=</span> np.cos(x)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>df_real <span class="op">=</span> <span class="op">-</span>np.sin(x)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Diferencias finitas (central, con np.gradient) ---</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>df_fd <span class="op">=</span> np.gradient(f_real, x)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Derivada con autodiff ---</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>df_ad <span class="op">=</span> np.array(df_dx_ad(jnp.array(x)))</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Gráfico ---</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">4</span>))</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>plt.plot(x, df_real, label<span class="op">=</span><span class="st">"Analítica  d/dx cos(x) = -sin(x)"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>plt.plot(x, df_fd,   <span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Diferencias finitas (np.gradient)"</span>)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>plt.plot(x, df_ad,   <span class="st">":"</span>, label<span class="op">=</span><span class="st">"Autodiff con JAX (grad)"</span>)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"derivada"</span>)</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Derivada de cos(x): autodiff vs diferencias finitas"</span>)</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Errores L2 ---</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> error_L2(a, b):</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(np.mean((a <span class="op">-</span> b)<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Error L2 comparado con -sin(x):"</span>)</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Diferencias finitas : </span><span class="sc">{</span>error_L2(df_fd, df_real)<span class="sc">:.3e}</span><span class="ss">"</span>)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Autodiff (JAX)      : </span><span class="sc">{</span>error_L2(df_ad, df_real)<span class="sc">:.3e}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_derivadas_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error L2 comparado con -sin(x):
+  Diferencias finitas : 1.120e-03
+  Autodiff (JAX)      : 6.453e-08</code></pre>
+</div>
+</div>
+<p>¿Qué pasa cuando tenemos una función más complicada? En ese caso usamos la regla de la cadena. Por ejemplo, si tenemos una función <span class="math inline">\(f(w(x), v(x))\)</span> y queremos calcular la derivada respecto a <span class="math inline">\(x\)</span> hacemos</p>
+<p><span class="math display">\[
+\frac{d}{dx}f = \frac{\partial f}{\partial w}\frac{dw}{dx} + \frac{\partial f}{\partial v}\frac{dv}{dx}\,.
+\]</span></p>
+<p>Para poner un ejemplo más concreto, si queremos derivar <span class="math inline">\(f(x) = \cos(x)e^x + \sin(x)\)</span>, usamos</p>
+<p><span class="math display">\[
+\frac{d}{dx} (f + g) = \frac{d}{dx} f + \frac{d}{dx} g\,,
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}(fg) = f \frac{d}{dx} g + g \frac{d}{dx} f\,,
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\cos(x) = -\sin(x)\,,\quad \frac{d}{dx}\sin(x) = \cos(x)\,,\quad \frac{d}{dx}e^x = e^x\,.
+\]</span></p>
+<p>Entonces</p>
+<p><span class="math display">\[
+\frac{d}{dx}((\cos(x)e^x) + \sin(x)) = \frac{d}{dx}(\cos(x)e^x) + \frac{d}{dx}(\sin(x))\,,
+\]</span></p>
+<p>Ahora seguimos aplicando la regla de la cadena</p>
+<p><span class="math display">\[
+\frac{d}{dx}(\cos(x)e^x + \sin(x)) = \cos(x)\frac{d}{dx}e^x + e^x\frac{d}{dx}\cos(x) + \cos(x) = e^x\cos(x) - \sin(x)e^x + \cos(x)\,,
+\]</span></p>
+</section>
+<section id="autodiferenciación-en-modo-directo" class="level2">
+<h2 class="anchored" data-anchor-id="autodiferenciación-en-modo-directo">Autodiferenciación en modo directo</h2>
+<p>La autodiferenciación se usa cuando tenemos que calcular un gran número de derivadas. Esto ocurre por ejemplo en la solución numérica de ecuaciones diferenciales parciales, o en el aprendizaje automático donde se toma el gradiente de una función de costo respecto a miles de millones de parámetros.</p>
+<p>En general, estos problemas se reducen a tomar la derivada del vector <span class="math inline">\(\vec{f} = (f_1, f_2, \ldots, f_n)\)</span> con respecto a muchos parámetros <span class="math inline">\(\vec{x} = (x_1, x_2, \ldots, x_m)\)</span>, esto es</p>
+<p><span class="math display">\[
+\frac{\partial \vec{f}}{\partial \vec{x}} = \begin{pmatrix}
+\frac{\partial f_1}{\partial x_1} &amp; \frac{\partial f_1}{\partial x_2} &amp; \ldots &amp; \frac{\partial f_1}{\partial x_m}\\
+\frac{\partial f_2}{\partial x_1} &amp; \frac{\partial f_2}{\partial x_2} &amp; \ldots &amp; \frac{\partial f_2}{\partial x_m}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\frac{\partial f_n}{\partial x_1} &amp; \frac{\partial f_n}{\partial x_2} &amp; \ldots &amp; \frac{\partial f_n}{\partial x_m}
+\end{pmatrix}\,.
+\]</span></p>
+<p>Esta <span class="math inline">\(f\)</span> puede ser por ejemplo una red neuronal. En general, esta es una función complicada que se expresa como la composición de varias funciones simples, por ejemplo <span class="math inline">\(\vec{f}(w_1(\vec{x}), w_2(\vec{x}), \ldots, w_\ell(\vec{x}))\)</span>. Entonces nuestra derivada toma la forma</p>
+<p><span class="math display">\[
+\frac{\partial f_i}{\partial x_j} = \sum_k\frac{\partial f_i}{\partial w_k}\frac{\partial w_k}{\partial x_j}\,.
+\]</span></p>
+<p>Esta no es otra que una multiplicación de matrices. En general</p>
+<p><span class="math display">\[
+\frac{\partial \vec{f}}{\partial \vec{x}} = \frac{\partial \vec{f}}{\partial \vec{w}^{(1)}}\frac{\partial \vec{w}^{(1)}}{\partial \vec{w}^{(2)}}\ldots\frac{\partial \vec{w}^{(s)}}{\partial \vec{x}}\,.
+\]</span></p>
+<p>Esto parece un ejemplo artificial, pero algo así puede ocurrir en ecuaciones diferenciales. Por ejemplo supongamos que queremos modelar algunas características de un fluido <span class="math inline">\(\vec{f}\)</span> (presión, temperatura, etc) que a su vez van a depender de una serie de variables termodinámicas <span class="math inline">\(\vec{w}\)</span>, que a su vez dependen de la posición del elemento de fluido <span class="math inline">\(\vec{x}\)</span> que depende del tiempo <span class="math inline">\(t\)</span>. Por simplicidad tomemos <span class="math inline">\(\vec{f}, \vec{w}\)</span> y <span class="math inline">\(\vec{x}\)</span> como vectores de dimensión 3. Queremos calcular la derivada</p>
+<p><span class="math display">\[
+\frac{d\vec{f}}{dt} =
+\underbrace{\frac{\partial \vec{f}}{\partial \vec{w}}}_{3\times 3}
+\;\underbrace{\frac{\partial \vec{w}}{\partial \vec{x}}}_{3\times 3}
+\;\underbrace{\frac{d\vec{x}}{dt}}_{3\times 1}
+\]</span></p>
+<p>Como estamos estudiando métodos numéricos, queremos minimizar la cantidad de operaciones. Cada fila por columna de una multiplicación matricial son <span class="math inline">\(3\)</span> multiplicaciones y <span class="math inline">\(3\)</span> sumas.</p>
+<p>La manera más eficiente sería multiplicar primero la matriz por el vector a la derecha. De esta forma tenemos un nuevo vector para multiplicar por la matriz restante. El total de operaciones es <span class="math inline">\(3\times 6 + 3\times 6 = 36\)</span>. En cambio si empezamos por multiplicar las dos matrices de la izquierda, el total de operaciones sería <span class="math inline">\(3\times 3\times 6 + 3\times 6 = 72\)</span>. La diferencia es más pronunciada aún si aumentamos el número de variables o dimensiones.</p>
+<p>Empezar por la derecha se llama “autodiferenciación en modo directo” (forward mode autodiff). Es el modo más eficiente si tenemos una función de muchos componentes (<span class="math inline">\(\vec{f}\)</span> en nuestro caso) que depende de pocos parámetros (<span class="math inline">\(t\)</span> en nuestro caso). Además usa menos RAM que el modo inverso.</p>
+</section>
+<section id="autodiferenciación-en-modo-inverso" class="level2">
+<h2 class="anchored" data-anchor-id="autodiferenciación-en-modo-inverso">Autodiferenciación en modo inverso</h2>
+<p>En aprendizaje automático tenemos usualmente lo contrario: Una función de pocas componentes que depende de muchos parámetros. En este caso es más eficiente multiplicar desde la derecha, lo que se llama autodiferenciación en modo inverso (reverse mode autodiff). Para un ejemplo sencillo, supongamos que <span class="math inline">\(f\)</span> (con una sola componente) depende de tres cantidades <span class="math inline">\(\vec{w}^{(1)}\)</span> que a su vez dependen de otras tres cantidades <span class="math inline">\(\vec{w}^{(2)}\)</span> que a su vez dependen de tres entradas <span class="math inline">\(\vec{x}\)</span></p>
+<p><span class="math display">\[
+\frac{\partial f}{\partial\vec{x}} =
+\underbrace{\frac{\partial f}{\partial\vec{w}^{(1)}}}_{1\times 3}
+\underbrace{\frac{\partial\vec{w}^{(1)}}{\partial\vec{w}^{(2)}}}_{3\times 3}
+\underbrace{\frac{\partial\vec{w}^{(2)}}{\partial\vec{x}}}_{3\times 3}\,.
+\]</span></p>
+<p>Vemos que en este caso es más eficiente ultipicar primero por la derecha, obteniendo <span class="math inline">\(36\)</span> operaciones en vez de <span class="math inline">\(72\)</span>. Cuando aumenta el número de variables y parámetros la diferencia es aún mayor. La autodiferenciación en modo inverso es más eficiente cuando tenemos una función de pocos componentes que depende de muchas variables o parámetros. Por ejemplo en redes neuronales pueden ser miles de millones de parámetros tal que aplicar el modo inverso es crucial.</p>
+<p>Sin embargo hay una dificultad. Para entenderla, consideremos la función compuesta <span class="math inline">\(f(g(h(x)))\)</span>. Cuando la queremos evaluar empezamos desde la derecha, es decir evaluamos primero <span class="math inline">\(z = h(x)\)</span>, luego <span class="math inline">\(y = g(z)\)</span> y finalmente <span class="math inline">\(f(y)\)</span>. Es decir, evualuamos la función desde la derecha.</p>
+<p>Para derivar aplicamos la regla de la cadena</p>
+<p><span class="math display">\[
+\frac{d}{dx} f(g(h(x))) = f'(g(h(x)))\times g'(h(x))\times h'(x)\,.
+\]</span></p>
+<p>Vemos que si queremos efectuar diferenciación en modo incerso, necesitamos primero calcular <span class="math inline">\(f'(g(h(x)))\)</span>, para lo cual necesitamos <span class="math inline">\(g(h(x))\)</span>. Después debemos calcular <span class="math inline">\(g'(h(x))\)</span> para lo cual necesitamos saber <span class="math inline">\(h(x)\)</span>, y así sucesivamente. En pocas palabras, necesitamos los pasos intermedios de la evaluación de la función compuesta.</p>
+<p>Para lograrlo, primero hacemos un paso hacia adelante (“forward pass”) donde evaluamos <span class="math inline">\(f(g(h(x)))\)</span>. En este, guatdamos en memoria todos los resultados intermedios (<span class="math inline">\(g(h(x)), h(x),\)</span>) en la memoria (en una estructura llamada “tape”). Luego hacemos un paso hacia atrás (“reverse pass”) donde evaluamos <span class="math inline">\(f'(g(h(x)))\)</span> usando los resultados guardados en la memoria.</p>
+</section>
+</section>
+<section id="tareas" class="level1">
+<h1>Tareas</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jorgenorena\.github\.io\/metodos-numericos-sitio\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

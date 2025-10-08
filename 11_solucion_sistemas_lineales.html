@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.43">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -238,6 +238,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./15_integrales_multiples_impropias_y_gauss.html">
  <span class="dropdown-text">Quadratura de Gauss, integrales múltiples e impropias</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./16_derivadas.html">
+ <span class="dropdown-text">Derivadas numéricas</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -384,6 +388,12 @@ window.Quarto = {
  <span class="menu-text">Quadratura de Gauss, integrales múltiples e impropias</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16_derivadas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Derivadas numéricas</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -439,7 +449,7 @@ window.Quarto = {
 </header>
 
 
-<div id="7bb17078" class="cell" data-execution_count="2">
+<div id="06cffa12" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.linalg</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -455,7 +465,7 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;= b_m,
 \]</span></p>
 <p>Lo podemos escribir con notación matricial como <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span>, donde las componentes de la matriz <span class="math inline">\(A\)</span> son los coeficientes <span class="math inline">\(a_{ij}\)</span>, el vector <span class="math inline">\(\mathbf{x}\)</span> tiene como componentes las incógnitas <span class="math inline">\(x_i\)</span> y el vector <span class="math inline">\(\mathbf{b}\)</span> tiene como componentes los términos independientes <span class="math inline">\(b_i\)</span>.</p>
 <p>El sistema tiene una única solución si la matriz <span class="math inline">\(A\)</span> es invertible. Formalmente, podemos encontrar el vector <span class="math inline">\(\mathbf{x}\)</span> que satisface estas ecuaciones escribiendo <span class="math inline">\(\mathbf{x} = A^{-1}\mathbf{b}\)</span>. Esto lo podemos hacer en Python:</p>
-<div id="1f0297ed" class="cell" data-execution_count="3">
+<div id="4185b2d3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">2</span>]])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">9</span>, <span class="dv">8</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Ainv <span class="op">=</span> np.linalg.inv(A)</span>
@@ -498,7 +508,7 @@ x_n &amp;= \frac{b_n - a_{n1}x_1 - a_{n2}x_2 - \cdots - a_{n,n-1}x_{n-1}}{a_{nn}
 \end{align}
 \]</span></p>
 <p>que funciona siempre y cuando los elementos de la diagonal <span class="math inline">\(a_{ii}\)</span> sean distintos de cero. En Python:</p>
-<div id="2a2f3ba2" class="cell" data-execution_count="4">
+<div id="cbbb7be5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> forwardsub(A, b):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> A.shape[<span class="dv">0</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.zeros(n)</span>
@@ -509,7 +519,7 @@ x_n &amp;= \frac{b_n - a_{n1}x_1 - a_{n2}x_2 - \cdots - a_{n,n-1}x_{n-1}}{a_{nn}
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Veamos que funciona</p>
-<div id="a3ba5c40" class="cell" data-execution_count="5">
+<div id="76335165" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>],</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])</span>
@@ -521,7 +531,7 @@ x_n &amp;= \frac{b_n - a_{n1}x_1 - a_{n2}x_2 - \cdots - a_{n,n-1}x_{n-1}}{a_{nn}
 </div>
 </div>
 <p>De forma análoga, si tenemos una matriz triangular superior</p>
-<div id="531712cb" class="cell" data-execution_count="6">
+<div id="cdb108e5" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> backsub(A, b):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> A.shape[<span class="dv">0</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.zeros(n)</span>
@@ -560,7 +570,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 \]</span></p>
 <p>Entonces, para la multiplicación de una matriz triangular inferior <span class="math inline">\(L\)</span> por una matriz triangular superior <span class="math inline">\(U\)</span> todo se hace más sencillo. Por ejemplo en el caso 3x3 el producto externo <span class="math inline">\(\mathbf{l}_3 \mathbf{u}_1^T\)</span> tiene un solo elemento diferente de cero.</p>
 <p>Para aplicar estos hechos, hagamos un ejemplo.</p>
-<div id="8ea8094a" class="cell" data-execution_count="7">
+<div id="df5f4bc5" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">4</span>, <span class="op">-</span><span class="dv">6</span>, <span class="dv">0</span>],</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>              [<span class="op">-</span><span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">2</span>]], dtype<span class="op">=</span><span class="bu">float</span>)</span>
@@ -568,7 +578,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> np.zeros((<span class="dv">3</span>, <span class="dv">3</span>), dtype<span class="op">=</span><span class="bu">float</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Primero escogemos que la primera fila de <span class="math inline">\(U\)</span> sea igual a la primera fila de <span class="math inline">\(A\)</span></p>
-<div id="0ce21d10" class="cell" data-execution_count="8">
+<div id="359a96df" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>U[<span class="dv">0</span>, :] <span class="op">=</span> A[<span class="dv">0</span>, :]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>display(U)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -578,7 +588,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Ahora para <span class="math inline">\(L\)</span> escogemos que la primera columna sea igual a la primera columna de <span class="math inline">\(A\)</span> dividida por <span class="math inline">\(u_{11}\)</span> (de modo que al multiplicar <span class="math inline">\(LU\)</span> tenemos el elemento <span class="math inline">\(A_{11}\)</span> correcto).</p>
-<div id="ca8c63db" class="cell" data-execution_count="9">
+<div id="c835e3e6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>L[:, <span class="dv">0</span>] <span class="op">=</span> A[:, <span class="dv">0</span>] <span class="op">/</span> U[<span class="dv">0</span>, <span class="dv">0</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>display(L)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -588,7 +598,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Luego le restamos esta contribución a <span class="math inline">\(A\)</span> para obtener una nueva matriz <span class="math inline">\(A' = A - \mathbf{l}_1 \mathbf{u}_1^T\)</span>. Veamos qué nos queda</p>
-<div id="e82943c5" class="cell" data-execution_count="10">
+<div id="b3b284ca" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>A_prime <span class="op">=</span> A <span class="op">-</span> L<span class="op">@</span>U</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>display(A_prime)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -598,7 +608,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Vemos que el primer renglón y la primera columna son ceros. Entonces podemos repetir el procedimiento con la submatriz <span class="math inline">\(2\times 2\)</span> restante</p>
-<div id="ba2796fd" class="cell" data-execution_count="11">
+<div id="ae696b49" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>U[<span class="dv">1</span>, <span class="dv">1</span>:] <span class="op">=</span> A_prime[<span class="dv">1</span>, <span class="dv">1</span>:]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>L[<span class="dv">1</span>:, <span class="dv">1</span>] <span class="op">=</span> A_prime[<span class="dv">1</span>:, <span class="dv">1</span>] <span class="op">/</span> U[<span class="dv">1</span>, <span class="dv">1</span>]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>A_prime2 <span class="op">=</span> np.zeros((<span class="dv">3</span>,<span class="dv">3</span>))</span>
@@ -620,7 +630,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Finalmente</p>
-<div id="4d144750" class="cell" data-execution_count="12">
+<div id="1aeeac2d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>U[<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">=</span> A_prime2[<span class="dv">2</span>, <span class="dv">2</span>]</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L:</span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>L<span class="sc">}</span><span class="ss">,</span><span class="ch">\n</span><span class="ss"> U:</span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>U<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -635,7 +645,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Verifiquemos</p>
-<div id="29b4d4e8" class="cell" data-execution_count="13">
+<div id="6c7bbbe8" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>display(A <span class="op">-</span> L<span class="op">@</span>U)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>array([[0., 0., 0.],
@@ -644,7 +654,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 </div>
 </div>
 <p>Ahora tenemos un algoritmo general</p>
-<div id="921ec2d1" class="cell" data-execution_count="14">
+<div id="e8791d7b" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lufact(A):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> A.shape[<span class="dv">0</span>]</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> np.eye(n, dtype<span class="op">=</span><span class="bu">float</span>)   <span class="co"># ones on diagonal</span></span>
@@ -664,7 +674,7 @@ a_{22} b_{21} &amp; a_{22} b_{22}
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> L, U</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Verifiquemos</p>
-<div id="94c04650" class="cell" data-execution_count="15">
+<div id="e9b009bc" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lufact(A)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>(array([[ 1., -0.,  0.],
@@ -703,7 +713,7 @@ A(\mathbf{x} + \delta \mathbf{x}) = \mathbf{b} + \delta \mathbf{b}\,.
 </div>
 <p>Luego, resolver los sistemas triangulares necesitan <span class="math inline">\(O(n^2)\)</span> operaciones cada uno. Para verlo, en el algoritmo de sustitución hacia adelante, en el paso <span class="math inline">\(i\)</span> hacemos una suma de <span class="math inline">\(i\)</span> términos y una división.</p>
 <p>Sin embargo, resulta que este método no es muy estable, incluso para matrices bien condicionadas. Hagamos un ejemplo</p>
-<div id="6960571c" class="cell" data-execution_count="16">
+<div id="cf466c04" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="fl">1e-16</span>, <span class="dv">2</span>], [<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">2</span>]])</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>L, U <span class="op">=</span> lufact(A)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
@@ -715,7 +725,7 @@ A(\mathbf{x} + \delta \mathbf{x}) = \mathbf{b} + \delta \mathbf{b}\,.
 </div>
 </div>
 <p>Comparado con la solución</p>
-<div id="2b781335" class="cell" data-execution_count="17">
+<div id="dc384122" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x_exact <span class="op">=</span> np.linalg.solve(A, b)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"solución de numpy:"</span>, x_exact)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -723,7 +733,7 @@ A(\mathbf{x} + \delta \mathbf{x}) = \mathbf{b} + \delta \mathbf{b}\,.
 </div>
 </div>
 <p>Esto a pesar de que el número de condición no es tan grande</p>
-<div id="6fdecfbb" class="cell" data-execution_count="18">
+<div id="6d5dcfb2" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"número de condición:"</span>, np.linalg.cond(A))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>número de condición: 5.8287569461762825</code></pre>
@@ -733,7 +743,7 @@ A(\mathbf{x} + \delta \mathbf{x}) = \mathbf{b} + \delta \mathbf{b}\,.
 <section id="factorización-lu-con-pivoteo" class="level2">
 <h2 class="anchored" data-anchor-id="factorización-lu-con-pivoteo">Factorización LU con pivoteo</h2>
 <p>La solución es primero pivotear la matriz, es decir, intercambiar filas para que los elementos de la diagonal sean los más grandes posibles. Por ejemplo, cambiemos la segunda y tercera fila de <span class="math inline">\(A\)</span> para resolver el problema equivalente</p>
-<div id="9ba384dc" class="cell" data-execution_count="19">
+<div id="6010f6ae" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>], [<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">2</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="fl">1e-16</span>, <span class="dv">2</span>]])</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>L, U <span class="op">=</span> lufact(A)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>])</span>
@@ -763,7 +773,7 @@ PA = \begin{pmatrix}
 \]</span></p>
 <p>Entonces en realidad queremos factorizar <span class="math inline">\(A = PLU\)</span>. Note que <span class="math inline">\(PA\mathbf{x} = P\mathbf{b}\)</span> es un sistema equivalente.</p>
 <p>Un algoritmo que lo logra es</p>
-<div id="bf1336b4" class="cell" data-execution_count="20">
+<div id="d2fc1ff7" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plufact(A):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.asarray(A, dtype<span class="op">=</span><span class="bu">float</span>)</span>
@@ -794,7 +804,7 @@ PA = \begin{pmatrix}
 <span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p, L, U</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Esto es lo que hace numpy</p>
-<div id="b729ce96" class="cell" data-execution_count="21">
+<div id="fc9bc46e" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>P, L, U <span class="op">=</span> scipy.linalg.lu(A, permute_l<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"L:</span><span class="ch">\n</span><span class="st">"</span>, L, <span class="st">"</span><span class="ch">\n</span><span class="st">U:</span><span class="ch">\n</span><span class="st">"</span>, U)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
