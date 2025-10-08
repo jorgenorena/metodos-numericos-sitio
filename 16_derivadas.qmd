@@ -64,31 +64,19 @@ plt.legend()
 
 ## Fórmulas de más puntos
 
-Podemos usar los polinomios de Legendre para encontrar fórmulas que involucran más puntos. Estas pueden ser más lentas porque necesitan un mayor número de evaluaciones de la función, pero son más precisas como veremos.
-
-El polinomio de orden dos es
+Para obtener una mejor precisión, podemos usar expansiones de Taylor a orden más alto. Tomemos
 
 $$
-f(x) = f(x_o) L_{2,0}(x) + f(x_1) L_{2,1}(x) + f(x_2) L_{2,2}(x) + \frac{1}{6}f^{(3)}(\xi)(x - x_o)(x - x_1)(x - x_2)\,.
+f(x_o + h) = f(x_o) + h f'(x_o) + \frac{1}{2}h^2 f''(\xi) + \frac{h^3}{6}f^{(3)}(\xi)
 $$
 
-$$
-L_{2,0}(x) = \frac{(x - x_1)(x - x_2)}{(x_o - x_1)(x_o - x_2)}\,,\quad L_{2,1}(x) = \frac{(x - x_o)(x - x_2)}{(x_1 - x_o)(x_1 - x_2)}\,,\quad L_{2,2}(x) = \frac{(x - x_o)(x - x_1)}{(x_2 - x_o)(x_2 - x_1)}\,.
-$$
-
-Tomando $x_o = x_o - h$, $x_1 = x_o$ y $x_2 = x_o + h$ obtenemos
+Di queremos obtener $f'(x_o)$, tenemos que combinar esta expresión con la evaluación en otros puntos para cancelar los términos proporcionales a $f(x_o)$ y $f''(x_o)$. En este caso es fácil
 
 $$
-f(x) = f(x_o - h) \frac{(x - x_o)(x - x_o - h)}{2h^2} - f(x_o) \frac{(x - x_o - h)(x - x_o + h)}{h^2} + f(x_o + h) \frac{(x - x_o + h)(x - x_o)}{2h^2} + \frac{1}{6}f^{(3)}(\xi)(x - x_o)(x - x_o - h)(x - x_o + h)
+f(x_o + h) - f(x_o - h) = 2h f'(x_o) + \mathcal{O}(h^3)\,,
 $$
 
 tal que
-
-$$
-f'(x_o) = - f(x_o - h)\frac{h}{2h^2} + f(x_o + h)\frac{h}{2h^2} - \frac{h^2}{6}f^{(3)}(\xi)
-$$
-
-simplificando
 
 $$
 f'(x_o) =\frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right) + \frac{h^2}{6}f^{(3)}(\xi)
@@ -111,20 +99,7 @@ plt.plot(x, exactas - aprox2, label='Orden 2')
 plt.plot(x, exactas - aprox3, label='Orden 3')
 plt.legend()
 ```
-
-Tomando $x_1 = x_o + h$ y $x_2 = x_o + 2h$ obtenemos
-
-$$
-f(x) = f(x_o) \frac{(x - x_o - h)(x - x_o - 2h)}{2h^2} - f(x_o + h) \frac{(x - x_o)(x - x_o - 2h)}{h^2} + f(x_o + 2h) \frac{(x - x_o)(x - x_o - h)}{2h^2} + \frac{1}{6}f^{(3)}(\xi)(x - x_o)(x - x_o - h)(x - x_o - 2h)
-$$
-
-tal que
-
-$$
-f'(x_o) = - f(x_o)\frac{3h}{2h^2} + f(x_o + h) \frac{2h}{h^2} - f(x_o + 2h)\frac{h}{2h^2} + \frac{h^2}{3}f^{(3)}(\xi)
-$$
-
-simplificando
+Podemos encontrar otras expresiones para la derivada usando otras combinaciones de las expansiones de Taylor. Por ejemplo
 
 $$
 f'(x_o) =\frac{1}{2h}\left(- 3f(x_o) + 4f(x_o + h) - f(x_o + 2h)\right) + \frac{h^2}{3}f^{(3)}(\xi)
@@ -273,13 +248,12 @@ df_ad = np.array(df_dx_ad(jnp.array(x)))
 
 # --- Gráfico ---
 plt.figure(figsize=(7,4))
-plt.plot(x, df_real, label="Analítica  d/dx cos(x) = -sin(x)", linewidth=2)
-plt.plot(x, df_fd,   "--", label="Diferencias finitas (np.gradient)")
-plt.plot(x, df_ad,   ":", label="Autodiff con JAX (grad)")
+plt.plot(x, df_fd/df_real - 1,   "--", label="Diferencias finitas (np.gradient)")
+plt.plot(x, df_ad/df_real - 1,   ":", label="Autodiff con JAX (grad)")
 
 plt.xlabel("x")
 plt.ylabel("derivada")
-plt.title("Derivada de cos(x): autodiff vs diferencias finitas")
+plt.title("Error relativo de la derivada de cos(x)")
 plt.legend()
 plt.tight_layout()
 plt.show()
@@ -393,3 +367,91 @@ Vemos que si queremos efectuar diferenciación en modo incerso, necesitamos prim
 Para lograrlo, primero hacemos un paso hacia adelante ("forward pass") donde evaluamos $f(g(h(x)))$. En este, guatdamos en memoria todos los resultados intermedios ($g(h(x)), h(x),$) en la memoria (en una estructura llamada "tape"). Luego hacemos un paso hacia atrás ("reverse pass") donde evaluamos $f'(g(h(x)))$ usando los resultados guardados en la memoria.
 
 # Tareas
+
+## Tarea 8.1
+
+Los siguientes datos corresponden al cálculo numérico de una cierta propiedad estadística de la distribución de materia en el universo (el espectro de potencias) $P(k)$ (segunda columna) en función del modo de Fourier $k$ (primera columna). 
+
+Use la derivada numérica para encontrar $d\ln P/d\ln k$ en cada punto (es decir, la derivada del logaritmo de $P$ respecto a $y$ donde $y = \ln k$). 
+
+Para estimar el error cometido en esta derivada numérica compare el resultado de la fórmula a tres puntos con el resultado de la fórmula a cinco puntos. Será necesario usar las fórmulas a tres y cinco puntos en los extremos que se encuentran en este mismo notebook.
+
+```{python}
+datos = np.array([       [5.531683013105e-04,       1.070304113861e+12], 
+       [5.910227121702e-04,       1.139622191891e+12], 
+       [6.315688849627e-04,       1.213481232452e+12], 
+       [6.750065137883e-04,       1.292169597309e+12], 
+       [7.215301959429e-04,       1.375954296780e+12], 
+       [7.713235180257e-04,       1.465069697719e+12], 
+       [8.245525173319e-04,       1.559705507566e+12], 
+       [8.813589235833e-04,       1.659994890361e+12], 
+       [9.418537183337e-04,       1.766003776663e+12], 
+       [1.006111625261e-03,       1.877722471320e+12], 
+       [1.074167130425e-03,       1.995060685935e+12], 
+       [1.146012510269e-03,       2.117846703996e+12], 
+       [1.221598126720e-03,       2.245831037960e+12], 
+       [1.300834972303e-03,       2.378694410099e+12], 
+       [1.383599172303e-03,       2.516052095865e+12], 
+       [1.469737934874e-03,       2.657475892684e+12], 
+       [1.559076324033e-03,       2.802524407596e+12], 
+       [1.651424225675e-03,       2.950729179407e+12], 
+       [1.746582964833e-03,       3.101618970269e+12], 
+       [1.844351177716e-03,       3.254730780491e+12], 
+       [1.944529704896e-03,       3.409618695392e+12], 
+       [2.046925420592e-03,       3.565860320889e+12], 
+       [2.151354028418e-03,       3.723061333248e+12], 
+       [2.257641930146e-03,       3.880858018481e+12] ])
+```
+
+## Tarea 8.2
+
+Encuentre la separación óptima entre puntos para el ejemplo con ruido hecho en clase.
+
+## Tarea 8.3
+
+Considere la función:
+
+$$
+f(x, y) = \ln(xy) + x^2 y - \cos(y)
+$$
+
+- Construya el grafo computacional que representa la función.
+- Realice una pasada hacia adelante para calcular los valores de todas las variables intermedias en el punto $ x = 2 $, $ y = 1 $.
+- Simultáneamente, calcule las derivadas con respecto a $ x $ en cada nodo utilizando las reglas de autodiferenciación en modo directo.
+
+
+## Tarea 8.4
+
+Dada la función:
+
+$$
+f(u, v) = e^{uv} + u \sin(v) + v^3
+$$
+
+- Construya el grafo computacional con nodos para cada operación, indicando claramente las dependencias y descomponiéndolo en nodos.
+- Realice una pasada hacia adelante en el punto $u = 0$ $v = \pi/2$, calcule y registre el valor de cada nodo.
+- Realice una pasada hacia atrás, inicializando la derivada del nodo de salida en el resultado obtenido en el paso anterior y propagando gradientes hacia atrás a través del grafo utilizando la regla de la cadena.
+- Calcule los valores finales de $ \frac{\partial f}{\partial u} $ y $ \frac{\partial f}{\partial v} $.
+
+## Tarea 8.5
+
+Considere los siguientes datos que son el resultado de cinco simulaciones muy costosas.
+
+| $\sigma$ |          $n$            |
+|----------|-------------------------|
+| $0.75$   | $1.1324\times 10^{-3}$  |
+| $0.77$   | $1.1376\times 10^{-3}$  |
+| $0.79$   | $1.1386\times 10^{-3}$  |
+| $0.81$   | $1.1454\times 10^{-3}$  |
+| $0.83$   | $1.1474\times 10^{-3}$  |
+
+Estime la derivada de $n$ respecto a $\sigma$ así como el error cometido en $\sigma = 0.79$. 
+
+Para estimar la derivada, use la fórmula a tres puntos dada en clase.
+
+Para estimar el error use la fórmula de error. Esta fórmula del error contiene una tercera derivada. Esta tercera derivada se puede obtener a partir de una fórmula a cinco puntos para la tercera derivada. 
+
+Para encontrar la expresión para la tercera derivada a cinco puntos use la expansión en Taylor de $f(x_o + h)$, $f(x_o - h)$, $f(x_o + 2h)$ y $f(x_o - 2h)$.
+
+Además considere el hecho que $n$ tiene un ruido ($\Delta n = 10^{-6}$). Compare con lo anterior para saber si el tamaño $h$ del paso fue el adecuado. ¿Es necesario un paso más pequeño o más grande?
+
