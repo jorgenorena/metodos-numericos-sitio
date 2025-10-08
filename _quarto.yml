@@ -49,6 +49,8 @@ website:
             href: 14_integracion_numerica.qmd
           - text: "Quadratura de Gauss, integrales múltiples e impropias"
             href: 15_integrales_multiples_impropias_y_gauss.qmd
+          - text: "Derivadas numéricas"
+            href: 16_derivadas.qmd
   sidebar:
     style: docked
     contents:
@@ -88,6 +90,8 @@ website:
             href: 14_integracion_numerica.qmd
           - text: "Quadratura de Gauss, integrales múltiples e impropias"
             href: 15_integrales_multiples_impropias_y_gauss.qmd
+          - text: "Derivadas numéricas"
+            href: 16_derivadas.qmd
 
 format:
   html:
