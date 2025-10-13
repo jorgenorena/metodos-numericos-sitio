@@ -244,6 +244,29 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-4" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 4</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-4">    
+        <li>
+    <a class="dropdown-item" href="./17_metodos_de_taylor.html">
+ <span class="dropdown-text">Métodos de Taylor</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./18_runge_kutta.html">
+ <span class="dropdown-text">Métodos de Runge-Kutta</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./19_metodos_de_multiples_pasos.html">
+ <span class="dropdown-text">Métodos de Múltiples Pasos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./20_edo_alto_orden_estabilidad.html">
+ <span class="dropdown-text">Ecuaciones de alto orden y estabilidad</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -396,6 +419,41 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 4: Ecuaciones Diferenciales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17_metodos_de_taylor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de Taylor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18_runge_kutta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de Runge-Kutta</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19_metodos_de_multiples_pasos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de Múltiples Pasos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20_edo_alto_orden_estabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ecuaciones de alto orden y estabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -447,18 +505,18 @@ window.Quarto = {
 <h1>Eficiciencia de los algoritmos</h1>
 <p>Para cálculos pesados, es necesario estimar la eficiencia del algoritmo. A veces cálculos que parecen inocentes se hacen demasiado pesadoos incluso para un computador.</p>
 <p>Para analizar la eficiencia de un algoritmo se estima el número de pasos involucrados. Por ejemplo:</p>
-<div id="815fde76" class="cell" data-execution_count="1">
+<div id="f1e3584b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    suma <span class="op">+=</span> i</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="56eaf90a" class="cell" data-execution_count="2">
+<div id="d0631aaf" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">range</span>(n))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Este algoritmo toma <span class="math inline">\(n\)</span> pasos, ya que debe realizar <span class="math inline">\(n\)</span> operaciones. Decimos que su eficiencia es de orden <span class="math inline">\(\mathcal{O}(n)\)</span>.</p>
 <p>A veces es necesario anidar ciclos, esto empieza a aumentar el número de pasos</p>
-<div id="80879893" class="cell" data-execution_count="3">
+<div id="90e3e28e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -469,7 +527,7 @@ window.Quarto = {
 <p>A los algoritmos con una eficiencia de orden <span class="math inline">\(\mathcal{O}(n^c)\)</span>, donde <span class="math inline">\(c\)</span> es una constante numérica, se los llama algoritmos de eficiencia polinomial.</p>
 <p>Los algoritmos más eficientes posibles son los que tienen una eficiencia logarítmica <span class="math inline">\(\mathcal{O}(\log n)\)</span> (y en informática normalmente se usa el logaritmo base <span class="math inline">\(2\)</span> en este contexto. Veremos un ejemplo de uno de estos algoritmos próximamente.</p>
 <p>Los peores algoritmos son los que tienen un crecimiento exponencial, por ejemplo <span class="math inline">\(\mathcal{O}(2^n)\)</span>, Estos se hacen extremadamente difíciles de ejecutar para un computado incluso para valores modestos de <span class="math inline">\(n\)</span>.</p>
-<div id="b091a123" class="cell" data-execution_count="4">
+<div id="58afbaa5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -487,7 +545,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:10: SyntaxWarning: invalid escape sequence '\l'
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence '\l'
-/tmp/ipykernel_371413/2146404212.py:10: SyntaxWarning: invalid escape sequence '\l'
+/tmp/ipykernel_437540/2146404212.py:10: SyntaxWarning: invalid escape sequence '\l'
   plt.scatter(n, log, label = '$\log_2$')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -509,14 +567,14 @@ window.Quarto = {
 <p>para alguna constante <span class="math inline">\(K\)</span>.</p>
 <p>Normalmente se toma <span class="math inline">\(\beta_n = 1/n^c\)</span> para alguna potencia <span class="math inline">\(c\)</span>. Los algoritmos que convergen más rápido tienen <span class="math inline">\(c\)</span> alto.</p>
 <p>Por ejemplo, consideremos la sucesión <span class="math inline">\(\{n \sin(1/n)\}\)</span>, esta converge a <span class="math inline">\(1\)</span> a medida que <span class="math inline">\(n\)</span> crece. Otra sucesión que converge a <span class="math inline">\(1\)</span> es <span class="math inline">\(\{1 - 1/n\}\)</span>.</p>
-<div id="24ee9a3e" class="cell" data-execution_count="5">
+<div id="f8ba12c9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>suc1 <span class="op">=</span> []</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>suc2 <span class="op">=</span> []</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">101</span>):</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    suc1.append(<span class="dv">1</span> <span class="op">-</span> n<span class="op">*</span>np.sin(<span class="dv">1</span><span class="op">/</span>n))</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    suc2.append(<span class="dv">1</span><span class="op">/</span>n)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5e0d68d9" class="cell" data-execution_count="6">
+<div id="3838a20f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(np.arange(<span class="dv">1</span>,<span class="dv">101</span>), suc1)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(np.arange(<span class="dv">1</span>,<span class="dv">101</span>), suc2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -527,7 +585,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="07d78a5a" class="cell" data-execution_count="7">
+<div id="3e87a2ff" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(np.arange(<span class="dv">1</span>,<span class="dv">101</span>), suc1)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.loglog(np.arange(<span class="dv">1</span>,<span class="dv">101</span>), suc2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -547,7 +605,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \pi = 3 + \frac{4}{2\times 3\times 4} - \frac{4}{4\times 5 \times 6} + \frac{4}{6\times 7\times 8} - \dots
 \]</span></p>
-<div id="4687ffa2" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:true}" data-execution_count="8">
+<div id="5844715b" class="cell" data-jupyter="{&quot;outputs_hidden&quot;:true}" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pi1 <span class="op">=</span> [<span class="dv">4</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pi2 <span class="op">=</span> [<span class="dv">3</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -574,7 +632,7 @@ window.Quarto = {
 <h1>Estabilidad de los algoritmos</h1>
 <p>En algunos casos el problema que queremos resolver tiene un buen número de condicionamiento, pero el algoritmo da errores grandes al perturbar los datos de entrada. En estos casos decimos que el algoritmo es <strong>inestable</strong>. Esta inestabilidad puede tener varios orígenes: Acumulación de errores de redondeo (ver tarea 2.4), número de condicionamiento grande de los pasos intermedios del algoritmo, entre otros.</p>
 <p>Hagamos un ejemplo: Consideremos el polinomio <span class="math inline">\(p(x) = (x - 10^6)(x - 10^{-6})\)</span>. Como las dos raíces son muy distintas sabemos que es un problema bien condicionado (ver clase anterior). Sin embargo, al intentar evaluar las raíces usando la formulita estándar obtenemos</p>
-<div id="8a0ce5eb" class="cell" data-execution_count="9">
+<div id="ecb624da" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
@@ -589,14 +647,14 @@ window.Quarto = {
 </div>
 <p>La raíz 1 es exacta. Sin embargo la raíz 2 tiene sólo 7 cifras decimales de precisión (no las 15 que nos promete la aritmética de 64 bits). ¿Qué pasa aqí?</p>
 <p>Para calcular <code>x2</code> tenemos que hacer la resta de</p>
-<div id="aaf791aa" class="cell" data-execution_count="10">
+<div id="1f462bb1" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>b</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>1000000.000001</code></pre>
 </div>
 </div>
 <p>con</p>
-<div id="e1f05102" class="cell" data-execution_count="11">
+<div id="01f94b2e" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>math.sqrt(b<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>999999.999999</code></pre>
@@ -604,7 +662,7 @@ window.Quarto = {
 </div>
 <p>Vemos que son dos cantidades cercanas. Restarlas tiene un mal número de condicionamiento y se pierden cifras decimales de precisión. La formulita es inestable.</p>
 <p>Para resolver este problema podemos usar el hecho que <span class="math inline">\(x_1 x_2 = c/a\)</span> y entonces</p>
-<div id="bea07788" class="cell" data-execution_count="12">
+<div id="c2541abe" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> c<span class="op">/</span>a<span class="op">/</span>x1</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Raíz 2: </span><span class="sc">{</span>x2<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -639,7 +697,7 @@ window.Quarto = {
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> s <span class="op">+</span> i <span class="op">+</span> <span class="bu">sum</span>(<span class="bu">range</span>(n))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="c42fd7d2" class="cell" data-execution_count="13">
+<div id="4329428c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100000</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>small <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">146</span></span>

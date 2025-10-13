@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Ecuaciones diferenciales, método de Taylor – Métodos Numéricos y Probabilidades 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Métodos Numéricos y Probabilidades 2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Acerca de</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-1">    
+        <li>
+    <a class="dropdown-item" href="./01_funcionamiento_cpu.html">
+ <span class="dropdown-text">Funcionamiento de la CPU</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02_python.html">
+ <span class="dropdown-text">Repaso de Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03_numpy_arrays.html">
+ <span class="dropdown-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04_numeros_y_condicionamiento.html">
+ <span class="dropdown-text">Representación de números y condicionamiento</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05_algoritmos_y_estabilidad.html">
+ <span class="dropdown-text">Algoritmos y estabilidad</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-2">    
+        <li>
+    <a class="dropdown-item" href="./06_definicion_probabilidad.html">
+ <span class="dropdown-text">Propiedades de la probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07_distribuciones.html">
+ <span class="dropdown-text">Distribuciones de probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08_varias_variables_aleatorias.html">
+ <span class="dropdown-text">Varias variables aleatorias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09_teorema_central_del_limite.html">
+ <span class="dropdown-text">Teorema central del límite</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./10_entropia.html">
+ <span class="dropdown-text">Entropía de Shannon</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-3" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 3</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-3">    
+        <li>
+    <a class="dropdown-item" href="./11_solucion_sistemas_lineales.html">
+ <span class="dropdown-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12_newton_y_biseccion.html">
+ <span class="dropdown-text">Solución de Ecuaciones No Lineales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./13_interpolacion.html">
+ <span class="dropdown-text">Interpolación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./14_integracion_numerica.html">
+ <span class="dropdown-text">Integración Numérica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./15_integrales_multiples_impropias_y_gauss.html">
+ <span class="dropdown-text">Quadratura de Gauss, integrales múltiples e impropias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./16_derivadas.html">
+ <span class="dropdown-text">Derivadas numéricas</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-4" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 4</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-4">    
+        <li>
+    <a class="dropdown-item" href="./17_metodos_de_taylor.html">
+ <span class="dropdown-text">Métodos de Taylor</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./18_runge_kutta.html">
+ <span class="dropdown-text">Métodos de Runge-Kutta</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./19_metodos_de_multiples_pasos.html">
+ <span class="dropdown-text">Métodos de Múltiples Pasos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./20_edo_alto_orden_estabilidad.html">
+ <span class="dropdown-text">Ecuaciones de alto orden y estabilidad</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./17_metodos_de_taylor.html">Unidad 4: Ecuaciones Diferenciales</a></li><li class="breadcrumb-item"><a href="./17_metodos_de_taylor.html">Métodos de Taylor</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 1: Introducción</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_funcionamiento_cpu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funcionamiento de la CPU</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_numpy_arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_numeros_y_condicionamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Representación de números y condicionamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_algoritmos_y_estabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmos y estabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 2: Probabilidad</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_definicion_probabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Propiedades de la probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_distribuciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distribuciones de probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_varias_variables_aleatorias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Varias variables aleatorias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_teorema_central_del_limite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Teorema central del límite</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_entropia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Entropía de Shannon</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 3: Cálculo Numérico</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_solucion_sistemas_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_newton_y_biseccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Ecuaciones No Lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_interpolacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpolación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14_integracion_numerica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integración Numérica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15_integrales_multiples_impropias_y_gauss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quadratura de Gauss, integrales múltiples e impropias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16_derivadas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Derivadas numéricas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 4: Ecuaciones Diferenciales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17_metodos_de_taylor.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Métodos de Taylor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18_runge_kutta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de Runge-Kutta</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19_metodos_de_multiples_pasos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de Múltiples Pasos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20_edo_alto_orden_estabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ecuaciones de alto orden y estabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#el-método-de-euler" id="toc-el-método-de-euler" class="nav-link active" data-scroll-target="#el-método-de-euler">El método de Euler</a></li>
+  <li><a href="#métodos-de-taylor-de-orden-más-alto" id="toc-métodos-de-taylor-de-orden-más-alto" class="nav-link" data-scroll-target="#métodos-de-taylor-de-orden-más-alto">Métodos de Taylor de orden más alto</a></li>
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">Tareas</a>
+  <ul class="collapse">
+  <li><a href="#tarea-8.6" id="toc-tarea-8.6" class="nav-link" data-scroll-target="#tarea-8.6">Tarea 8.6</a></li>
+  <li><a href="#tarea-8.7" id="toc-tarea-8.7" class="nav-link" data-scroll-target="#tarea-8.7">Tarea 8.7</a></li>
+  <li><a href="#tarea-8.8" id="toc-tarea-8.8" class="nav-link" data-scroll-target="#tarea-8.8">Tarea 8.8</a></li>
+  <li><a href="#tarea-8.9" id="toc-tarea-8.9" class="nav-link" data-scroll-target="#tarea-8.9">Tarea 8.9</a></li>
+  <li><a href="#tarea-8.10" id="toc-tarea-8.10" class="nav-link" data-scroll-target="#tarea-8.10">Tarea 8.10</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./17_metodos_de_taylor.html">Unidad 4: Ecuaciones Diferenciales</a></li><li class="breadcrumb-item"><a href="./17_metodos_de_taylor.html">Métodos de Taylor</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Ecuaciones diferenciales, método de Taylor</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="75271a4b" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Una de las principales aplicaciones de los métodos numéricos a la física es la solución de ecuaciones diferenciales. Por ahora nos reduciremos al caso de ecuaciones diferenciales del primer orden. El caso de ecuaciones de orden más alto se reduce al de un sistema de ecuaciones de primer orden y lo veremos más adelante.</p>
+<p>En la práctica incluso las ecuaciones diferenciales que queremos resolver son una aproximación al problema físico que tratamos, por este motivo requerimos que pequeños cambios en la formulación de la ecuación no cambien mucho la solución, es decir:</p>
+<p>Un problema de valor inicial <span class="math inline">\(y'(t) = f(t, y)\)</span> con <span class="math inline">\(a \leq t \leq b\)</span> y <span class="math inline">\(y(a) = y_o\)</span> está <strong>bien puesto</strong> si</p>
+<p>Existe una solución única para <span class="math inline">\(y(t)\)</span>.</p>
+<p>Exiten constantes <span class="math inline">\(\epsilon_o &gt; 0\)</span> y <span class="math inline">\(k &gt; 0\)</span> tales que para cualquier <span class="math inline">\(\epsilon \in (0, \epsilon_o)\)</span>, cuando <span class="math inline">\(\delta(t)\)</span> es continua y <span class="math inline">\(|\delta(t)| &lt; \epsilon\)</span> para todo <span class="math inline">\(t \in [a,b]\)</span>, y cuando <span class="math inline">\(|\delta_o| &lt; \epsilon\)</span>, el problema de valor inicial</p>
+<p><span class="math display">\[
+z'(t) = f(t, z) + \delta(t)\,,\quad a\leq t\leq b\,,\quad z(a) = y_o + \delta_o
+\]</span></p>
+<p>tiene una solución única que satisface para todo <span class="math inline">\(t\in [a,b]\)</span></p>
+<p><span class="math display">\[
+|z(t) - y(t)| &lt; k\epsilon
+\]</span></p>
+<p>Nos interesarán ecuaciones diferenciales definidas en el conjunto <span class="math inline">\(a \leq t \leq b\)</span> y <span class="math inline">\(-\infty &lt; y &lt; \infty\)</span>. En estos casos el problema está bien puestot si <span class="math inline">\(f\)</span> es continua y en este conjunto</p>
+<p><span class="math display">\[
+|f(t, y_1) - f(t, y_2)| \leq L|y_1 - y_2|
+\]</span></p>
+<p>para alguna constante <span class="math inline">\(L\)</span> (esta se llama condición de Lipfschitz). Se puede demosttrar que esta condición se cumple si se tiene</p>
+<p><span class="math display">\[
+\left|\frac{\partial f}{\partial y}(t, y)\right| \leq L
+\]</span></p>
+<section id="el-método-de-euler" class="level1">
+<h1>El método de Euler</h1>
+<p>Hagamos un primer intento de resolver el problema de valor inicial que consideramos. No vamos a obtener una expresión para <span class="math inline">\(y(t)\)</span>, si no que vamos a obtener expresiones aproximadas para <span class="math inline">\(y(t_i)\)</span> en algunos puntos <span class="math inline">\(t_i = a + ih\)</span> donde <span class="math inline">\(i = 0, 1, 2, ... N\)</span>.</p>
+<p>El método más sencillo para lograrlo consiste en usar la expansión de Taylor</p>
+<p><span class="math display">\[
+y(t_{i+1}) = y(t_i) + (t_{i+1} - t_i)y'(t_i) + \frac{(t_{i+1} - t_i)^2}{2}y''(\xi)\,,
+\]</span></p>
+<p>que podemos reescribir</p>
+<p><span class="math display">\[
+y(t_{i+1}) = y(t_i) + hf(t_i, y(t_i)) + \frac{h^2}{2}y''(\xi)\,,
+\]</span></p>
+<p>entonces aproximamos</p>
+<p><span class="math display">\[
+w_{i+1} = w_i + hf(t_i, w_i).
+\]</span></p>
+<p>Este se llama el método de Euler.</p>
+<div id="75693153" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> euler(f, a, b, yo, N):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> a</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> yo</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    ts <span class="op">=</span> np.zeros(N<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    sol <span class="op">=</span> np.zeros(N<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        ts[i] <span class="op">=</span> t</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        sol[i] <span class="op">=</span> w</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> w <span class="op">+</span> h<span class="op">*</span>f(t, w)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> t <span class="op">+</span> h</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    ts[N] <span class="op">=</span> t</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    sol[N] <span class="op">=</span> w</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, sol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="568b8057" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(array([0. , 0.2, 0.4, 0.6, 0.8, 1. , 1.2, 1.4, 1.6, 1.8, 2. ]),
+ array([0.5       , 0.8       , 1.152     , 1.5504    , 1.98848   ,
+        2.458176  , 2.9498112 , 3.45177344, 3.95012813, 4.42815375,
+        4.8657845 ]))</code></pre>
+</div>
+</div>
+<p>La solución exacta es <span class="math inline">\(y(t) = (t + 1)^2 - 0.5e^t\)</span></p>
+<div id="5db19089" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.plot(ts, (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts), label<span class="op">=</span><span class="st">'Exacta'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">*</span>euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>), label<span class="op">=</span><span class="st">'Aproximación de Euler'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_metodos_de_taylor_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Este método es tan sencillo que se puede derivar una cota para el error cometido al <span class="math inline">\(n\)</span>-ésimo paso (la derivación se puede encontrar en el libro de Burden):</p>
+<p><span class="math display">\[
+|y(t_i) - w_i| \leq \frac{hM}{2L}(e^{L(t_i - a)} - 1)
+\]</span></p>
+<p>donde <span class="math inline">\(w_i\)</span> son las aproximaciones a cada paso, <span class="math inline">\(L\)</span> es la constante de Lipfschitz, y <span class="math inline">\(M\)</span> es una cota para la segunda derivada de <span class="math inline">\(y\)</span>.</p>
+<p>Como esto necesita calcular la segunda derivada, no es muy usado en la práctica, pero aprendemos dos cosas:</p>
+<ul>
+<li><p>El error es lineal en <span class="math inline">\(h\)</span></p></li>
+<li><p>El error crece exponencialmente a medida que nos alejamos del punto inicial.</p></li>
+</ul>
+<div id="22c8db29" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ts, sol <span class="op">=</span> euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>exacta <span class="op">=</span> (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="dv">2</span><span class="op">/</span>N</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.<span class="bu">abs</span>(<span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(<span class="dv">2</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, exacta <span class="op">-</span> sol, label<span class="op">=</span><span class="st">'Error real'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, h<span class="op">*</span>M<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>L)<span class="op">*</span>(np.exp(L<span class="op">*</span>ts) <span class="op">-</span> <span class="dv">1</span>), label<span class="op">=</span><span class="st">'Cota del error'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_metodos_de_taylor_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como vemos, esa fórmula es sólo una cota para el error, que muchas veces puede ser una sobre-estimación.</p>
+<p>Además debemos considerar el hecho que puede haber errores de redondeo (u otro tipo de errores intrínsecos) tal que en realidad estamos usando las siguientes aproximaciones:</p>
+<p><span class="math display">\[
+u(t_o) = y_o + \delta_o
+\]</span></p>
+<p><span class="math display">\[
+u_{i+1} = u_i + hf(t_i, u_i) + \delta_i
+\]</span></p>
+<p>tal que el error en realidad es (derivación en el libro de Burden)</p>
+<p><span class="math display">\[
+|y(t_i) - u_i| \leq \frac{1}{L}\left(\frac{hM}{2} + \frac{\delta}{h}\right)(e^{L(t_i - a)} - 1) + |\delta_o| e^{L(t_i - a)}
+\]</span></p>
+<p>con <span class="math inline">\(|\delta_i| &lt; \delta\)</span>.</p>
+<p>Como vemos, el método es inestable y de hecho crece a medida que <span class="math inline">\(h\)</span> se hace más pequeño.</p>
+<p>Pero hay una importante diferencia con el caso de las derivadas: En ese caso el error podía ser debido a un error de simulación o de medición que puede ser bastante grande. En este caso el error <span class="math inline">\(\delta_i\)</span> es usualmente un error de redondeo que suele ser demasiado pequeño para ser importante en la práctica. El único error que podría estar sujeto a un error de medición (o simulación) es <span class="math inline">\(\delta_o\)</span> pero su contribución no cambia con <span class="math inline">\(h\)</span>.</p>
+</section>
+<section id="métodos-de-taylor-de-orden-más-alto" class="level1">
+<h1>Métodos de Taylor de orden más alto</h1>
+<p>Una manera más práctica de definir el error es usar el <strong>error de truncación local</strong> dado por</p>
+<p><span class="math display">\[
+\tau_{i+1}(h) = \frac{y_{i+1} - (y_{i} + h\phi(t_i, y_i))}{h}
+\]</span></p>
+<p>donde</p>
+<p><span class="math display">\[
+w_{i+1} =  w_i + h\phi(t_i, w_i)
+\]</span></p>
+<p>Para el método de Euler esto es</p>
+<p><span class="math display">\[
+\tau_{i+1}(h) = \frac{1}{h}(y_{i+1} - y_i) - f(t_i, y_i) = \frac{h}{2}y''(\xi)
+\]</span></p>
+<p>Podemos mejorar este error usando expansiones de Taylor de orden más alto</p>
+<p><span class="math display">\[
+y(t_{i+1}) = y(t_i) + hy'(t_i) + \frac{h^2}{2}y''(t_i) + \dots +\frac{h^n}{n!}y^{(n)}(t_i) + \frac{h^{n+1}}{(n+1)!}y^{(n+1)}(\xi)
+\]</span></p>
+<p>es decir</p>
+<p><span class="math display">\[
+y(t_{i+1}) = y(t_i) + hf(t_i, y(t_i)) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_i, y(t_i)) + \dots +\frac{h^n}{n!}\frac{\partial^n f}{\partial t^n}(t_i, y(t_i)) + \frac{h^{n+1}}{(n+1)!}\frac{\partial^{(n+1)} f}{\partial t^{(n+1)}}(\xi, y(\xi))
+\]</span></p>
+<p>entonces hacemos</p>
+<p><span class="math display">\[
+w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_i, w_i) + \dots +\frac{h^n}{n!}\frac{\partial^n f}{\partial t^n}(t_i, w_i)
+\]</span></p>
+<div id="b66a4dc1" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> taylor2(f, df, a, b, yo, N):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> a</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> yo</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    ts <span class="op">=</span> np.zeros(N<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    sol <span class="op">=</span> np.zeros(N<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        ts[i] <span class="op">=</span> t</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        sol[i] <span class="op">=</span> w</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> w <span class="op">+</span> h<span class="op">*</span>f(t, w) <span class="op">+</span> h<span class="op">*</span>h<span class="op">*</span>df(t, w)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> t <span class="op">+</span> h</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    ts[N] <span class="op">=</span> t</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    sol[N] <span class="op">=</span> w</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, sol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="58e6af64" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df(t, y):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f(t,y) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>t</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>taylor2(f, df, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>(array([0. , 0.2, 0.4, 0.6, 0.8, 1. , 1.2, 1.4, 1.6, 1.8, 2. ]),
+ array([0.5       , 0.83      , 1.2158    , 1.652076  , 2.13233272,
+        2.64864592, 3.19134802, 3.74864458, 4.30614639, 4.8462986 ,
+        5.34768429]))</code></pre>
+</div>
+</div>
+<div id="e286572d" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.plot(ts, (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts), label<span class="op">=</span><span class="st">'Exacta'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">*</span>euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>), label<span class="op">=</span><span class="st">'Aproximación de Euler'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">*</span>taylor2(f, df, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>), label<span class="op">=</span><span class="st">'Aproximación de Taylor orden 2'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_metodos_de_taylor_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="8b5ea33d" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ts, sol_e <span class="op">=</span> euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ts, sol_t2 <span class="op">=</span> taylor2(f, df, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>exacta <span class="op">=</span> (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, exacta <span class="op">-</span> sol_e, label<span class="op">=</span><span class="st">'Euler'</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, exacta <span class="op">-</span> sol_t2, label<span class="op">=</span><span class="st">'Taylor 2'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_metodos_de_taylor_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="072fe501" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> taylor4(f, df, d2f, d3f, a, b, yo, N):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> a</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> yo</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ts <span class="op">=</span> np.zeros(N<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    sol <span class="op">=</span> np.zeros(N<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        ts[i] <span class="op">=</span> t</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        sol[i] <span class="op">=</span> w</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> w <span class="op">+</span> h<span class="op">*</span>(f(t, w) <span class="op">+</span> h<span class="op">*</span>(df(t, w)<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> h<span class="op">*</span>(d2f(t, w)<span class="op">/</span><span class="dv">6</span> <span class="op">+</span> h<span class="op">*</span>d3f(t, w)<span class="op">/</span><span class="dv">24</span>)))</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> t <span class="op">+</span> h</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    ts[N] <span class="op">=</span> t</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    sol[N] <span class="op">=</span> w</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, sol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0159139c" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df(t, y):</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f(t,y) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>t</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> d2f(t, y):</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df(t, y) <span class="op">-</span> <span class="dv">2</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> d3f(t, y):</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d2f(t, y)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>taylor4(f, df, d2f, d3f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>(array([0. , 0.2, 0.4, 0.6, 0.8, 1. , 1.2, 1.4, 1.6, 1.8, 2. ]),
+ array([0.5       , 0.8293    , 1.21409102, 1.64894677, 2.12723959,
+        2.64087443, 3.17996403, 3.73243207, 4.28352853, 4.81523774,
+        5.30555538]))</code></pre>
+</div>
+</div>
+<div id="152d9daf" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.plot(ts, (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts), label<span class="op">=</span><span class="st">'Exacta'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">*</span>euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>), label<span class="op">=</span><span class="st">'Aproximación de Euler'</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">*</span>taylor2(f, df, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>), label<span class="op">=</span><span class="st">'Aproximación de Taylor orden 2'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">*</span>taylor4(f, df, d2f, d3f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>), label<span class="op">=</span><span class="st">'Aproximación de Taylor orden 4'</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_metodos_de_taylor_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="db992b04" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ts, sol_e <span class="op">=</span> euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ts, sol_t2 <span class="op">=</span> taylor2(f, df, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ts, sol_t4 <span class="op">=</span> taylor4(f, df, d2f, d3f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>exacta <span class="op">=</span> (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, exacta <span class="op">-</span> sol_e, label<span class="op">=</span><span class="st">'Euler'</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, exacta <span class="op">-</span> sol_t2, label<span class="op">=</span><span class="st">'Taylor 2'</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, exacta <span class="op">-</span> sol_t4, label<span class="op">=</span><span class="st">'Taylor 4'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_metodos_de_taylor_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>El error de truncación local del método de Taylor de orden <span class="math inline">\(n\)</span> es</p>
+<p><span class="math display">\[
+\tau_{i+1}(h) = \frac{y(t_{i+1}) - y(t_i)}{h} - \left[f(t_i, y(t_i)) + \frac{h}{2}\frac{\partial^2 f}{\partial t^2}(t_i, y(t_i)) + \dots +\frac{h^{n-1}}{n!}\frac{\partial^n f}{\partial t^n}(t_i, y(t_i))\right]
+\]</span></p>
+<p>que simplifcando</p>
+<p><span class="math display">\[
+\tau_{i+1}(h) = \frac{h^n}{(n+1)!}\frac{\partial^{(n+1)} f}{\partial t^{(n+1)}}(\xi, y(\xi))
+\]</span></p>
+<p>tal que es de orden <span class="math inline">\(h^n\)</span>.</p>
+<p>Ahora bien, como tenemos la función en un conjunto de puntos <span class="math inline">\(t_i\)</span>, si queremos la función en un punto arbitrario, tenemos que interpolar.</p>
+<div id="6380095e" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> interp_lin(x, puntosx, puntosy):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> puntosx[<span class="dv">1</span>] <span class="op">-</span> puntosx[<span class="dv">0</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="bu">int</span>((x <span class="op">-</span> puntosx[<span class="dv">0</span>])<span class="op">/</span>h)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    Lo <span class="op">=</span> puntosy[i]<span class="op">*</span>(x <span class="op">-</span> puntosx[i<span class="op">+</span><span class="dv">1</span>])<span class="op">/</span>(puntosx[i] <span class="op">-</span> puntosx[i<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> puntosy[i<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>(x <span class="op">-</span> puntosx[i])<span class="op">/</span>(puntosx[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> puntosx[i])</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Lo <span class="op">+</span> L1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5f3150b7" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.999</span>, <span class="dv">100</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ts, aprox <span class="op">=</span> taylor4(f, df, d2f, d3f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>interp <span class="op">=</span> [interp_lin(xi, ts, aprox) <span class="cf">for</span> xi <span class="kw">in</span> xs]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>exacta <span class="op">=</span> (xs<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(xs)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>exactat <span class="op">=</span> (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.plot(xs, (interp <span class="op">-</span> exacta)<span class="op">/</span>exacta)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, (aprox <span class="op">-</span> exactat)<span class="op">/</span>exactat, color<span class="op">=</span><span class="st">'red'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_metodos_de_taylor_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Vemos que la mayor parte del error está siendo inducido por la interpolación. Necesitamos mejorarla.</p>
+<div id="881fccd1" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> interp_hermite(x, puntosx, puntosy, puntosd):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> puntosx[<span class="dv">1</span>] <span class="op">-</span> puntosx[<span class="dv">0</span>]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="bu">int</span>((x <span class="op">-</span> puntosx[<span class="dv">0</span>])<span class="op">/</span>h)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    f1 <span class="op">=</span> (puntosy[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> puntosy[i])<span class="op">/</span>h</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    f21 <span class="op">=</span> (f1 <span class="op">-</span> puntosd[i])<span class="op">/</span>h</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    f22 <span class="op">=</span> (puntosd[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> f1)<span class="op">/</span>h</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    f3 <span class="op">=</span> (f22 <span class="op">-</span> f21)<span class="op">/</span>h</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    dx <span class="op">=</span> (x <span class="op">-</span> puntosx[i])</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    dx1 <span class="op">=</span> (x <span class="op">-</span> puntosx[i<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> puntosy[i] <span class="op">+</span> puntosd[i]<span class="op">*</span>dx <span class="op">+</span> f21<span class="op">*</span>dx<span class="op">*</span>dx <span class="op">+</span> f3<span class="op">*</span>dx<span class="op">*</span>dx<span class="op">*</span>dx1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b77ec503" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.999</span>, <span class="dv">100</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ts, aprox <span class="op">=</span> taylor4(f, df, d2f, d3f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>daprox <span class="op">=</span> [f(ts[i], aprox[i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ts))]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>interp <span class="op">=</span> [interp_hermite(xi, ts, aprox, daprox) <span class="cf">for</span> xi <span class="kw">in</span> xs]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>exacta <span class="op">=</span> (xs<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(xs)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>exactat <span class="op">=</span> (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plt.plot(xs, (interp <span class="op">-</span> exacta)<span class="op">/</span>exacta)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts, (aprox <span class="op">-</span> exactat)<span class="op">/</span>exactat, color<span class="op">=</span><span class="st">'red'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_metodos_de_taylor_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Requiere más operaciones, pero la ganancia en error vale la pena.</p>
+<p>Los paquetes modernos dan como output una función interpolante.</p>
+</section>
+<section id="tareas" class="level1">
+<h1>Tareas</h1>
+<section id="tarea-8.6" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.6">Tarea 8.6</h2>
+<p>Modifique el código del método de Taylor de segundo orden de solución de ecuaciones diferenciales para que la función que resuelve la ecuación diferencial regrese una función interpolante de Hermite (en vez de regresar una lista de puntos).</p>
+<p>Es decir, la función taylor2 debe dar como resultado otra función que al evaluarla en un tiempo <span class="math inline">\(t\)</span> nos da el polinomio interpolante evaluado a ese tiempo.</p>
+<p>Pruebe su código con algún ejemplo.</p>
+</section>
+<section id="tarea-8.7" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.7">Tarea 8.7</h2>
+<p>Considere la ecuación diferencial que se ha resuelto en los ejemplos de clase:</p>
+<p><span class="math display">\[
+y'(t) = y(t) - t^2 + 1\,,\quad 0 \leq t \leq 2\,,
+\]</span></p>
+<p>pero ahora con una condición inicial</p>
+<p><span class="math display">\[
+y(0) = 0.5 + \delta_o
+\]</span></p>
+<p>donde <span class="math inline">\(\delta_o\)</span> es un error cometido al fijar la condición.</p>
+<ul>
+<li><p>Resuelva esta ecuación usando el método de Euler con una precisión de <span class="math inline">\(10^{-4}\)</span>. Considere varios valores de <span class="math inline">\(\delta_o\)</span> entre <span class="math inline">\(-0.1\)</span> y <span class="math inline">\(0.1\)</span> y grafique <span class="math inline">\(y(2)\)</span> en función de <span class="math inline">\(\delta_o\)</span>.</p></li>
+<li><p>Compare su resultado con el valor de <span class="math inline">\(y(2)\)</span> obtenido de la solución analítica <span class="math inline">\(y(t) = (t + 1)^2 - 0.5e^t\)</span>. Comente.</p></li>
+</ul>
+</section>
+<section id="tarea-8.8" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.8">Tarea 8.8</h2>
+<p>Resuelva el siguiente problema de valor inicial usando el método de Euler y los métodos de Taylor de orden 2 y 3</p>
+<p><span class="math display">\[
+y'(t) = \frac{\cos(t)}{\sin(y(t))}\,,\quad y(0) = 1\,,\quad 0 \leq t \leq 1
+\]</span></p>
+<p>Resuelva la ecuación analíticamente y grafique en función de <span class="math inline">\(h\)</span> el error cometido con los tres métodos para <span class="math inline">\(t = 1\)</span>. ¿Es compatible con lo esperado? ¿Por qué?</p>
+</section>
+<section id="tarea-8.9" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.9">Tarea 8.9</h2>
+<p>Ejercicio 5.3.12 libro de Burden</p>
+<p>Un proyectil con masa <span class="math inline">\(m = 0.11\)</span> kg se dispara verticalmente hacia arriba con una velocidad inicial <span class="math inline">\(v(0) = 8\)</span> m/s y sufre una desaceleración debida a la fuerza de la gravedad <span class="math inline">\(F = -mg\)</span> y a la resistencia del aire <span class="math inline">\(F = -kv|v|\)</span>, donde <span class="math inline">\(g = 9.8\)</span> m/s^2 y <span class="math inline">\(k = 0.002\)</span> kg/m.</p>
+<ul>
+<li>Encuentre la velocidad a <span class="math inline">\(t = 0.1, 0.2, ..., 1.0\)</span> segundos.</li>
+<li>Encuentre a la primera cifra decimal el tiempo al cual el proyectil alcanza su máxima altura y vuelve a empezar a caer.</li>
+</ul>
+</section>
+<section id="tarea-8.10" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-8.10">Tarea 8.10</h2>
+<p>Ejercicio 5.2.12 libro de Burden</p>
+<p>Considere el problema de valor inicial</p>
+<p><span class="math display">\[
+y'(t) = -10y\,,\quad 0\leq t\leq 2\,,\quad y(0) = 1
+\]</span></p>
+<p>que tiene solución <span class="math inline">\(y(t) = e^{-10t}\)</span>.¿Qué ocurre cuando el método de Euler se aplica a este problema con <span class="math inline">\(h = 0.1\)</span>? ¿Viola la fórmula del error del método?</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jorgenorena\.github\.io\/metodos-numericos-sitio\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
