@@ -17,19 +17,19 @@ En la práctica incluso las ecuaciones diferenciales que queremos resolver son u
 
 Un problema de valor inicial $y'(t) = f(t, y)$ con $a \leq t \leq b$ y $y(a) = y_o$ está **bien puesto** si 
 
-Existe una solución única para $y(t)$.
+- Existe una solución única para $y(t)$.
 
-Exiten constantes $\epsilon_o > 0$ y $k > 0$ tales que para cualquier $\epsilon \in (0, \epsilon_o)$, cuando $\delta(t)$  es continua y $|\delta(t)| < \epsilon$ para todo $t \in [a,b]$, y cuando $|\delta_o| < \epsilon$, el problema de valor inicial
+- Exiten constantes $\epsilon_o > 0$ y $k > 0$ tales que para cualquier $\epsilon \in (0, \epsilon_o)$, cuando $\delta(t)$  es continua y $|\delta(t)| < \epsilon$ para todo $t \in [a,b]$, y cuando $|\delta_o| < \epsilon$, el problema de valor inicial
 
-$$
-z'(t) = f(t, z) + \delta(t)\,,\quad a\leq t\leq b\,,\quad z(a) = y_o + \delta_o
-$$
+  $$
+  z'(t) = f(t, z) + \delta(t)\,,\quad a\leq t\leq b\,,\quad z(a) = y_o + \delta_o
+  $$
 
-tiene una solución única que satisface para todo $t\in [a,b]$
+  tiene una solución única que satisface para todo $t\in [a,b]$
 
-$$
-|z(t) - y(t)| < k\epsilon
-$$
+  $$
+  |z(t) - y(t)| < k\epsilon
+  $$
 
 Nos interesarán ecuaciones diferenciales definidas en el conjunto $a \leq t \leq b$ y $-\infty < y < \infty$. En estos casos el problema está bien puestot si $f$ es continua y en este conjunto
 
@@ -114,9 +114,9 @@ donde $w_i$ son las aproximaciones a cada paso, $L$ es la constante de Lipfschit
 
 Como esto necesita calcular la segunda derivada, no es muy usado en la práctica, pero aprendemos dos cosas:
 
-* El error es lineal en $h$
+- El error es lineal en $h$
 
-* El error crece exponencialmente a medida que nos alejamos del punto inicial.
+- El error crece exponencialmente a medida que nos alejamos del punto inicial.
 
 ```{python}
 N = 10
@@ -393,9 +393,9 @@ $$
 
 donde $\delta_o$ es un error cometido al fijar la condición.
 
-* Resuelva esta ecuación usando el método de Euler con una precisión de $10^{-4}$. Considere varios valores de $\delta_o$ entre $-0.1$ y $0.1$ y grafique $y(2)$ en función de $\delta_o$. 
+- Resuelva esta ecuación usando el método de Euler con una precisión de $10^{-4}$. Considere varios valores de $\delta_o$ entre $-0.1$ y $0.1$ y grafique $y(2)$ en función de $\delta_o$. 
 
-* Compare su resultado con el valor de $y(2)$ obtenido de la solución analítica $y(t) = (t + 1)^2 - 0.5e^t$. Comente.
+- Compare su resultado con el valor de $y(2)$ obtenido de la solución analítica $y(t) = (t + 1)^2 - 0.5e^t$. Comente.
 
 ## Tarea 8.8
 
@@ -413,8 +413,8 @@ Ejercicio 5.3.12 libro de Burden
 
 Un proyectil con masa $m = 0.11$ kg se dispara verticalmente hacia arriba con una velocidad inicial $v(0) = 8$ m/s y sufre una desaceleración debida a la fuerza de la gravedad $F = -mg$ y a la resistencia del aire $F = -kv|v|$, donde $g = 9.8$ m/s^2 y $k = 0.002$ kg/m.
 
-* Encuentre la velocidad a $t = 0.1, 0.2, ..., 1.0$ segundos.
-* Encuentre a la primera cifra decimal  el tiempo al cual el proyectil alcanza su máxima altura y vuelve a empezar a caer.
+- Encuentre la velocidad a $t = 0.1, 0.2, ..., 1.0$ segundos.
+- Encuentre a la primera cifra decimal  el tiempo al cual el proyectil alcanza su máxima altura y vuelve a empezar a caer.
 
 ## Tarea 8.10
 

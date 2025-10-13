@@ -358,9 +358,9 @@ $$
 
 donde $r$ es el radio del orificio, $x$ es la altura del líquido desde el vértice del cono y $A(x)$ es el área de la sección transversal del cono a $x$ unidades sobre el orificio (el área de la superficie del agua). Supponga que $r = 0.03$ m, $g = 9.81\,\text{m}/\text{s}^2$, y el tanque tiene un nivel de agua inicial de $2.7$ m y un volumen inicial de $170(\pi/3)\,\text{m}^3$. Use el método de Runge-Kutta de orden 4 para encontrar lo siguiente
 
-* El agua luego de 10 minutos con h=20 s.
+- El agua luego de 10 minutos con h=20 s.
 
-* Cuándo estará vacío el tanque, a una precisión de 1 minuto.
+- Cuándo estará vacío el tanque, a una precisión de 1 minuto.
 
 (**Pista**: Yo resolví el segundo numeral modificando el código del Runge Kutta tal que termina cuando encuentra un valor no válido de $w$, ya que eso indica niveles de agua negativos y arroja un NaN cuando se toman raíces.)
 
@@ -374,8 +374,8 @@ $$
 
 Resuleva este problema para las siguientes condiciones iniciales usando el método de Runge-Kutta-Fehlberg para las tolerancias $0.01, 0.001, 0.0001, 10^{-5}$.
 
-* $y(1) = 2$
-* $y(1) = 1$
-* $y(1) = 0.1$
+- $y(1) = 2$
+- $y(1) = 1$
+- $y(1) = 0.1$
 
 Para cada caso discuta: ¿Son consistentes las soluciones con diferentes tolerancias? Explique lo que ocurre.
