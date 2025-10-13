@@ -51,6 +51,16 @@ website:
             href: 15_integrales_multiples_impropias_y_gauss.qmd
           - text: "Derivadas numéricas"
             href: 16_derivadas.qmd
+      - text: "Unidad 4"
+        menu:
+          - text: "Métodos de Taylor"
+            href: 17_metodos_de_taylor.qmd
+          - text: "Métodos de Runge-Kutta"
+            href: 18_runge_kutta.qmd
+          - text: "Métodos de Múltiples Pasos"
+            href: 19_metodos_de_multiples_pasos.qmd
+          - text: "Ecuaciones de alto orden y estabilidad"
+            href: 20_edo_alto_orden_estabilidad.qmd
   sidebar:
     style: docked
     contents:
@@ -92,6 +102,16 @@ website:
             href: 15_integrales_multiples_impropias_y_gauss.qmd
           - text: "Derivadas numéricas"
             href: 16_derivadas.qmd
+      - section: "Unidad 4: Ecuaciones Diferenciales"
+        contents:
+          - text: "Métodos de Taylor"
+            href: 17_metodos_de_taylor.qmd
+          - text: "Métodos de Runge-Kutta"
+            href: 18_runge_kutta.qmd
+          - text: "Métodos de Múltiples Pasos"
+            href: 19_metodos_de_multiples_pasos.qmd
+          - text: "Ecuaciones de alto orden y estabilidad"
+            href: 20_edo_alto_orden_estabilidad.qmd
 
 format:
   html:
