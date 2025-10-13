@@ -499,22 +499,24 @@ window.Quarto = {
 </header>
 
 
-<div id="75271a4b" class="cell" data-execution_count="1">
+<div id="1a95d7d4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Una de las principales aplicaciones de los métodos numéricos a la física es la solución de ecuaciones diferenciales. Por ahora nos reduciremos al caso de ecuaciones diferenciales del primer orden. El caso de ecuaciones de orden más alto se reduce al de un sistema de ecuaciones de primer orden y lo veremos más adelante.</p>
 <p>En la práctica incluso las ecuaciones diferenciales que queremos resolver son una aproximación al problema físico que tratamos, por este motivo requerimos que pequeños cambios en la formulación de la ecuación no cambien mucho la solución, es decir:</p>
 <p>Un problema de valor inicial <span class="math inline">\(y'(t) = f(t, y)\)</span> con <span class="math inline">\(a \leq t \leq b\)</span> y <span class="math inline">\(y(a) = y_o\)</span> está <strong>bien puesto</strong> si</p>
-<p>Existe una solución única para <span class="math inline">\(y(t)\)</span>.</p>
-<p>Exiten constantes <span class="math inline">\(\epsilon_o &gt; 0\)</span> y <span class="math inline">\(k &gt; 0\)</span> tales que para cualquier <span class="math inline">\(\epsilon \in (0, \epsilon_o)\)</span>, cuando <span class="math inline">\(\delta(t)\)</span> es continua y <span class="math inline">\(|\delta(t)| &lt; \epsilon\)</span> para todo <span class="math inline">\(t \in [a,b]\)</span>, y cuando <span class="math inline">\(|\delta_o| &lt; \epsilon\)</span>, el problema de valor inicial</p>
+<ul>
+<li><p>Existe una solución única para <span class="math inline">\(y(t)\)</span>.</p></li>
+<li><p>Exiten constantes <span class="math inline">\(\epsilon_o &gt; 0\)</span> y <span class="math inline">\(k &gt; 0\)</span> tales que para cualquier <span class="math inline">\(\epsilon \in (0, \epsilon_o)\)</span>, cuando <span class="math inline">\(\delta(t)\)</span> es continua y <span class="math inline">\(|\delta(t)| &lt; \epsilon\)</span> para todo <span class="math inline">\(t \in [a,b]\)</span>, y cuando <span class="math inline">\(|\delta_o| &lt; \epsilon\)</span>, el problema de valor inicial</p>
 <p><span class="math display">\[
 z'(t) = f(t, z) + \delta(t)\,,\quad a\leq t\leq b\,,\quad z(a) = y_o + \delta_o
 \]</span></p>
 <p>tiene una solución única que satisface para todo <span class="math inline">\(t\in [a,b]\)</span></p>
 <p><span class="math display">\[
 |z(t) - y(t)| &lt; k\epsilon
-\]</span></p>
+\]</span></p></li>
+</ul>
 <p>Nos interesarán ecuaciones diferenciales definidas en el conjunto <span class="math inline">\(a \leq t \leq b\)</span> y <span class="math inline">\(-\infty &lt; y &lt; \infty\)</span>. En estos casos el problema está bien puestot si <span class="math inline">\(f\)</span> es continua y en este conjunto</p>
 <p><span class="math display">\[
 |f(t, y_1) - f(t, y_2)| \leq L|y_1 - y_2|
@@ -539,7 +541,7 @@ y(t_{i+1}) = y(t_i) + hf(t_i, y(t_i)) + \frac{h^2}{2}y''(\xi)\,,
 w_{i+1} = w_i + hf(t_i, w_i).
 \]</span></p>
 <p>Este se llama el método de Euler.</p>
-<div id="75693153" class="cell" data-execution_count="2">
+<div id="46cafd90" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> euler(f, a, b, yo, N):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
@@ -559,7 +561,7 @@ w_{i+1} = w_i + hf(t_i, w_i).
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, sol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="568b8057" class="cell" data-execution_count="3">
+<div id="45d97d10" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -572,7 +574,7 @@ w_{i+1} = w_i + hf(t_i, w_i).
 </div>
 </div>
 <p>La solución exacta es <span class="math inline">\(y(t) = (t + 1)^2 - 0.5e^t\)</span></p>
-<div id="5db19089" class="cell" data-execution_count="4">
+<div id="fd69b983" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.plot(ts, (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts), label<span class="op">=</span><span class="st">'Exacta'</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">*</span>euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>), label<span class="op">=</span><span class="st">'Aproximación de Euler'</span>)</span>
@@ -595,7 +597,7 @@ w_{i+1} = w_i + hf(t_i, w_i).
 <li><p>El error es lineal en <span class="math inline">\(h\)</span></p></li>
 <li><p>El error crece exponencialmente a medida que nos alejamos del punto inicial.</p></li>
 </ul>
-<div id="22c8db29" class="cell" data-execution_count="5">
+<div id="9b6732c3" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ts, sol <span class="op">=</span> euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>exacta <span class="op">=</span> (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts)</span>
@@ -655,7 +657,7 @@ y(t_{i+1}) = y(t_i) + hf(t_i, y(t_i)) + \frac{h^2}{2}\frac{\partial^2 f}{\partia
 <p><span class="math display">\[
 w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_i, w_i) + \dots +\frac{h^n}{n!}\frac{\partial^n f}{\partial t^n}(t_i, w_i)
 \]</span></p>
-<div id="b66a4dc1" class="cell" data-execution_count="6">
+<div id="6b63fe36" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> taylor2(f, df, a, b, yo, N):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
@@ -675,7 +677,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, sol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="58e6af64" class="cell" data-execution_count="7">
+<div id="64741c5a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -690,7 +692,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
         5.34768429]))</code></pre>
 </div>
 </div>
-<div id="e286572d" class="cell" data-execution_count="8">
+<div id="b688e839" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.plot(ts, (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts), label<span class="op">=</span><span class="st">'Exacta'</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">*</span>euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>), label<span class="op">=</span><span class="st">'Aproximación de Euler'</span>)</span>
@@ -704,7 +706,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
 </div>
 </div>
 </div>
-<div id="8b5ea33d" class="cell" data-execution_count="9">
+<div id="42c1b152" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ts, sol_e <span class="op">=</span> euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ts, sol_t2 <span class="op">=</span> taylor2(f, df, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
@@ -720,7 +722,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
 </div>
 </div>
 </div>
-<div id="072fe501" class="cell" data-execution_count="10">
+<div id="0d804752" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> taylor4(f, df, d2f, d3f, a, b, yo, N):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
@@ -740,7 +742,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, sol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0159139c" class="cell" data-execution_count="11">
+<div id="5bd874e5" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -761,7 +763,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
         5.30555538]))</code></pre>
 </div>
 </div>
-<div id="152d9daf" class="cell" data-execution_count="12">
+<div id="89e81a83" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.plot(ts, (ts<span class="op">+</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts), label<span class="op">=</span><span class="st">'Exacta'</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">*</span>euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>), label<span class="op">=</span><span class="st">'Aproximación de Euler'</span>)</span>
@@ -776,7 +778,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
 </div>
 </div>
 </div>
-<div id="db992b04" class="cell" data-execution_count="13">
+<div id="74cfc68d" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ts, sol_e <span class="op">=</span> euler(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ts, sol_t2 <span class="op">=</span> taylor2(f, df, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, N)</span>
@@ -804,7 +806,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
 \]</span></p>
 <p>tal que es de orden <span class="math inline">\(h^n\)</span>.</p>
 <p>Ahora bien, como tenemos la función en un conjunto de puntos <span class="math inline">\(t_i\)</span>, si queremos la función en un punto arbitrario, tenemos que interpolar.</p>
-<div id="6380095e" class="cell" data-execution_count="14">
+<div id="fa0c1f4b" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> interp_lin(x, puntosx, puntosy):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> puntosx[<span class="dv">1</span>] <span class="op">-</span> puntosx[<span class="dv">0</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="bu">int</span>((x <span class="op">-</span> puntosx[<span class="dv">0</span>])<span class="op">/</span>h)</span>
@@ -812,7 +814,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> puntosy[i<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>(x <span class="op">-</span> puntosx[i])<span class="op">/</span>(puntosx[i<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> puntosx[i])</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Lo <span class="op">+</span> L1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5f3150b7" class="cell" data-execution_count="15">
+<div id="5cfa7044" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.999</span>, <span class="dv">100</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ts, aprox <span class="op">=</span> taylor4(f, df, d2f, d3f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>interp <span class="op">=</span> [interp_lin(xi, ts, aprox) <span class="cf">for</span> xi <span class="kw">in</span> xs]</span>
@@ -829,7 +831,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
 </div>
 </div>
 <p>Vemos que la mayor parte del error está siendo inducido por la interpolación. Necesitamos mejorarla.</p>
-<div id="881fccd1" class="cell" data-execution_count="16">
+<div id="0a5ca9c1" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> interp_hermite(x, puntosx, puntosy, puntosd):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> puntosx[<span class="dv">1</span>] <span class="op">-</span> puntosx[<span class="dv">0</span>]</span>
@@ -843,7 +845,7 @@ w_{i+1} = w_i + hf(t_i, w_i) + \frac{h^2}{2}\frac{\partial^2 f}{\partial t^2}(t_
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> puntosy[i] <span class="op">+</span> puntosd[i]<span class="op">*</span>dx <span class="op">+</span> f21<span class="op">*</span>dx<span class="op">*</span>dx <span class="op">+</span> f3<span class="op">*</span>dx<span class="op">*</span>dx<span class="op">*</span>dx1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b77ec503" class="cell" data-execution_count="17">
+<div id="64b334f8" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.999</span>, <span class="dv">100</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ts, aprox <span class="op">=</span> taylor4(f, df, d2f, d3f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>daprox <span class="op">=</span> [f(ts[i], aprox[i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ts))]</span>
