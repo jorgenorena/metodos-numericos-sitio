@@ -1,0 +1,527 @@
+---
+title: EDOs - EDOs de alto orden, estabilidad
+jupyter: python3
+lang: es
+---
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+# Sistemas de ecuaciones diferenciales
+
+Podemos aplicar todo lo que hemos estudiado a sistemas de ecuaciones del tipo
+
+\begin{align}
+y_1'(t) &= f_1(t, y_1, y_2, ..., y_n) \\
+y_2'(t) &= f_2(t, y_1, y_2, ..., y_n) \\
+\vdots &\phantom{=}\quad \vdots \\
+y_n'(t) &= f_n(t, y_1, y_2, ..., y_n)
+\end{align}
+
+para $a \leq t \leq b$ con condiciones iniciales
+
+$$
+y_1(a) = \alpha_1\,,\quad y_2(a) = \alpha_2\,,\quad ...\,, \quad y_n(a) = \alpha_n\,.
+$$
+
+En los desarrollos teóricos sólo tenemos que generalizar la condición de Lipfschitz
+
+$$
+|f(t, u_1, ..., u_n) - f(t, w_1, ..., w_n)| \leq L \sum_{j = 1}^n |u_j - w_j|
+$$
+
+Que se cumple siempre que 
+
+$$
+\left|\frac{\partial f}{\partial u_i}\right| \leq L
+$$
+
+para todo $u_i$. Cuando se satisface esta condición de Lpfschitz, el sistema tene una solución única.
+
+Generalizar los métodos ya vistos es directo.
+
+```{python}
+def rk4s(f, a, b, yo, N):
+    
+    h = (b-a)/N
+    t = a
+    w = yo
+    m = len(yo)
+    ts = np.zeros(N+1)
+    sol = np.zeros((m,N+1))
+    
+    for i in range(N):
+        ts[i] = t
+        sol[:,i] = w
+        k1 = h*f(t, w)
+        k2 = h*f(t+h/2, w+k1/2)
+        k3 = h*f(t+h/2, w+k2/2)
+        k4 = h*f(t + h, w + k3)
+        w = w + (k1 + 2*k2 + 2*k3 + k4)/6
+        t = t + h
+        
+    ts[N] = t
+    sol[:,N] = w
+    
+    return ts, sol
+```
+
+# Ecuaciones de alto orden
+
+Con lo visto arriba, una ecuación de alto orden es fácil de resolver, consideremos
+
+$$
+y''(t) = f(t, y, y') \,,\quad a \leq t \leq b\,,\quad y(a) = y_o\,,\quad y'(a) = y'_o\,,
+$$
+
+este se puede transformar en un sistema haciendo $y_1 = y$, $y_2 = y'$.
+
+\begin{align}
+y_1'(t) &= y_2 \\
+y_2'(t) &= f(t, y_1, y_2) \,.
+\end{align}
+
+Similarmente para ecuaciones de orden más alto.
+
+Resolvamos el siguiente problema de valor inicial
+
+$$
+y''(t) - 2y'(t) + 2y(t) = e^{2t}\sin(t)\,,\quad 0\leq t\leq 1\,,\quad y(0) = -0.4\,,\quad y'(0)= -0.6
+$$
+
+```{python}
+def f(t, y):
+    return np.array([y[1], 2*y[1] - 2*y[0] + np.exp(2*t)*np.sin(t)])
+
+a = 0
+b = 1
+yo = np.array([-0.4, -0.6])
+```
+
+```{python}
+rk4s(f, a, b, yo, 10)
+```
+
+```{python}
+def exacta(t):
+    return 0.2*np.exp(2*t)*(np.sin(t) - 2*np.cos(t))
+```
+
+```{python}
+sol = rk4s(f, a, b, yo, 10)
+plt.plot(sol[0], sol[1][0])
+```
+
+```{python}
+plt.plot(sol[0], sol[1][0] - exacta(sol[0]))
+```
+
+# Estabilidad
+
+Hasta ahora hemos discutido el error cometido a cada paso. Pero nos preocupa que el error total al $N$-ésimo paso pueda ser grande (y de hecho hemos visto casos donde lo es), ya que un pequeño error en un paso puede llevar a errores grandes si el método no es estable.
+
+Un método se dice **consistente** si todos los errores tienden a cero cuando el tamaño del paso tiende a cero
+
+$$
+\lim_{h\rightarrow 0} \max_{1 \leq i \leq N}|\tau_i(h)| = 0\,.
+$$
+
+Un método se dice **convergente** si la aproximación tiende a la verdadera solución cuando el tamaño del paso tiende a cero
+
+$$
+\lim_{h\rightarrow 0} \max_{1 \leq i \leq N}|y(t_i) - w_i| = 0\,.
+$$
+
+Por ejemplo el método de Euler es convergente porque la fórmula de error es
+
+$$
+\frac{hM}{2L}(e^{L(t_i - a)} - 1)
+$$
+
+tal que tiende a cero cuando $h$ tiende a cero.
+
+**Teorema:** Considere el problema de condición inicial
+
+$$
+y'(t) = f(t, y)\,,\quad a \leq t \leq b \,,\quad y(a) = \alpha\,,
+$$
+
+que se aproxima usando el método dado por
+
+$$
+w_{i+1} = w_i + h\phi(t_i, w_i, h)\,,
+$$
+
+si $\phi$ satisface la condición de Lipfshitz en el conjunto $\{(t, w, h) | a \leq t \leq b\,,\, -\infty \leq w \leq \infty\,,\, 0\leq h \leq h_o \}$ entonces
+
+1. El método es estable (pequeñas perturbaciones en la condición inicial implican pequeñas perturbaciones en la solución).
+
+2. El método es convergente si y sólo si es consistente, lo que es equivalente a la condición $\phi(t, y, 0) = f(t, y)$.
+
+3. Si una función $\tau(h)$ existe tal que para cada paso el error de truncación local satisface $|\tau_i(h)| \leq \tau(h)$ cuando $0 \leq h \leq h_o$, entonces
+
+$$
+|y(t_i) - w_i| \leq \frac{\tau(h)}{L}e^{L(t_i - a)}\,.
+$$
+
+Un análisis similar para métodos de múltiples pasos se puede encontrar en el libro de Burden.
+
+# Ecuaciones diferenciales rígidas
+
+```{python}
+def f(t, y):
+    return np.array([9*y[0] + 24*y[1] + 5*np.cos(t) - (1/3)*np.sin(t),
+                    -24*y[0] - 51*y[1] - 9*np.cos(t) + (1/3)*np.sin(t)])
+
+yo = np.array([4/3, 2/3])
+a = 0
+b = 1
+```
+
+```{python}
+def exacta(t):
+    return [2*np.exp(-3*t) - np.exp(-39*t) + (1/3)*np.cos(t), 
+            -np.exp(-3*t) + 2*np.exp(-39*t) - (1/3)*np.cos(t)]
+```
+
+```{python}
+#| scrolled: true
+sol_10 = rk4s(f, a, b, yo, 10)
+sol_20 = rk4s(f, a, b, yo, 20)
+```
+
+```{python}
+plt.plot(sol_10[0], sol_10[1][0] - exacta(sol_10[0])[0])
+plt.plot(sol_20[0], sol_20[1][0] - exacta(sol_20[0])[0])
+```
+
+```{python}
+plt.plot(sol_10[0], sol_10[1][1] - exacta(sol_10[0])[1])
+plt.plot(sol_20[0], sol_20[1][1] - exacta(sol_20[0])[1])
+```
+
+Lo que está pasando aquí es que en la solución analítica aparece el término $e^{-39t}$ que tiende rápidamente a cero. Pero sus derivadas son grandes, tal que el error de un método de alto orden, como el Runge-Kutta, puede ser grande y necesario escoger un $h$ que lo compense. Este tipo de ecuaciones se llaman **rígidas**.
+
+Para evaluar la utilidad de un método para resolver ecuaciones rígidas se puede considerar la ecuación más sencilla
+
+$$
+y'(t) = \lambda y(t)\,,\quad y(0) = \alpha\,,\quad \lambda < 0.
+$$
+
+Por ejemplo, para el método de Euler, el error absoluto al $j$-ésimo paso está dado por
+
+$$
+|y(t_j) - w_j| = |e^{j\lambda h} - (1 + h\lambda)^j||\alpha| 
+$$
+
+tal que la convergencia del método dependerá de cómo $(1 + h\lambda)$ aproxima la función $e^{h\lambda}$. Para $j$ grande $e^{jh\lambda}$ tiende rápidamente a cero, pero esto sólo será verdad para $(1 + h\lambda)^j$ si $|1 + h\lambda| < 1$ tal que es necesario tomar $0 < h < 2/|\lambda|$.
+
+En general un método de un paso, la aproximación se puede escribir
+
+$$
+w_{j+1} = Q(h\lambda)w_j
+$$
+
+para alguna función $Q$ y será estable si se escoge el paso $h$ tal que
+
+$$
+|Q(h\lambda)| < 1.
+$$
+
+Una alternativa es buscar métodos que sean estables para $\lambda < 0$ y cualquier $h$. O mejor aún para $\text{Re} \lambda < 0$. A los métodos que satisfacen esta segunda condición se los llama A-estables. Un método A-estable es el método implícito dado por la regla del trapecio
+
+\begin{align}
+w_o &= \alpha \\
+w_{j+1} &= w_j + \frac{h}{2} (f(t_{j+1}, w_{j+1}) + f(t_j, w_j))\,,
+\end{align}
+
+el problema es que se necesita saber $w_{j+1}$ que requiere despejar esta ecuación. Para ese despeje se puede usar el método de Newton.
+
+```{python}
+class MaxIterations(Exception):
+    pass
+
+def tn(f, df, a, b, yo, tol, N, M = 1000):
+    
+    h = (b - a)/N
+    t = a
+    w = yo
+    
+    ws = np.zeros(N+1)
+    ts = np.zeros(N+1)
+    ws[0] = w
+    ts[0] = t
+    
+    for i in range(N):
+        k1 = w + h*f(t, w)/2
+        wo = k1
+        
+        j = 1
+        while True:
+            w = wo - (wo - h*f(t + h, wo)/2 - k1)/(1 - h*df(t + h, wo)/2)
+            if abs(w - wo) < tol:
+                break
+            else:
+                j = j+1
+                wo = w
+                if j > M:
+                    raise MaxIterations('Se excedió el número máximo de iteraciones')
+        
+        t += h
+        ts[i+1] = t
+        ws[i+1] = w
+        
+    return ts, ws
+```
+
+Resolvamos el problema 
+
+$$
+y'(t) = 5e^{5t}(y - t)^2 - 1\,,\quad 0\leq t\leq 1\,,\quad y(0) = -1\,.
+$$
+
+La solución analítica es $y(t) = t - e^{-5t}$.
+
+```{python}
+def f(t, y):
+    return 5*np.exp(5*t)*(y - t)**2 - 1
+
+def df(t, y):
+    return 10*np.exp(5*t)*(y - t)
+
+a = 0
+b = 1
+yo = -1
+
+def exacta(t):
+    return t - np.exp(-5*t)
+```
+
+```{python}
+def rk4(f, a, b, yo, N):
+    
+    h = (b-a)/N
+    t = a
+    w = yo
+    ts = np.zeros(N+1)
+    sol = np.zeros(N+1)
+    
+    for i in range(N):
+        ts[i] = t
+        sol[i] = w
+        k1 = h*f(t, w)
+        k2 = h*f(t+h/2, w+k1/2)
+        k3 = h*f(t+h/2, w+k2/2)
+        k4 = h*f(t + h, w + k3)
+        w = w + (k1 + 2*k2 + 2*k3 + k4)/6
+        t = t + h
+        
+    ts[N] = t
+    sol[N] = w
+    
+    return ts, sol
+```
+
+```{python}
+sol_rk4_5 = rk4(f, a, b, yo, 5)
+sol_rk4_20 = rk4(f, a, b, yo, 20)
+sol_tn_5 = tn(f, df, a, b, yo, 1e-6, 5)
+sol_tn_20 = tn(f, df, a, b, yo, 1e-6, 20)
+```
+
+```{python}
+#| scrolled: true
+exacta(sol_rk4_5[0])
+```
+
+```{python}
+sol_rk4_5
+```
+
+```{python}
+sol_tn_5
+```
+
+```{python}
+exacta(sol_rk4_20[0])
+```
+
+```{python}
+#| scrolled: false
+sol_rk4_20
+```
+
+```{python}
+sol_tn_20
+```
+
+Un método muy usado para tratar ecuaciones rígidas usan lo que se llama "diferencias hacia atrás" (backward difference) de orden $s$. La lógica es resolver una ecuación explícita del estilo
+
+$$
+\sum_{k = 0}^s a_k y_{i + k} = h\beta f(t, y_{i + s})
+$$
+
+Para encontrar los coeficientes $\beta$ y $a_k$ se escribe
+
+$$
+y'(t_{i+s}) = P_s(t_{i+s})
+$$
+
+donde $P_s(t)$ es el polinomio interpolante de Lagrange que usa los puntos $(t_i, y_i), ..., (t_{i+s}, y_{i+s})$ para aproximar $f(t_{i+s}, y(t_{i + s}))$. 
+
+Esto da:
+
+\begin{align}
+y_{i + 1} - y_{i} &= hf(t_{i+1}, y_{i+1})\,,\\
+y_{i+1} - \frac{4}{3}y_i + \frac{1}{3}y_{i - 1} &= \frac{2}{3}hf(t_{i+1}, y_{i+1}) \,,\\
+y_{i+1} - \frac{18}{11}y_{i} + \frac{9}{11}y_{i-1} - \frac{2}{11}y_{i-2} &= \frac{6}{11}hf(t_{i+1}, y_{i+1})\,.
+\end{align}
+
+# Scipy
+
+Como siempre, ejemplos copiados de la documentación de scipy: https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp
+
+Scipy puede usar varios métodos: 
+
+- El método por defecto es el RK45 que es el Runge-Kutta-Fehlberg. Cuando se pide 'dense output' usa un polinomio interpolante de orden 4.
+
+- El método RK23 usa un Runge-Kutta de orden 2 para el control de error. El polinomio interpolante es un Hermiite.
+
+- El método BDF es un tipo de método de diferencias hacias atrás, pero con control de error y orden variable. Ideal para ecuaciones rígidas.
+
+- El método LSODA es un método de Adams que detecta cuándo una ecuación es rígida y cambia hacia un método de diferencias hacia atrás. No lo recomiendan en la documentación ya que el código usa un pedazo en Fortran envuelto en Python... (tal vez no es fácil de editar o tal vez no es eficiente, no lo especifican).
+
+Usa otros métodos que también son combinaciones de cosas que hemos visto en la clase. 
+
+        scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, dense_output=False, events=None, vectorized=False, args=None, **options)
+
+```{python}
+from scipy.integrate import solve_ivp
+def exponential_decay(t, y): return -0.5 * y
+sol = solve_ivp(exponential_decay, [0, 10], [2, 4, 8])
+```
+
+```{python}
+print(sol.t)
+```
+
+```{python}
+print(sol.y)
+```
+
+```{python}
+def lotkavolterra(t, z, a, b, c, d):
+    x, y = z
+    return [a*x - b*x*y, -c*y + d*x*y]
+```
+
+```{python}
+sol = solve_ivp(lotkavolterra, [0, 15], [10, 5], args=(1.5, 1, 3, 1),
+                dense_output=True)
+```
+
+```{python}
+t = np.linspace(0, 15, 300)
+z = sol.sol(t)
+import matplotlib.pyplot as plt
+plt.plot(t, z.T)
+plt.xlabel('t')
+plt.legend(['x', 'y'], shadow=True)
+plt.title('Lotka-Volterra System')
+plt.show()
+```
+
+# Tareas
+
+## Tarea 10.1
+
+Estudiemos el péndulo rígido. Sabemos que la aceleración actúa en la componente vertical de la velocidad y que además debe satisfacer la ecuación de ligadura que el radio del movimiento sea constante. Esto lleva a la siguiente ecuación diferencial
+
+$$
+\frac{d^2\theta}{dt^2} = -\frac{g}{L}\sin\theta
+$$
+
+donde $g = 9.81\,\text{m}/\text{s}^2$ es la aceleración de la gravedad y $L = 1\,\text{m}$ es la longitud del péndulo.
+
+Grafique la solución a esta ecuación tomando $\theta'(0) = 0$ para $\theta(0) = 0.1$, $\theta(0) = 1$,  $\theta(0) = 3$ entre $0\,\text{s} \leq t \leq 6\,\text{s}$. Compare con el caso de pequeñas oscilaciones ($\sin\theta \approx \theta$).
+
+## Tarea 10.2
+
+Implemente un código para resolver una ecuación de orden $n$ usando el método de Runge-Kutta de orden 4. 
+
+$$
+y^{(n)}(t) = f(t, y, y',...,y^{(n-1)})\,,
+$$
+
+Este código debería recibir una función $f(t, y, y', ..., y^{(n-1)})$, los valores inical $a$ y final $b$ del parámetro $t$, junto con un arreglo de condiciones iniciales $(y(a),...,y^{(n-1)}(a))$ y el número de pasos. El código debe dar la solución $y(t_i)$.
+
+Para probar que funciona, resuelva la siguiente ecuación diferencial
+
+$$
+y'' - 2y' + y = te^t - t\,,\quad 0\leq t\leq 1\,,\quad y(0) = y'(0) = 0\,.
+$$
+
+Esta tiene solución analítica $y(t) = (1/6)t^3e^t - te^t + 2e^t - t - 2$.
+
+## Tarea 10.3
+
+Así como implementamos el método de Runge Kutta de orden 4 para resolver sistemas de ecuaciones diferenciales, implemente el método de Runge Kutta Fehlberg para esos sistemas de ecuaciones. 
+
+Note que para modificar el tamaño del paso es necesario exigir que todas las soluciones alcancen la tolerancia pedida.
+
+Para probar su código, resuelva el siguiente problema de valor inicial:
+
+\begin{align}
+y_1'(t) &= -4y_1 - 2y_2 + \cos t + 4 \sin t\,,\\
+y_2'(t) &= 3y_1 + y_2 - 3\sin t\,,
+\end{align}
+
+para $0 \leq t \leq 2$ con condiciones iniciales 
+
+$$
+y_1(0) = 0\,,\quad y_2(t) = -1\,.
+$$
+
+Este sistema tiene soluciones analíticas
+
+\begin{align}
+u_1(t) &= 2e^{-t} - 2e^{-2t} + \sin t\,,\\
+u_2(t) &= -3e^{-t} + 2e^{-2t}\,.
+\end{align}
+
+## Tarea 10.4
+
+Escriba un código que implemente el algoritmo de diferencias hacia atrás
+
+$$
+y_{i+1} - \frac{18}{11}y_{i} + \frac{9}{11}y_{i-1} - \frac{2}{11}y_{i-2} = \frac{6}{11}hf(t_{i+1}, y_{i+1})
+$$
+
+como este es un método implícito, es necesario implementar un método de Newton similar a lo hecho para la regla del trapecio.
+
+Aplique este algoritmo a la solución del problema visto en clase:
+
+```{python}
+def f(t, y):
+    return 5*np.exp(5*t)*(y - t)**2 - 1
+
+def df(t, y):
+    return 10*np.exp(5*t)*(y - t)
+
+a = 0
+b = 1
+yo = -1
+
+def exacta(t):
+    return t - np.exp(-5*t)
+```
+
+## Tarea 10.5
+
+Grafique la solución numérica a la siguiente ecuación diferencial, usando menos de 100 pasos
+
+$$
+y' = -30(y + y^2) + \sin(t/2)\,,\quad 0\leq t \leq 20\,,\quad y(0) = 0\,.
+$$

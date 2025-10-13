@@ -1,0 +1,381 @@
+---
+title: EDOs - Runge Kutta
+jupyter: python3
+lang: es
+---
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+Los métodos de Taylor de alto orden son muy precisos pero requieren conocer las derivadas de alto orden de la función $f$. Como esto puede ser inconveniente, no se usan mucho en la práctica.
+
+Los métodos de Runge-Kutta logran el error de truncación local de alto orden sin necesitar esas derivadas.
+
+# Runge Kutta
+
+Supongamos que queremos utilizar una aproximación de Taylor de segundo orden
+
+$$
+T^{(2)} = f(t, y) + \frac{h}{2}f'(t, y)\,.
+$$
+
+Para no calcular la derivada, sabemos que la misma información está contenida en la función $f$, así que escribimos $a_1 f(t + \alpha_1, y + \beta_1)$ y buscamos coeficientes tales que esta expresión sea aproximadamente igual a $T^{(2)}$ con un error de orden $h^2$ (que de todas formas tenemos al usar $T^{(2)}$ para resolver la ecuación diferencial).
+
+Primero escribimos
+
+$$
+\frac{df}{dt}(t, y) = \frac{\partial f}{\partial t}(t, y) + \frac{\partial f}{\partial y}(t, y) y'(t)
+$$
+
+tal que 
+
+$$
+T^{(2)} = f(t, y) + \frac{h}{2}\frac{\partial f}{\partial t}(t, y) + \frac{h}{2}f(t, y)\frac{\partial f}{\partial y}(t, y)\,.
+$$
+
+Ahorar comparamos con
+
+$$
+a_1 f(t + \alpha_1, y + \beta_1) \approx a_1 f(t, y) + a_1 \alpha_1 \frac{\partial f}{\partial t}(t, y) + a_1 \beta_1\frac{\partial f}{\partial y}(t, y) 
+$$
+
+El error de esta aproximación está dado por el teorema de Taylor
+
+$$
+R = \frac{\alpha_1^2}{2}\frac{\partial^2 f}{\partial t^2}(\xi, \mu) + \alpha_1 \beta_1\frac{\partial^2 f}{\partial t \partial y}(\xi, \mu) + \frac{\beta_1^2}{2}\frac{\partial^2 f}{\partial y^2}(\xi, \mu)
+$$
+
+Ahora hacemos $a_1 f(t + \alpha_1, y + \beta_1) = T^{(2)}$ y resolvemos para obtener
+
+$$
+a_1 = 1\,,\quad \alpha_1 = \frac{h}{2}\,,\quad \beta_1 = \frac{h}{2} f(t, y)\,,
+$$
+
+y entonces el error de Taylor es de orden $h^2$ que es lo que queríamos. Mientras las derivadas parciales estén acottadas tenemos entonces un método con error de orden $h^2$ sin calcular derivadas. Lo podemos llamar Runge-Kutta de orden 2 o método del punto medio.
+
+```{python}
+def midpoint(f, a, b, yo, N):
+    
+    h = (b-a)/N
+    t = a
+    w = yo
+    ts = np.zeros(N+1)
+    sol = np.zeros(N+1)
+    
+    for i in range(N):
+        ts[i] = t
+        sol[i] = w
+        w = w + h*f(t + h/2, w + h/2*f(t, w))
+        t = t + h
+        
+    ts[N] = t
+    sol[N] = w
+    
+    return ts, sol
+```
+
+Este método lo podemos llamar Runge-Kutta de orden 2. Podemos continuar y buscar alguna aproximación para el polinomio de Taylor de orden 3, por lo que se escribe por ejemplo
+
+$$
+T^{(3)} = a_1 f(t + \alpha_1, y + \delta_1 f(t + \alpha_2, y + \delta_2 f(t,y))).
+$$
+
+Lo importante es tener suficientes coeficientes libres para acercarse al polinomio. Despejar los coeficientes es engorroso, pero existen métodos de este orden.
+
+Por motivos que discutiremos más abajo, en la práctica se usa el método de Runge-Kutta de orden 4, que se puede obtener de manera análoga
+
+```{python}
+def rk4(f, a, b, yo, N):
+    
+    h = (b-a)/N
+    t = a
+    w = yo
+    ts = np.zeros(N+1)
+    sol = np.zeros(N+1)
+    
+    for i in range(N):
+        ts[i] = t
+        sol[i] = w
+        k1 = h*f(t, w)
+        k2 = h*f(t+h/2, w+k1/2)
+        k3 = h*f(t+h/2, w+k2/2)
+        k4 = h*f(t + h, w + k3)
+        w = w + (k1 + 2*k2 + 2*k3 + k4)/6
+        t = t + h
+        
+    ts[N] = t
+    sol[N] = w
+    
+    return ts, sol
+```
+
+El método de Runge-Kutta orden 4 requiere $4$ evaluaciones de la función, lo que lo hace el doble de lento que el método de orden 2 para un mismo $N$. A su vez, el método de orden 2 requiere el doble de evaluaciones que el método de Euler. 
+
+En general, al subir el orden se reduce el error pero aumenta el número de evaluaciones. Lo ideal es encontrar el método que produzca el menor error para un mismo número de evaluaciones. Estos suelen ser los métodos de orden $4$, aunque los métodos de orden $5$ a $7$ también son usados como veremos más abajo.
+
+Como ejemplo consideremos el problema de la clase pasada
+
+$$
+y'(t) = y - t^2 + 1\,,\quad 0\leq t\leq 2\,,\quad y(0) = 0.5.
+$$
+
+```{python}
+def euler(f, a, b, yo, N):
+    
+    h = (b-a)/N
+    t = a
+    w = yo
+    ts = np.zeros(N+1)
+    sol = np.zeros(N+1)
+    
+    for i in range(N):
+        ts[i] = t
+        sol[i] = w
+        w = w + h*f(t, w)
+        t = t + h
+        
+    ts[N] = t
+    sol[N] = w
+    
+    return ts, sol
+```
+
+```{python}
+def f(t, y):
+    return y - t**2 + 1
+```
+
+```{python}
+ts_eul, sol_eul = euler(f, 0, 2, 0.5, 80)
+ts_mid, sol_mid = midpoint(f, 0, 2, 0.5, 40)
+ts_rk4, sol_rk4 = rk4(f, 0, 2, 0.5, 20)
+exacta_eul = (ts_eul + 1)**2 - 0.5*np.exp(ts_eul)
+exacta_mid = (ts_mid + 1)**2 - 0.5*np.exp(ts_mid)
+exacta_rk4 = (ts_rk4 + 1)**2 - 0.5*np.exp(ts_rk4)
+```
+
+```{python}
+plt.loglog(ts_eul, abs(sol_eul - exacta_eul), label='Euler')
+plt.loglog(ts_mid, abs(sol_mid - exacta_mid), label='Orden 2')
+plt.loglog(ts_rk4, abs(sol_rk4 - exacta_rk4), label='Orden 4')
+plt.legend()
+```
+
+# Control de errores y pasos adaptativos
+
+Así como ocurre en las integrales, para las ecuaciones diferenciales lo ideal sería ir adaptando el tamaño de cada paso a la solución. De esta forma el programa gastará más tiempo cerca de los puntos donde la variación es más rápida. Si tenemos una estima del error, podemos requerir que el paso sea tal que el error esté por debajo de una cierta tolerancia.
+
+Para ver cómo hacerlo, consideremos dos métodos que aproximan la solución, uno de orden $n$
+
+$$
+y(t_{i+1}) = y(t_i) + h\phi(t_i, y(t_i), h) + \mathcal{O}(h^{n+1})
+$$
+
+tal que
+
+$$
+w_{i+1} = w_i + h\phi(t_i, w_i, h)\,,
+$$
+
+y otro de orden $n + 1$
+
+$$
+y(t_{i+1}) = y(t_i) + h\tilde{\phi}(t_i, y(t_i), h) + \mathcal{O}(h^{n+2})
+$$
+
+tal que 
+
+$$
+\tilde{w}_{i+1} = \tilde{w}_i + h\tilde{\phi}(t_i, \tilde{w}_i, h)\,,
+$$
+
+Ahora bien
+
+$$
+\tau_{i+1}(h) = \frac{y(t_{i+1}) - y(t_i) - h\phi(t_i, y(t_i), h)}{h} \approx \frac{y(t_{i+1}) - w_i - h\phi(t_i, w_i, h)}{h} = \frac{1}{h}(y(t_{i+1}) - w_{i+1})
+$$
+
+y análogamente
+
+$$
+\tilde{\tau}_{i+1}(h) \approx \frac{1}{h}(y(t_{i+1}) - \tilde{w}_{i+1})\,.
+$$
+
+Entonces restando
+
+$$
+\tau_{i+1}(h) \approx \tilde{\tau}_{i+1}(h) + \frac{1}{h}(\tilde{w}_{i+1} - w_{i+1})
+$$
+
+y como $\tau$ es de orden $h^n$ mientras que $\tilde{\tau}$ es de orden $h^{n + 1}$, para $h \ll 1$ la mayor parte de $\tau$ debe venir del segundo término, y podemos escribir
+
+$$
+\tau_{i+1}(h) \approx \frac{1}{h}(\tilde{w}_{i+1} - w_{i+1})
+$$
+
+Podemos usar esa expresión para adaptar el paso. Si escribimos $\tau_{i+1}(h) \approx Kh^n$, entonces $\tau_{i+1}(qh) = q^n \tau_{i+1}(h)$. Esto nos dice de qué tamaño necesitamos hacer $q$ para obtener un error de una cierta tolerancia
+
+$$
+\frac{q^n}{h}|\tilde{w}_{i+1} - w_{i+1}| \approx |\tau_{i+1}(qh)| \leq \epsilon
+$$
+
+lo que implica
+
+$$
+q \leq \left(\frac{\epsilon h}{|\tilde{w}_{i+1} - w_{i+1}|}\right)^{1/n}
+$$
+
+Se usan entonces dos Runge Kutta de orden distinto para estimar el error en un paso dado, de esta manera se calcula $q$ y se re-calcula el paso si el error es demasiado grande. 
+
+Un algoritmo que usa dos Runge-Kutta de orden 4 y 5, tales que las evaluaciones de la función usadas en el Runge-Kutta de orden 4 se pueden reutilizar en el orden 5, es el llamado Runge-Kutta-Fehlberg.
+
+```{python}
+class MinStep(Exception):
+    pass
+
+def rkf(f, a, b, yo, tol, hmin, hmax):
+    
+    t = a
+    w = yo
+    h = hmax
+    flag = 1
+    
+    ts = [t]
+    sol = [w]
+    hs = []
+    rs = []
+    
+    while flag:
+        
+        # Evaluaciones de la función 
+        k1 = h*f(t, w)
+        k2 = h*f(t + h/4, w + k1/4)
+        k3 = h*f(t + 3*h/8, w + 3*k1/32 + 9*k2/32)
+        k4 = h*f(t + 12*h/13, w + 1932*k1/2197 - 7200*k2/2197 + 7296*k3/2197)
+        k5 = h*f(t + h, w + 439*k1/216 - 8*k2 + 3680*k3/513 - 845*k4/4104)
+        k6 = h*f(t + h/2, w - 8*k1/27 + 2*k2 - 3544*k3/2565 + 1859*k4/4104 - 11*k5/40)
+        
+        # Estima del error dada por la diferencia entre dos RKs
+        R = abs(k1/360 - 128*k3/4275 - 2197*k4/75240 + k5/50 + 2*k6/55)
+        
+        # Si el error es menor que la tolerancia, se acepta el paso
+        if R <= tol:
+            t += h
+            w = w + 25*k1/216 + 1408*k3/2565 + 2197*k4/4104 - k5/5
+            ts.append(t)
+            sol.append(w)
+            hs.append(h)
+            rs.append(R)
+            
+        # el 0.84 es un factor para hacer la estima más conservadora 
+        # corresponde a 1/2**(1/4)
+        q = 0.84*(tol/R)**(1/4)
+        
+        # ACTUALIZACIÓN DE h
+        # Se establece un q mínimo para no quedarse atrapado en alguna región.
+        # Esto se puede cambiar.
+        if q <= 0.1:
+            h = 0.1*h
+        # Se establece también un q máximo para no peder detalles de la función
+        elif q >= 4:
+            h = 4*h
+        else:
+            h = q*h
+        if h > hmax:
+            h = hmax
+        
+        # Si nos pasamos de b, terminamos
+        if t >= b:
+            flag = 0
+        # El último paso debe llegar a b
+        elif t + h > b:
+            h = b - t
+        elif h < hmin:
+            raise MinStep('Se excedió el paso mínimo.')
+            
+    return np.array(ts), np.array(sol), np.array(hs), np.array(rs)
+```
+
+```{python}
+rkf(f, 0, 2, 0.5, 1e-6, 0.01, 0.25)
+```
+
+```{python}
+ts_rkf, sol_rkf, hs_rkf, rs_rkf = rkf(f, 0, 2, 0.5, 1e-6, 0.01, 0.25)
+exacta_rkf = (ts_rkf + 1)**2 - 0.5*np.exp(ts_rkf)
+plt.plot(ts_rkf, sol_rkf - exacta_rkf)
+```
+
+# Tareas
+
+## Tarea 9.1
+
+Modifique los métodos rkf y rk4 introducidos para imprimir el número de evaluaciones. Resuelva el problema de valor inicial
+
+$$
+y'(t) = te^{3t} - 2y\,,\quad 0\leq t \leq 1\,,\quad y(0) = 0\,,
+$$
+
+cuya solución exacta es $y(t) = \frac{1}{5}te^{3t} - \frac{1}{25}e^{3t} + \frac{1}{25}e^{-2t}$. Obtenga un error similar (y menor a $10^{-6}$) con ambos métodos y compare el número de evaluaciones. Discuta cuál es preferible y por qué.
+
+## Tarea 9.2
+
+Resuelva el siguiente problema de valor inicial usando el método de Runge-Kutta de orden 4 y el método de Taylor de orden 4.
+
+$$
+y'(t) = 1 + (t - y)^2\,,\quad 2 \leq t \leq 3\,,\quad y(2) = 1\,,
+$$
+
+que tiene solución exacta $y(t) = t + 1/(1-t)$. Compare los errores y el número de evaluaciones necesarias. ¿Cuál es preferible y por qué?
+
+## Tarea 9.3
+
+Modifique el método de Runge-Kutta-Fehlberg para quedarse con la solución de orden 5 en vez de la solución de orden 4. La solución de orden 5 está dada por
+
+$$
+w_{i+1} = w_i + \frac{16}{135}k_1 + \frac{6656}{12825}k_3 + \frac{28561}{56430}k_4 - \frac{9}{50}k_5 + \frac{2}{55}k_6
+$$
+
+Úselo para resolver el siguiente problema de valor inicial con una tolerancia de $10^{-6}$
+
+$$
+y'(t) = \frac{2 - 2ty}{t^2 + 1}\,,\quad 0\leq t\leq 3\,,\quad y(0) = 1\,,
+$$
+
+que tiene una solución exacta $y(t) = (2t + 1)/(t^2 + 1)$. Compare con el método usual y discuta por qué se usa la solución de orden 4.
+
+## Tarea 9.4
+
+Ejercicio 5.4.28, libro de Burden
+
+El agua fluye desde un tanque cónico invertido con un orificio circular en su punta a la razón
+
+$$
+\frac{dx}{dt} = -0.6\pi r^2 \sqrt{2g}\frac{\sqrt{x}}{A(x)}
+$$
+
+donde $r$ es el radio del orificio, $x$ es la altura del líquido desde el vértice del cono y $A(x)$ es el área de la sección transversal del cono a $x$ unidades sobre el orificio (el área de la superficie del agua). Supponga que $r = 0.03$ m, $g = 9.81\,\text{m}/\text{s}^2$, y el tanque tiene un nivel de agua inicial de $2.7$ m y un volumen inicial de $170(\pi/3)\,\text{m}^3$. Use el método de Runge-Kutta de orden 4 para encontrar lo siguiente
+
+* El agua luego de 10 minutos con h=20 s.
+
+* Cuándo estará vacío el tanque, a una precisión de 1 minuto.
+
+(**Pista**: Yo resolví el segundo numeral modificando el código del Runge Kutta tal que termina cuando encuentra un valor no válido de $w$, ya que eso indica niveles de agua negativos y arroja un NaN cuando se toman raíces.)
+
+## Tarea 9.5
+
+Considere el problema de valor inicial
+
+$$
+y'(t) = 10y(t)- 10t^{-2} - 2t^{-3}\,,\quad 1 \leq t \leq 2
+$$
+
+Resuleva este problema para las siguientes condiciones iniciales usando el método de Runge-Kutta-Fehlberg para las tolerancias $0.01, 0.001, 0.0001, 10^{-5}$.
+
+* $y(1) = 2$
+* $y(1) = 1$
+* $y(1) = 0.1$
+
+Para cada caso discuta: ¿Son consistentes las soluciones con diferentes tolerancias? Explique lo que ocurre.
