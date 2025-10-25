@@ -180,7 +180,7 @@ plt.scatter(x, med)
 vander = np.column_stack((np.ones(10), x, x**2))
 # lstsq(a, b) resuelve el sistema ax = b aproximadamente usando lo descrito arriba.
 # lstsq quiere decir least squares que en espanol significa "mínimos cuadrados".
-aopt, acov = np.linalg.lstsq(vander, med, rcond=None)
+aopt, *_ = np.linalg.lstsq(vander, med, rcond=None)
 
 x_plot = np.linspace(0, 1, 100)
 y_plot = aopt[0] + aopt[1]*x_plot + aopt[2]*x_plot**2
