@@ -273,7 +273,7 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-5">    
         <li>
-    <a class="dropdown-item" href="./21_ajustes_de_curvas.qmd">
+    <a class="dropdown-item" href="./21_ajuste_de_curvas.html">
  <span class="dropdown-text">Ajustes de mínimos cuadrados</span></a>
   </li>  
     </ul>
@@ -476,7 +476,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./21_ajustes_de_curvas.qmd" class="sidebar-item-text sidebar-link">
+  <a href="./21_ajuste_de_curvas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ajustes de mínimos cuadrados</span></a>
   </div>
 </li>
@@ -526,7 +526,7 @@ window.Quarto = {
 
 
 <p>Los métodos que hemos estudiado han intentado predecir <span class="math inline">\(y(t_i)\)</span> usando la predicción anterior <span class="math inline">\(w_{i-1}\)</span>. Como hemos visto, el error cometido por los métodos estudiados hasta ahora va creciendo a medida que crece <span class="math inline">\(t\)</span>. Debido a esto, vale la pena involucrar varias predicciones anteriores en la predicción apra <span class="math inline">\(y(t_i)\)</span>.</p>
-<div id="f0838f60" class="cell" data-execution_count="1">
+<div id="f2ef384c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -561,7 +561,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[55f(t_i, y(t_i)) - 59f(t_{i-1}, y(t_{i-1
 \]</span></p>
 <p>vemos que así obtenemos un método con error de truncación local de orden <span class="math inline">\(h^4\)</span>.</p>
 <p>A estos métodos se los llama métodos de <strong>Adams-Bashforth</strong>. Necesitan tres condiciones iniciales para sus primeros pasos. Estas se pueden obtener usando por ejemplo un método de Runge-Kutta.</p>
-<div id="59228796" class="cell" data-execution_count="2">
+<div id="db4974d0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4_step(f, fi, t, w, h):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    k1 <span class="op">=</span> h<span class="op">*</span>fi</span>
@@ -603,7 +603,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[55f(t_i, y(t_i)) - 59f(t_{i-1}, y(t_{i-1
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, ws</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Comparemos con el método de Runge-Kutta</p>
-<div id="eedd0938" class="cell" data-execution_count="3">
+<div id="228db7b0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4(f, a, b, yo, N):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
@@ -627,7 +627,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[55f(t_i, y(t_i)) - 59f(t_{i-1}, y(t_{i-1
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, sol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1991bb7d" class="cell" data-execution_count="4">
+<div id="8335e9d2" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -638,7 +638,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[55f(t_i, y(t_i)) - 59f(t_{i-1}, y(t_{i-1
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exacta(t):</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (t <span class="op">+</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="54042fd0" class="cell" data-execution_count="5">
+<div id="a18267b2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sol_rk4 <span class="op">=</span> rk4(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sol_ab4 <span class="op">=</span> ab4(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -663,7 +663,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 \]</span></p>
 <p>Tenemos un método de orden <span class="math inline">\(h^4\)</span> de nuevo, pero es difícil ver cómo usarlo ya que necesitamos <span class="math inline">\(y(t_{i+1})\)</span>, pero es lo que queremos calcular. Este método se llama de <strong>Adams-Moulton</strong>.</p>
 <p>Lo que podemos hacer es usar el Adams-Bashforth para predecir <span class="math inline">\(y(t_{i+1})\)</span> y usar esa aproximación dentro de la fórmula de Adams-Moulton para corregir la aproximación. A esto se lo llama un método <strong>predictor-corrector</strong>.</p>
-<div id="c5be34b8" class="cell" data-execution_count="6">
+<div id="f8291af9" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4_step(f, fi, t, w, h):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    k1 <span class="op">=</span> h<span class="op">*</span>fi</span>
@@ -707,7 +707,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, ws</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="78e71795" class="cell" data-execution_count="7">
+<div id="ae285607" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sol_rk4 <span class="op">=</span> rk4(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sol_ab4 <span class="op">=</span> ab4(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sol_apc <span class="op">=</span> apc4(f, a, b, yo, <span class="dv">10</span>)</span>
@@ -756,7 +756,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <p><span class="math display">\[
 \delta &lt; \left(\frac{270}{19}\frac{h\epsilon}{|w_{i+1} - \hat{w}_{i+1}|}\right)^{1/4}
 \]</span></p>
-<div id="5fce3090" class="cell" data-execution_count="8">
+<div id="e588edf3" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4_step(f, fi, t, w, h):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    k1 <span class="op">=</span> h<span class="op">*</span>fi</span>
@@ -895,7 +895,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(ts), np.array(ws), np.array(hs), np.array(rs)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ca5d5e8b" class="cell" data-execution_count="9">
+<div id="81fb29de" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rkf(f, a, b, yo, tol, hmin, hmax):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> a</span>
@@ -958,7 +958,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(ts), np.array(sol), np.array(hs), np.array(rs)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="23de26e3" class="cell" data-execution_count="10">
+<div id="fedc5988" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>apce(f, a, b, yo, <span class="fl">1e-5</span>, <span class="fl">0.01</span>, <span class="fl">0.2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>(array([0.        , 0.12841311, 0.25682622, 0.38523933, 0.51365244,
@@ -984,7 +984,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
          1.62700884e-08]))</code></pre>
 </div>
 </div>
-<div id="ad50aa27" class="cell" data-execution_count="11">
+<div id="ecbb2c76" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ts_rkf, sol_rkf, hs_rkf, rs_rkf <span class="op">=</span> rkf(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="fl">1e-6</span>, <span class="fl">0.01</span>, <span class="fl">0.25</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ts_apce, sol_apce, hs_apce, rs_apce <span class="op">=</span> apce(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="fl">1e-6</span>, <span class="fl">0.01</span>, <span class="fl">0.25</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>exacta_rkf <span class="op">=</span> (ts_rkf <span class="op">+</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts_rkf)</span>
@@ -1012,7 +1012,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <p><span class="math display">\[
 y'(t) = (1/t)(y^2 + y)\,,\quad 1 \leq t \leq 3\,,\quad y(1) = -2\,.
 \]</span></p>
-<div id="bd1e8a94" class="cell" data-execution_count="12">
+<div id="1630fa6f" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MinStep(<span class="pp">Exception</span>):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1080,7 +1080,7 @@ y'(t) = (1/t)(y^2 + y)\,,\quad 1 \leq t \leq 3\,,\quad y(1) = -2\,.
 <span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(ts), np.array(sol), np.array(hs), np.array(rs), evals</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="20368f0d" class="cell" data-execution_count="13">
+<div id="be1cc058" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4_step(f, fi, t, w, h):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    k1 <span class="op">=</span> h<span class="op">*</span>fi</span>
@@ -1232,7 +1232,7 @@ y'(t) = (1/t)(y^2 + y)\,,\quad 1 \leq t \leq 3\,,\quad y(1) = -2\,.
 <span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(ts), np.array(ws), np.array(hs), np.array(rs), evals</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b6aa9938" class="cell" data-execution_count="14">
+<div id="64633b16" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">1</span><span class="op">/</span>t)<span class="op">*</span>(y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1242,7 +1242,7 @@ y'(t) = (1/t)(y^2 + y)\,,\quad 1 \leq t \leq 3\,,\quad y(1) = -2\,.
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>hmin <span class="op">=</span> <span class="fl">0.001</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>hmax <span class="op">=</span> <span class="fl">0.2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5bcf29a1" class="cell" data-execution_count="15">
+<div id="61ac50bb" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tols <span class="op">=</span> [<span class="fl">1e-2</span>, <span class="fl">1e-3</span>, <span class="fl">1e-4</span>, <span class="fl">1e-5</span>, <span class="fl">1e-6</span>, <span class="fl">1e-7</span>, <span class="fl">1e-8</span>, <span class="fl">1e-9</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>num_rkf <span class="op">=</span> [rkf_m(f, a, b, yo, t, hmin, hmax)[<span class="op">-</span><span class="dv">1</span>] <span class="cf">for</span> t <span class="kw">in</span> tols]</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>num_apce <span class="op">=</span> [apce_m(f, a, b, yo, t, hmin, hmax)[<span class="op">-</span><span class="dv">1</span>] <span class="cf">for</span> t <span class="kw">in</span> tols]</span>
