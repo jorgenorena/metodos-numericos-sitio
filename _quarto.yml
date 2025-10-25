@@ -61,6 +61,10 @@ website:
             href: 19_metodos_de_multiples_pasos.qmd
           - text: "Ecuaciones de alto orden y estabilidad"
             href: 20_edo_alto_orden_estabilidad.qmd
+      - text: "Unidad 5"
+        menu:
+          - text: "Ajustes de mínimos cuadrados"
+            href: 21_ajustes_de_curvas.qmd
   sidebar:
     style: docked
     contents:
@@ -112,6 +116,10 @@ website:
             href: 19_metodos_de_multiples_pasos.qmd
           - text: "Ecuaciones de alto orden y estabilidad"
             href: 20_edo_alto_orden_estabilidad.qmd
+      - section: "Unidad 5: Tópicos"
+        contents:
+          - text: "Ajustes de mínimos cuadrados"
+            href: 21_ajustes_de_curvas.qmd
 
 format:
   html:
