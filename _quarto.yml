@@ -64,7 +64,7 @@ website:
       - text: "Unidad 5"
         menu:
           - text: "Ajustes de mínimos cuadrados"
-            href: 21_ajustes_de_curvas.qmd
+            href: 21_ajuste_de_curvas.qmd
   sidebar:
     style: docked
     contents:
@@ -119,7 +119,7 @@ website:
       - section: "Unidad 5: Tópicos"
         contents:
           - text: "Ajustes de mínimos cuadrados"
-            href: 21_ajustes_de_curvas.qmd
+            href: 21_ajuste_de_curvas.qmd
 
 format:
   html:
