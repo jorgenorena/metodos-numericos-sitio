@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Conceptos Básicos de Redes Neuronales – Métodos Numéricos y Probabilidades 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Métodos Numéricos y Probabilidades 2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Acerca de</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 1</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-1">    
+        <li>
+    <a class="dropdown-item" href="./01_funcionamiento_cpu.html">
+ <span class="dropdown-text">Funcionamiento de la CPU</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02_python.html">
+ <span class="dropdown-text">Repaso de Python</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03_numpy_arrays.html">
+ <span class="dropdown-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04_numeros_y_condicionamiento.html">
+ <span class="dropdown-text">Representación de números y condicionamiento</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05_algoritmos_y_estabilidad.html">
+ <span class="dropdown-text">Algoritmos y estabilidad</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-2">    
+        <li>
+    <a class="dropdown-item" href="./06_definicion_probabilidad.html">
+ <span class="dropdown-text">Propiedades de la probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07_distribuciones.html">
+ <span class="dropdown-text">Distribuciones de probabilidad</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08_varias_variables_aleatorias.html">
+ <span class="dropdown-text">Varias variables aleatorias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09_teorema_central_del_limite.html">
+ <span class="dropdown-text">Teorema central del límite</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./10_entropia.html">
+ <span class="dropdown-text">Entropía de Shannon</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-3" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 3</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-3">    
+        <li>
+    <a class="dropdown-item" href="./11_solucion_sistemas_lineales.html">
+ <span class="dropdown-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12_newton_y_biseccion.html">
+ <span class="dropdown-text">Solución de Ecuaciones No Lineales</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./13_interpolacion.html">
+ <span class="dropdown-text">Interpolación</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./14_integracion_numerica.html">
+ <span class="dropdown-text">Integración Numérica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./15_integrales_multiples_impropias_y_gauss.html">
+ <span class="dropdown-text">Quadratura de Gauss, integrales múltiples e impropias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./16_derivadas.html">
+ <span class="dropdown-text">Derivadas numéricas</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-4" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 4</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-4">    
+        <li>
+    <a class="dropdown-item" href="./17_metodos_de_taylor.html">
+ <span class="dropdown-text">Métodos de Taylor</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./18_runge_kutta.html">
+ <span class="dropdown-text">Métodos de Runge-Kutta</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./19_metodos_de_multiples_pasos.html">
+ <span class="dropdown-text">Métodos de Múltiples Pasos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./20_edo_alto_orden_estabilidad.html">
+ <span class="dropdown-text">Ecuaciones de alto orden y estabilidad</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-unidad-5" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Unidad 5</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-unidad-5">    
+        <li>
+    <a class="dropdown-item" href="./21_ajuste_de_curvas.html">
+ <span class="dropdown-text">Ajustes de mínimos cuadrados</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./22_descenso_de_gradiente.html">
+ <span class="dropdown-text">Descenso de gradiente</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./23_redes_neuronales.html">
+ <span class="dropdown-text">Redes neuronales</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21_ajuste_de_curvas.html">Unidad 5: Tópicos</a></li><li class="breadcrumb-item"><a href="./23_redes_neuronales.html">Redes neuronales</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 1: Introducción</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_funcionamiento_cpu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funcionamiento de la CPU</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_numpy_arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repaso de numpy, matplotlib, archivos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_numeros_y_condicionamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Representación de números y condicionamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_algoritmos_y_estabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmos y estabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 2: Probabilidad</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_definicion_probabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Propiedades de la probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_distribuciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distribuciones de probabilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_varias_variables_aleatorias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Varias variables aleatorias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_teorema_central_del_limite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Teorema central del límite</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_entropia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Entropía de Shannon</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 3: Cálculo Numérico</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_solucion_sistemas_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Sistemas de Ecuaciones Lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_newton_y_biseccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solución de Ecuaciones No Lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_interpolacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpolación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14_integracion_numerica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integración Numérica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15_integrales_multiples_impropias_y_gauss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quadratura de Gauss, integrales múltiples e impropias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16_derivadas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Derivadas numéricas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 4: Ecuaciones Diferenciales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17_metodos_de_taylor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de Taylor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18_runge_kutta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de Runge-Kutta</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19_metodos_de_multiples_pasos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Métodos de Múltiples Pasos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20_edo_alto_orden_estabilidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ecuaciones de alto orden y estabilidad</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 5: Tópicos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21_ajuste_de_curvas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ajustes de mínimos cuadrados</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22_descenso_de_gradiente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Descenso de gradiente</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23_redes_neuronales.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Redes neuronales</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#la-neurona" id="toc-la-neurona" class="nav-link active" data-scroll-target="#la-neurona">La “neurona”</a></li>
+  <li><a href="#una-red-neuronal-sencilla" id="toc-una-red-neuronal-sencilla" class="nav-link" data-scroll-target="#una-red-neuronal-sencilla">Una red neuronal sencilla</a></li>
+  <li><a href="#redes-neuronales-como-aproximantes-universales" id="toc-redes-neuronales-como-aproximantes-universales" class="nav-link" data-scroll-target="#redes-neuronales-como-aproximantes-universales">Redes neuronales como aproximantes universales</a></li>
+  <li><a href="#entrenamiento-de-la-red-neuronal" id="toc-entrenamiento-de-la-red-neuronal" class="nav-link" data-scroll-target="#entrenamiento-de-la-red-neuronal">Entrenamiento de la red neuronal</a>
+  <ul class="collapse">
+  <li><a href="#retropropagación" id="toc-retropropagación" class="nav-link" data-scroll-target="#retropropagación">Retropropagación</a></li>
+  <li><a href="#implementación-en-jax-con-fashion-mnist" id="toc-implementación-en-jax-con-fashion-mnist" class="nav-link" data-scroll-target="#implementación-en-jax-con-fashion-mnist">Implementación en JAX con Fashion MNIST</a>
+  <ul class="collapse">
+  <li><a href="#cargar-el-dataset-de-fashion-mnist" id="toc-cargar-el-dataset-de-fashion-mnist" class="nav-link" data-scroll-target="#cargar-el-dataset-de-fashion-mnist">1. Cargar el dataset de Fashion MNIST</a></li>
+  <li><a href="#definir-la-red-neuronal" id="toc-definir-la-red-neuronal" class="nav-link" data-scroll-target="#definir-la-red-neuronal">2. Definir la Red Neuronal</a></li>
+  <li><a href="#definir-la-función-de-pérdida-y-la-retropropagación" id="toc-definir-la-función-de-pérdida-y-la-retropropagación" class="nav-link" data-scroll-target="#definir-la-función-de-pérdida-y-la-retropropagación">3. Definir la Función de Pérdida y la Retropropagación</a></li>
+  <li><a href="#entrenamiento-de-la-red" id="toc-entrenamiento-de-la-red" class="nav-link" data-scroll-target="#entrenamiento-de-la-red">4. Entrenamiento de la Red</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">¡Tareas!</a>
+  <ul class="collapse">
+  <li><a href="#tarea-11.6" id="toc-tarea-11.6" class="nav-link" data-scroll-target="#tarea-11.6">Tarea 11.6</a></li>
+  <li><a href="#tarea-11.7" id="toc-tarea-11.7" class="nav-link" data-scroll-target="#tarea-11.7">Tarea 11.7</a></li>
+  <li><a href="#tarea-11.8" id="toc-tarea-11.8" class="nav-link" data-scroll-target="#tarea-11.8">Tarea 11.8</a></li>
+  <li><a href="#tarea-11.9" id="toc-tarea-11.9" class="nav-link" data-scroll-target="#tarea-11.9">Tarea 11.9</a></li>
+  <li><a href="#tarea-11.10" id="toc-tarea-11.10" class="nav-link" data-scroll-target="#tarea-11.10">Tarea 11.10</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21_ajuste_de_curvas.html">Unidad 5: Tópicos</a></li><li class="breadcrumb-item"><a href="./23_redes_neuronales.html">Redes neuronales</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Conceptos Básicos de Redes Neuronales</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="la-neurona" class="level1">
+<h1>La “neurona”</h1>
+<p>El elemento básico de las redes neuronales son las neuronas. Se basan en un modelo muy simplista del funcionamiento de las neuronas del cerebro. Sin embargo, este modelo no describe bien ese comportamiento que es mucho más complejo.</p>
+<p>La neurona tiene las siguientes componentes:</p>
+<ol type="1">
+<li><strong>Entradas</strong>: Los datos de entrada <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>.</li>
+<li><strong>Pesos</strong>: Cada entrada tiene un peso asociado <span class="math inline">\(w_1, w_2, \dots, w_n\)</span>, que ajusta la importancia de esa entrada.</li>
+<li><strong>Bias (sesgo)</strong>: Un valor adicional <span class="math inline">\(b\)</span> que se agrega a la suma ponderada de las entradas.</li>
+<li><strong>Función de Activación</strong>: Una función no lineal que transforma la suma ponderada de entradas.</li>
+</ol>
+<p>El cálculo básico que realiza una neurona es:</p>
+<p><span class="math display">\[
+z = \sum_{i=1}^n w_i x_i + b
+\]</span></p>
+<p>Note que esta es una transformación lineal de la entrada. La “magia” de las neuronas es su respuesta no-lineal a las señales, que obtenemos aplicando una <strong>función de activación</strong> al resultado (z) para obtener la salida final de la neurona:</p>
+<p><span class="math display">\[
+y_{out} = \sigma(z)
+\]</span></p>
+<p>Donde <span class="math inline">\(\sigma\)</span> es una “función de activación” no lineal. Las más famosas son la función sigmoide</p>
+<p><span class="math display">\[
+\sigma(x) = \frac{e^x}{e^x + 1}\,,
+\]</span></p>
+<p>y la ReLU</p>
+<p><span class="math display">\[
+ReLU(x) = \begin{cases}x &amp; x \geq 0\\ 0 &amp; x &lt; 0\end{cases}\,.
+\]</span></p>
+<p>Implementemos una neurona usando JAX:</p>
+<div id="769f7fdb" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> jnp.exp(<span class="op">-</span>z))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> neurona(x, w, b):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> jnp.dot(w, x) <span class="op">+</span> b  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sigmoid(z)  </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>])  <span class="co"># Entradas</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> jnp.array([<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.5</span>])  <span class="co"># Pesos</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># Sesgo</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>salida <span class="op">=</span> neurona(x, w, b)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(salida)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.40131235</code></pre>
+</div>
+</div>
+</section>
+<section id="una-red-neuronal-sencilla" class="level1">
+<h1>Una red neuronal sencilla</h1>
+<p>Las neuronas no trabajan de forma aislada, sino que se agrupan en <strong>capas</strong>. En una red neuronal simple (una <strong>Red Perceptrón Multicapa</strong> o MLP), las neuronas están organizadas en tres tipos de capas:</p>
+<ol type="1">
+<li><strong>Capa de Entrada</strong>: Recibe los datos de entrada.</li>
+<li><strong>Capas Ocultas</strong>: Procesan los datos. Pueden haber una o más de estas capas.</li>
+<li><strong>Capa de Salida</strong>: Genera las predicciones o el resultado final.</li>
+</ol>
+<p>Cada capa oculta está formada por varias neuronas que reciben la salida de la capa anterior como entrada.</p>
+<p>Cuando se usan muchas capas, se dice que la red es <em>profunda</em>.</p>
+<p>Hagamos un ejemplo de una red neuronal multicapa con JAX:</p>
+<div id="ce0a976b" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(z):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.maximum(<span class="dv">0</span>, z)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> red_neuronal(x, w1, b1, w2, b2):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa oculta</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> jnp.dot(w1, x) <span class="op">+</span> b1</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> relu(z1)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa de salida</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> jnp.dot(w2, a1) <span class="op">+</span> b2</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    salida <span class="op">=</span> sigmoid(z2)  <span class="co"># Usamos sigmoide en la salida</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> salida</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de pesos y sesgos para una red simple</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> jnp.array([[<span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.4</span>], [<span class="fl">0.7</span>, <span class="fl">0.3</span>]])  <span class="co"># Pesos capa oculta</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> jnp.array([<span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.2</span>])  <span class="co"># Sesgos capa oculta</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> jnp.array([<span class="fl">0.6</span>, <span class="op">-</span><span class="fl">0.1</span>])  <span class="co"># Pesos capa de salida</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># Sesgo capa de salida</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Entradas</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">0.5</span>])</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la salida de la red</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>salida_red <span class="op">=</span> red_neuronal(x, w1, b1, w2, b2)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(salida_red)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.5112481</code></pre>
+</div>
+</div>
+</section>
+<section id="redes-neuronales-como-aproximantes-universales" class="level1">
+<h1>Redes neuronales como aproximantes universales</h1>
+<p>El poder de las redes neuronales se puede explicar en parte porque pueden ajustar cualquier función.</p>
+<p>Para ser más precisos, existe un teorema que dice que una red neuronal con una capa oculta puede aproximar cualquier función en un intervalo cerrado.</p>
+<p>Para ver cómo, intentemos aproximar un coseno:</p>
+<div id="e32042cf" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> random</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> jnp.linspace(<span class="op">-</span>jnp.pi, jnp.pi, <span class="dv">30</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)  </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> jnp.cos(x_data).reshape(<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Podemos ajustar la función en <em>todos los puntos</em> usando la siguiente fórmula:</p>
+<p><span class="math display">\[
+y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
+\]</span></p>
+<p>donde <span class="math inline">\(\delta F_i\)</span> es el salto que hace la función entre el punto <span class="math inline">\(x_{i-1}\)</span> y el punto <span class="math inline">\(x_i\)</span>. El parámetro <span class="math inline">\(w\)</span> controla la altura del paso.</p>
+<p>Note que esta fórmula tiene la forma de una red neuronal con una capa escondida con pesos todos iguales a <span class="math inline">\(w\)</span> y sesgo <span class="math inline">\(-w X_i\)</span>, y una capa de salida sin función de activación con sesgo cero y pesos <span class="math inline">\(\delta F_i\)</span>.</p>
+<div id="70490d01" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> red_neuronal(x, w1, b1, w2, b2):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa oculta</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> jnp.matmul(x, w1.T) <span class="op">+</span> b1</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> sigmoid(z1)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa de salida</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> jnp.matmul(a1, w2.T) <span class="op">+</span> b2</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z2</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Pesos calculados para ajustar los datos</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> w<span class="op">*</span>jnp.ones(<span class="bu">len</span>(x_data)).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> <span class="op">-</span>w<span class="op">*</span>x_data.reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>dF <span class="op">=</span> np.zeros(<span class="bu">len</span>(x_data))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>dF[<span class="dv">0</span>] <span class="op">=</span> y_data[<span class="dv">0</span>]</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>dF[<span class="dv">1</span>:] <span class="op">=</span> np.array([y_data[i] <span class="op">-</span> y_data[i<span class="op">-</span><span class="dv">1</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(y_data))])</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> jnp.array(dF)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="98969cc7" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x_plot <span class="op">=</span> jnp.linspace(<span class="op">-</span>jnp.pi, jnp.pi, <span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> red_neuronal(x_plot, w1, b1, w2, b2)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>y_plot <span class="op">=</span> jnp.cos(x_plot)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x_plot, y_plot, label<span class="op">=</span><span class="st">"Coseno"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_plot, y_pred, label<span class="op">=</span><span class="st">"Red neuronal"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="23_redes_neuronales_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="entrenamiento-de-la-red-neuronal" class="level1">
+<h1>Entrenamiento de la red neuronal</h1>
+<section id="retropropagación" class="level2">
+<h2 class="anchored" data-anchor-id="retropropagación">Retropropagación</h2>
+<p>La <strong>retropropagación</strong> es el proceso clave para entrenar redes neuronales mediante el cálculo eficiente de los gradientes de la función de pérdida con respecto a los pesos de la red. Utiliza la regla de la cadena para “propagar” el error desde la capa de salida hacia atrás, ajustando los pesos en cada capa para minimizar el error.</p>
+<p>Este proceso se lleva a cabo en los siguientes pasos:</p>
+<ul>
+<li><p>Dividir los datos en “mini-batches” y tratar un mini-batch a la vez. Luego repita todo este proceso varias veces (épocas).</p></li>
+<li><p>Para cada mini-batch, calcule el paso hacia adelante capa por capa, guardando los resultados intermedios de la evaluación de la red porque serán requeridos por el cálculo del gradiente.</p></li>
+<li><p>Luego, calcule el error cometido por la red usando una “función de costo” o “función de pérdida”.</p></li>
+<li><p>Realice la retropropagación calculando la derivada de la pérdida respecto a cada uno de los pesos y sesgos, mediante autodiferenciación en modo inverso.</p></li>
+<li><p>Luego use descenso de gradiente por cada mini-batch para cambiar los pesos en la dirección del gradiente.</p></li>
+</ul>
+<p>Es importante inicializar los pesos de forma aleatoria. Si se inicializan todos idénticos permanecerán idénticos. La aleatoriedad rompe la simetría.</p>
+<p>En JAX, el cálculo de los gradientes es fácil de implementar gracias a la función <code>jax.grad</code>, que realiza la diferenciación automática por nosotros.</p>
+</section>
+<section id="implementación-en-jax-con-fashion-mnist" class="level2">
+<h2 class="anchored" data-anchor-id="implementación-en-jax-con-fashion-mnist">Implementación en JAX con Fashion MNIST</h2>
+<p>Vamos a implementar una red neuronal simple (MLP) y entrenarla en el conjunto de datos <strong>Fashion MNIST</strong>. Este conjunto de datos contiene imágenes en escala de grises de artículos de ropa, cada una clasificada en una de 10 categorías.</p>
+<section id="cargar-el-dataset-de-fashion-mnist" class="level3">
+<h3 class="anchored" data-anchor-id="cargar-el-dataset-de-fashion-mnist">1. Cargar el dataset de Fashion MNIST</h3>
+<p>Primero, cargamos el dataset de Fashion MNIST utilizando TensorFlow, que ofrece una forma sencilla de acceder a los datos.</p>
+<div id="b8905557" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> grad, random</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> jit</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fashion_mnist <span class="op">=</span> tf.keras.datasets.fashion_mnist</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> fashion_mnist.load_data()</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalizamos los datos</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> test_images <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertimos las imágenes a formato adecuado para el MLP</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> jnp.array(train_images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>))  </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> jnp.array(test_images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>train_labels <span class="op">=</span> jnp.array(train_labels)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>test_labels <span class="op">=</span> jnp.array(test_labels)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c8226a1f" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">"T-shirt/top"</span>, <span class="st">"Trouser"</span>, <span class="st">"Pullover"</span>, <span class="st">"Dress"</span>, <span class="st">"Coat"</span>, <span class="st">"Sandal"</span>, <span class="st">"Shirt"</span>, <span class="st">"Sneaker"</span>, <span class="st">"Bag"</span>, <span class="st">"Ankle boot"</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>class_names[train_labels[<span class="dv">0</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>'Ankle boot'</code></pre>
+</div>
+</div>
+<div id="358f14e5" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(train_images[<span class="dv">0</span>].reshape([<span class="dv">28</span>,<span class="dv">28</span>]), cmap<span class="op">=</span><span class="st">'gray_r'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="23_redes_neuronales_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="definir-la-red-neuronal" class="level3">
+<h3 class="anchored" data-anchor-id="definir-la-red-neuronal">2. Definir la Red Neuronal</h3>
+<p>Ahora, definimos un <strong>MLP</strong> con una capa oculta utilizando JAX. Esta red tendrá 784 entradas (una por cada píxel de una imagen de 28x28), una capa oculta con 128 neuronas, y una capa de salida con 10 neuronas (una por cada clase).</p>
+<div id="48ff467b" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función ReLU</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(z):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.maximum(<span class="dv">0</span>, z)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Función Softmax (para la salida de clasificación)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> softmax(z):</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    exp_z <span class="op">=</span> jnp.exp(z)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> exp_z <span class="op">/</span> jnp.<span class="bu">sum</span>(exp_z, axis<span class="op">=-</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir MLP con una capa oculta</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mlp(params, x):</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    w1, b1, w2, b2, w3, b3 <span class="op">=</span> params</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capas ocultas</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> jnp.dot(x, w1) <span class="op">+</span> b1</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> relu(z1)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> jnp.dot(a1, w2) <span class="op">+</span> b2</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    a2 <span class="op">=</span> relu(z2)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa de salida</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    z3 <span class="op">=</span> jnp.dot(a2, w3) <span class="op">+</span> b3</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> softmax(z3)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicialización de pesos y sesgos</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inicializar_pesos(rng, input_size, hidden_sizes, output_size):</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    w1 <span class="op">=</span> random.normal(rng, (input_size, hidden_sizes[<span class="dv">0</span>])) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    b1 <span class="op">=</span> jnp.zeros((hidden_sizes[<span class="dv">0</span>],))</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    w2 <span class="op">=</span> random.normal(rng, (hidden_sizes[<span class="dv">0</span>], hidden_sizes[<span class="dv">1</span>])) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    b2 <span class="op">=</span> jnp.zeros((hidden_sizes[<span class="dv">1</span>],))</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    w3 <span class="op">=</span> random.normal(rng, (hidden_sizes[<span class="dv">1</span>], output_size)) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    b3 <span class="op">=</span> jnp.zeros((output_size,))</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w1, b1, w2, b2, w3, b3</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir los tamaños de la red</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>input_size <span class="op">=</span> <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>  <span class="co"># Tamaño de la imagen aplanada</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>hidden_sizes <span class="op">=</span> [<span class="dv">300</span>, <span class="dv">100</span>]  <span class="co"># Tamaño de las capas ocultas</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>output_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># Número de clases</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar parámetros</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> random.PRNGKey(<span class="dv">0</span>)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> inicializar_pesos(rng, input_size, hidden_sizes, output_size)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="definir-la-función-de-pérdida-y-la-retropropagación" class="level3">
+<h3 class="anchored" data-anchor-id="definir-la-función-de-pérdida-y-la-retropropagación">3. Definir la Función de Pérdida y la Retropropagación</h3>
+<p>La función de pérdida será la <strong>entropía cruzada</strong>. Esta está basada en la entropía de Shannon y consiste en</p>
+<p><span class="math display">\[
+-\left\langle \sum_{cat.} y \ln(y_{out})\right\rangle\,,
+\]</span></p>
+<p>donde <span class="math inline">\(y_{out}\)</span> es la probabilidad predicha por la red para cada clase.</p>
+<p>Calcularemos los gradientes de esta pérdida con respecto a los pesos utilizando <code>jax.grad</code>.</p>
+<div id="e81020b3" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de pérdida (Entropía Cruzada)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_entropy_loss(params, x, y):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> mlp(params, x)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>jnp.mean(jnp.<span class="bu">sum</span>(y <span class="op">*</span> jnp.log(preds), axis<span class="op">=-</span><span class="dv">1</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para calcular la precisión</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(params, x, y):</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> jnp.argmax(mlp(params, x), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.mean(predictions <span class="op">==</span> y)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de retropropagación y actualización de pesos</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> actualizar_pesos(params, x, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>):</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calcular gradientes</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> grad(cross_entropy_loss)(params, x, y)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar los pesos</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> [w <span class="op">-</span> learning_rate <span class="op">*</span> dw</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> w, dw <span class="kw">in</span> <span class="bu">zip</span>(params, grads)]</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> params</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="entrenamiento-de-la-red" class="level3">
+<h3 class="anchored" data-anchor-id="entrenamiento-de-la-red">4. Entrenamiento de la Red</h3>
+<p>El siguiente código entrena la red, no está optimizado y es bastante lento.</p>
+<div id="7ba40cb2" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrenamiento de la red</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">64</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>accuracies <span class="op">=</span> []</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dividimos los datos en minibatches</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    num_batches <span class="op">=</span> <span class="bu">len</span>(train_images) <span class="op">//</span> batch_size</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_batches):</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        x_batch <span class="op">=</span> train_images[i<span class="op">*</span>batch_size:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>batch_size]</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        y_batch <span class="op">=</span> jnp.eye(<span class="dv">10</span>)[train_labels[i<span class="op">*</span>batch_size:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>batch_size]]  <span class="co"># One-hot encoding</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Actualizar los pesos usando el gradiente</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> actualizar_pesos(params, x_batch, y_batch, learning_rate)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evaluar la precisión en el conjunto de prueba</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    test_acc <span class="op">=</span> accuracy(params, test_images, test_labels)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    accuracies.append(test_acc)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Época </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">, Precisión en test: </span><span class="sc">{</span>test_acc<span class="sc">:.3f}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Época 1, Precisión en test: 0.180
+Época 2, Precisión en test: 0.523
+Época 3, Precisión en test: 0.650
+Época 4, Precisión en test: 0.694
+Época 5, Precisión en test: 0.725
+Época 6, Precisión en test: 0.748
+Época 7, Precisión en test: 0.765
+Época 8, Precisión en test: 0.779
+Época 9, Precisión en test: 0.790
+Época 10, Precisión en test: 0.798
+Época 11, Precisión en test: 0.804
+Época 12, Precisión en test: 0.810
+Época 13, Precisión en test: 0.814
+Época 14, Precisión en test: 0.818
+Época 15, Precisión en test: 0.820
+Época 16, Precisión en test: 0.823
+Época 17, Precisión en test: 0.827
+Época 18, Precisión en test: 0.830
+Época 19, Precisión en test: 0.833
+Época 20, Precisión en test: 0.837
+Época 21, Precisión en test: 0.839
+Época 22, Precisión en test: 0.842
+Época 23, Precisión en test: 0.844
+Época 24, Precisión en test: 0.846
+Época 25, Precisión en test: 0.848
+Época 26, Precisión en test: 0.849
+Época 27, Precisión en test: 0.850
+Época 28, Precisión en test: 0.851
+Época 29, Precisión en test: 0.851
+Época 30, Precisión en test: 0.853</code></pre>
+</div>
+</div>
+<div id="6a117c77" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="bu">len</span>(accuracies)) <span class="op">+</span> <span class="dv">1</span>, accuracies)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Época"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Precisión en el conjunto de prueba"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>Text(0, 0.5, 'Precisión en el conjunto de prueba')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="23_redes_neuronales_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="tareas" class="level1">
+<h1>¡Tareas!</h1>
+<section id="tarea-11.6" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-11.6">Tarea 11.6</h2>
+<p>Repita el ejemplo de Fashion MNIST usando la librería Flax. Compare los tiempos de entrenamiento y la precisión obtenida.</p>
+</section>
+<section id="tarea-11.7" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-11.7">Tarea 11.7</h2>
+<p>En el ejemplo hecho en clase con Fashion MNIST, modifique el código para que el entrenamiento pare cuando la pérdida en el conjunto “test” no cambie a dos cifras decimales durante más de tres épocas.</p>
+<p>Esta estrategia se llama “early stopping”.</p>
+<p>Nota: Debe editar el código escrito en clase, no se puede usar una librería por fuera de jax o numpy.</p>
+</section>
+<section id="tarea-11.8" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-11.8">Tarea 11.8</h2>
+<p>Repita el ejemplo de Fashion MNIST con varios algoritmos diferentes de optimización. Al menos gradiente con momentum y RMSProp. Discuta la diferencia en los resultados obtenidos.</p>
+</section>
+<section id="tarea-11.9" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-11.9">Tarea 11.9</h2>
+<p>En el ejemplo de Fashion MNIST, use dos capas escondidas con 20 neuronas cada una en vez de las dos capas usadas en clase. Explique los resultados obtenidos.</p>
+</section>
+<section id="tarea-11.10" class="level2">
+<h2 class="anchored" data-anchor-id="tarea-11.10">Tarea 11.10</h2>
+<p>Repita el ejemplo de Fashion MNIST usando solo el <span class="math inline">\(10\%\)</span> de las imágenes para el conjunto de entrenamiento. Explique los resultados obtenidos.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jorgenorena\.github\.io\/metodos-numericos-sitio\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

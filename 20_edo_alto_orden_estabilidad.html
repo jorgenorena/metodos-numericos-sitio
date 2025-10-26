@@ -280,6 +280,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./22_descenso_de_gradiente.html">
  <span class="dropdown-text">Descenso de gradiente</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./23_redes_neuronales.html">
+ <span class="dropdown-text">Redes neuronales</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -490,6 +494,12 @@ window.Quarto = {
  <span class="menu-text">Descenso de gradiente</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23_redes_neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Redes neuronales</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -540,7 +550,7 @@ window.Quarto = {
 </header>
 
 
-<div id="46c43852" class="cell" data-execution_count="1">
+<div id="e2e8ce19" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -567,7 +577,7 @@ y_1(a) = \alpha_1\,,\quad y_2(a) = \alpha_2\,,\quad ...\,, \quad y_n(a) = \alpha
 \]</span></p>
 <p>para todo <span class="math inline">\(u_i\)</span>. Cuando se satisface esta condición de Lpfschitz, el sistema tene una solución única.</p>
 <p>Generalizar los métodos ya vistos es directo.</p>
-<div id="08f5d396" class="cell" data-execution_count="2">
+<div id="ccd69904" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4s(f, a, b, yo, N):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
@@ -609,7 +619,7 @@ y_2'(t) &amp;= f(t, y_1, y_2) \,.
 <p><span class="math display">\[
 y''(t) - 2y'(t) + 2y(t) = e^{2t}\sin(t)\,,\quad 0\leq t\leq 1\,,\quad y(0) = -0.4\,,\quad y'(0)= -0.6
 \]</span></p>
-<div id="9a8be0ab" class="cell" data-execution_count="3">
+<div id="19b31df4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array([y[<span class="dv">1</span>], <span class="dv">2</span><span class="op">*</span>y[<span class="dv">1</span>] <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>y[<span class="dv">0</span>] <span class="op">+</span> np.exp(<span class="dv">2</span><span class="op">*</span>t)<span class="op">*</span>np.sin(t)])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -617,7 +627,7 @@ y''(t) - 2y'(t) + 2y(t) = e^{2t}\sin(t)\,,\quad 0\leq t\leq 1\,,\quad y(0) = -0.
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>yo <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.6</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="15efffd6" class="cell" data-execution_count="4">
+<div id="9ce2b814" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rk4s(f, a, b, yo, <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>(array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ]),
@@ -629,11 +639,11 @@ y''(t) - 2y'(t) + 2y(t) = e^{2t}\sin(t)\,,\quad 0\leq t\leq 1\,,\quad y(0) = -0.
           2.57876634]]))</code></pre>
 </div>
 </div>
-<div id="74b9b0fd" class="cell" data-execution_count="5">
+<div id="60e74524" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exacta(t):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.2</span><span class="op">*</span>np.exp(<span class="dv">2</span><span class="op">*</span>t)<span class="op">*</span>(np.sin(t) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>np.cos(t))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="684888ba" class="cell" data-execution_count="6">
+<div id="95f74d83" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> rk4s(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.plot(sol[<span class="dv">0</span>], sol[<span class="dv">1</span>][<span class="dv">0</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -644,7 +654,7 @@ y''(t) - 2y'(t) + 2y(t) = e^{2t}\sin(t)\,,\quad 0\leq t\leq 1\,,\quad y(0) = -0.
 </div>
 </div>
 </div>
-<div id="7b7a3bc0" class="cell" data-execution_count="7">
+<div id="8de3fc39" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.plot(sol[<span class="dv">0</span>], sol[<span class="dv">1</span>][<span class="dv">0</span>] <span class="op">-</span> exacta(sol[<span class="dv">0</span>]))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -692,7 +702,7 @@ w_{i+1} = w_i + h\phi(t_i, w_i, h)\,,
 </section>
 <section id="ecuaciones-diferenciales-rígidas" class="level1">
 <h1>Ecuaciones diferenciales rígidas</h1>
-<div id="1dbf0472" class="cell" data-execution_count="8">
+<div id="a4f7e2d4" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array([<span class="dv">9</span><span class="op">*</span>y[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">24</span><span class="op">*</span>y[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>np.cos(t) <span class="op">-</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>np.sin(t),</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                    <span class="op">-</span><span class="dv">24</span><span class="op">*</span>y[<span class="dv">0</span>] <span class="op">-</span> <span class="dv">51</span><span class="op">*</span>y[<span class="dv">1</span>] <span class="op">-</span> <span class="dv">9</span><span class="op">*</span>np.cos(t) <span class="op">+</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>np.sin(t)])</span>
@@ -701,16 +711,16 @@ w_{i+1} = w_i + h\phi(t_i, w_i, h)\,,
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="17dbe7b8" class="cell" data-execution_count="9">
+<div id="25b2b227" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exacta(t):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="dv">2</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="dv">3</span><span class="op">*</span>t) <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">39</span><span class="op">*</span>t) <span class="op">+</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>np.cos(t), </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span>np.exp(<span class="op">-</span><span class="dv">3</span><span class="op">*</span>t) <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="dv">39</span><span class="op">*</span>t) <span class="op">-</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>np.cos(t)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7fb4573d" class="cell" data-execution_count="10">
+<div id="50aa5d25" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sol_10 <span class="op">=</span> rk4s(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sol_20 <span class="op">=</span> rk4s(f, a, b, yo, <span class="dv">20</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="dbbbb9f9" class="cell" data-execution_count="11">
+<div id="fcd70974" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.plot(sol_10[<span class="dv">0</span>], sol_10[<span class="dv">1</span>][<span class="dv">0</span>] <span class="op">-</span> exacta(sol_10[<span class="dv">0</span>])[<span class="dv">0</span>])</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.plot(sol_20[<span class="dv">0</span>], sol_20[<span class="dv">1</span>][<span class="dv">0</span>] <span class="op">-</span> exacta(sol_20[<span class="dv">0</span>])[<span class="dv">0</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -721,7 +731,7 @@ w_{i+1} = w_i + h\phi(t_i, w_i, h)\,,
 </div>
 </div>
 </div>
-<div id="e2a972ff" class="cell" data-execution_count="12">
+<div id="89fd8c55" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.plot(sol_10[<span class="dv">0</span>], sol_10[<span class="dv">1</span>][<span class="dv">1</span>] <span class="op">-</span> exacta(sol_10[<span class="dv">0</span>])[<span class="dv">1</span>])</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.plot(sol_20[<span class="dv">0</span>], sol_20[<span class="dv">1</span>][<span class="dv">1</span>] <span class="op">-</span> exacta(sol_20[<span class="dv">0</span>])[<span class="dv">1</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -756,7 +766,7 @@ w_o &amp;= \alpha \\
 w_{j+1} &amp;= w_j + \frac{h}{2} (f(t_{j+1}, w_{j+1}) + f(t_j, w_j))\,,
 \end{align}\]</span></p>
 <p>el problema es que se necesita saber <span class="math inline">\(w_{j+1}\)</span> que requiere despejar esta ecuación. Para ese despeje se puede usar el método de Newton.</p>
-<div id="81d192bd" class="cell" data-execution_count="13">
+<div id="f5bb10cc" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MaxIterations(<span class="pp">Exception</span>):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -797,7 +807,7 @@ w_{j+1} &amp;= w_j + \frac{h}{2} (f(t_{j+1}, w_{j+1}) + f(t_j, w_j))\,,
 y'(t) = 5e^{5t}(y - t)^2 - 1\,,\quad 0\leq t\leq 1\,,\quad y(0) = -1\,.
 \]</span></p>
 <p>La solución analítica es <span class="math inline">\(y(t) = t - e^{-5t}\)</span>.</p>
-<div id="fb293e3c" class="cell" data-execution_count="14">
+<div id="876238ba" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">5</span><span class="op">*</span>np.exp(<span class="dv">5</span><span class="op">*</span>t)<span class="op">*</span>(y <span class="op">-</span> t)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -811,7 +821,7 @@ y'(t) = 5e^{5t}(y - t)^2 - 1\,,\quad 0\leq t\leq 1\,,\quad y(0) = -1\,.
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exacta(t):</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> t <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">5</span><span class="op">*</span>t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="31d99129" class="cell" data-execution_count="15">
+<div id="f6c7b25b" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4(f, a, b, yo, N):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
@@ -835,20 +845,20 @@ y'(t) = 5e^{5t}(y - t)^2 - 1\,,\quad 0\leq t\leq 1\,,\quad y(0) = -1\,.
 <span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, sol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9c799936" class="cell" data-execution_count="16">
+<div id="ed7b42a1" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sol_rk4_5 <span class="op">=</span> rk4(f, a, b, yo, <span class="dv">5</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>sol_rk4_20 <span class="op">=</span> rk4(f, a, b, yo, <span class="dv">20</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>sol_tn_5 <span class="op">=</span> tn(f, df, a, b, yo, <span class="fl">1e-6</span>, <span class="dv">5</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>sol_tn_20 <span class="op">=</span> tn(f, df, a, b, yo, <span class="fl">1e-6</span>, <span class="dv">20</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4844ce39" class="cell" data-execution_count="17">
+<div id="d04a50db" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>exacta(sol_rk4_5[<span class="dv">0</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>array([-1.        , -0.16787944,  0.26466472,  0.55021293,  0.78168436,
         0.99326205])</code></pre>
 </div>
 </div>
-<div id="aab5fbd1" class="cell" data-execution_count="18">
+<div id="29900163" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sol_rk4_5</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>(array([0. , 0.2, 0.4, 0.6, 0.8, 1. ]),
@@ -856,7 +866,7 @@ y'(t) = 5e^{5t}(y - t)^2 - 1\,,\quad 0\leq t\leq 1\,,\quad y(0) = -1\,.
          1.41234549e+000,  5.67600244e+015,  2.94453567e+275]))</code></pre>
 </div>
 </div>
-<div id="aa78c1cc" class="cell" data-execution_count="19">
+<div id="0db42695" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sol_tn_5</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>(array([0. , 0.2, 0.4, 0.6, 0.8, 1. ]),
@@ -864,7 +874,7 @@ y'(t) = 5e^{5t}(y - t)^2 - 1\,,\quad 0\leq t\leq 1\,,\quad y(0) = -1\,.
          0.94633261]))</code></pre>
 </div>
 </div>
-<div id="851da25e" class="cell" data-execution_count="20">
+<div id="c3d8eed3" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>exacta(sol_rk4_20[<span class="dv">0</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>array([-1.        , -0.72880078, -0.50653066, -0.32236655, -0.16787944,
@@ -874,7 +884,7 @@ y'(t) = 5e^{5t}(y - t)^2 - 1\,,\quad 0\leq t\leq 1\,,\quad y(0) = -1\,.
         0.99326205])</code></pre>
 </div>
 </div>
-<div id="435fbdb3" class="cell" data-execution_count="21">
+<div id="276a8a66" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sol_rk4_20</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>(array([0.  , 0.05, 0.1 , 0.15, 0.2 , 0.25, 0.3 , 0.35, 0.4 , 0.45, 0.5 ,
@@ -886,7 +896,7 @@ y'(t) = 5e^{5t}(y - t)^2 - 1\,,\quad 0\leq t\leq 1\,,\quad y(0) = -1\,.
          0.93870176]))</code></pre>
 </div>
 </div>
-<div id="3194a89d" class="cell" data-execution_count="22">
+<div id="350dbda9" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sol_tn_20</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>(array([0.  , 0.05, 0.1 , 0.15, 0.2 , 0.25, 0.3 , 0.35, 0.4 , 0.45, 0.5 ,
@@ -926,19 +936,19 @@ y_{i+1} - \frac{18}{11}y_{i} + \frac{9}{11}y_{i-1} - \frac{2}{11}y_{i-2} &amp;= 
 </ul>
 <p>Usa otros métodos que también son combinaciones de cosas que hemos visto en la clase.</p>
 <pre><code>    scipy.integrate.solve_ivp(fun, t_span, y0, method='RK45', t_eval=None, dense_output=False, events=None, vectorized=False, args=None, **options)</code></pre>
-<div id="f0918286" class="cell" data-execution_count="23">
+<div id="cd335d3d" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> solve_ivp</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exponential_decay(t, y): <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> y</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> solve_ivp(exponential_decay, [<span class="dv">0</span>, <span class="dv">10</span>], [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="88783848" class="cell" data-execution_count="24">
+<div id="38e5d2c9" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sol.t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[ 0.          0.11487653  1.26364188  3.06061781  4.81611105  6.57445806
   8.33328988 10.        ]</code></pre>
 </div>
 </div>
-<div id="fe07b6c8" class="cell" data-execution_count="25">
+<div id="ba98493c" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sol.y)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[2.         1.88836035 1.06327177 0.43319312 0.18017253 0.07483045
@@ -949,16 +959,16 @@ y_{i+1} - \frac{18}{11}y_{i} + \frac{9}{11}y_{i-1} - \frac{2}{11}y_{i-2} &amp;= 
   0.12428631 0.05403123]]</code></pre>
 </div>
 </div>
-<div id="211cd812" class="cell" data-execution_count="26">
+<div id="4ab34a45" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lotkavolterra(t, z, a, b, c, d):</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> z</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [a<span class="op">*</span>x <span class="op">-</span> b<span class="op">*</span>x<span class="op">*</span>y, <span class="op">-</span>c<span class="op">*</span>y <span class="op">+</span> d<span class="op">*</span>x<span class="op">*</span>y]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b83d9e81" class="cell" data-execution_count="27">
+<div id="e8c3f918" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> solve_ivp(lotkavolterra, [<span class="dv">0</span>, <span class="dv">15</span>], [<span class="dv">10</span>, <span class="dv">5</span>], args<span class="op">=</span>(<span class="fl">1.5</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>),</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                dense_output<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6201c45a" class="cell" data-execution_count="28">
+<div id="66c7adcf" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">15</span>, <span class="dv">300</span>)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> sol.sol(t)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1027,7 +1037,7 @@ y_{i+1} - \frac{18}{11}y_{i} + \frac{9}{11}y_{i-1} - \frac{2}{11}y_{i-2} = \frac
 \]</span></p>
 <p>como este es un método implícito, es necesario implementar un método de Newton similar a lo hecho para la regla del trapecio.</p>
 <p>Aplique este algoritmo a la solución del problema visto en clase:</p>
-<div id="f5f0718c" class="cell" data-execution_count="29">
+<div id="66deffc8" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">5</span><span class="op">*</span>np.exp(<span class="dv">5</span><span class="op">*</span>t)<span class="op">*</span>(y <span class="op">-</span> t)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>

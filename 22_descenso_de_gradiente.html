@@ -280,6 +280,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./22_descenso_de_gradiente.html">
  <span class="dropdown-text">Descenso de gradiente</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./23_redes_neuronales.html">
+ <span class="dropdown-text">Redes neuronales</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -490,6 +494,12 @@ window.Quarto = {
  <span class="menu-text">Descenso de gradiente</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23_redes_neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Redes neuronales</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -571,14 +581,14 @@ window.Quarto = {
 </section>
 <section id="trabajando-con-arrays-de-jax" class="level2">
 <h2 class="anchored" data-anchor-id="trabajando-con-arrays-de-jax">Trabajando con arrays de JAX</h2>
-<div id="7500ea44" class="cell" data-execution_count="1">
+<div id="945fcee8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Crear arrays</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> jnp.array([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="074afa3a" class="cell" data-execution_count="2">
+<div id="f4fb5301" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sumar arrays</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="op">+</span> y</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -586,7 +596,7 @@ window.Quarto = {
 <pre><code>[5 7 9]</code></pre>
 </div>
 </div>
-<div id="8accabd2" class="cell" data-execution_count="3">
+<div id="72bd4b7d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Producto punto</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> jnp.dot(x, y)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -598,7 +608,7 @@ window.Quarto = {
 </section>
 <section id="diferenciación-automática-con-grad" class="level2">
 <h2 class="anchored" data-anchor-id="diferenciación-automática-con-grad">Diferenciación automática con <code>grad</code></h2>
-<div id="60f255de" class="cell" data-execution_count="4">
+<div id="d2623f69" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Defina una función</span></span>
@@ -608,14 +618,14 @@ window.Quarto = {
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Calcule la derivada</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df_dx <span class="op">=</span> jax.grad(f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="02988a18" class="cell" data-execution_count="5">
+<div id="105a30dc" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_dx(<span class="fl">3.0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>Array(8., dtype=float32, weak_type=True)</code></pre>
 </div>
 </div>
 <p>También podemos calcular gradientes de funciones de varios parámetros:</p>
-<div id="4a159cf1" class="cell" data-execution_count="6">
+<div id="3eba491a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x, y):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x<span class="op">*</span>y</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -630,17 +640,17 @@ window.Quarto = {
 </section>
 <section id="acelerar-código-con-jit" class="level2">
 <h2 class="anchored" data-anchor-id="acelerar-código-con-jit">Acelerar código con JIT</h2>
-<div id="fb8f55fc" class="cell" data-execution_count="7">
+<div id="fdeffe0c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.sin(x) <span class="op">+</span> jnp.cos(x)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>f_jit <span class="op">=</span> jax.jit(f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="aa6bd67d" class="cell" data-execution_count="8">
+<div id="6b00abab" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100_000_000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6a7be279" class="cell" data-execution_count="9">
+<div id="35b1b732" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se necesita ejecutar la función una vez para obligarla a compilar</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>f_jit(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -648,22 +658,22 @@ window.Quarto = {
        -1.3830926], dtype=float32)</code></pre>
 </div>
 </div>
-<div id="3e6b93cf" class="cell" data-execution_count="10">
+<div id="3165058a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sin JIT</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>f(x)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sin JIT: </span><span class="sc">{</span>time<span class="sc">.</span>time() <span class="op">-</span> start<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sin JIT: 0.6554825305938721</code></pre>
+<pre><code>Sin JIT: 0.8004708290100098</code></pre>
 </div>
 </div>
-<div id="98830539" class="cell" data-execution_count="11">
+<div id="18ae4097" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con JIT</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>f_jit(x)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Con JIT: </span><span class="sc">{</span>time<span class="sc">.</span>time() <span class="op">-</span> start<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Con JIT: 0.0010113716125488281</code></pre>
+<pre><code>Con JIT: 0.36315298080444336</code></pre>
 </div>
 </div>
 <p>Nota: Esta no es la manera más precisa para medir tiempos. Es sólo para ilustrar que el código compilado es más rápido.</p>
@@ -687,7 +697,7 @@ f(\vec{\theta}) = \sum_i (\hat{y}_{\vec{\theta}}(x_i)) - y_i)^2\,,
 y(x) = e^{-x/2}\,.
 \]</span></p>
 <p>Creamos datos ficticios con un ruido:</p>
-<div id="0ad9acc7" class="cell" data-execution_count="12">
+<div id="daa91328" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar datos ficticios</span></span>
@@ -700,20 +710,20 @@ y(x) = e^{-x/2}\,.
 <p><span class="math display">\[
 \hat{y}_{\vec{\theta}}(x) = \theta_0e^{-\theta_1 x}\,.
 \]</span></p>
-<div id="8c6464c1" class="cell" data-execution_count="13">
+<div id="6bc8caa8" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modelo(x, theta):</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta[<span class="dv">0</span>]<span class="op">*</span>jnp.exp(<span class="op">-</span>theta[<span class="dv">1</span>]<span class="op">*</span>x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="minimización" class="level2">
 <h2 class="anchored" data-anchor-id="minimización">Minimización</h2>
 <p>Definimos primero la función a minimizar:</p>
-<div id="11852d4d" class="cell" data-execution_count="14">
+<div id="cbd2bc95" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> suma_cuadrados(theta, x, y):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    predicciones <span class="op">=</span> modelo(x, theta)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.<span class="bu">sum</span>((y <span class="op">-</span> predicciones)<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El siguiente es un algoritmo sencillo de minimización por descenso de gradiente:</p>
-<div id="02c36692" class="cell" data-execution_count="15">
+<div id="0d7958bb" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gradiente <span class="op">=</span> jax.grad(suma_cuadrados)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
@@ -727,7 +737,7 @@ y(x) = e^{-x/2}\,.
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0d10adb9" class="cell" data-execution_count="16">
+<div id="1179dc42" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -770,7 +780,7 @@ Iteración 2900, Suma cuadrados: 0.915155291557312
 Parámetros optimizados: [1.1409745  0.56464535 1.        ]</code></pre>
 </div>
 </div>
-<div id="82329bae" class="cell" data-execution_count="17">
+<div id="f336cdfc" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
@@ -797,7 +807,7 @@ Parámetros optimizados: [1.1409745  0.56464535 1.        ]</code></pre>
 <p><span class="math display">\[
 y(x) = (\theta_0 x)^2 e^{\theta_1 x}
 \]</span></p>
-<div id="70115b38" class="cell" data-execution_count="18">
+<div id="3e52671f" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar datos ficticios</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
@@ -866,7 +876,7 @@ Iteración 2900, Suma cuadrados: 3676.298583984375
 Parámetros optimizados: [-72.194016 414.01147 ]</code></pre>
 </div>
 </div>
-<div id="8f767da1" class="cell" data-execution_count="19">
+<div id="d719cd9a" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
@@ -894,7 +904,7 @@ Parámetros optimizados: [-72.194016 414.01147 ]</code></pre>
 \vec{\theta}_{t+1} = \vec{\theta}_t + \vec{m}_{t+1}\,.
 \]</span></p>
 <p>Escribamos un código que lo implemente en JAX</p>
-<div id="d95873d7" class="cell" data-execution_count="20">
+<div id="f12f67ee" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_momentum(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    velocity <span class="op">=</span> jnp.zeros_like(theta)  <span class="co"># Inicializar el término de velocidad</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -910,7 +920,7 @@ Parámetros optimizados: [-72.194016 414.01147 ]</code></pre>
 <span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="89b5cf57" class="cell" data-execution_count="21">
+<div id="cf6f6959" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -985,7 +995,7 @@ Parámetros optimizados: [-730.93976 4131.1123 ]</code></pre>
 <li>Aquí el parámetro <span class="math inline">\(\rho\)</span> controla cuánto se modifica <span class="math inline">\(\vec{s}\)</span> a cada paso. Para <span class="math inline">\(\rho\)</span> cercano a 1, se modifica muy poco y tiene una “memoria larga”. Para <span class="math inline">\(\rho\)</span> pequeño se modifica mucho pero tiene una “memoria corta” ya que su valor cambia rápidamente.</li>
 <li>El <span class="math inline">\(\epsilon\)</span> sirve solamente a que no haya divisiones por cero cuando alguna componente de <span class="math inline">\(\vec{s}\)</span> es cero.</li>
 </ul>
-<div id="c3d4a3e0" class="cell" data-execution_count="22">
+<div id="110d8021" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_rmsprop(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, beta<span class="op">=</span><span class="fl">0.9</span>, epsilon<span class="op">=</span><span class="fl">1e-8</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    cache <span class="op">=</span> jnp.zeros_like(theta)</span>
@@ -999,7 +1009,7 @@ Parámetros optimizados: [-730.93976 4131.1123 ]</code></pre>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="adb65862" class="cell" data-execution_count="23">
+<div id="35f0a872" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1072,7 +1082,7 @@ Parámetros optimizados: [1.9981217  0.50082964 1.        ]</code></pre>
 \end{align}
 \]</span></p>
 <p>El tercer y cuarto pasos sirven para hacer que <span class="math inline">\(\vec{m}\)</span> y <span class="math inline">\(\vec{s}\)</span> no sean demasiado pequeños durante las primeras iteraciones. De otra forma tenderán a estar cercanos a <span class="math inline">\(0\)</span> ya que ese es su valor inicial.</p>
-<div id="534c5952" class="cell" data-execution_count="24">
+<div id="9dccff42" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_adam(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, beta1<span class="op">=</span><span class="fl">0.9</span>, beta2<span class="op">=</span><span class="fl">0.999</span>, epsilon<span class="op">=</span><span class="fl">1e-8</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    m, v <span class="op">=</span> jnp.zeros_like(theta), jnp.zeros_like(theta)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, iterations <span class="op">+</span> <span class="dv">1</span>):</span>
@@ -1088,7 +1098,7 @@ Parámetros optimizados: [1.9981217  0.50082964 1.        ]</code></pre>
 <span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1715047b" class="cell" data-execution_count="25">
+<div id="4987babf" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1152,7 +1162,7 @@ Parámetros optimizados: [1.9952817  0.49972048 1.        ]</code></pre>
 <h1>Usando Flax</h1>
 <p>Estos métodos están ya todos programados en varias librerías. Una de las más usadas con JAX es Flax.</p>
 <p>Flax en general es una librería para aprendizaje automático con redes neuronales. Tiene también el descenso de gradiente.</p>
-<div id="b8ef4b27" class="cell" data-execution_count="26">
+<div id="ca5c76eb" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flax.training <span class="im">import</span> train_state  </span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> optax  </span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1202,8 +1212,8 @@ Parámetros optimizados: [1.9952817  0.49972048 1.        ]</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iteración 0, Suma cuadrados: 3267.79248046875
 Iteración 100, Suma cuadrados: 4.0442657470703125
-Iteración 200, Suma cuadrados: 4.04409646987915
-Iteración 300, Suma cuadrados: 4.044098377227783
+Iteración 200, Suma cuadrados: 4.044098377227783
+Iteración 300, Suma cuadrados: 4.044095039367676
 Iteración 400, Suma cuadrados: 4.04409122467041
 Iteración 500, Suma cuadrados: 4.044095039367676
 Iteración 600, Suma cuadrados: 4.044092178344727
@@ -1229,278 +1239,278 @@ Iteración 2500, Suma cuadrados: 4.044094085693359
 Iteración 2600, Suma cuadrados: 4.044095039367676
 Iteración 2700, Suma cuadrados: 4.044095039367676
 Iteración 2800, Suma cuadrados: 4.044095039367676
-Iteración 2900, Suma cuadrados: 4.378378868103027
-Iteración 3000, Suma cuadrados: 4.044100761413574
-Iteración 3100, Suma cuadrados: 4.085421562194824
-Iteración 3200, Suma cuadrados: 4.256494522094727
-Iteración 3300, Suma cuadrados: 4.188298225402832
-Iteración 3400, Suma cuadrados: 4.105156898498535
-Iteración 3500, Suma cuadrados: 4.12817907333374
-Iteración 3600, Suma cuadrados: 4.189826011657715
-Iteración 3700, Suma cuadrados: 5.0151286125183105
-Iteración 3800, Suma cuadrados: 4.06509256362915
-Iteración 3900, Suma cuadrados: 4.936222076416016
-Iteración 4000, Suma cuadrados: 4.102880001068115
-Iteración 4100, Suma cuadrados: 4.960261344909668
-Iteración 4200, Suma cuadrados: 4.549635887145996
-Iteración 4300, Suma cuadrados: 4.4819111824035645
-Iteración 4400, Suma cuadrados: 4.646372318267822
-Iteración 4500, Suma cuadrados: 8.186525344848633
-Iteración 4600, Suma cuadrados: 5.039458274841309
-Iteración 4700, Suma cuadrados: 5.048158645629883
-Iteración 4800, Suma cuadrados: 5.50186824798584
-Iteración 4900, Suma cuadrados: 4.047646522521973
-Iteración 5000, Suma cuadrados: 5.568198204040527
-Iteración 5100, Suma cuadrados: 4.2411346435546875
-Iteración 5200, Suma cuadrados: 6.036315441131592
-Iteración 5300, Suma cuadrados: 4.237536907196045
-Iteración 5400, Suma cuadrados: 4.958717346191406
-Iteración 5500, Suma cuadrados: 4.0475754737854
-Iteración 5600, Suma cuadrados: 4.390036106109619
-Iteración 5700, Suma cuadrados: 4.679281234741211
-Iteración 5800, Suma cuadrados: 4.342476844787598
-Iteración 5900, Suma cuadrados: 5.943557262420654
-Iteración 6000, Suma cuadrados: 4.044121742248535
-Iteración 6100, Suma cuadrados: 4.056914329528809
-Iteración 6200, Suma cuadrados: 5.209911346435547
-Iteración 6300, Suma cuadrados: 5.58004093170166
-Iteración 6400, Suma cuadrados: 4.3341264724731445
-Iteración 6500, Suma cuadrados: 4.075661659240723
-Iteración 6600, Suma cuadrados: 4.728402137756348
-Iteración 6700, Suma cuadrados: 4.519838333129883
-Iteración 6800, Suma cuadrados: 4.799066543579102
-Iteración 6900, Suma cuadrados: 9.256448745727539
-Iteración 7000, Suma cuadrados: 4.992636203765869
-Iteración 7100, Suma cuadrados: 4.081564903259277
-Iteración 7200, Suma cuadrados: 4.346796989440918
-Iteración 7300, Suma cuadrados: 6.273856163024902
-Iteración 7400, Suma cuadrados: 5.311867713928223
-Iteración 7500, Suma cuadrados: 4.628769874572754
-Iteración 7600, Suma cuadrados: 4.162936210632324
-Iteración 7700, Suma cuadrados: 4.665977478027344
-Iteración 7800, Suma cuadrados: 6.228248596191406
-Iteración 7900, Suma cuadrados: 4.433338165283203
-Iteración 8000, Suma cuadrados: 6.302059650421143
-Iteración 8100, Suma cuadrados: 5.826891899108887
-Iteración 8200, Suma cuadrados: 4.548940181732178
-Iteración 8300, Suma cuadrados: 5.3484907150268555
-Iteración 8400, Suma cuadrados: 4.286839485168457
-Iteración 8500, Suma cuadrados: 4.052490234375
-Iteración 8600, Suma cuadrados: 4.048442840576172
-Iteración 8700, Suma cuadrados: 4.071995735168457
-Iteración 8800, Suma cuadrados: 6.667088508605957
-Iteración 8900, Suma cuadrados: 5.165504455566406
-Iteración 9000, Suma cuadrados: 4.67374324798584
-Iteración 9100, Suma cuadrados: 6.389083385467529
-Iteración 9200, Suma cuadrados: 4.153561592102051
-Iteración 9300, Suma cuadrados: 10.721175193786621
-Iteración 9400, Suma cuadrados: 6.999333381652832
-Iteración 9500, Suma cuadrados: 6.560340404510498
-Iteración 9600, Suma cuadrados: 19.88501739501953
-Iteración 9700, Suma cuadrados: 4.084399700164795
-Iteración 9800, Suma cuadrados: 4.707835674285889
-Iteración 9900, Suma cuadrados: 4.419225215911865
-Iteración 10000, Suma cuadrados: 8.557626724243164
-Iteración 10100, Suma cuadrados: 4.587788105010986
-Iteración 10200, Suma cuadrados: 4.480609893798828
-Iteración 10300, Suma cuadrados: 4.385203838348389
-Iteración 10400, Suma cuadrados: 5.195972442626953
-Iteración 10500, Suma cuadrados: 4.051523685455322
-Iteración 10600, Suma cuadrados: 4.101003170013428
-Iteración 10700, Suma cuadrados: 8.093221664428711
-Iteración 10800, Suma cuadrados: 4.677950859069824
-Iteración 10900, Suma cuadrados: 4.361325740814209
-Iteración 11000, Suma cuadrados: 5.016796588897705
-Iteración 11100, Suma cuadrados: 14.849967002868652
-Iteración 11200, Suma cuadrados: 12.97862434387207
-Iteración 11300, Suma cuadrados: 4.914369106292725
-Iteración 11400, Suma cuadrados: 4.214740753173828
-Iteración 11500, Suma cuadrados: 4.050567626953125
-Iteración 11600, Suma cuadrados: 4.05971622467041
-Iteración 11700, Suma cuadrados: 4.044248580932617
-Iteración 11800, Suma cuadrados: 4.049020767211914
-Iteración 11900, Suma cuadrados: 4.049323558807373
-Iteración 12000, Suma cuadrados: 4.618307113647461
-Iteración 12100, Suma cuadrados: 4.053016185760498
-Iteración 12200, Suma cuadrados: 7.385361671447754
-Iteración 12300, Suma cuadrados: 4.498124599456787
-Iteración 12400, Suma cuadrados: 4.044185161590576
-Iteración 12500, Suma cuadrados: 10.788297653198242
-Iteración 12600, Suma cuadrados: 5.007265090942383
-Iteración 12700, Suma cuadrados: 4.0736870765686035
-Iteración 12800, Suma cuadrados: 6.280276298522949
-Iteración 12900, Suma cuadrados: 4.297097206115723
-Iteración 13000, Suma cuadrados: 4.168648719787598
-Iteración 13100, Suma cuadrados: 4.126121520996094
-Iteración 13200, Suma cuadrados: 4.418938636779785
-Iteración 13300, Suma cuadrados: 4.061413288116455
-Iteración 13400, Suma cuadrados: 4.259585857391357
-Iteración 13500, Suma cuadrados: 4.085868835449219
-Iteración 13600, Suma cuadrados: 4.857278347015381
-Iteración 13700, Suma cuadrados: 4.045514106750488
-Iteración 13800, Suma cuadrados: 4.08040714263916
-Iteración 13900, Suma cuadrados: 4.058291435241699
-Iteración 14000, Suma cuadrados: 4.123171329498291
-Iteración 14100, Suma cuadrados: 5.572504997253418
-Iteración 14200, Suma cuadrados: 4.3748393058776855
-Iteración 14300, Suma cuadrados: 6.503363609313965
-Iteración 14400, Suma cuadrados: 4.10191535949707
-Iteración 14500, Suma cuadrados: 5.094751358032227
-Iteración 14600, Suma cuadrados: 4.136122703552246
-Iteración 14700, Suma cuadrados: 4.048794746398926
-Iteración 14800, Suma cuadrados: 4.282320976257324
-Iteración 14900, Suma cuadrados: 4.2270097732543945
-Iteración 15000, Suma cuadrados: 4.568131923675537
-Iteración 15100, Suma cuadrados: 5.3159565925598145
-Iteración 15200, Suma cuadrados: 7.050052642822266
-Iteración 15300, Suma cuadrados: 4.128898620605469
-Iteración 15400, Suma cuadrados: 7.243470191955566
-Iteración 15500, Suma cuadrados: 4.881410121917725
-Iteración 15600, Suma cuadrados: 4.7174248695373535
-Iteración 15700, Suma cuadrados: 6.101970672607422
-Iteración 15800, Suma cuadrados: 4.174467086791992
-Iteración 15900, Suma cuadrados: 4.053658485412598
-Iteración 16000, Suma cuadrados: 4.724429130554199
-Iteración 16100, Suma cuadrados: 4.669770240783691
-Iteración 16200, Suma cuadrados: 4.092389106750488
-Iteración 16300, Suma cuadrados: 4.562745571136475
-Iteración 16400, Suma cuadrados: 4.710628986358643
-Iteración 16500, Suma cuadrados: 4.103532314300537
-Iteración 16600, Suma cuadrados: 4.819897174835205
-Iteración 16700, Suma cuadrados: 4.04442024230957
-Iteración 16800, Suma cuadrados: 4.1472673416137695
-Iteración 16900, Suma cuadrados: 4.756354331970215
-Iteración 17000, Suma cuadrados: 4.495976448059082
-Iteración 17100, Suma cuadrados: 4.495429992675781
-Iteración 17200, Suma cuadrados: 4.782022476196289
-Iteración 17300, Suma cuadrados: 4.161079406738281
-Iteración 17400, Suma cuadrados: 4.059715747833252
-Iteración 17500, Suma cuadrados: 4.568918228149414
-Iteración 17600, Suma cuadrados: 10.271867752075195
-Iteración 17700, Suma cuadrados: 4.593982696533203
-Iteración 17800, Suma cuadrados: 4.079536437988281
-Iteración 17900, Suma cuadrados: 9.320901870727539
-Iteración 18000, Suma cuadrados: 4.279262542724609
-Iteración 18100, Suma cuadrados: 4.069645404815674
-Iteración 18200, Suma cuadrados: 4.10253381729126
-Iteración 18300, Suma cuadrados: 9.037729263305664
-Iteración 18400, Suma cuadrados: 4.575282096862793
-Iteración 18500, Suma cuadrados: 4.373629570007324
-Iteración 18600, Suma cuadrados: 4.239956855773926
-Iteración 18700, Suma cuadrados: 4.327879905700684
-Iteración 18800, Suma cuadrados: 4.0467939376831055
-Iteración 18900, Suma cuadrados: 4.753669261932373
-Iteración 19000, Suma cuadrados: 5.1216654777526855
-Iteración 19100, Suma cuadrados: 4.357608318328857
-Iteración 19200, Suma cuadrados: 4.069084644317627
-Iteración 19300, Suma cuadrados: 4.163043022155762
-Iteración 19400, Suma cuadrados: 5.420801162719727
-Iteración 19500, Suma cuadrados: 4.385188102722168
-Iteración 19600, Suma cuadrados: 4.201962947845459
-Iteración 19700, Suma cuadrados: 10.448921203613281
-Iteración 19800, Suma cuadrados: 4.081995010375977
-Iteración 19900, Suma cuadrados: 4.10048770904541
-Iteración 20000, Suma cuadrados: 4.328042030334473
-Iteración 20100, Suma cuadrados: 4.077723503112793
-Iteración 20200, Suma cuadrados: 5.634390354156494
-Iteración 20300, Suma cuadrados: 5.060105800628662
-Iteración 20400, Suma cuadrados: 5.03296422958374
-Iteración 20500, Suma cuadrados: 5.403010368347168
-Iteración 20600, Suma cuadrados: 4.8474836349487305
-Iteración 20700, Suma cuadrados: 4.044343948364258
-Iteración 20800, Suma cuadrados: 4.268471717834473
-Iteración 20900, Suma cuadrados: 4.056460380554199
-Iteración 21000, Suma cuadrados: 5.033544540405273
-Iteración 21100, Suma cuadrados: 4.205602645874023
-Iteración 21200, Suma cuadrados: 5.612140655517578
-Iteración 21300, Suma cuadrados: 4.274725914001465
-Iteración 21400, Suma cuadrados: 4.0545501708984375
-Iteración 21500, Suma cuadrados: 4.142210960388184
-Iteración 21600, Suma cuadrados: 5.152800559997559
-Iteración 21700, Suma cuadrados: 4.623838424682617
-Iteración 21800, Suma cuadrados: 4.636653900146484
-Iteración 21900, Suma cuadrados: 5.749148368835449
-Iteración 22000, Suma cuadrados: 4.4026570320129395
-Iteración 22100, Suma cuadrados: 4.384618282318115
-Iteración 22200, Suma cuadrados: 4.076409339904785
-Iteración 22300, Suma cuadrados: 5.506251335144043
-Iteración 22400, Suma cuadrados: 4.894757270812988
-Iteración 22500, Suma cuadrados: 5.703993797302246
-Iteración 22600, Suma cuadrados: 4.769469261169434
-Iteración 22700, Suma cuadrados: 4.703991889953613
-Iteración 22800, Suma cuadrados: 4.802061080932617
-Iteración 22900, Suma cuadrados: 4.1179890632629395
-Iteración 23000, Suma cuadrados: 5.923108100891113
-Iteración 23100, Suma cuadrados: 10.78848648071289
-Iteración 23200, Suma cuadrados: 5.947134017944336
-Iteración 23300, Suma cuadrados: 4.619782447814941
-Iteración 23400, Suma cuadrados: 4.602867126464844
-Iteración 23500, Suma cuadrados: 4.09257173538208
-Iteración 23600, Suma cuadrados: 4.049860954284668
-Iteración 23700, Suma cuadrados: 5.038874626159668
-Iteración 23800, Suma cuadrados: 4.086027145385742
-Iteración 23900, Suma cuadrados: 7.672201156616211
-Iteración 24000, Suma cuadrados: 4.779215335845947
-Iteración 24100, Suma cuadrados: 4.360945701599121
-Iteración 24200, Suma cuadrados: 4.198965549468994
-Iteración 24300, Suma cuadrados: 7.034619331359863
-Iteración 24400, Suma cuadrados: 4.106297492980957
-Iteración 24500, Suma cuadrados: 6.641280174255371
-Iteración 24600, Suma cuadrados: 5.2626237869262695
-Iteración 24700, Suma cuadrados: 4.587072849273682
-Iteración 24800, Suma cuadrados: 4.55192232131958
-Iteración 24900, Suma cuadrados: 8.261409759521484
-Iteración 25000, Suma cuadrados: 4.7526702880859375
-Iteración 25100, Suma cuadrados: 4.4369096755981445
-Iteración 25200, Suma cuadrados: 8.08094596862793
-Iteración 25300, Suma cuadrados: 4.458401679992676
-Iteración 25400, Suma cuadrados: 4.044476509094238
-Iteración 25500, Suma cuadrados: 5.570254325866699
-Iteración 25600, Suma cuadrados: 4.226217269897461
-Iteración 25700, Suma cuadrados: 4.250701904296875
-Iteración 25800, Suma cuadrados: 4.343235969543457
-Iteración 25900, Suma cuadrados: 4.109622001647949
-Iteración 26000, Suma cuadrados: 5.783474922180176
-Iteración 26100, Suma cuadrados: 4.3527936935424805
-Iteración 26200, Suma cuadrados: 5.734874725341797
-Iteración 26300, Suma cuadrados: 4.235995769500732
-Iteración 26400, Suma cuadrados: 5.038271427154541
-Iteración 26500, Suma cuadrados: 4.044938087463379
-Iteración 26600, Suma cuadrados: 5.431797504425049
-Iteración 26700, Suma cuadrados: 4.070364952087402
-Iteración 26800, Suma cuadrados: 6.712237358093262
-Iteración 26900, Suma cuadrados: 9.356770515441895
-Iteración 27000, Suma cuadrados: 6.646126747131348
-Iteración 27100, Suma cuadrados: 5.953703880310059
-Iteración 27200, Suma cuadrados: 4.402318000793457
-Iteración 27300, Suma cuadrados: 4.225245475769043
-Iteración 27400, Suma cuadrados: 4.402858257293701
-Iteración 27500, Suma cuadrados: 4.301179885864258
-Iteración 27600, Suma cuadrados: 4.462892055511475
-Iteración 27700, Suma cuadrados: 4.572281837463379
-Iteración 27800, Suma cuadrados: 4.136159896850586
-Iteración 27900, Suma cuadrados: 7.962416648864746
-Iteración 28000, Suma cuadrados: 5.663497447967529
-Iteración 28100, Suma cuadrados: 4.6400346755981445
-Iteración 28200, Suma cuadrados: 4.044103622436523
-Iteración 28300, Suma cuadrados: 4.475828170776367
-Iteración 28400, Suma cuadrados: 4.966955661773682
-Iteración 28500, Suma cuadrados: 4.769802570343018
-Iteración 28600, Suma cuadrados: 4.381601333618164
-Iteración 28700, Suma cuadrados: 4.883777618408203
-Iteración 28800, Suma cuadrados: 6.313817024230957
-Iteración 28900, Suma cuadrados: 4.052225112915039
-Iteración 29000, Suma cuadrados: 4.084773063659668
-Iteración 29100, Suma cuadrados: 4.223156452178955
-Iteración 29200, Suma cuadrados: 4.058504104614258
-Iteración 29300, Suma cuadrados: 4.326818466186523
-Iteración 29400, Suma cuadrados: 4.678034782409668
-Iteración 29500, Suma cuadrados: 4.396735668182373
-Iteración 29600, Suma cuadrados: 4.145351886749268
-Iteración 29700, Suma cuadrados: 6.5868120193481445
-Iteración 29800, Suma cuadrados: 4.108952522277832
-Iteración 29900, Suma cuadrados: 4.076527118682861
-Parámetros optimizados: [1.997142  0.5018107 1.        1.       ]</code></pre>
+Iteración 2900, Suma cuadrados: 8.140222549438477
+Iteración 3000, Suma cuadrados: 4.0441203117370605
+Iteración 3100, Suma cuadrados: 4.083864212036133
+Iteración 3200, Suma cuadrados: 4.223141193389893
+Iteración 3300, Suma cuadrados: 4.04438591003418
+Iteración 3400, Suma cuadrados: 4.066340446472168
+Iteración 3500, Suma cuadrados: 4.0473313331604
+Iteración 3600, Suma cuadrados: 4.782164096832275
+Iteración 3700, Suma cuadrados: 4.545530319213867
+Iteración 3800, Suma cuadrados: 4.124549388885498
+Iteración 3900, Suma cuadrados: 5.193822860717773
+Iteración 4000, Suma cuadrados: 4.58197546005249
+Iteración 4100, Suma cuadrados: 4.065535545349121
+Iteración 4200, Suma cuadrados: 5.297750473022461
+Iteración 4300, Suma cuadrados: 4.2796406745910645
+Iteración 4400, Suma cuadrados: 5.396370887756348
+Iteración 4500, Suma cuadrados: 5.102736949920654
+Iteración 4600, Suma cuadrados: 4.270684242248535
+Iteración 4700, Suma cuadrados: 5.114706993103027
+Iteración 4800, Suma cuadrados: 7.473214626312256
+Iteración 4900, Suma cuadrados: 4.044869422912598
+Iteración 5000, Suma cuadrados: 5.246514320373535
+Iteración 5100, Suma cuadrados: 8.634164810180664
+Iteración 5200, Suma cuadrados: 4.045713424682617
+Iteración 5300, Suma cuadrados: 4.357792854309082
+Iteración 5400, Suma cuadrados: 4.50225830078125
+Iteración 5500, Suma cuadrados: 4.046539306640625
+Iteración 5600, Suma cuadrados: 5.647562503814697
+Iteración 5700, Suma cuadrados: 4.103586196899414
+Iteración 5800, Suma cuadrados: 4.3448166847229
+Iteración 5900, Suma cuadrados: 4.984243869781494
+Iteración 6000, Suma cuadrados: 7.862437725067139
+Iteración 6100, Suma cuadrados: 4.673740386962891
+Iteración 6200, Suma cuadrados: 4.135581970214844
+Iteración 6300, Suma cuadrados: 5.409382343292236
+Iteración 6400, Suma cuadrados: 4.522267818450928
+Iteración 6500, Suma cuadrados: 4.545810222625732
+Iteración 6600, Suma cuadrados: 4.68690299987793
+Iteración 6700, Suma cuadrados: 4.472934722900391
+Iteración 6800, Suma cuadrados: 4.114614486694336
+Iteración 6900, Suma cuadrados: 4.093858242034912
+Iteración 7000, Suma cuadrados: 4.463376045227051
+Iteración 7100, Suma cuadrados: 5.187305450439453
+Iteración 7200, Suma cuadrados: 4.208889007568359
+Iteración 7300, Suma cuadrados: 4.509934902191162
+Iteración 7400, Suma cuadrados: 4.322332382202148
+Iteración 7500, Suma cuadrados: 4.565561771392822
+Iteración 7600, Suma cuadrados: 4.421506881713867
+Iteración 7700, Suma cuadrados: 5.1818108558654785
+Iteración 7800, Suma cuadrados: 4.0732011795043945
+Iteración 7900, Suma cuadrados: 4.592609405517578
+Iteración 8000, Suma cuadrados: 4.733181953430176
+Iteración 8100, Suma cuadrados: 5.328281402587891
+Iteración 8200, Suma cuadrados: 7.799322605133057
+Iteración 8300, Suma cuadrados: 6.904780387878418
+Iteración 8400, Suma cuadrados: 4.428199768066406
+Iteración 8500, Suma cuadrados: 4.347289085388184
+Iteración 8600, Suma cuadrados: 5.189572334289551
+Iteración 8700, Suma cuadrados: 4.236367702484131
+Iteración 8800, Suma cuadrados: 4.106025695800781
+Iteración 8900, Suma cuadrados: 4.392693519592285
+Iteración 9000, Suma cuadrados: 5.368438720703125
+Iteración 9100, Suma cuadrados: 4.476973056793213
+Iteración 9200, Suma cuadrados: 4.38358211517334
+Iteración 9300, Suma cuadrados: 6.032645225524902
+Iteración 9400, Suma cuadrados: 4.155267238616943
+Iteración 9500, Suma cuadrados: 4.443551063537598
+Iteración 9600, Suma cuadrados: 4.136192798614502
+Iteración 9700, Suma cuadrados: 4.044668197631836
+Iteración 9800, Suma cuadrados: 6.031164169311523
+Iteración 9900, Suma cuadrados: 4.06586217880249
+Iteración 10000, Suma cuadrados: 4.112851142883301
+Iteración 10100, Suma cuadrados: 7.309657096862793
+Iteración 10200, Suma cuadrados: 4.15325927734375
+Iteración 10300, Suma cuadrados: 4.481555461883545
+Iteración 10400, Suma cuadrados: 4.439813613891602
+Iteración 10500, Suma cuadrados: 4.044394493103027
+Iteración 10600, Suma cuadrados: 5.628578186035156
+Iteración 10700, Suma cuadrados: 4.648001670837402
+Iteración 10800, Suma cuadrados: 4.399417877197266
+Iteración 10900, Suma cuadrados: 4.597678184509277
+Iteración 11000, Suma cuadrados: 4.28067684173584
+Iteración 11100, Suma cuadrados: 5.126941204071045
+Iteración 11200, Suma cuadrados: 4.287448406219482
+Iteración 11300, Suma cuadrados: 4.381411075592041
+Iteración 11400, Suma cuadrados: 4.282249450683594
+Iteración 11500, Suma cuadrados: 4.36629056930542
+Iteración 11600, Suma cuadrados: 4.968255996704102
+Iteración 11700, Suma cuadrados: 7.222647666931152
+Iteración 11800, Suma cuadrados: 5.421287536621094
+Iteración 11900, Suma cuadrados: 4.421457290649414
+Iteración 12000, Suma cuadrados: 4.404991149902344
+Iteración 12100, Suma cuadrados: 5.137217044830322
+Iteración 12200, Suma cuadrados: 4.147444725036621
+Iteración 12300, Suma cuadrados: 4.050764083862305
+Iteración 12400, Suma cuadrados: 6.319845199584961
+Iteración 12500, Suma cuadrados: 4.044315338134766
+Iteración 12600, Suma cuadrados: 4.835749626159668
+Iteración 12700, Suma cuadrados: 7.045258045196533
+Iteración 12800, Suma cuadrados: 4.565488815307617
+Iteración 12900, Suma cuadrados: 5.274136543273926
+Iteración 13000, Suma cuadrados: 4.777831077575684
+Iteración 13100, Suma cuadrados: 4.379836082458496
+Iteración 13200, Suma cuadrados: 4.21384334564209
+Iteración 13300, Suma cuadrados: 4.068807125091553
+Iteración 13400, Suma cuadrados: 4.396144866943359
+Iteración 13500, Suma cuadrados: 6.031885147094727
+Iteración 13600, Suma cuadrados: 4.060705184936523
+Iteración 13700, Suma cuadrados: 5.627315044403076
+Iteración 13800, Suma cuadrados: 4.289231300354004
+Iteración 13900, Suma cuadrados: 4.062831878662109
+Iteración 14000, Suma cuadrados: 6.670578479766846
+Iteración 14100, Suma cuadrados: 4.334878444671631
+Iteración 14200, Suma cuadrados: 4.159766674041748
+Iteración 14300, Suma cuadrados: 4.0569610595703125
+Iteración 14400, Suma cuadrados: 4.068578720092773
+Iteración 14500, Suma cuadrados: 4.3238139152526855
+Iteración 14600, Suma cuadrados: 4.1434326171875
+Iteración 14700, Suma cuadrados: 5.558236122131348
+Iteración 14800, Suma cuadrados: 4.631649017333984
+Iteración 14900, Suma cuadrados: 4.425412178039551
+Iteración 15000, Suma cuadrados: 4.193510055541992
+Iteración 15100, Suma cuadrados: 4.084900856018066
+Iteración 15200, Suma cuadrados: 7.2651519775390625
+Iteración 15300, Suma cuadrados: 4.932102680206299
+Iteración 15400, Suma cuadrados: 4.1158647537231445
+Iteración 15500, Suma cuadrados: 8.804788589477539
+Iteración 15600, Suma cuadrados: 4.937045097351074
+Iteración 15700, Suma cuadrados: 4.26634407043457
+Iteración 15800, Suma cuadrados: 5.1115827560424805
+Iteración 15900, Suma cuadrados: 5.739487648010254
+Iteración 16000, Suma cuadrados: 4.150198936462402
+Iteración 16100, Suma cuadrados: 4.631872177124023
+Iteración 16200, Suma cuadrados: 10.345563888549805
+Iteración 16300, Suma cuadrados: 4.961970329284668
+Iteración 16400, Suma cuadrados: 4.070531845092773
+Iteración 16500, Suma cuadrados: 4.045327663421631
+Iteración 16600, Suma cuadrados: 5.886414527893066
+Iteración 16700, Suma cuadrados: 4.827934265136719
+Iteración 16800, Suma cuadrados: 4.583343505859375
+Iteración 16900, Suma cuadrados: 4.4513421058654785
+Iteración 17000, Suma cuadrados: 5.976771354675293
+Iteración 17100, Suma cuadrados: 4.425599575042725
+Iteración 17200, Suma cuadrados: 4.315341472625732
+Iteración 17300, Suma cuadrados: 4.305272102355957
+Iteración 17400, Suma cuadrados: 6.093077659606934
+Iteración 17500, Suma cuadrados: 5.055633544921875
+Iteración 17600, Suma cuadrados: 5.986372470855713
+Iteración 17700, Suma cuadrados: 4.158754348754883
+Iteración 17800, Suma cuadrados: 4.156856060028076
+Iteración 17900, Suma cuadrados: 4.932376384735107
+Iteración 18000, Suma cuadrados: 5.10541296005249
+Iteración 18100, Suma cuadrados: 4.3180437088012695
+Iteración 18200, Suma cuadrados: 4.335972785949707
+Iteración 18300, Suma cuadrados: 4.0442962646484375
+Iteración 18400, Suma cuadrados: 4.057880401611328
+Iteración 18500, Suma cuadrados: 4.131072998046875
+Iteración 18600, Suma cuadrados: 4.829109191894531
+Iteración 18700, Suma cuadrados: 4.124711513519287
+Iteración 18800, Suma cuadrados: 4.984511375427246
+Iteración 18900, Suma cuadrados: 5.6168060302734375
+Iteración 19000, Suma cuadrados: 4.1251068115234375
+Iteración 19100, Suma cuadrados: 4.141744613647461
+Iteración 19200, Suma cuadrados: 4.743391036987305
+Iteración 19300, Suma cuadrados: 4.135076999664307
+Iteración 19400, Suma cuadrados: 4.937239646911621
+Iteración 19500, Suma cuadrados: 7.0298357009887695
+Iteración 19600, Suma cuadrados: 5.341719627380371
+Iteración 19700, Suma cuadrados: 4.948145866394043
+Iteración 19800, Suma cuadrados: 6.438948631286621
+Iteración 19900, Suma cuadrados: 5.151679515838623
+Iteración 20000, Suma cuadrados: 4.7523345947265625
+Iteración 20100, Suma cuadrados: 4.281454563140869
+Iteración 20200, Suma cuadrados: 5.119143009185791
+Iteración 20300, Suma cuadrados: 5.140933036804199
+Iteración 20400, Suma cuadrados: 4.389584541320801
+Iteración 20500, Suma cuadrados: 4.07371187210083
+Iteración 20600, Suma cuadrados: 4.3056840896606445
+Iteración 20700, Suma cuadrados: 5.095439434051514
+Iteración 20800, Suma cuadrados: 4.813080787658691
+Iteración 20900, Suma cuadrados: 5.373014450073242
+Iteración 21000, Suma cuadrados: 4.720608711242676
+Iteración 21100, Suma cuadrados: 4.335497856140137
+Iteración 21200, Suma cuadrados: 5.139557838439941
+Iteración 21300, Suma cuadrados: 4.275731563568115
+Iteración 21400, Suma cuadrados: 4.377289295196533
+Iteración 21500, Suma cuadrados: 4.61005973815918
+Iteración 21600, Suma cuadrados: 4.455329418182373
+Iteración 21700, Suma cuadrados: 6.000493049621582
+Iteración 21800, Suma cuadrados: 4.33392333984375
+Iteración 21900, Suma cuadrados: 4.140448570251465
+Iteración 22000, Suma cuadrados: 11.577780723571777
+Iteración 22100, Suma cuadrados: 5.002017021179199
+Iteración 22200, Suma cuadrados: 4.128687858581543
+Iteración 22300, Suma cuadrados: 4.132321357727051
+Iteración 22400, Suma cuadrados: 4.179278373718262
+Iteración 22500, Suma cuadrados: 4.1214752197265625
+Iteración 22600, Suma cuadrados: 4.319884777069092
+Iteración 22700, Suma cuadrados: 4.04579496383667
+Iteración 22800, Suma cuadrados: 4.613255023956299
+Iteración 22900, Suma cuadrados: 7.283084869384766
+Iteración 23000, Suma cuadrados: 5.145301818847656
+Iteración 23100, Suma cuadrados: 5.29563570022583
+Iteración 23200, Suma cuadrados: 4.14206600189209
+Iteración 23300, Suma cuadrados: 8.343851089477539
+Iteración 23400, Suma cuadrados: 4.303062438964844
+Iteración 23500, Suma cuadrados: 4.044186592102051
+Iteración 23600, Suma cuadrados: 4.351436138153076
+Iteración 23700, Suma cuadrados: 4.314474105834961
+Iteración 23800, Suma cuadrados: 7.199549674987793
+Iteración 23900, Suma cuadrados: 4.07554817199707
+Iteración 24000, Suma cuadrados: 4.36419677734375
+Iteración 24100, Suma cuadrados: 5.208860397338867
+Iteración 24200, Suma cuadrados: 5.236138343811035
+Iteración 24300, Suma cuadrados: 4.361567974090576
+Iteración 24400, Suma cuadrados: 4.829207420349121
+Iteración 24500, Suma cuadrados: 5.042420387268066
+Iteración 24600, Suma cuadrados: 4.076838493347168
+Iteración 24700, Suma cuadrados: 4.045942306518555
+Iteración 24800, Suma cuadrados: 4.789889335632324
+Iteración 24900, Suma cuadrados: 4.4279093742370605
+Iteración 25000, Suma cuadrados: 4.8018798828125
+Iteración 25100, Suma cuadrados: 4.399082183837891
+Iteración 25200, Suma cuadrados: 4.5228424072265625
+Iteración 25300, Suma cuadrados: 4.560074806213379
+Iteración 25400, Suma cuadrados: 5.454067707061768
+Iteración 25500, Suma cuadrados: 4.321236610412598
+Iteración 25600, Suma cuadrados: 4.057992935180664
+Iteración 25700, Suma cuadrados: 4.6801605224609375
+Iteración 25800, Suma cuadrados: 4.045083999633789
+Iteración 25900, Suma cuadrados: 4.109826564788818
+Iteración 26000, Suma cuadrados: 4.2373528480529785
+Iteración 26100, Suma cuadrados: 5.830325126647949
+Iteración 26200, Suma cuadrados: 4.3426008224487305
+Iteración 26300, Suma cuadrados: 5.677359104156494
+Iteración 26400, Suma cuadrados: 4.232968330383301
+Iteración 26500, Suma cuadrados: 5.196901321411133
+Iteración 26600, Suma cuadrados: 4.27099609375
+Iteración 26700, Suma cuadrados: 4.2631330490112305
+Iteración 26800, Suma cuadrados: 6.137340068817139
+Iteración 26900, Suma cuadrados: 4.062531471252441
+Iteración 27000, Suma cuadrados: 4.0487446784973145
+Iteración 27100, Suma cuadrados: 4.635319709777832
+Iteración 27200, Suma cuadrados: 4.535178184509277
+Iteración 27300, Suma cuadrados: 4.167543411254883
+Iteración 27400, Suma cuadrados: 4.784193992614746
+Iteración 27500, Suma cuadrados: 4.132907390594482
+Iteración 27600, Suma cuadrados: 4.229986190795898
+Iteración 27700, Suma cuadrados: 4.076696872711182
+Iteración 27800, Suma cuadrados: 5.578505039215088
+Iteración 27900, Suma cuadrados: 4.141605854034424
+Iteración 28000, Suma cuadrados: 4.061137676239014
+Iteración 28100, Suma cuadrados: 4.587177276611328
+Iteración 28200, Suma cuadrados: 4.753252029418945
+Iteración 28300, Suma cuadrados: 4.132824897766113
+Iteración 28400, Suma cuadrados: 4.046442031860352
+Iteración 28500, Suma cuadrados: 6.1160993576049805
+Iteración 28600, Suma cuadrados: 4.240307331085205
+Iteración 28700, Suma cuadrados: 5.186999320983887
+Iteración 28800, Suma cuadrados: 4.803816795349121
+Iteración 28900, Suma cuadrados: 5.180248260498047
+Iteración 29000, Suma cuadrados: 4.435433387756348
+Iteración 29100, Suma cuadrados: 4.081098556518555
+Iteración 29200, Suma cuadrados: 4.120488166809082
+Iteración 29300, Suma cuadrados: 4.253233432769775
+Iteración 29400, Suma cuadrados: 4.052385330200195
+Iteración 29500, Suma cuadrados: 5.985908508300781
+Iteración 29600, Suma cuadrados: 4.078293800354004
+Iteración 29700, Suma cuadrados: 8.609962463378906
+Iteración 29800, Suma cuadrados: 5.073331356048584
+Iteración 29900, Suma cuadrados: 4.526256561279297
+Parámetros optimizados: [1.9934452 0.506759  1.        1.       ]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1517,7 +1527,7 @@ Parámetros optimizados: [1.997142  0.5018107 1.        1.       ]</code></pre>
 <h2 class="anchored" data-anchor-id="tarea-11.1">Tarea 11.1</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = (\theta x)^2\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="23c6d0ea" class="cell" data-execution_count="27">
+<div id="1e882ec3" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
@@ -1529,7 +1539,7 @@ Parámetros optimizados: [1.997142  0.5018107 1.        1.       ]</code></pre>
 <h2 class="anchored" data-anchor-id="tarea-11.2">Tarea 11.2</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = \cos(\theta x)\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="9f1f4ff7" class="cell" data-execution_count="28">
+<div id="6f9b81eb" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> np.cos(<span class="dv">2</span><span class="op">*</span>x_data)</span>
@@ -1549,7 +1559,7 @@ V(\theta_1, \theta_2) = \sinh(\theta_1^4 + \theta_2^2) - 1\,,
 <h2 class="anchored" data-anchor-id="tarea-11.4">Tarea 11.4</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = (\theta x)^2 + 50\theta x\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="7922ba9b" class="cell" data-execution_count="29">
+<div id="59df0436" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">50</span><span class="op">*</span>x_data<span class="op">/</span><span class="dv">2</span></span>
@@ -1561,7 +1571,7 @@ V(\theta_1, \theta_2) = \sinh(\theta_1^4 + \theta_2^2) - 1\,,
 <h2 class="anchored" data-anchor-id="tarea-11.5">Tarea 11.5</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = (\theta_0 x)^2 + (\theta_1x)^{-3}\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="7f0f48fb" class="cell" data-execution_count="30">
+<div id="ec794346" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**-</span><span class="dv">3</span> <span class="op">+</span> x_data<span class="op">**</span><span class="dv">2</span></span>
