@@ -67,6 +67,8 @@ website:
             href: 21_ajuste_de_curvas.qmd
           - text: "Descenso de gradiente"
             href: 22_descenso_de_gradiente.qmd
+          - text: "Redes neuronales"
+            href: 23_redes_neuronales.qmd
   sidebar:
     style: docked
     contents:
@@ -124,6 +126,8 @@ website:
             href: 21_ajuste_de_curvas.qmd
           - text: "Descenso de gradiente"
             href: 22_descenso_de_gradiente.qmd
+          - text: "Redes neuronales"
+            href: 23_redes_neuronales.qmd
 
 format:
   html:
