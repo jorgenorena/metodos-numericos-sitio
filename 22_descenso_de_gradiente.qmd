@@ -1,0 +1,567 @@
+---
+title: Decenso de Gradiente
+jupyter: python3
+lang: es
+---
+
+
+
+En esta clase discutiremos uno de los algoritmos de optimización más usados actualmente: El descenso de gradiente.
+
+Este algoritmo se usa con éxito para ajustar modelos con billones de parámetros. 
+
+Nosotros, más humildemente, lo usaremos para hacer un ajuste de mínimos cuadrados. 
+
+Para lograrlo, usaremos una de las librerías más usadas actualmente: JAX.
+
+# Introducción a JAX
+
+JAX es una librería de python para cálculo de alto desempeño, usando CPU, GPU, o TPU. Tiene soporte para autodiferenciación así como compilación de código para hacerlo más rápido.
+
+## Ventajas de JAX
+
+- Compatibilidad con Numpy: Tiene varias funciones similares a las de Numpy con la misma sintaxis. Para usarlas se importa `jax.numpy`.
+
+- Diferenciación automática: Puede calcular el gradiente de funciones de python arbitrarias usando `grad`.
+
+- Compilación justo a tiempo (JIT): El código de python es lento porque es interpretado. JAX permite compilar código para hacerlo más rápido.
+
+- Soporte de GPU: Permite realizar algunos cálculos en la GPU para mayor eficiencia.
+
+## Trabajando con arrays de JAX
+
+```{python}
+import jax.numpy as jnp
+
+#Crear arrays
+x = jnp.array([1, 2, 3])
+y = jnp.array([4, 5, 6])
+```
+
+```{python}
+#Sumar arrays
+z = x + y
+print(z)
+```
+
+```{python}
+#Producto punto
+a = jnp.dot(x, y)
+print(a)
+```
+
+Así mismo, muchas de las cosas que hace numpy con sus arrays se pueden hacer con JAX, cambiando `np` por `jnp`.
+
+## Diferenciación automática con `grad`
+
+```{python}
+import jax
+
+#Defina una función
+def f(x):
+    return x**2 + 2*x + 1
+
+#Calcule la derivada
+df_dx = jax.grad(f)
+```
+
+```{python}
+df_dx(3.0)
+```
+
+También podemos calcular gradientes de funciones de varios parámetros:
+
+```{python}
+def g(x, y):
+    return x**2 + y**2 + x*y
+
+grad_g = jax.grad(g, argnums=(0,1))
+
+grad_x, grad_y = grad_g(3.0, 4.0)
+print(grad_x, grad_y)
+```
+
+## Acelerar código con JIT
+
+```{python}
+def f(x):
+    return jnp.sin(x) + jnp.cos(x)
+
+f_jit = jax.jit(f)
+```
+
+```{python}
+import time
+x = jnp.linspace(0, 10, 100_000_000)
+```
+
+```{python}
+# Se necesita ejecutar la función una vez para obligarla a compilar
+f_jit(x)
+```
+
+```{python}
+# Sin JIT
+start = time.time()
+f(x)
+print(f"Sin JIT: {time.time() - start}")
+```
+
+```{python}
+# Con JIT
+start = time.time()
+f_jit(x)
+print(f"Con JIT: {time.time() - start}")
+```
+
+Nota: Esta no es la manera más precisa para medir tiempos. Es sólo para ilustrar que el código compilado es más rápido.
+
+# Descenso de gradiente
+
+Este algoritmo busca el mínimo de una función de muchas variables. La idea es sencilla: La dirección del gradiente es la dirección en la cual la función cambia más rápidamente, entonces seguimos la dirección del gradiente. Si $\vec{\theta}$ son los muchos parámetros, cambiamos el punto donde evaluamos la función de la siguiente manera a cada paso
+
+$$
+\vec{\theta}_{i + 1} = \vec{\theta}_i - \eta \nabla f(\vec{\theta}_i)\,.
+$$
+
+El parámetro $\eta$ se llama "razón de aprendizaje" (learning rate) porque este algoritmo se usa mucho en métodos de aprendizaje automático.
+
+Nosotros lo aplicaremos en esta clase a un problema sencillo. Queremos ajustar una curva no lineal a unos datos con ruido. Para lograrlo aplicaremos el método de mínimos cuadrados de la clase pasada.
+
+Vimos que si los parámetros de ajuste aparecen de forma lineal, basta resolver un sistema de ecuaciones. Cuando aparecen de forma no lineal tenemos que encontrar el mínimo de la suma de las desviaciones al cuadrado de alguna otra manera. Lo haremos con descenso de gradiente, donde nuestra función a minimizar es
+
+$$
+f(\vec{\theta}) = \sum_i (\hat{y}_{\vec{\theta}}(x_i)) - y_i)^2\,,
+$$
+
+donde $\hat{y}_{\vec{\theta}}$ es la función de ajuste que depende de los parámetros.
+
+Los datos que vamos a ajustar vienen de una función no-lineal:
+
+$$
+y(x) = e^{-x/2}\,.
+$$
+
+Creamos datos ficticios con un ruido:
+
+```{python}
+import numpy as np
+
+# Generar datos ficticios
+np.random.seed(0)
+x_data = np.linspace(0, 10, 100)
+y_true = np.exp(-0.5 * x_data)  # True model parameters
+y_data = y_true + np.random.normal(0, 0.1, size=x_data.shape)  # Add noise
+```
+
+El modelo que queremos ajustar es
+
+$$
+\hat{y}_{\vec{\theta}}(x) = \theta_0e^{-\theta_1 x}\,.
+$$
+
+```{python}
+def modelo(x, theta):
+    return theta[0]*jnp.exp(-theta[1]*x)
+```
+
+## Minimización
+
+Definimos primero la función a minimizar:
+
+```{python}
+def suma_cuadrados(theta, x, y):
+    predicciones = modelo(x, theta)
+    return jnp.sum((y - predicciones)**2)
+```
+
+El siguiente es un algoritmo sencillo de minimización por descenso de gradiente:
+
+```{python}
+gradiente = jax.grad(suma_cuadrados)
+
+def gradient_descent(theta, x, y, learning_rate=0.01, iterations=1000):
+    for i in range(iterations):
+        gradients = gradiente(theta, x, y)
+        theta = theta - learning_rate * gradients
+        
+        # Imprimimos el resultado cada 100 iteraciones
+        if i % 100 == 0:
+            loss = suma_cuadrados(theta, x, y)
+            print(f"Iteración {i}, Suma cuadrados: {loss}")
+    return theta
+```
+
+```{python}
+# Parámetros iniciales
+theta_init = jnp.array([1.0, 1.0, 1.0])
+
+# Descenso de gradiente
+theta_opt = gradient_descent(theta_init, x_data, y_data, learning_rate=0.001, iterations=3000)
+
+# Parámetros encontrados
+print("Parámetros optimizados:", theta_opt)
+```
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.scatter(x_data, y_data, label="Datos")
+plt.plot(x_data, modelo(x_data, theta_opt), color="red", label="Modelo ajustado")
+plt.legend()
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Ajuste de mínimos cuadrados no lineal con descenso de gradiente')
+plt.show()
+```
+
+# Mejoras al descenso de gradiente
+
+El algoritmo de descenso de gradiente visto arriba no funciona bien para muchos casos. Discutiremos algunas de las maneras de mejorarlo.
+
+Para estos ejemplos usemos los siguientes datos:
+
+$$
+y(x) = (\theta_0 x)^2 e^{\theta_1 x}
+$$
+
+```{python}
+# Generar datos ficticios
+np.random.seed(0)
+x_data = np.linspace(0, 10, 100)
+y_true = (2*x_data)**2*np.exp(-x_data/2)
+y_data = y_true + np.random.normal(0, 0.2, size=x_data.shape)
+
+def modelo(x, theta):
+    return (theta[0]*x)**2*jnp.exp(-theta[1]*x) 
+
+def suma_cuadrados(theta, x, y):
+    predicciones = modelo(x, theta)
+    return jnp.sum((y - predicciones)**2)
+
+gradiente = jax.grad(suma_cuadrados)
+
+def gradient_descent(theta, x, y, learning_rate=0.01, iterations=1000):
+    for i in range(iterations):
+        gradients = gradiente(theta, x, y)
+        theta = theta - learning_rate * gradients
+        
+        # Imprimimos el resultado cada 100 iteraciones
+        if i % 100 == 0:
+            loss = suma_cuadrados(theta, x, y)
+            print(f"Iteración {i}, Suma cuadrados: {loss}")
+    return theta
+
+# Parámetros iniciales
+theta_init = jnp.array([1.0, 1.0])
+
+# Descenso de gradiente
+theta_opt = gradient_descent(theta_init, x_data, y_data, learning_rate=0.001, iterations=3000)
+
+# Parámetros encontrados
+print("Parámetros optimizados:", theta_opt)
+```
+
+```{python}
+plt.scatter(x_data, y_data, label="Datos")
+plt.plot(x_data, modelo(x_data, theta_opt), color="red", label="Modelo ajustado")
+plt.legend()
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Ajuste de mínimos cuadrados no lineal con descenso de gradiente')
+plt.show()
+```
+
+Para ver lo que ocurre, grafiquemos la función de pérdida
+
+## Momentum
+
+Cuando se minimizan funciones de varias dimensiones, con frecuencia tienen múltiples mínimos locales. 
+
+El descenso de gradiente mostrado arriba se quedará atascado en esos mínimos locales. 
+
+Para evitarlo, podemos imaginar una bolita que rueda por una pendiente. Esta no se atasca en pequeños huecos porque su momentum la ayuda a continuar. Podemos agregarle también un momentum a la velocidad del descenso de gradiente:
+
+$$
+\vec{m}_{t+1} = \beta\vec{m}_t - \eta \nabla f(\vec{\theta_t})\,,
+$$
+$$
+\vec{\theta}_{t+1} = \vec{\theta}_t + \vec{m}_{t+1}\,.
+$$
+
+Escribamos un código que lo implemente en JAX
+
+```{python}
+def gradient_descent_momentum(theta, x, y, learning_rate=0.001, momentum=0.9, iterations=1000):
+    velocity = jnp.zeros_like(theta)  # Inicializar el término de velocidad
+    
+    for i in range(iterations):
+        gradients = gradiente(theta, x, y)
+        
+        velocity = momentum * velocity - learning_rate * gradients
+        theta = theta + velocity
+        
+        if i % 100 == 0:
+            loss = suma_cuadrados(theta, x, y)
+            print(f"Iteración {i}, Suma cuadrados: {loss}")
+    
+    return theta
+```
+
+```{python}
+
+# Parámetros iniciales
+theta_init = jnp.array([1.0, 1.0])
+
+# Descenso de gradiente
+theta_opt = gradient_descent_momentum(theta_init, x_data, y_data, learning_rate=0.001, iterations=3000)
+
+# Parámetros encontrados
+print("Parámetros optimizados:", theta_opt)
+
+plt.scatter(x_data, y_data, label="Datos")
+plt.plot(x_data, modelo(x_data, theta_opt), color="red", label="Modelo ajustado")
+plt.legend()
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Ajuste de mínimos cuadrados no-lineal con momentum')
+plt.show()
+```
+
+## RMSProp
+
+A veces el gradiente sigue la dirección más empinada. Pero esto puede hacer que termine oscilando alrededor de un "valle". 
+
+Para evitar eso, se introdujo un término que reduce la dirección más empinada:
+
+$$
+\begin{align}
+\vec{s}_{i+1} &= \rho\vec{s}_i + (1 - \rho)\nabla_{\vec{\theta}}f \otimes  \nabla_{\vec{\theta}}f\,,\\
+\vec{\theta} &\leftarrow \vec{\theta} - \eta\nabla_{\vec{\theta}}f\oslash\sqrt{\vec{s} \oplus \epsilon}\,,
+\end{align}
+$$
+
+donde $\otimes$, $\oplus$ $\oslash$ son la suma, multiplicación y división elemento por elemento de cada array.
+
+- El vector $\vec{s}$ actúa reduciendo el tamaño del gradiente. Esta reducción es mayor para las direcciones empinadas.
+- Aquí el parámetro $\rho$ controla cuánto se modifica $\vec{s}$ a cada paso. Para $\rho$ cercano a 1, se modifica muy poco y tiene una "memoria larga". Para $\rho$ pequeño se modifica mucho pero tiene una "memoria corta" ya que su valor cambia rápidamente. 
+- El $\epsilon$ sirve solamente a que no haya divisiones por cero cuando alguna componente de $\vec{s}$ es cero.
+
+```{python}
+def gradient_descent_rmsprop(theta, x, y, learning_rate=0.001, beta=0.9, epsilon=1e-8, iterations=1000):
+
+    cache = jnp.zeros_like(theta)
+    for i in range(iterations):
+        grads = gradiente(theta, x, y)
+        cache = beta * cache + (1 - beta) * (grads ** 2)  # Actualizar la media móvil de los gradientes al cuadrado
+        theta = theta - learning_rate * grads / (jnp.sqrt(cache) + epsilon)  # Actualizar los parámetros
+        
+        if i % 100 == 0:
+            loss = suma_cuadrados(theta, x, y)
+            print(f"Iteración {i}, Suma cuadrados: {loss}")
+    return theta
+```
+
+```{python}
+
+# Parámetros iniciales
+theta_init = jnp.array([1.0, 1.0, 1.0])
+
+# Descenso de gradiente
+theta_opt = gradient_descent_rmsprop(theta_init, x_data, y_data, learning_rate=0.001, iterations=3000)
+
+# Parámetros encontrados
+print("Parámetros optimizados:", theta_opt)
+
+plt.scatter(x_data, y_data, label="Datos")
+plt.plot(x_data, modelo(x_data, theta_opt), color="red", label="Modelo ajustado")
+plt.legend()
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Ajuste de mínimos cuadrados no-lineal con momentum')
+plt.show()
+```
+
+## Adam
+
+Este y sus derivados es uno de los algoritmos más usados actualmente.
+
+Este método adaptativo combina momentum con RMSprop
+
+$$
+\begin{align}
+\vec{m}_{i+1} &= \beta_1 \vec{m}_i - (1 - \beta_1) \nabla_{\vec{\theta}}f(\vec{\theta})\,,\\
+\vec{s}_{i+1} &= \beta_2\vec{s}_i + (1 - \beta_2)\nabla_{\vec{\theta}}f \otimes  \nabla_{\vec{\theta}}f\,,\\
+\hat{\vec{m}}_{i+1} & = \frac{\vec{m}_{i+1}}{1 - (\beta_1)^i}\,,\\
+\hat{\vec{s}}_{i+1} & = \frac{\vec{s}_{i+1}}{1 - (\beta_2)^i}\,,\\
+\vec{\theta}_{i+1} &= \vec{\theta}_i - \eta\hat{\vec{m}}_{i+1}\oslash\sqrt{\hat{\vec{s}}_{i+1} \oplus \epsilon}
+\end{align}
+$$
+
+El tercer y cuarto pasos sirven para hacer que $\vec{m}$ y $\vec{s}$ no sean demasiado pequeños durante las primeras iteraciones. De otra forma tenderán a estar cercanos a $0$ ya que ese es su valor inicial.
+
+```{python}
+def gradient_descent_adam(theta, x, y, learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8, iterations=1000):
+    m, v = jnp.zeros_like(theta), jnp.zeros_like(theta)
+    for t in range(1, iterations + 1):
+        grads = gradiente(theta, x, y)
+        m = beta1 * m + (1 - beta1) * grads  
+        v = beta2 * v + (1 - beta2) * (grads ** 2)  
+        m_hat = m / (1 - beta1 ** t)  
+        v_hat = v / (1 - beta2 ** t)  
+        theta = theta - learning_rate * m_hat / (jnp.sqrt(v_hat) + epsilon)  
+        
+        if t % 100 == 0:
+            loss = suma_cuadrados(theta, x, y)
+            print(f"Iteración {t}, Suma cuadrados: {loss}")
+    return theta
+```
+
+```{python}
+# Parámetros iniciales
+theta_init = jnp.array([1.0, 1.0, 1.0])
+
+# Descenso de gradiente
+theta_opt = gradient_descent_adam(theta_init, x_data, y_data, learning_rate=0.001, iterations=3000)
+
+# Parámetros encontrados
+print("Parámetros optimizados:", theta_opt)
+
+plt.scatter(x_data, y_data, label="Datos")
+plt.plot(x_data, modelo(x_data, theta_opt), color="red", label="Modelo ajustado")
+plt.legend()
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Ajuste de mínimos cuadrados no-lineal con momentum')
+plt.show()
+```
+
+# Usando Flax
+
+Estos métodos están ya todos programados en varias librerías. Una de las más usadas con JAX es Flax.
+
+Flax en general es una librería para aprendizaje automático con redes neuronales. Tiene también el descenso de gradiente.
+
+```{python}
+from flax.training import train_state  
+import optax  
+
+class TrainState(train_state.TrainState):
+    params: jnp.ndarray
+
+def create_train_state(params, learning_rate):
+    tx = optax.adam(learning_rate=0.1)  # SGD con Momentum
+    return TrainState.create(apply_fn=None, params=params, tx=tx)
+
+# Aplicar el descenso de gradiente por un paso
+@jax.jit
+def train_step(state, x, y):
+    def loss_fn_wrapper(params):
+        return suma_cuadrados(params, x, y)
+    
+    grads = jax.grad(loss_fn_wrapper)(state.params)  
+    new_state = state.apply_gradients(grads=grads)   
+    return new_state
+
+# Parámetros iniciales
+theta_init = jnp.array([1.0, 1.0, 1.0, 1.0])
+
+# Crear el estado a entrenar
+learning_rate = 0.001
+state = create_train_state(theta_init, learning_rate)
+
+# Entrenamiento
+iterations = 30000
+for i in range(iterations):
+    state = train_step(state, x_data, y_data)
+    
+    if i % 100 == 0:
+        loss = suma_cuadrados(state.params, x_data, y_data)
+        print(f"Iteración {i}, Suma cuadrados: {loss}")
+
+theta_opt = state.params
+print("Parámetros optimizados:", theta_opt)
+
+plt.scatter(x_data, y_data, label="Datos")
+plt.plot(x_data, modelo(x_data, theta_opt), color="red", label="Modelo ajustado")
+plt.legend()
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Ajuste de mínimos cuadrados no-lineal con momentum')
+plt.show()
+```
+
+# ¡Tareas!
+
+## Tarea 11.1
+
+Considere la función $y_{\theta}(x) = (\theta x)^2$.
+
+Generamos datos ficticios con el siguiente código:
+
+```{python}
+np.random.seed(0)
+x_data = np.linspace(0, 10, 30)
+y_true = (x_data/2)**2
+y_data = y_true + np.random.normal(0, 0.2, size=x_data.shape)
+```
+
+Realice un descenso de gradiente para ajustar el valor de $\theta$ empezando desde el punto $\theta = 1$ y de nuevo desde el punto $\theta = -1$. Explique la diferencia entre los resultados. 
+
+## Tarea 11.2
+
+Considere la función $y_{\theta}(x) = \cos(\theta x)$.
+
+Generamos datos ficticios con el siguiente código:
+
+```{python}
+np.random.seed(0)
+x_data = np.linspace(0, 10, 100)
+y_true = np.cos(2*x_data)
+y_data = y_true + np.random.normal(0, 0.2, size=x_data.shape)
+```
+
+Intente encontrar el valor de $\theta$ ajustando los datos con mínimos cuadrados y descenso de gradiente partiendo del punto $\theta=-1$.
+
+Grafique la función de pérdida y explique el origen de la dificultad.
+
+## Tarea 11.3
+
+Para un cierto sistema el volumen está dado por
+$$
+V(\theta_1, \theta_2) = \sinh(\theta_1^4 + \theta_2^2) - 1\,,
+$$
+donde $\theta_1, \theta_2 \geq 0$. 
+
+Encuentre los valores de los parámetros para los cuales el volumen es mínimo.
+
+## Tarea 11.4
+
+Considere la función $y_{\theta}(x) = (\theta x)^2 + 50\theta x$.
+
+Generamos datos ficticios con el siguiente código:
+
+```{python}
+np.random.seed(0)
+x_data = np.linspace(0, 10, 30)
+y_true = (x_data/2)**2 + 50*x_data/2
+y_data = y_true + np.random.normal(0, 0.2, size=x_data.shape)
+```
+
+Realice un descenso de gradiente para ajustar el valor de $\theta$ empezando desde el punto $\theta = 2$ y de nuevo desde el punto $\theta = -9$. Explique la diferencia entre los resultados. 
+
+## Tarea 11.5
+
+Considere la función $y_{\theta}(x) = (\theta_0 x)^2 + (\theta_1x)^{-3}$.
+
+Generamos datos ficticios con el siguiente código:
+
+```{python}
+np.random.seed(0)
+x_data = np.linspace(1, 10, 30)
+y_true = (x_data/2)**-3 + x_data**2
+y_data = y_true + np.random.normal(0, 0.2, size=x_data.shape)
+```
+
+Realice un descenso de gradiente con varios métodos (gradiente sencillo y Adam) y explique la diferencia.
+

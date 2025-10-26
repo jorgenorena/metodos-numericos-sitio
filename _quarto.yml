@@ -65,6 +65,8 @@ website:
         menu:
           - text: "Ajustes de mínimos cuadrados"
             href: 21_ajuste_de_curvas.qmd
+          - text: "Descenso de gradiente"
+            href: 22_descenso_de_gradiente.qmd
   sidebar:
     style: docked
     contents:
@@ -120,6 +122,8 @@ website:
         contents:
           - text: "Ajustes de mínimos cuadrados"
             href: 21_ajuste_de_curvas.qmd
+          - text: "Descenso de gradiente"
+            href: 22_descenso_de_gradiente.qmd
 
 format:
   html:
