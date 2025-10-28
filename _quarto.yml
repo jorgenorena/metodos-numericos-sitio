@@ -69,6 +69,8 @@ website:
             href: 22_descenso_de_gradiente.qmd
           - text: "Redes neuronales"
             href: 23_redes_neuronales.qmd
+          - text: "Integración de Monte Carlo"
+            href: 24_integracion_monte_carlo.qmd
   sidebar:
     style: docked
     contents:
@@ -128,6 +130,8 @@ website:
             href: 22_descenso_de_gradiente.qmd
           - text: "Redes neuronales"
             href: 23_redes_neuronales.qmd
+          - text: "Integración de Monte Carlo"
+            href: 24_integracion_monte_carlo.qmd
 
 format:
   html:
