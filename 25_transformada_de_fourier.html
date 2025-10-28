@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Entropía – Métodos Numéricos y Probabilidades 2025</title>
+<title>Transformada de Fourier – Métodos Numéricos y Probabilidades 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -305,7 +305,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Unidad 2: Probabilidad</a></li><li class="breadcrumb-item"><a href="./10_entropia.html">Entropía de Shannon</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21_ajuste_de_curvas.html">Unidad 5: Tópicos</a></li><li class="breadcrumb-item"><a href="./25_transformada_de_fourier.html">Transformada de Fourier</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -393,7 +393,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_entropia.html" class="sidebar-item-text sidebar-link active">
+  <a href="./10_entropia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Entropía de Shannon</span></a>
   </div>
 </li>
@@ -516,7 +516,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./25_transformada_de_fourier.html" class="sidebar-item-text sidebar-link">
+  <a href="./25_transformada_de_fourier.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Transformada de Fourier</span></a>
   </div>
 </li>
@@ -532,34 +532,22 @@ window.Quarto = {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#información-y-entropía-de-shannon" id="toc-información-y-entropía-de-shannon" class="nav-link active" data-scroll-target="#información-y-entropía-de-shannon">Información y entropía de Shannon</a>
+  <li><a href="#transformada-continua-de-fourier" id="toc-transformada-continua-de-fourier" class="nav-link active" data-scroll-target="#transformada-continua-de-fourier">Transformada continua de Fourier</a></li>
+  <li><a href="#serie-de-fourier" id="toc-serie-de-fourier" class="nav-link" data-scroll-target="#serie-de-fourier">Serie de Fourier</a></li>
+  <li><a href="#la-transformada-discreta" id="toc-la-transformada-discreta" class="nav-link" data-scroll-target="#la-transformada-discreta">La transformada discreta</a>
   <ul class="collapse">
-  <li><a href="#el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann" id="toc-el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann" class="nav-link" data-scroll-target="#el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann">El principio de máxima entropía y la distribución de Boltzmann</a></li>
+  <li><a href="#frecuencia-de-nyquist" id="toc-frecuencia-de-nyquist" class="nav-link" data-scroll-target="#frecuencia-de-nyquist">Frecuencia de Nyquist</a></li>
   </ul></li>
-  <li><a href="#el-teorema-de-canal-sin-ruido-de-shannon" id="toc-el-teorema-de-canal-sin-ruido-de-shannon" class="nav-link" data-scroll-target="#el-teorema-de-canal-sin-ruido-de-shannon">El teorema de canal sin ruido de Shannon</a>
-  <ul class="collapse">
-  <li><a href="#el-teorema-original" id="toc-el-teorema-original" class="nav-link" data-scroll-target="#el-teorema-original">El teorema original</a></li>
-  <li><a href="#un-par-de-consideraciones-intuitivas" id="toc-un-par-de-consideraciones-intuitivas" class="nav-link" data-scroll-target="#un-par-de-consideraciones-intuitivas">Un par de consideraciones intuitivas</a></li>
-  <li><a href="#un-ejemplo-de-compresión" id="toc-un-ejemplo-de-compresión" class="nav-link" data-scroll-target="#un-ejemplo-de-compresión">Un ejemplo de compresión</a></li>
-  </ul></li>
-  <li><a href="#tipos-de-entropía" id="toc-tipos-de-entropía" class="nav-link" data-scroll-target="#tipos-de-entropía">Tipos de entropía</a></li>
-  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">¡Tareas!</a>
-  <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">5.1</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">5.2</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">5.3</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">5.4</a></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">5.5</a></li>
-  </ul></li>
+  <li><a href="#transformada-rápida-de-fourier" id="toc-transformada-rápida-de-fourier" class="nav-link" data-scroll-target="#transformada-rápida-de-fourier">Transformada rápida de Fourier</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Unidad 2: Probabilidad</a></li><li class="breadcrumb-item"><a href="./10_entropia.html">Entropía de Shannon</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21_ajuste_de_curvas.html">Unidad 5: Tópicos</a></li><li class="breadcrumb-item"><a href="./25_transformada_de_fourier.html">Transformada de Fourier</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Entropía</h1>
+<h1 class="title">Transformada de Fourier</h1>
 </div>
 
 
@@ -576,268 +564,257 @@ window.Quarto = {
 </header>
 
 
-<p>Esta clase está basada en las siguientes fuentes:</p>
-<ul>
-<li>“Statistical Physics of Particles”, Mehran Kardar, Cambridge University Press, 2007.</li>
-<li>“What is Entropy?”, John Baez, 2024 (https://johncarlosbaez.wordpress.com/2024/07/20/what-is-entropy/)</li>
-<li>“Quantum information and quantum computation”, M. Nielsen y I. Chuang, Cambridge University Press, 2010</li>
-<li>“Advanced Machine Learning for Physicists”, Lecture 7, Florian Marquardt, 2022, https://www.youtube.com/watch?v=Ihcruy9gX70&amp;list=PLemsnf33Vij4-kv-JTjDthaGUYUnQbbws&amp;index=7</li>
-</ul>
-<section id="información-y-entropía-de-shannon" class="level1">
-<h1>Información y entropía de Shannon</h1>
-<p>¿Cuánta información se obtiene cuando se sabe que ocurrió un evento de probabilidad <span class="math inline">\(p\)</span>? <span class="math display">\[
--\log p
-\]</span> La base del logaritmo no es importante; es mera convención. Si uno es físico le gusta el logaritmo natural, si uno es informático le gusta base 2, si uno en cambio es una persona normal le gusta base 10. Pero no es muy importante. Simplemente definimos un “bit de información” como <span class="math inline">\(\log 2\)</span> en la base dada.</p>
-<p>Por ejemplo: Suponga que se tiran tres monedas y se obtiene “cara, sello, cara”. Este evento tiene probabilidad <span class="math inline">\(1/2^3\)</span> y entonces se obtuvo una cantidad de información igual a <span class="math display">\[
--\log\left(\frac{1}{2^3}\right) = 3\log 2
+<p>Las transformadas de Fourier nos permiten descomponer una función complicada en senos y cosenos. En física tenemos una intuición de cómo funcionan las ondas planas, tal que esa descomposición nos ayuda a entender el sistema.</p>
+<p>Otra manera de decirlo es que es fácil encontrar soluciones con la forma de una onda plana para muchas ecuaciones diferenciales parciales.</p>
+<p>Como esta clase es muy técnica hacemos un pequeño resumen antes de empezar:</p>
+<p>1- Definimos la <strong>transformada</strong> de Fourier, que es como descomponer una onda en una <strong>integral</strong> de ondas planas. Cualquier función lo suficientemente bien comportada tiene transformada de Fourier.</p>
+<p>2- Definimos la <strong>serie</strong> de Fourier. Esta nos permite expresar una función periódica como la <strong>suma</strong> infinita de ondas planas. Esta es como la transfomada de Fourier pero para funciones periódicas y sólo algunos modos de Fourier son distintos de cero.</p>
+<p>3- Definimos la <strong>transformada discreta</strong> de Fourier. En esta, evaluamos la función en un conjunto de puntos y aproximamos la integral de la transformada de Fourier como una suma. La relación entre los coeficientes de la verdadera transformada de Fourier y la transformada discreta está dada por la fórmula de suma de Poisson.</p>
+<p>4- Definimos la <strong>serie discreta</strong> de Fourier. Sería la transformada discreta para funciones periódicas. La suma de términos es una suma finita. Esta es la única que podemos usar en el computador.</p>
+<p>5- Discutims la <strong>frecuencia de Nyquist</strong>. Si mi muestra de puntos para una transformada discreta está separada por <span class="math inline">\(\Delta\)</span>, el máximo modo de onda que puedo recuperar con fidelidad es <span class="math inline">\(\pi/\Delta\)</span>.</p>
+<p>6- Finalmente, discutimos la <strong>transformada rápida de Fourier</strong> que es un algoritmo rápido para calcular la serie discreta de Fourier.</p>
+<section id="transformada-continua-de-fourier" class="level1">
+<h1>Transformada continua de Fourier</h1>
+<p>Antes de hablar sobre la transformada discreta de Fourier, discutamos la transformada continua. Esta puede ser más familiar de cursos como electrodinámica o mecánica cuántica y además el álgebra es más sencilla.</p>
+<p>Necesitamos sólo una identidad que no voy a demostrar:</p>
+<p><span class="math display">\[
+\int_{-\infty}^\infty dx\,e^{i k x} e^{-i q x} = 2\pi \delta(k - q)\,,
 \]</span></p>
-<p>La justificación del enunciado anterior es que queremos que la información sea:</p>
-<ul>
-<li><p>Positiva para <span class="math inline">\(p &gt; 0\)</span>.</p></li>
-<li><p>Decreciente <span class="math inline">\(I(p) &gt; I(q)\)</span> para <span class="math inline">\(p &lt; q\)</span>: Si ocurre un evento de baja probabilidad queremos decir que obtuvimos mucha información y vice versa.</p></li>
-<li><p>Aditiva <span class="math inline">\(I(pq) = I(p) + I(q)\)</span>: La información de la combinación de dos eventos independientes es la suma de las informaciones.</p></li>
-</ul>
-<p>Resulta que la única función que cumple estas tres condiciones es el logaritmo.</p>
-<p>Ahora supongamos que tenemos una moneda pesada tal que <span class="math inline">\(2/3\)</span> de las veces sale cara mientras <span class="math inline">\(1/3\)</span> de las veces sale sello.</p>
-<p>Si sale cara obtuvimos <span class="math inline">\(-\log 2/3\)</span> de información mientras si sale sello obtuvimos <span class="math inline">\(-\log 1/3\)</span>.</p>
-<p>La información promedio obtenida en cada lanzamiento de la moneda es <span class="math display">\[
--\frac{2}{3} \log \frac{2}{3} - \frac{1}{3} \log \frac{1}{3}\,.
+<p>donde <span class="math inline">\(\delta\)</span> es la delta de Dirac. Esta misma identidad también se puede escribir de la siguiente manera</p>
+<p><span class="math display">\[
+\int_{-\infty}^\infty \frac{dk}{2\pi} e^{i k x} e^{-i k y} = \delta(x - y)\,.
 \]</span></p>
-<p>Esta es la <strong>entropía de Shannon</strong> de este sistema.</p>
-<p>En general supongamos que hay <span class="math inline">\(n\)</span> eventos con probabilidades <span class="math inline">\(p_1,...,p_n\)</span>. La entropía de Shannon es <span class="math display">\[
-H = -\sum_{i=1}^n p_i\log p_i\,.
+<p>Definimos la transformada de Fourier de una función <span class="math inline">\(f(x)\)</span> como</p>
+<p><span class="math display">\[
+f(k) = \int_{-\infty}^\infty dx\,e^{ikx}f(x)\,.
 \]</span></p>
-<p>Resulta que la entropía de Shannon es mayor para distribuciones esparcidas igualmente entre eventos y menor para distribuciones concentradas en pocos eventos.</p>
-<div id="145791d9" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ps <span class="op">=</span> np.linspace(<span class="fl">0.0001</span>, <span class="fl">0.9999</span>, <span class="dv">100</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="op">-</span>ps<span class="op">*</span>np.log(ps) <span class="op">-</span> (<span class="dv">1</span> <span class="op">-</span> ps)<span class="op">*</span>np.log(<span class="dv">1</span> <span class="op">-</span> ps)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.plot(ps, h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Multiplicando ambos lados por <span class="math inline">\(e^{-iky}\)</span> e integrando sobre <span class="math inline">\(k\)</span> (usando las identidades de arriba) podemos deducir</p>
+<p><span class="math display">\[
+f(x) = \int_{-\infty}^\infty \frac{dk}{2\pi}e^{-ikx}f(k)\,.
+\]</span></p>
+<p>De esta manera, si tenemos la transformada <span class="math inline">\(f(k)\)</span> podemos recuperar la función original <span class="math inline">\(f(x)\)</span>.</p>
+<p>Note que, en general, <span class="math inline">\(f(k)\)</span> es una función compleja. Si <span class="math inline">\(f(x)\)</span> es real tenemos que <span class="math inline">\(f^*(x) = f(x)\)</span>, es decir</p>
+<p><span class="math display">\[
+f^*(x) = \int_{-\infty}^\infty \frac{dk}{2\pi}e^{ikx}f^*(k) = f(x)\,.
+\]</span></p>
+<p>Pero esto sólo puede ser cierto si <span class="math inline">\(f^*(k) = f(-k)\)</span>.</p>
+</section>
+<section id="serie-de-fourier" class="level1">
+<h1>Serie de Fourier</h1>
+<p>Cualquier función periódica con período <span class="math inline">\(L\)</span> se puede representar mediante una <em>serie de Fourier</em></p>
+<p><span class="math display">\[
+f(x) = \frac{1}{L} \sum_{n=-\infty}^\infty f_n e^{-2\pi i n x/L}\,.
+\]</span></p>
+<p>Podemos obtener los coeficientes <span class="math inline">\(f_n\)</span> haciendo uso de la siguiente identidad (que es fácil de demostrar descomponiendo los exponenciales en senos y cosenos)</p>
+<p><span class="math display">\[
+\int_{-1/2}^{1/2} dx\, e^{2\pi i n x} e^{-2\pi i m x} = \delta_{mn}\,,
+\]</span></p>
+<p>Entonces multiplicando por <span class="math inline">\(e^{2\pi i m x}\)</span> ambos lados de la serie de Fourier e integrando en <span class="math inline">\(x\)</span> obtenemos</p>
+<p><span class="math display">\[
+f_m = \int_{-L/2}^{L/2} dx\, f(x) e^{2\pi i m x/L}\,.
+\]</span></p>
+<p>Finalmente, supongamos que tomamos la transformada de Fourier definida en la sección anterior de una función periódica.</p>
+<p><span class="math display">\[
+\begin{split}
+f(k) &amp;= \int_{-\infty}^\infty dx\,e^{ikx} f(x) \\
+&amp;= \frac{1}{L}\int_{-\infty}^\infty dx\, e^{ikx} \sum_{n=-\infty}^\infty e^{-2\pi i n x/L} f_n \\
+&amp;= \frac{2\pi}{L} \sum_{n=-\infty}^\infty \delta(k - 2\pi n/L) f_n
+\end{split}
+\]</span></p>
+<p>Es decir, la transformada de Fourier es cero en todas partes, excepto en las frecuencias que satisfacen <span class="math inline">\(k = 2\pi n/L\)</span> para algún entero <span class="math inline">\(n\)</span>.</p>
+</section>
+<section id="la-transformada-discreta" class="level1">
+<h1>La transformada discreta</h1>
+<p>Queremos calcular la transformada de Fourier en el computador.</p>
+<p>Obviamente el computador no puede sumar infinitos términos, además tampoco puede evaluar toda la función.</p>
+<p>Para lograrlo, empecemos por aproximar la función evaluándola en puntos equidistantes separados por <span class="math inline">\(\Delta\)</span> y aproximamos la integral</p>
+<p><span class="math display">\[
+f(k) = \int_{-\infty}^\infty dx\, e^{ikx} f(x) \approx \Delta\sum_{n=-\infty}^\infty e^{ikn\Delta}f(n\Delta) \equiv f_\Delta(k)\,.
+\]</span></p>
+<p>Para mejorar la relación entre <span class="math inline">\(f(k)\)</span> y <span class="math inline">\(f_\Delta(k)\)</span> tomamos una relación llamada <em>suma de Poisson</em></p>
+<p><span class="math display">\[
+f_\Delta(k) = \sum_{j=-\infty}^\infty f(k - j/\Delta)\,.
+\]</span></p>
+<p>Vemos entonces que la aproximación es buena mientras <span class="math inline">\(f(k)\)</span> sea apreciablemente diferente de cero sólo en el intervalo entre <span class="math inline">\(-\Delta\)</span> y <span class="math inline">\(\Delta\)</span>, tal que podemos despreciar <span class="math inline">\(j \neq 0\)</span> en la suma.</p>
+<p>Ahora supongamos que <span class="math inline">\(f\)</span> es periódica tal que <span class="math inline">\(f(n\Delta) = f((n + N)\Delta)\)</span>, entonces como vimos antes <span class="math inline">\(k = 2\pi \ell/N\Delta\)</span> apara algún <span class="math inline">\(\ell\)</span> entero. Los coeficientes de la serie de Fourier son entonces</p>
+<p><span class="math display">\[
+f_m = \int_{0}^{N\Delta} dx\, e^{2\pi i m x /N\Delta} f(x) \approx \Delta \sum_{n = 0}^{N - 1} e^{2\pi i m n /N} f(n\Delta)\,.
+\]</span></p>
+<p>Entonces definimos los coeficientes</p>
+<p><span class="math display">\[
+F_m = \sum_{n=0}^{N-1}e^{2\pi i mn/N}f(n\Delta)\,.
+\]</span></p>
+<p>Su inversa nos da el análogo de la serie de Fourier, llamada <em>serie discreta de Fourier</em>:</p>
+<p><span class="math display">\[
+f(n\Delta) = \frac{1}{N}\sum_{m=0}^{N-1}e^{-2\pi i mn/N}F_m \,.
+\]</span></p>
+<p>Podemos también escribir su relación con la transformada discreta hecha antes</p>
+<p><span class="math display">\[
+\begin{split}
+f_\Delta(k) &amp;= \Delta \sum_{n=-\infty}^\infty e^{ikn\Delta}f(n\Delta) \\
+&amp;= \frac{1}{N} \sum_{n=-\infty}^{\infty} e^{ikn\Delta}\sum_{m=0}^{N-1} e^{-2\pi i nm/N} F_m \\
+&amp;= \frac{2\pi}{N\Delta} \sum_{m=0}^{N-1} \delta\left(k - \frac{2\pi m}{N\Delta}\right) F_m\,.
+\end{split}
+\]</span></p>
+<p>También podemos deducir la suma de Poisson. Para ello tomemos la serie de Fourier de <span class="math inline">\(f(x)\)</span> evaluada en los puntos <span class="math inline">\(n\Delta\)</span></p>
+<p><span class="math display">\[
+f(n\Delta) = \frac{1}{N}\sum_{m=-\infty}^\infty e^{-2\pi inm/N} f_m = \frac{1}{N}\sum_{m=0}^{N-1} e^{-2\pi i m\ell/N}\sum_{\ell = -\infty}^\infty f_{m - \ell N}\,.
+\]</span></p>
+<p>Comparando estos coeficientes con la serie discreta de Fourier:</p>
+<p><span class="math display">\[
+F_m = \sum_{\ell=-\infty}^{\infty} f_{m - \ell N}\,.
+\]</span></p>
+<section id="frecuencia-de-nyquist" class="level2">
+<h2 class="anchored" data-anchor-id="frecuencia-de-nyquist">Frecuencia de Nyquist</h2>
+<p>Vimos que podemos aproximar la transformada de Fourier tomando muestras de la función. Pero sabemos intuitivamente que si el muestreo es muy burdo, debe haber algún problema.</p>
+<p>La respuesta es que hay si la separación entre puntos es <span class="math inline">\(\Delta\)</span>, el máximo modo de Fourier que se puede recuperar con precisión es <span class="math inline">\(k_N = \pi/\Delta\)</span>. Este se llama el <em>modo de Nyquist</em>. En informática es más habitual hablar de frecuencias, que se relacionan con los modos de la forma <span class="math inline">\(f = k/2\pi\)</span>, y entonces la frecuencia de Nyquist es <span class="math inline">\(\nu_N = 1/2\Delta\)</span>.</p>
+<p>Demostrémoslo: Suponga que <span class="math inline">\(f(k)\)</span> es cero por fuera de la banda <span class="math inline">\(|k| \leq \pi/\Delta\)</span>, entonces</p>
+<p><span class="math display">\[
+f(n\Delta) = \int_{-\infty}^{\infty} \frac{dk}{2\pi} e^{-ikn\Delta}f(k) =  \int_{-\pi/\Delta}^{\pi/\Delta} \frac{dk}{2\pi} e^{ikn\Delta}f(k) = \int_{-1/2\Delta}^{1/2\Delta} dy\,e^{2\pi i n\Delta} f(2\pi y)\,.
+\]</span></p>
+<p>Pero esta es la expresión para los coeficientes de Fourier de la función <span class="math inline">\(g(y) = f(2\pi y)\)</span> en el intervalo <span class="math inline">\(y\in (-1/2\Delta,1/2\Delta)\)</span>. Esto quiere decir que <span class="math inline">\(g_n = f(n\Delta)\)</span>, pero <span class="math inline">\(g_n\)</span> determina completamente <span class="math inline">\(g(y)\)</span>, esta a su vez determina completamente <span class="math inline">\(f(k)\)</span>, y esta a su vez determina completamente <span class="math inline">\(f(x)\)</span> (siendo su transformada de Fourier).</p>
+<p>¿Qué pasa cuando <span class="math inline">\(f(k) \neq 0\)</span> fuera de la banda dada por la frecuencia de Nyquist? Lo que ocurre es que la fóruma de suma de Poisson nos dice que nuestra aproximación a la transformada de Fourier nos da en realidad <span class="math display">\[
+\sum_{m=-\infty}^\infty f(k - j/\Delta)\,,
+\]</span> tal que lo que ocurre es que se mezclan diferentes modos de Fourier. Es decir, <span class="math inline">\(k\)</span> se mezcla con <span class="math inline">\(k \pm j/\Delta\)</span> para todo <span class="math inline">\(j\)</span>. Decimos que esos son los modos alias del modo original y a este fenómeno se lo conoce como aliasing.</p>
+</section>
+</section>
+<section id="transformada-rápida-de-fourier" class="level1">
+<h1>Transformada rápida de Fourier</h1>
+<p>Ya discutimos que lo que nos interesa calcular en el computador es</p>
+<p><span class="math display">\[
+F_n = \sum_{n=0}^{N-1} e^{2\pi i nm/N} f(n\Delta)\,.
+\]</span></p>
+<p>Estos son <span class="math inline">\(N\)</span> coeficientes, y cada uno involucra <span class="math inline">\(N\)</span> sumas, para un total de <span class="math inline">\(N^2\)</span> operaciones.</p>
+<p>Existe un algoritmo mucho más rápido para calcularlos. Para hacerlo, suponga que <span class="math inline">\(N\)</span> es alguna potencia de dos <span class="math inline">\(N=2^p\)</span> y note primero que</p>
+<p><span class="math display">\[
+F_n + F_{n + N/2} = \sum_{n=0}^{N-1} e^{2\pi i nm/N} \left(1 + e^{\pi im }\right)f_n\,,
+\]</span></p>
+<p>pero <span class="math inline">\(1 +e^{i\pi m} = 0\)</span> cuando <span class="math inline">\(m\)</span> es impar y es igual a 2 cuando <span class="math inline">\(m\)</span> es par. Entonces para calcular esto sólo necesitamos mitad de los términos</p>
+<p><span class="math display">\[
+F_n + F_{n + N/2} = 2\sum_{j=0}^{N/2 - 1} e^{2\pi i nj/(N/2)} f_{2j} \equiv S_1\,,
+\]</span></p>
+<p>donde hemos cambiado el índice de la suma a <span class="math inline">\(j = m/2\)</span>. Análogamente se puede demostrar que</p>
+<p><span class="math display">\[
+F_n - F_{n + N/2} = 2 e^{i\pi n/(N/2)} \sum_{j=0}^{N/2 - 1} e^{2\pi i nj/(N/2)} f_{2j + 1} \equiv S_2\,.
+\]</span></p>
+<p>Hemos reducido el número de operaciones a <span class="math inline">\(2(N/2)^2\)</span> porque tenemos dos sumatorias cada una con la mitad de términos. Esas sumatorias se deben combinar para obtener <span class="math inline">\(F_n = (S_1 + S_2)/2\)</span> y <span class="math inline">\(F_{n + N/2} = (S_1 - S_2)/2\)</span> que son <span class="math inline">\(N\)</span> operaciones adicionales. Entonces el número de operaciones es <span class="math inline">\(N(N/2 + 2)\)</span>.</p>
+<p>Pero <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span> tienen la forma de la sumatoria original, tal que podemos repetir el proceso y reducir el número de operaciones a <span class="math inline">\(N(N/4 + 4)\)</span>. Repitiendo el proceso <span class="math inline">\(p\)</span> veces llegamos a <span class="math inline">\(N(1 + 2p)\)</span> operaciones. Pero <span class="math inline">\(p = \log_2 N\)</span> y entonces vemos que este algoritmo tiene complejidad <span class="math inline">\(\mathcal{O}(N\log_2 N)\)</span> que es mucho menor que <span class="math inline">\(\mathcal{O}(N^2)\)</span>.</p>
+<p>Para ver lo mucho que ganamos, tome <span class="math inline">\(N=1000\)</span>, entonces</p>
+<div id="c4868b8a" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"N^2 = </span><span class="sc">{</span>N<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"N logN = </span><span class="sc">{</span>N<span class="op">*</span>np<span class="sc">.</span>log2(N)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>N^2 = 1000000
+N logN = 9965.784284662088</code></pre>
+</div>
+</div>
+<div id="8d83e2a8" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>variance <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> <span class="dv">5</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>x_spacing_dense <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># More dense sampling for plot</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x_spacing_fft <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Spacing for FFT</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>x_range <span class="op">=</span> (<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>k_range <span class="op">=</span> (<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>k_spacing_dense <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate Gaussian distribution for plotting</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>x_dense <span class="op">=</span> np.arange(x_range[<span class="dv">0</span>], x_range[<span class="dv">1</span>] <span class="op">+</span> x_spacing_dense, x_spacing_dense)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>gaussian_dense <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> variance)) <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> (x_dense <span class="op">-</span> mean)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> variance)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the Fourier transform of that Gaussian distribution</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>k_dense <span class="op">=</span> np.arange(k_range[<span class="dv">0</span>], k_range[<span class="dv">1</span>] <span class="op">+</span> k_spacing_dense, k_spacing_dense)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>gaussian_fft_analytic <span class="op">=</span> np.sqrt(variance<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi)) <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> k_dense<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> variance)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate Gaussian distribution for FFT</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>x_fft <span class="op">=</span> np.arange(x_range[<span class="dv">0</span>], x_range[<span class="dv">1</span>] <span class="op">+</span> x_spacing_fft, x_spacing_fft)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>gaussian_fft <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> variance)) <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> (x_fft <span class="op">-</span> mean)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> variance)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform FFT</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>fft_gaussian <span class="op">=</span> np.fft.fft(gaussian_fft)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>fft_frequencies <span class="op">=</span> np.fft.fftfreq(<span class="bu">len</span>(x_fft), d<span class="op">=</span>x_spacing_fft)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Shift FFT for better visualization</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>fft_gaussian_shifted <span class="op">=</span> np.fft.fftshift(fft_gaussian)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>fft_frequencies_shifted <span class="op">=</span> np.fft.fftshift(fft_frequencies)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Nyquist frequency</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>nyquist_frequency <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> x_spacing_fft)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Create aliasing example by undersampling</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>undersample_spacing <span class="op">=</span> <span class="dv">2</span>  <span class="co"># Undersampling with spacing larger than original</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>x_undersample <span class="op">=</span> np.arange(x_range[<span class="dv">0</span>], x_range[<span class="dv">1</span>] <span class="op">+</span> undersample_spacing, undersample_spacing)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>gaussian_undersample <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> variance)) <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> (x_undersample <span class="op">-</span> mean)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> variance)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform FFT on undersampled data</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>fft_gaussian_undersample <span class="op">=</span> np.fft.fft(gaussian_undersample)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>fft_frequencies_undersample <span class="op">=</span> np.fft.fftfreq(<span class="bu">len</span>(x_undersample), d<span class="op">=</span>undersample_spacing)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Shift FFT for better visualization</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>fft_gaussian_undersample_shifted <span class="op">=</span> np.fft.fftshift(fft_gaussian_undersample)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>fft_frequencies_undersample_shifted <span class="op">=</span> np.fft.fftshift(fft_frequencies_undersample)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Nyquist frequency for undersampled data</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>nyquist_frequency_undersample <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> undersample_spacing)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the Gaussian, its FFT, and the aliasing effect</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">8</span>))</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Gaussian plot</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>plt.plot(x_dense, gaussian_dense, label<span class="op">=</span><span class="st">'Gaussian'</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Gaussian Distribution (Variance 1/5)'</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Amplitude'</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="co"># FFT plot</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>plt.plot(fft_frequencies_shifted, np.<span class="bu">abs</span>(fft_gaussian_shifted), label<span class="op">=</span><span class="st">'FFT Magnitude'</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>nyquist_frequency, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'+Nyquist Frequency'</span>)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=-</span>nyquist_frequency, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'-Nyquist Frequency'</span>)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'FFT of Gaussian Distribution'</span>)</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Magnitude'</span>)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytic FT</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>plt.plot(k_dense, gaussian_fft_analytic, label<span class="op">=</span><span class="st">'Analytic FT'</span>)</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Analytic FT'</span>)</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Magnitude'</span>)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="co"># FFT plot of undersampled data showing aliasing</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>plt.plot(fft_frequencies_undersample_shifted, np.<span class="bu">abs</span>(fft_gaussian_undersample_shifted), label<span class="op">=</span><span class="st">'FFT Magnitude (Aliased)'</span>, color<span class="op">=</span><span class="st">'g'</span>)</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>nyquist_frequency_undersample, color<span class="op">=</span><span class="st">'b'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'+Nyquist Frequency (Undersampled)'</span>)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=-</span>nyquist_frequency_undersample, color<span class="op">=</span><span class="st">'b'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'-Nyquist Frequency (Undersampled)'</span>)</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'FFT of Undersampled Gaussian (Aliasing)'</span>)</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Magnitude'</span>)</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_entropia_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="25_transformada_de_fourier_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Para dos eventos con probabilidades <span class="math inline">\(p\)</span> y <span class="math inline">\(1 - p\)</span> la entropía es máxima cuando <span class="math inline">\(p=1/2\)</span>. Es mínima cuando <span class="math inline">\(p=1\)</span> o <span class="math inline">\(p=0\)</span> (cuando sabemos todo y no ganamos información con la ocurrencia de un evento).</p>
-<p>En general para <span class="math inline">\(n\)</span> eventos queremos encontrar el mínimo y el máximo de la entropía. Es decir los extremos de <span class="math display">\[
-H = -\sum_i p_i \log p_i\,,
-\]</span> sujetos a la condición <span class="math inline">\(\sum_i p_i = 1\)</span>. Para lograrlo fijamos <span class="math inline">\(p_1 = 1 - \sum_{j = 2}^n p_i\)</span> y calculamos la derivada respecto a <span class="math inline">\(p_i\)</span> con <span class="math inline">\(i \neq 1\)</span> <span class="math display">\[
-\frac{\partial}{\partial p_i} H = -\log p_i - 1 + \log p_1 + 1 = -\log \frac{p_i}{p_1}
-\]</span> Esto es cero cuando <span class="math inline">\(\frac{p_i}{p_1} = 1\)</span>, es decir cuando todas las probabilidades son iguales <span class="math inline">\(p_i = 1/n\)</span>. De hecho este punto es un máximo.</p>
-<p>Esta definición se puede generalizar a una variable continua, hagamos un intento tomando el límite del discreto al continuo. Consideremos partir la recta real en <span class="math inline">\(n \rightarrow \infty\)</span> intervalos de ancho infinitesimal <span class="math inline">\(\Delta x\)</span>, entonces <span class="math display">\[
-H = -\sum_{i = 0}^\infty p_i \log p_i
-\]</span> donde <span class="math inline">\(p_i =\int_{x_i - \Delta x/2}^{x_i + \Delta} \!\!dx\,\rho(x) \approx \rho(x_i) \Delta x\)</span> es la probabilidad de caer en el i-ésimo intervalo. Entonces <span class="math display">\[
-H = -\lim_{\Delta x \to 0} \sum_{i=0}^\infty \rho(x_i) \Delta x \log(\rho(x_i) \Delta x) = -\int dx\, \rho(x) \log(\rho(x)) - \lim_{\Delta x \to 0} \int dx\, \rho(x) \log \Delta x\,.
-\]</span> El segundo término es infinito. Para obtener algo que tenga sentido nos vemos obligados a ignorarlo.</p>
-<p>Definimos la entropía de Gibbs como <span class="math display">\[
-H = -\int dx\, \rho(x) \log \rho(x)\,.
-\]</span></p>
-<p>Esta entropía tiene el defecto de que puede ser negativa y no es invariante bajo cambios de variables, a diferencia del caso discreto.</p>
-<p>La interpretación de esto depende del contexto.</p>
-<section id="el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann" class="level2">
-<h2 class="anchored" data-anchor-id="el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann">El principio de máxima entropía y la distribución de Boltzmann</h2>
-<p>En general es difícil asignar una distribución de probabilidad. Un principio que funciona en mecánica estadística es el de “máxima entropía”. Es decir, basados en la información que tenemos sobre el sistema, escogemos la distribución de probabilidad que maximiza le entropía de Shannon.</p>
-<p>Jaynes arguyó que este principio se puede aplicar a otros contextos. Corresponde a admitir la ignorancia. La máxima entropía corresponde a la máxima ignorancia sobre el sistema, es decir corresponde a ganar la cantidad máxima de información en promedio con cada observación.</p>
-<p>A partir de este principio se puede deducir la distribución de Boltzmann.</p>
-<p>Supongamos que conocemos el promedio de alguna cantidad <span class="math inline">\(A\)</span>. Queremos encontrar la distribución que maximiza la entropía bajo la condición <span class="math inline">\(\langle A \rangle = \sum_i p_i A_i = c\)</span> fijo.</p>
-<p>Si vemos <span class="math inline">\(\langle A \rangle\)</span> como una función de las variables <span class="math inline">\(p_i\)</span>, queremos maximizar <span class="math inline">\(H(\mathbf{p})\)</span> en el espacio dado por las coordenadas <span class="math inline">\((p_1, ..., p_n)\)</span> sobre la superficie <span class="math inline">\(g(\mathbf{p}) = \sum_i p_i A_i\)</span> constante.</p>
-<p>El gradiente <span class="math inline">\(\nabla g\)</span> siempre es ortogonal a la superficie <span class="math inline">\(g\)</span> constante.</p>
-<p>El gradiente <span class="math inline">\(\nabla H\)</span> es ortogonal a la superficie <span class="math inline">\(g\)</span> constante en los puntos donde <span class="math inline">\(H\)</span> es un mínimo o máximo sobre la superficie. Si no fuera así podríamos movernos en la dirección del gradiente proyectado sobre la superficie y hacer que <span class="math inline">\(H\)</span> sea un poco más pequeño o grande.</p>
-<p>Entonces los dos gradientes son proporcionales en el punto extremo de <span class="math inline">\(H\)</span>, es decir <span class="math inline">\(\nabla H = \lambda \nabla g\)</span> o en otras palabras tenemos que encontrar <span class="math display">\[
-\nabla (H - \lambda g) = 0\,.
-\]</span> Aquí <span class="math inline">\(\lambda\)</span> se llama un <em>multiplicador de Lagrange</em>.</p>
-<p><span class="math display">\[
-\nabla_j H = -\nabla_j \sum_i p_i \ln p_i = -\sum_i (1 + \ln p_i) \nabla_j p_i = -\ln \frac{p_j}{p_1}\,,
-\]</span></p>
-<p><span class="math display">\[
-\nabla_j g = \nabla_j \sum_i A_i p_i = \sum_i A_i \nabla_j p_i = A_j - A_1\,,
-\]</span></p>
-<p>Juntando estas expresiones tenemos</p>
-<p><span class="math display">\[
-0 = \ln\frac{p_j}{p_1} + \lambda (A_j - A_1)\,,
-\]</span></p>
-<p>es decir</p>
-<p><span class="math display">\[
-\frac{p_i}{p_1} = \frac{e^{-\lambda A_i}}{e^{-\lambda A_1}}
-\]</span></p>
-<p>Normalizando adecuadamente</p>
-<p><span class="math display">\[
-p_i = \left(\frac{1}{\sum_{i=1}^n e^{-\lambda A_i}}\right) e^{-\lambda A_i}\,.
-\]</span></p>
-</section>
-</section>
-<section id="el-teorema-de-canal-sin-ruido-de-shannon" class="level1">
-<h1>El teorema de canal sin ruido de Shannon</h1>
-<section id="el-teorema-original" class="level2">
-<h2 class="anchored" data-anchor-id="el-teorema-original">El teorema original</h2>
-<p>Shannon era un informático (más apropiadamente un científico de la información) que introdujo su concepto de entropía para demostrar un teorema sobre comunicaciones en redes.</p>
-<p>La pregunta es cuánto podemos comprimir la información producida por un computador para enviarla de manera eficiente a otro computador. Todos hemos usado archivos .zip. La pregunta es cuánto podemos comprimir una serie de bits.</p>
-<p>Definimos la compresión como un mapa <span class="math inline">\(C^n\)</span> entre las posibles secuencias <span class="math inline">\((x_1,...,x_n)\)</span> y una cadena de bits de longitud <span class="math inline">\(nR\)</span>. Entonces la <em>razón de compresión</em> de este mapa es <span class="math inline">\(R\)</span>.</p>
-<p>La descompresión del mensjae es un mapa <span class="math inline">\(D^n\)</span> que toma una cadena de bits de longitud <span class="math inline">\(nR\)</span> y produce <span class="math inline">\((x_1,...,x_n)\)</span>.</p>
-<p>Un mecanismo de compresión y descompresión es <em>confiable</em> si <span class="math inline">\(D^n(C^n(x)) = x\)</span> con probabilidad <span class="math inline">\(1\)</span> cuando <span class="math inline">\(n\)</span> tiende a infinito.</p>
-<p>El teorema dice (asumiendo que el logaritmo en la definición de <span class="math inline">\(H\)</span> es base <span class="math inline">\(2\)</span>)</p>
-<p><strong>Teorema del canal sin ruido de Shannon</strong>: Suponga que <span class="math inline">\(X_i\)</span> es una serie de variables i.i.d (independientes e idénticamente distribuidas) sacadas de una distribución discreta de probabilidad con entropía <span class="math inline">\(H(X)\)</span>. Sea <span class="math inline">\(R &gt; H\)</span>, entonces existe un mecanismo de compresión confiable con razón de compresión <span class="math inline">\(R\)</span>. Por el contrario sea <span class="math inline">\(R &lt; H\)</span>, entonces no existe un tal mecanismo confiable.</p>
-<p>Lamentablemente no tenemos el tiempo necesario para introducir los conceptos previos necesarios para demostrar este teorema.</p>
-</section>
-<section id="un-par-de-consideraciones-intuitivas" class="level2">
-<h2 class="anchored" data-anchor-id="un-par-de-consideraciones-intuitivas">Un par de consideraciones intuitivas</h2>
-<p>Consideremos una fuente que sólo produce la letra “c”. Esta fuente no contiene ninguna información, no necesitamos comprimir nada.</p>
-<p>Ahora supongamos que unos días la fuente produce la palabra “azul” y otros días la fuente produce la palabra “rojo”. En este caso podemos representar la palabra “azul” con 0 y la palabra rojo con “1”. De hecho la entropía es <span class="math inline">\(1\)</span>, necesitamos un solo bit.</p>
-<p>En el otro extremo, supongamos que la fuente produce una cadena completamente aleatoria de “1” y “0” de longitud <span class="math inline">\(n\)</span>. No tenemos manera de comprimirla si es completamente aleatoria, la entropía es <span class="math display">\[
-H = -n\sum_{i=0}^1 \frac{1}{2}\log\frac{1}{2} = n\,,
-\]</span> y necesitamos todos los <span class="math inline">\(n\)</span> bits. Esta cadena tiene la máxima cantidad de información, no se puede comprimir.</p>
-<p>Aquí vemos que la estadística de la fuente es importante, por eso la información está relacionada con la estadísitica.</p>
-<p>Ahora pensemos en una fuente que transmite un mensaje en español. Resulta que los 33 caracteres del español no ocurren con igual probabilidad, las vocales son mucho más probables. Igualmente para las palabras, algunas palabras son más comunes. Idem para las parejas de palabras o frases.</p>
-<p>Para acercarnos a ese caso, ahora pensemos en una cadena de “0” y “1” tal que el “1” aparece con probabilidad <span class="math inline">\(0.8\)</span>. Una tal cadena es <span class="math display">\[
-111101110101111
-\]</span> Parecería que no podemos comprimir esta cadena, después de todo para el cero necesitamos el símbolo “0” y para el uno necesitamos el símbolo “1”. Esto parecería contradecir la intuición que hemos construído de entropía <span class="math display">\[
-H = -n\left(0.8\log 0.8 + 0.2 \log 0.2\right) \approx 0.5\,.
-\]</span> Pero en realidad podemos tomar cadenas de caracteres, por ejemplo de cinco caracteres. Las cinco cadenas “11110”, “11101”, “11011”, “10111”, “01111” ocurren con mucha más frecuencia que las otras, tal que podemos usar un par de bits para representarlas en vez de cinco. Jugando de esta manera nos podemos acercar a comprimir esos mensajes por un <span class="math inline">\(50\%\)</span>.</p>
-</section>
-<section id="un-ejemplo-de-compresión" class="level2">
-<h2 class="anchored" data-anchor-id="un-ejemplo-de-compresión">Un ejemplo de compresión</h2>
-<p>Ahora supongamos que tenemos un alfabeto de 8 caracteres que queremos comprimir, llamémoslos <span class="math inline">\(\{1,2,3,4,5,6,7,8\}\)</span>. De forma ingenua podemos representar cada caracter con 3 bits. ¿Podemos comprimirlo?</p>
-<p>Si los 8 caracteres ocurren con igual probabilidad <span class="math inline">\(1/8\)</span> no podemos hacer mucho <span class="math display">\[
-H = -n\sum \frac{1}{8}\log\frac{1}{8} = n\log 8 = 3n\,.
-\]</span> Es decir, necesitamos <span class="math inline">\(3n\)</span> bits para representar un mensaje de longitud <span class="math inline">\(n\)</span>.</p>
-<p>Pero si ocurren con probabilidad diferente, podemos hacer algo mejor. Supongamos que las probabilidades son <span class="math display">\[
-\{p_1 = 0.5, p_2 = 0.3, p_3 = 0.1, p_4 = 0.05, p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,.
-\]</span> Entonces un esquema debido a Fano consiste en:</p>
-<ol type="1">
-<li>Ordenar las probabilidades de forma decreciente (como ya hemos hecho)</li>
-<li>Dividir en dos conjuntos que tengan aproximadamente la misma probabilidad. Para nosotros serán <span class="math display">\[
-\{0.5\}\,,\quad \{0.3, 0.1, 0.05, 0.025, 0.0125, 0.0065, 0.006\}\,.
-\]</span></li>
-<li>Los caracteres del primer conjunto se representan con el dígito <span class="math inline">\(0\)</span>, los del segundo con el dígito <span class="math inline">\(1\)</span>. <span class="math display">\[
-``0" = 1\,,\quad ``1" = \{p_2 = 0.3, p_3 = 0.1, p_4 = 0.05, p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span></li>
-<li>Repetimos hasta terminar <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``11" = \{p_3 = 0.1, p_4 = 0.05, p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span> <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``110" = \{p_3 = 0.1, p_4 = 0.05\}\,,\quad ``111" = \{p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span> <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``1111" = \{p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span> <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``11110" = 6\,,\quad ``11111" = \{p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span> <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``11110" = 6\,,\quad ``111110" = 7\,,\quad ``111111" = 8\,.
-\]</span> Es verdad que los símbolos menos probables son representados por más de 3 bits. Pero en promedio un mensaje tendrá longitud</li>
-</ol>
-<div id="b2ba6b3b" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.5</span><span class="op">*</span><span class="dv">1</span><span class="op">+</span><span class="fl">0.3</span><span class="op">*</span><span class="dv">2</span><span class="op">+</span><span class="fl">0.1</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.05</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.025</span><span class="op">*</span><span class="dv">4</span><span class="op">+</span><span class="fl">0.0125</span><span class="op">*</span><span class="dv">5</span><span class="op">+</span><span class="fl">0.0065</span><span class="op">*</span><span class="dv">6</span><span class="op">+</span><span class="fl">0.006</span><span class="op">*</span><span class="dv">6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>1.7875000000000003</code></pre>
-</div>
-</div>
-<p>La entropía es</p>
-<div id="c08372c7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>np.log(<span class="fl">0.5</span>)<span class="op">-</span><span class="fl">0.3</span><span class="op">*</span>np.log(<span class="fl">0.3</span>)<span class="op">-</span><span class="fl">0.1</span><span class="op">*</span>np.log(<span class="fl">0.1</span>)<span class="op">-</span><span class="fl">0.05</span><span class="op">*</span>np.log(<span class="fl">0.05</span>)<span class="op">-</span><span class="fl">0.025</span><span class="op">*</span>np.log(<span class="fl">0.025</span>)<span class="op">-</span><span class="fl">0.0125</span><span class="op">*</span>np.log(<span class="fl">0.0125</span>)<span class="op">\</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">0.0065</span><span class="op">*</span>np.log(<span class="fl">0.0065</span>)<span class="op">-</span><span class="fl">0.006</span><span class="op">*</span>np.log(<span class="fl">0.006</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>np.float64(1.2982375438631775)</code></pre>
-</div>
-</div>
-<p>El esquema descrito arriba se acerca a esta entropía.</p>
-<p>En general, aplicando un esquema como el que vimos la longitud de cada caracter será aproximadamente <span class="math inline">\(-\log p\)</span> y como este ocurre con frecuencia <span class="math inline">\(p\)</span>, la longitud promedio de un mensaje en bits será cercana a la entropía <span class="math display">\[
--n\sum_i p_i\log p_i\,.
-\]</span></p>
-</section>
-</section>
-<section id="tipos-de-entropía" class="level1">
-<h1>Tipos de entropía</h1>
-<p>Existen al menos cinco definiciones de entropía</p>
-<ol type="1">
-<li><strong>Termodinámica</strong>: La función que hace integrable el diferencial de calor. En equilibrio térmico <span class="math inline">\(dQ = TdS\)</span>.</li>
-<li><strong>Física estadística clásica</strong>: Definida por Boltzmann como <span class="math inline">\(S = k\ln\Omega\)</span> donde <span class="math inline">\(\Omega\)</span> es el número de estados del sistema. Se puede demostrar que cumple todas las propiedades de la termodinámica. Esta fue reescrita por Gibbs en la forma <span class="math inline">\(S = -k\sum_i p_i\ln p_i\)</span>,.</li>
-<li><strong>Entropía de información</strong>: Shannon aplicó el concepto de entropía a cualquier distribución de probabilidad para definir la información contenida en un mensaje, escribiendo <span class="math inline">\(H = -\sum_i p_i \log p_i\)</span>. Difiere de la de Boltzmann y Gibbs solo por una constante. Jaynes arguyó que se puede interpretar como la información de cualquier observación de eventos con una distribución de probabilidad. Esta fue la estudiada aquí.</li>
-<li><strong>Física estadística cuántica</strong>: Generalizada por Von Neumann y otros al caso cuántico <span class="math inline">\(S = -k \text{tr}(\rho \ln \rho)\)</span> donde <span class="math inline">\(\rho\)</span> es la matriz de densidad.</li>
-<li><strong>Entropía algorítmica</strong>: La entropía de una cadena de símbolos es la longitud del código más corto que la puede producir.</li>
-</ol>
-</section>
-<section id="tareas" class="level1">
-<h1>¡Tareas!</h1>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">5.1</h2>
-<ol type="1">
-<li><p>Si dos variables aleatorias <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> son independientes, demuestre que su entropía conjunta satisface <span class="math display">\[
-H(x,y) = H(x) + H(y)\,,
-\]</span> donde <span class="math inline">\(H(x,y)\)</span> se calcula con la distribución de probabilidad conjunta <span class="math inline">\(p(x,y)\)</span> y <span class="math inline">\(H(x)\)</span>, <span class="math inline">\(H(y)\)</span> se calculan con las distribuciones de probabilidad <span class="math inline">\(p(x)\)</span>, <span class="math inline">\(p(y)\)</span> respectivamente.</p></li>
-<li><p>Demuestre que <span class="math inline">\(H(x) \leq H(x,y)\)</span>.</p></li>
-</ol>
-</section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1">5.2</h2>
-<p>Considere una variable aleatoria <span class="math inline">\(x\)</span> que puede tomar valores enteros con probabilidades <span class="math inline">\(p_i\)</span>. Suponga que a priori conocemos sólo la varianza de <span class="math inline">\(x\)</span> y que su media es cero. Calcule la distribución de probabilidad de <span class="math inline">\(x\)</span> basándose en el principio de máxima entropía.</p>
-</section>
-<section id="section-2" class="level2">
-<h2 class="anchored" data-anchor-id="section-2">5.3</h2>
-<p>La distribución de uso de letras en el español es (en porcentajes y orden alfabético):</p>
-<div id="72d224cc" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[<span class="fl">12.53</span>,<span class="fl">1.42</span>,<span class="fl">4.68</span>,<span class="fl">5.86</span>,<span class="fl">13.68</span>,<span class="fl">0.69</span>,<span class="fl">1.01</span>,<span class="fl">0.70</span>,<span class="fl">6.25</span>,<span class="fl">0.44</span>,<span class="fl">0.02</span>,<span class="fl">4.97</span>,<span class="fl">3.15</span>,<span class="fl">6.71</span>,<span class="fl">0.31</span>,<span class="fl">8.68</span>,<span class="fl">2.51</span>,<span class="fl">0.88</span>,<span class="fl">6.87</span>,<span class="fl">7.98</span>,<span class="fl">4.63</span>,<span class="fl">3.93</span>,<span class="fl">0.90</span>,<span class="fl">0.01</span>,<span class="fl">0.22</span>,<span class="fl">0.90</span>,<span class="fl">0.52</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>[12.53,
- 1.42,
- 4.68,
- 5.86,
- 13.68,
- 0.69,
- 1.01,
- 0.7,
- 6.25,
- 0.44,
- 0.02,
- 4.97,
- 3.15,
- 6.71,
- 0.31,
- 8.68,
- 2.51,
- 0.88,
- 6.87,
- 7.98,
- 4.63,
- 3.93,
- 0.9,
- 0.01,
- 0.22,
- 0.9,
- 0.52]</code></pre>
-</div>
-</div>
-<p>(Sacado de Wikipedia).</p>
-<ol type="1">
-<li><p>Calcule la entropía de Shannon del español como si fuera sólo una distribución de letras.</p></li>
-<li><p>Ignorando comas, espacios y la diferencia entre mayúsculas y minúsculas, explique por qué es posible comprimir el siguiente poema con una razón de compresión mayor a la entropía calculada en el numeral anterior</p></li>
-</ol>
-<p>Entre menesteres, el ser envejece,<br>
-teje redes, perece<br>
-reverdece en el refleje breve<br>
-de este presente. Cede.</p>
-</section>
-<section id="section-3" class="level2">
-<h2 class="anchored" data-anchor-id="section-3">5.4</h2>
-<p>La entropía de Shannon de una distribución discreta que tiene absoluta certeza de obtener un resultado dado es cero.</p>
-<p>En el continuo es un poco más complicado. Considere la siguiente función de densidad de probabilidad <span class="math display">\[
-\rho(x) = \begin{cases} \frac{1}{L} &amp; -L/2 \leq x \leq L/2 \\ 0 &amp; x &lt; -L/2\quad\text{o}\quad x &gt; L/2 \end{cases}
-\]</span></p>
-<ol type="1">
-<li>Calcule la entropía de Shannon de esta distribución de probabilidad.</li>
-<li>Tome el límite <span class="math inline">\(L \rightarrow 0\)</span> en el cual esta distribución tiende a una delta de Dirac.</li>
-<li>En el límite anterior estamos absolutamente seguros de que la variable tiene el valor <span class="math inline">\(0\)</span>. ¿Por qué la entropía no nos da igual a cero? De una interpretación de este hecho más allá del simple hecho que la fórmula para el continuo es diferente.</li>
-</ol>
-</section>
-<section id="section-4" class="level2">
-<h2 class="anchored" data-anchor-id="section-4">5.5</h2>
-<p>Calcule la entropía de Shannon de la distribución binomial para un número grande de eventos <span class="math inline">\(n\)</span>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

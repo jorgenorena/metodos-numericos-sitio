@@ -284,6 +284,14 @@ window.Quarto = {
     <a class="dropdown-item" href="./23_redes_neuronales.html">
  <span class="dropdown-text">Redes neuronales</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./24_integracion_monte_carlo.html">
+ <span class="dropdown-text">Integración de Monte Carlo</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./25_transformada_de_fourier.html">
+ <span class="dropdown-text">Transformada de Fourier</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -500,6 +508,18 @@ window.Quarto = {
  <span class="menu-text">Redes neuronales</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24_integracion_monte_carlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integración de Monte Carlo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25_transformada_de_fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transformada de Fourier</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -586,7 +606,7 @@ y_{out} = \sigma(z)
 ReLU(x) = \begin{cases}x &amp; x \geq 0\\ 0 &amp; x &lt; 0\end{cases}\,.
 \]</span></p>
 <p>Implementemos una neurona usando JAX:</p>
-<div id="769f7fdb" class="cell" data-execution_count="1">
+<div id="769f7fdb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
@@ -618,7 +638,7 @@ ReLU(x) = \begin{cases}x &amp; x \geq 0\\ 0 &amp; x &lt; 0\end{cases}\,.
 <p>Cada capa oculta está formada por varias neuronas que reciben la salida de la capa anterior como entrada.</p>
 <p>Cuando se usan muchas capas, se dice que la red es <em>profunda</em>.</p>
 <p>Hagamos un ejemplo de una red neuronal multicapa con JAX:</p>
-<div id="ce0a976b" class="cell" data-execution_count="2">
+<div id="ce0a976b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(z):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.maximum(<span class="dv">0</span>, z)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -654,7 +674,7 @@ ReLU(x) = \begin{cases}x &amp; x \geq 0\\ 0 &amp; x &lt; 0\end{cases}\,.
 <p>El poder de las redes neuronales se puede explicar en parte porque pueden ajustar cualquier función.</p>
 <p>Para ser más precisos, existe un teorema que dice que una red neuronal con una capa oculta puede aproximar cualquier función en un intervalo cerrado.</p>
 <p>Para ver cómo, intentemos aproximar un coseno:</p>
-<div id="e32042cf" class="cell" data-execution_count="3">
+<div id="e32042cf" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> random</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -667,7 +687,7 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 \]</span></p>
 <p>donde <span class="math inline">\(\delta F_i\)</span> es el salto que hace la función entre el punto <span class="math inline">\(x_{i-1}\)</span> y el punto <span class="math inline">\(x_i\)</span>. El parámetro <span class="math inline">\(w\)</span> controla la altura del paso.</p>
 <p>Note que esta fórmula tiene la forma de una red neuronal con una capa escondida con pesos todos iguales a <span class="math inline">\(w\)</span> y sesgo <span class="math inline">\(-w X_i\)</span>, y una capa de salida sin función de activación con sesgo cero y pesos <span class="math inline">\(\delta F_i\)</span>.</p>
-<div id="70490d01" class="cell" data-execution_count="4">
+<div id="70490d01" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> red_neuronal(x, w1, b1, w2, b2):</span>
@@ -689,7 +709,7 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> jnp.array(dF)</span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="98969cc7" class="cell" data-execution_count="5">
+<div id="98969cc7" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x_plot <span class="op">=</span> jnp.linspace(<span class="op">-</span>jnp.pi, jnp.pi, <span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
@@ -729,7 +749,7 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 <section id="cargar-el-dataset-de-fashion-mnist" class="level3">
 <h3 class="anchored" data-anchor-id="cargar-el-dataset-de-fashion-mnist">1. Cargar el dataset de Fashion MNIST</h3>
 <p>Primero, cargamos el dataset de Fashion MNIST utilizando TensorFlow, que ofrece una forma sencilla de acceder a los datos.</p>
-<div id="b8905557" class="cell" data-execution_count="6">
+<div id="b8905557" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> grad, random</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> jit</span>
@@ -747,14 +767,14 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>train_labels <span class="op">=</span> jnp.array(train_labels)</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>test_labels <span class="op">=</span> jnp.array(test_labels)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c8226a1f" class="cell" data-execution_count="7">
+<div id="c8226a1f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">"T-shirt/top"</span>, <span class="st">"Trouser"</span>, <span class="st">"Pullover"</span>, <span class="st">"Dress"</span>, <span class="st">"Coat"</span>, <span class="st">"Sandal"</span>, <span class="st">"Shirt"</span>, <span class="st">"Sneaker"</span>, <span class="st">"Bag"</span>, <span class="st">"Ankle boot"</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>class_names[train_labels[<span class="dv">0</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>'Ankle boot'</code></pre>
 </div>
 </div>
-<div id="358f14e5" class="cell" data-execution_count="8">
+<div id="358f14e5" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(train_images[<span class="dv">0</span>].reshape([<span class="dv">28</span>,<span class="dv">28</span>]), cmap<span class="op">=</span><span class="st">'gray_r'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -768,7 +788,7 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 <section id="definir-la-red-neuronal" class="level3">
 <h3 class="anchored" data-anchor-id="definir-la-red-neuronal">2. Definir la Red Neuronal</h3>
 <p>Ahora, definimos un <strong>MLP</strong> con una capa oculta utilizando JAX. Esta red tendrá 784 entradas (una por cada píxel de una imagen de 28x28), una capa oculta con 128 neuronas, y una capa de salida con 10 neuronas (una por cada clase).</p>
-<div id="48ff467b" class="cell" data-execution_count="9">
+<div id="48ff467b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función ReLU</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(z):</span>
@@ -820,7 +840,7 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 \]</span></p>
 <p>donde <span class="math inline">\(y_{out}\)</span> es la probabilidad predicha por la red para cada clase.</p>
 <p>Calcularemos los gradientes de esta pérdida con respecto a los pesos utilizando <code>jax.grad</code>.</p>
-<div id="e81020b3" class="cell" data-execution_count="10">
+<div id="e81020b3" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de pérdida (Entropía Cruzada)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_entropy_loss(params, x, y):</span>
@@ -847,7 +867,7 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 <section id="entrenamiento-de-la-red" class="level3">
 <h3 class="anchored" data-anchor-id="entrenamiento-de-la-red">4. Entrenamiento de la Red</h3>
 <p>El siguiente código entrena la red, no está optimizado y es bastante lento.</p>
-<div id="7ba40cb2" class="cell" data-execution_count="11">
+<div id="7ba40cb2" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrenamiento de la red</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="dv">30</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">0.01</span></span>
@@ -901,7 +921,7 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 Época 30, Precisión en test: 0.853</code></pre>
 </div>
 </div>
-<div id="6a117c77" class="cell" data-execution_count="12">
+<div id="6a117c77" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="bu">len</span>(accuracies)) <span class="op">+</span> <span class="dv">1</span>, accuracies)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Época"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Precisión en el conjunto de prueba"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>

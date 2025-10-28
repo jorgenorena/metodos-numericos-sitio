@@ -284,6 +284,14 @@ window.Quarto = {
     <a class="dropdown-item" href="./23_redes_neuronales.html">
  <span class="dropdown-text">Redes neuronales</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./24_integracion_monte_carlo.html">
+ <span class="dropdown-text">Integración de Monte Carlo</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./25_transformada_de_fourier.html">
+ <span class="dropdown-text">Transformada de Fourier</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -500,6 +508,18 @@ window.Quarto = {
  <span class="menu-text">Redes neuronales</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24_integracion_monte_carlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integración de Monte Carlo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25_transformada_de_fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transformada de Fourier</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -549,7 +569,7 @@ window.Quarto = {
 </header>
 
 
-<div id="9893bd43" class="cell" data-execution_count="1">
+<div id="9893bd43" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -558,7 +578,7 @@ window.Quarto = {
 <section id="distribuciones-que-tienden-a-la-normal" class="level1">
 <h1>Distribuciones que tienden a la normal</h1>
 <p>Muchas distribuciones tienden a parecerse a la distribución gaussiana en algún límite. Tomemos la distribución binomial</p>
-<div id="e5a7afe5" class="cell" data-execution_count="2">
+<div id="e5a7afe5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binomial(n, r, p):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> comb(r, n)<span class="op">*</span>p<span class="op">**</span>n<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)<span class="op">**</span>(r <span class="op">-</span> n)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -607,7 +627,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Cuando el número de muestras <span class="math inline">\(r\)</span> tiende a ser grande, la distribución tiende a una gaussiana con media <span class="math inline">\(\mu = rp\)</span> y varianza <span class="math inline">\(np(1-p)\)</span>.</p>
-<div id="eed93328" class="cell" data-execution_count="3">
+<div id="eed93328" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson(n, lamda):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lamda<span class="op">**</span>n<span class="op">*</span>np.exp(<span class="op">-</span>lamda)<span class="op">/</span>math.factorial(n)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -660,22 +680,22 @@ window.Quarto = {
 <section id="suma-de-muchas-variables-aleatorias" class="level1">
 <h1>Suma de muchas variables aleatorias</h1>
 <p>Además de aparecer como el límite de muchas distribuciones, la gaussiana también aparece cuando buscamos la distribución de probabilidad de una suma de variables aleatorias independientes.</p>
-<div id="3fa84f24" class="cell" data-execution_count="4">
+<div id="3fa84f24" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>aleatorios <span class="op">=</span> np.random.random(<span class="dv">10000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7e4f516f" class="cell" data-execution_count="5">
+<div id="7e4f516f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>aleatorios.std()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>0.29104351781205123</code></pre>
 </div>
 </div>
-<div id="79838bc0" class="cell" data-execution_count="6">
+<div id="79838bc0" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>aleatorios.mean()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>0.5008438524785475</code></pre>
 </div>
 </div>
-<div id="5c5e98ff" class="cell" data-execution_count="7">
+<div id="5c5e98ff" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.hist(aleatorios, bins<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -686,10 +706,10 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="88512451" class="cell" data-execution_count="8">
+<div id="88512451" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>aleatorios <span class="op">=</span> np.random.random(<span class="dv">10000</span>) <span class="op">+</span> np.random.random(<span class="dv">10000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e85592bc" class="cell" data-execution_count="9">
+<div id="e85592bc" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.hist(aleatorios, bins<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -700,22 +720,22 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="1124080d" class="cell" data-execution_count="10">
+<div id="1124080d" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>aleatorios.std()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>0.4066359166998812</code></pre>
 </div>
 </div>
-<div id="1699812e" class="cell" data-execution_count="11">
+<div id="1699812e" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>aleatorios.mean()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>1.0007835056730856</code></pre>
 </div>
 </div>
-<div id="71177fde" class="cell" data-execution_count="12">
+<div id="71177fde" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>aleatorios <span class="op">=</span> np.random.random(<span class="dv">10000</span>) <span class="op">+</span> np.random.random(<span class="dv">10000</span>) <span class="op">+</span> np.random.random(<span class="dv">10000</span>) <span class="op">+</span> np.random.random(<span class="dv">10000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="82ba976b" class="cell" data-execution_count="13">
+<div id="82ba976b" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.hist(aleatorios, bins<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -726,22 +746,22 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="8b71fce8" class="cell" data-execution_count="14">
+<div id="8b71fce8" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>aleatorios.std()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>0.5756223451399315</code></pre>
 </div>
 </div>
-<div id="3f5152aa" class="cell" data-execution_count="15">
+<div id="3f5152aa" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>aleatorios.mean()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>2.003899783454362</code></pre>
 </div>
 </div>
-<div id="1c862dfb" class="cell" data-execution_count="16">
+<div id="1c862dfb" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>aleatorios <span class="op">=</span> <span class="bu">sum</span>([np.random.random(<span class="dv">10000</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">200</span>)])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f046c034" class="cell" data-execution_count="17">
+<div id="f046c034" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.hist(aleatorios, bins<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -752,13 +772,13 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="5a3f7578" class="cell" data-execution_count="18">
+<div id="5a3f7578" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>aleatorios.std()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>4.104838354639792</code></pre>
 </div>
 </div>
-<div id="1f0d9005" class="cell" data-execution_count="19">
+<div id="1f0d9005" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>aleatorios.mean()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>99.97240749653575</code></pre>
@@ -820,12 +840,12 @@ p(y) = \frac{1}{\sqrt{2\pi}\sigma}e^{-y^2/2\sigma^2}\,.
 \]</span></p>
 <p>que es menor que el error de cada medición por un factor <span class="math inline">\(1/\sqrt{N}\)</span>.</p>
 <p>¡Simulemos estos hechos!</p>
-<div id="5bad8b43" class="cell" data-execution_count="20">
+<div id="5bad8b43" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generaomos 100 mediciones de una cantidad con un valor real de 10</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># y con un error típico de 1</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>mediciones <span class="op">=</span> np.random.normal(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="63329c2e" class="cell" data-execution_count="21">
+<div id="63329c2e" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.hist(mediciones)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -836,25 +856,25 @@ p(y) = \frac{1}{\sqrt{2\pi}\sigma}e^{-y^2/2\sigma^2}\,.
 </div>
 </div>
 </div>
-<div id="4a6c57e5" class="cell" data-execution_count="22">
+<div id="4a6c57e5" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Una mediición aislada tiene un error de orden 1</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>mediciones[<span class="dv">0</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>10.78718021791969</code></pre>
 </div>
 </div>
-<div id="8ee2aabe" class="cell" data-execution_count="23">
+<div id="8ee2aabe" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># La desviacion estandar de los datos es cercana a la de la distribución</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>mediciones.std()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>1.037929831704835</code></pre>
 </div>
 </div>
-<div id="49895d20" class="cell" data-execution_count="24">
+<div id="49895d20" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ahora cada medición es el promedio de 10 mediciones independientes</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>promedios <span class="op">=</span> <span class="bu">sum</span>(np.random.normal(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">100</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>))<span class="op">/</span><span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="dc9518b9" class="cell" data-execution_count="25">
+<div id="dc9518b9" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># los promedios son mucho más cercanos al valor verdadero</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.hist(promedios)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -866,14 +886,14 @@ p(y) = \frac{1}{\sqrt{2\pi}\sigma}e^{-y^2/2\sigma^2}\,.
 </div>
 </div>
 </div>
-<div id="6aebdc4c" class="cell" data-execution_count="26">
+<div id="6aebdc4c" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El error típico, dado por la desviación estándar, es lo prometidoo</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>promedios.std()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>0.3065153877010273</code></pre>
 </div>
 </div>
-<div id="189d4f68" class="cell" data-execution_count="27">
+<div id="189d4f68" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>0.31622776601683794</code></pre>

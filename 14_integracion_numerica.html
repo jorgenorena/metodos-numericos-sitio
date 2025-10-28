@@ -284,6 +284,14 @@ window.Quarto = {
     <a class="dropdown-item" href="./23_redes_neuronales.html">
  <span class="dropdown-text">Redes neuronales</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./24_integracion_monte_carlo.html">
+ <span class="dropdown-text">Integración de Monte Carlo</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./25_transformada_de_fourier.html">
+ <span class="dropdown-text">Transformada de Fourier</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -500,6 +508,18 @@ window.Quarto = {
  <span class="menu-text">Redes neuronales</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24_integracion_monte_carlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integración de Monte Carlo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25_transformada_de_fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transformada de Fourier</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -555,7 +575,7 @@ window.Quarto = {
 
 
 <p>Incluso para funciones sencillas puede no ser posible obtener una respuesta analítica (“a mano”) para sus integrales. Por eso son importantes los métodos de integración. Empezaremos por los más sencillos.</p>
-<div id="cab287b8" class="cell" data-execution_count="1">
+<div id="cab287b8" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -569,7 +589,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \int_{x_o}^{x_1} dx\,f(x) = \frac{(x_1-x_o)}{2}[f(x_o) + f(x_1)] - \frac{h^3}{12}f''(\xi)
 \]</span></p>
-<div id="f9b5bf87" class="cell" data-execution_count="2">
+<div id="f9b5bf87" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, np.cos(x), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, np.cos(<span class="dv">2</span>)<span class="op">*</span>x<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> np.cos(<span class="dv">0</span>)<span class="op">*</span>(x <span class="op">-</span> <span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>)</span>
@@ -582,17 +602,17 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="f7faf339" class="cell" data-execution_count="3">
+<div id="f7faf339" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trapecio_uno(fxo, fx1, h):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (h<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>(fxo <span class="op">+</span> fx1) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b431413e" class="cell" data-execution_count="4">
+<div id="b431413e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>trapecio_uno(np.cos(<span class="dv">0</span>), np.cos(<span class="dv">2</span>), <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>0.5838531634528576</code></pre>
 </div>
 </div>
-<div id="82f11418" class="cell" data-execution_count="5">
+<div id="82f11418" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>np.sin(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>0.9092974268256817</code></pre>
@@ -603,7 +623,7 @@ window.Quarto = {
 \int_{x_o}^{x_2} dx\,f(x) = \frac{h}{3}(f(x_o) + 4f(x_1) + f(x_2)) - \frac{h^5}{90}f^{(4)}(\xi)
 \]</span></p>
 <p>(El término de error rigurosamente no se puede deducir a partir de los polinomios de Lagrange, ver libro)</p>
-<div id="5a4733ef" class="cell" data-execution_count="6">
+<div id="5a4733ef" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, np.cos(x), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, np.cos(<span class="dv">0</span>)<span class="op">*</span>(x <span class="op">-</span> <span class="dv">2</span>)<span class="op">*</span>(x <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="dv">1</span>) <span class="op">-</span> <span class="op">\</span></span>
@@ -617,11 +637,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="2545f373" class="cell" data-execution_count="7">
+<div id="2545f373" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simpson_uno(fxo, fx1, fx2, h):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (h<span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>(fxo <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>fx1 <span class="op">+</span> fx2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b00502a1" class="cell" data-execution_count="8">
+<div id="b00502a1" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>simpson_uno(np.cos(<span class="dv">0</span>), np.cos(<span class="dv">1</span>), np.cos(<span class="dv">2</span>), <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>0.9150207956418055</code></pre>
@@ -649,7 +669,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \int_a^b dx\,f(x) = hf((b-a)/2) + \frac{h^3}{24}f''(\xi)
 \]</span></p>
-<div id="ae32a0f1" class="cell" data-execution_count="9">
+<div id="ae32a0f1" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, np.cos(x), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, np.cos(<span class="dv">1</span>), alpha <span class="op">=</span> <span class="fl">0.2</span>)</span>
@@ -662,11 +682,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="164fbedf" class="cell" data-execution_count="10">
+<div id="164fbedf" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> punto_medio_uno(fxo, h):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">2</span><span class="op">*</span>h<span class="op">*</span>fxo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0b3a3d4f" class="cell" data-execution_count="11">
+<div id="0b3a3d4f" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>punto_medio_uno(np.cos(<span class="dv">1</span>), <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>1.0806046117362795</code></pre>
@@ -688,7 +708,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \int_a^b dx\,f(x) = h\sum_{i = 0}^n f((x_{i +1} - x_i)/2) + \frac{h^2 (b - a)}{24} f''(\mu)
 \]</span></p>
-<div id="ecfefef6" class="cell" data-execution_count="12">
+<div id="ecfefef6" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, np.cos(x), alpha <span class="op">=</span> <span class="fl">0.3</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>xi <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span><span class="op">/</span><span class="dv">2</span>,<span class="dv">3</span><span class="op">/</span><span class="dv">2</span>,<span class="dv">2</span>])</span>
@@ -705,13 +725,13 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="4de90648" class="cell" data-execution_count="13">
+<div id="4de90648" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> punto_medio(f, a, b, n):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>n</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    fx <span class="op">=</span> f(np.linspace(a <span class="op">+</span> h<span class="op">/</span><span class="dv">2</span>, b <span class="op">-</span> h<span class="op">/</span><span class="dv">2</span>, n, endpoint<span class="op">=</span><span class="va">True</span>))</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h<span class="op">*</span><span class="bu">sum</span>(fx)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="09364a07" class="cell" data-execution_count="14">
+<div id="09364a07" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>punto_medio(np.cos, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>0.9188387986651211</code></pre>
@@ -729,7 +749,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \int_a^b dx\,f(x) = \frac{h}{2}\left[f(a) + 2\sum_{i=1}^{n-1} f(x_i) + f(b)\right]- \frac{h^2 (b-a)}{12}f''(\mu)
 \]</span></p>
-<div id="ba8f34a8" class="cell" data-execution_count="15">
+<div id="ba8f34a8" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, np.cos(x), alpha <span class="op">=</span> <span class="fl">0.3</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -749,13 +769,13 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="ec0e9c68" class="cell" data-execution_count="16">
+<div id="ec0e9c68" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trapecio(f, a, b, n):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b <span class="op">-</span> a)<span class="op">/</span>n</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    fx <span class="op">=</span> f(np.linspace(a<span class="op">+</span>h, b<span class="op">-</span>h, n<span class="op">-</span><span class="dv">1</span>, endpoint<span class="op">=</span><span class="va">True</span>))</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (h<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>(f(a) <span class="op">+</span> <span class="dv">2</span><span class="op">*</span><span class="bu">sum</span>(fx) <span class="op">+</span> f(b))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fcf4fe59" class="cell" data-execution_count="17">
+<div id="fcf4fe59" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>trapecio(np.cos, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>0.890274325576322</code></pre>
@@ -765,7 +785,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \int_a^b dx\,f(x) = \frac{h}{3}\left[f(a) + 2\sum_{i=1}^{n/2-1} f(x_{2i}) + 4\sum_{i=1}^{n/2} f(x_{2i-1}) + f(b)\right]- \frac{h^4 (b-a)}{180}f''(\mu)
 \]</span></p>
-<div id="f5441d1a" class="cell" data-execution_count="18">
+<div id="f5441d1a" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x, np.cos(x), alpha <span class="op">=</span> <span class="fl">0.3</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -801,7 +821,7 @@ e(h) = \left|\frac{h}{3}\left[e_o + 2\sum_{i=1}^{n/2-1} e_{2i} + 4\sum_{i=1}^{n/
 <section id="métodos-de-paso-variable" class="level1">
 <h1>Métodos de paso variable</h1>
 <p>Los métodos vistos anteriormente funcionan bastante bien en muchos casos. Sin embargo esos métodos no son óptimos cuando una función varía mucho. Por ejemplo:</p>
-<div id="ee38db27" class="cell" data-execution_count="19">
+<div id="ee38db27" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">7</span>,<span class="dv">100</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, np.exp(<span class="op">-</span>x)<span class="op">*</span>np.sin(x))</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, np.zeros(<span class="dv">100</span>), color <span class="op">=</span> <span class="st">'black'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -844,7 +864,7 @@ S_1 - \int_a^b dx\,f(x) = \frac{1}{15}(S_o - S_1)
 <li>Si el error es mayor que la tolerancia, dividir el intervalo a la mitad.</li>
 <li>Repetir los pasos 1 y 2 para cada subintervalo.</li>
 </ol>
-<div id="974ffaf1" class="cell" data-execution_count="20">
+<div id="974ffaf1" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MaxIterations(<span class="pp">Exception</span>):</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -930,7 +950,7 @@ S_1 - \int_a^b dx\,f(x) = \frac{1}{15}(S_o - S_1)
 <span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a>                </span>
 <span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> approx</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2028a69d" class="cell" data-execution_count="21">
+<div id="2028a69d" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>adaptive(np.cos, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.00000001</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>0.8414709892666887</code></pre>

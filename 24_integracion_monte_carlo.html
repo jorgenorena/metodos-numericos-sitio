@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Entropía – Métodos Numéricos y Probabilidades 2025</title>
+<title>Integración de Monte Carlo – Métodos Numéricos y Probabilidades 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -305,7 +305,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Unidad 2: Probabilidad</a></li><li class="breadcrumb-item"><a href="./10_entropia.html">Entropía de Shannon</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21_ajuste_de_curvas.html">Unidad 5: Tópicos</a></li><li class="breadcrumb-item"><a href="./24_integracion_monte_carlo.html">Integración de Monte Carlo</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -393,7 +393,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_entropia.html" class="sidebar-item-text sidebar-link active">
+  <a href="./10_entropia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Entropía de Shannon</span></a>
   </div>
 </li>
@@ -510,7 +510,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./24_integracion_monte_carlo.html" class="sidebar-item-text sidebar-link">
+  <a href="./24_integracion_monte_carlo.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Integración de Monte Carlo</span></a>
   </div>
 </li>
@@ -532,24 +532,15 @@ window.Quarto = {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#información-y-entropía-de-shannon" id="toc-información-y-entropía-de-shannon" class="nav-link active" data-scroll-target="#información-y-entropía-de-shannon">Información y entropía de Shannon</a>
+  <li><a href="#integración-de-monte-carlo-básica" id="toc-integración-de-monte-carlo-básica" class="nav-link active" data-scroll-target="#integración-de-monte-carlo-básica">Integración de Monte Carlo Básica</a></li>
+  <li><a href="#muestreo-por-importancia" id="toc-muestreo-por-importancia" class="nav-link" data-scroll-target="#muestreo-por-importancia">Muestreo por Importancia</a></li>
+  <li><a href="#mcmc-el-algoritmo-de-metropolishastings" id="toc-mcmc-el-algoritmo-de-metropolishastings" class="nav-link" data-scroll-target="#mcmc-el-algoritmo-de-metropolishastings">MCMC: El algoritmo de Metropolis–Hastings</a>
   <ul class="collapse">
-  <li><a href="#el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann" id="toc-el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann" class="nav-link" data-scroll-target="#el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann">El principio de máxima entropía y la distribución de Boltzmann</a></li>
+  <li><a href="#balance-detallado" id="toc-balance-detallado" class="nav-link" data-scroll-target="#balance-detallado">Balance detallado</a></li>
+  <li><a href="#construcción-mh" id="toc-construcción-mh" class="nav-link" data-scroll-target="#construcción-mh">Construcción MH</a>
+  <ul class="collapse">
+  <li><a href="#propuesta-gaussiana" id="toc-propuesta-gaussiana" class="nav-link" data-scroll-target="#propuesta-gaussiana">Propuesta gaussiana</a></li>
   </ul></li>
-  <li><a href="#el-teorema-de-canal-sin-ruido-de-shannon" id="toc-el-teorema-de-canal-sin-ruido-de-shannon" class="nav-link" data-scroll-target="#el-teorema-de-canal-sin-ruido-de-shannon">El teorema de canal sin ruido de Shannon</a>
-  <ul class="collapse">
-  <li><a href="#el-teorema-original" id="toc-el-teorema-original" class="nav-link" data-scroll-target="#el-teorema-original">El teorema original</a></li>
-  <li><a href="#un-par-de-consideraciones-intuitivas" id="toc-un-par-de-consideraciones-intuitivas" class="nav-link" data-scroll-target="#un-par-de-consideraciones-intuitivas">Un par de consideraciones intuitivas</a></li>
-  <li><a href="#un-ejemplo-de-compresión" id="toc-un-ejemplo-de-compresión" class="nav-link" data-scroll-target="#un-ejemplo-de-compresión">Un ejemplo de compresión</a></li>
-  </ul></li>
-  <li><a href="#tipos-de-entropía" id="toc-tipos-de-entropía" class="nav-link" data-scroll-target="#tipos-de-entropía">Tipos de entropía</a></li>
-  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas">¡Tareas!</a>
-  <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">5.1</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">5.2</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">5.3</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">5.4</a></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">5.5</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -557,9 +548,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_definicion_probabilidad.html">Unidad 2: Probabilidad</a></li><li class="breadcrumb-item"><a href="./10_entropia.html">Entropía de Shannon</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21_ajuste_de_curvas.html">Unidad 5: Tópicos</a></li><li class="breadcrumb-item"><a href="./24_integracion_monte_carlo.html">Integración de Monte Carlo</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Entropía</h1>
+<h1 class="title">Integración de Monte Carlo</h1>
 </div>
 
 
@@ -576,267 +567,204 @@ window.Quarto = {
 </header>
 
 
-<p>Esta clase está basada en las siguientes fuentes:</p>
-<ul>
-<li>“Statistical Physics of Particles”, Mehran Kardar, Cambridge University Press, 2007.</li>
-<li>“What is Entropy?”, John Baez, 2024 (https://johncarlosbaez.wordpress.com/2024/07/20/what-is-entropy/)</li>
-<li>“Quantum information and quantum computation”, M. Nielsen y I. Chuang, Cambridge University Press, 2010</li>
-<li>“Advanced Machine Learning for Physicists”, Lecture 7, Florian Marquardt, 2022, https://www.youtube.com/watch?v=Ihcruy9gX70&amp;list=PLemsnf33Vij4-kv-JTjDthaGUYUnQbbws&amp;index=7</li>
-</ul>
-<section id="información-y-entropía-de-shannon" class="level1">
-<h1>Información y entropía de Shannon</h1>
-<p>¿Cuánta información se obtiene cuando se sabe que ocurrió un evento de probabilidad <span class="math inline">\(p\)</span>? <span class="math display">\[
--\log p
-\]</span> La base del logaritmo no es importante; es mera convención. Si uno es físico le gusta el logaritmo natural, si uno es informático le gusta base 2, si uno en cambio es una persona normal le gusta base 10. Pero no es muy importante. Simplemente definimos un “bit de información” como <span class="math inline">\(\log 2\)</span> en la base dada.</p>
-<p>Por ejemplo: Suponga que se tiran tres monedas y se obtiene “cara, sello, cara”. Este evento tiene probabilidad <span class="math inline">\(1/2^3\)</span> y entonces se obtuvo una cantidad de información igual a <span class="math display">\[
--\log\left(\frac{1}{2^3}\right) = 3\log 2
+<p>Cuando queremos evaluar numéricamente una integral en muchas dimensiones, los métodos más eficientes son de monte carlo. Es decir, aproximan la integral mediante el uso de muestras aleatorias. Veamos cómo funciona.</p>
+<p>Este tipo de integrales aparecen con frecuencia al realizar inferencia bayesiana. Esos casos consisten en la integración de funciones de distribución de probabilidad y nos enfocaremos en esto aquí.</p>
+<section id="integración-de-monte-carlo-básica" class="level1">
+<h1>Integración de Monte Carlo Básica</h1>
+<p>Por simplicidad, consideremos integrales unidimensionales. Queremos calcular <span class="math display">\[
+I = \int_a^b dx \, h(x).
+\]</span> Esto lo reescribimos como <span class="math display">\[
+I = \int_a^b dx \, g(x) \, w(x),
+\]</span> donde <span class="math display">\[
+w(x) = h(x)(b - a), \qquad g(x) = \frac{1}{b - a}.
 \]</span></p>
-<p>La justificación del enunciado anterior es que queremos que la información sea:</p>
-<ul>
-<li><p>Positiva para <span class="math inline">\(p &gt; 0\)</span>.</p></li>
-<li><p>Decreciente <span class="math inline">\(I(p) &gt; I(q)\)</span> para <span class="math inline">\(p &lt; q\)</span>: Si ocurre un evento de baja probabilidad queremos decir que obtuvimos mucha información y vice versa.</p></li>
-<li><p>Aditiva <span class="math inline">\(I(pq) = I(p) + I(q)\)</span>: La información de la combinación de dos eventos independientes es la suma de las informaciones.</p></li>
-</ul>
-<p>Resulta que la única función que cumple estas tres condiciones es el logaritmo.</p>
-<p>Ahora supongamos que tenemos una moneda pesada tal que <span class="math inline">\(2/3\)</span> de las veces sale cara mientras <span class="math inline">\(1/3\)</span> de las veces sale sello.</p>
-<p>Si sale cara obtuvimos <span class="math inline">\(-\log 2/3\)</span> de información mientras si sale sello obtuvimos <span class="math inline">\(-\log 1/3\)</span>.</p>
-<p>La información promedio obtenida en cada lanzamiento de la moneda es <span class="math display">\[
--\frac{2}{3} \log \frac{2}{3} - \frac{1}{3} \log \frac{1}{3}\,.
+<p>De esta forma, <span class="math display">\[
+I = \langle w(X) \rangle,
+\]</span> donde <span class="math inline">\(X\)</span> es una variable aleatoria tomada de una distribución uniforme en <span class="math inline">\([a, b]\)</span>.</p>
+<p>Podemos entonces generar muchos <span class="math inline">\(X_i\)</span> y estimar <span class="math display">\[
+\hat{I} = \frac{1}{N} \sum_{i=1}^N w(X_i),
+\qquad \Rightarrow \qquad \langle w(X) \rangle \approx I.
 \]</span></p>
-<p>Esta es la <strong>entropía de Shannon</strong> de este sistema.</p>
-<p>En general supongamos que hay <span class="math inline">\(n\)</span> eventos con probabilidades <span class="math inline">\(p_1,...,p_n\)</span>. La entropía de Shannon es <span class="math display">\[
-H = -\sum_{i=1}^n p_i\log p_i\,.
+<p>Esto es <strong>integración Monte Carlo</strong>.</p>
+<p>También podemos estimar el error: <span class="math display">\[
+se = \frac{s}{\sqrt{N}}, \qquad
+s^2 = \frac{1}{N - 1} \sum_{i=1}^N (Y_i - \hat{I})^2, \qquad
+Y_i \equiv w(X_i).
 \]</span></p>
-<p>Resulta que la entropía de Shannon es mayor para distribuciones esparcidas igualmente entre eventos y menor para distribuciones concentradas en pocos eventos.</p>
-<div id="145791d9" class="cell" data-execution_count="2">
+<p>En realidad, podemos generalizar y tomar <span class="math inline">\(g\)</span> como una distribución más general o más conveniente. Por ejemplo, podemos calcular integrales de la forma <span class="math inline">\(\int_a^b dx \, g(x) \, h(x)\)</span> tomando muestras de la distribución <span class="math inline">\(g\)</span>.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Estimemos <span class="math inline">\(I = P(Z &gt; 3)\)</span> con <span class="math inline">\(Z\)</span> tomada de una distribución normal con media 0 y varianza 1. Sabemos que esto vale <span class="math inline">\(0.0013\)</span>.</p>
+<div id="e7ba98dc" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt, pi, exp, erfc</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ps <span class="op">=</span> np.linspace(<span class="fl">0.0001</span>, <span class="fl">0.9999</span>, <span class="dv">100</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="op">-</span>ps<span class="op">*</span>np.log(ps) <span class="op">-</span> (<span class="dv">1</span> <span class="op">-</span> ps)<span class="op">*</span>np.log(<span class="dv">1</span> <span class="op">-</span> ps)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.plot(ps, h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="10_entropia_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">42</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Densidades normal estándar y N(mu,1) en log-escala</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_phi(x):            <span class="co"># N(0,1)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>np.log(<span class="dv">2</span><span class="op">*</span>pi) <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>x<span class="op">*</span>x</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_phi_mu(x, mu):     <span class="co"># N(mu,1)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>np.log(<span class="dv">2</span><span class="op">*</span>pi) <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">*</span>(x<span class="op">-</span>mu)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Valor verdadero P(Z&gt;3)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>true_p <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>erfc(<span class="fl">3.0</span><span class="op">/</span>sqrt(<span class="fl">2.0</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>true_p</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>0.0013498980316300957</code></pre>
 </div>
 </div>
+<p>Pero usemos Monte Carlo.</p>
+<div id="f8c8ac0f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mc_plain(N, rng):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> rng.standard_normal(N)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z <span class="op">&gt;</span> <span class="fl">3.0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span>      <span class="co"># muestras </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>muestras <span class="op">=</span> mc_plain(N, rng)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>mc <span class="op">=</span> muestras.mean()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>mc_var <span class="op">=</span> np.<span class="bu">sum</span>((muestras <span class="op">-</span> mc)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (N <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>mc_se <span class="op">=</span> sqrt(mc_var)<span class="op">/</span>sqrt(N)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">:</span><span class="ch">\n</span><span class="ss">Estima Monte Carlo=</span><span class="sc">{</span>mc<span class="sc">:.4f}</span><span class="ss">, Error estimado=</span><span class="sc">{</span>mc_se<span class="sc">:.4f}</span><span class="ss">, Valor verdadero=</span><span class="sc">{</span>true_p<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>N=10000:
+Estima Monte Carlo=0.0017, Error estimado=0.0004, Valor verdadero=0.0013</code></pre>
 </div>
-<p>Para dos eventos con probabilidades <span class="math inline">\(p\)</span> y <span class="math inline">\(1 - p\)</span> la entropía es máxima cuando <span class="math inline">\(p=1/2\)</span>. Es mínima cuando <span class="math inline">\(p=1\)</span> o <span class="math inline">\(p=0\)</span> (cuando sabemos todo y no ganamos información con la ocurrencia de un evento).</p>
-<p>En general para <span class="math inline">\(n\)</span> eventos queremos encontrar el mínimo y el máximo de la entropía. Es decir los extremos de <span class="math display">\[
-H = -\sum_i p_i \log p_i\,,
-\]</span> sujetos a la condición <span class="math inline">\(\sum_i p_i = 1\)</span>. Para lograrlo fijamos <span class="math inline">\(p_1 = 1 - \sum_{j = 2}^n p_i\)</span> y calculamos la derivada respecto a <span class="math inline">\(p_i\)</span> con <span class="math inline">\(i \neq 1\)</span> <span class="math display">\[
-\frac{\partial}{\partial p_i} H = -\log p_i - 1 + \log p_1 + 1 = -\log \frac{p_i}{p_1}
-\]</span> Esto es cero cuando <span class="math inline">\(\frac{p_i}{p_1} = 1\)</span>, es decir cuando todas las probabilidades son iguales <span class="math inline">\(p_i = 1/n\)</span>. De hecho este punto es un máximo.</p>
-<p>Esta definición se puede generalizar a una variable continua, hagamos un intento tomando el límite del discreto al continuo. Consideremos partir la recta real en <span class="math inline">\(n \rightarrow \infty\)</span> intervalos de ancho infinitesimal <span class="math inline">\(\Delta x\)</span>, entonces <span class="math display">\[
-H = -\sum_{i = 0}^\infty p_i \log p_i
-\]</span> donde <span class="math inline">\(p_i =\int_{x_i - \Delta x/2}^{x_i + \Delta} \!\!dx\,\rho(x) \approx \rho(x_i) \Delta x\)</span> es la probabilidad de caer en el i-ésimo intervalo. Entonces <span class="math display">\[
-H = -\lim_{\Delta x \to 0} \sum_{i=0}^\infty \rho(x_i) \Delta x \log(\rho(x_i) \Delta x) = -\int dx\, \rho(x) \log(\rho(x)) - \lim_{\Delta x \to 0} \int dx\, \rho(x) \log \Delta x\,.
-\]</span> El segundo término es infinito. Para obtener algo que tenga sentido nos vemos obligados a ignorarlo.</p>
-<p>Definimos la entropía de Gibbs como <span class="math display">\[
-H = -\int dx\, \rho(x) \log \rho(x)\,.
+</div>
+<p>Con <span class="math inline">\(N = 10000\)</span> encontramos <span class="math display">\[
+\langle \hat{I} \rangle = 0.0017, \qquad V(\hat{I}) = 0.0004,
 \]</span></p>
-<p>Esta entropía tiene el defecto de que puede ser negativa y no es invariante bajo cambios de variables, a diferencia del caso discreto.</p>
-<p>La interpretación de esto depende del contexto.</p>
-<section id="el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann" class="level2">
-<h2 class="anchored" data-anchor-id="el-principio-de-máxima-entropía-y-la-distribución-de-boltzmann">El principio de máxima entropía y la distribución de Boltzmann</h2>
-<p>En general es difícil asignar una distribución de probabilidad. Un principio que funciona en mecánica estadística es el de “máxima entropía”. Es decir, basados en la información que tenemos sobre el sistema, escogemos la distribución de probabilidad que maximiza le entropía de Shannon.</p>
-<p>Jaynes arguyó que este principio se puede aplicar a otros contextos. Corresponde a admitir la ignorancia. La máxima entropía corresponde a la máxima ignorancia sobre el sistema, es decir corresponde a ganar la cantidad máxima de información en promedio con cada observación.</p>
-<p>A partir de este principio se puede deducir la distribución de Boltzmann.</p>
-<p>Supongamos que conocemos el promedio de alguna cantidad <span class="math inline">\(A\)</span>. Queremos encontrar la distribución que maximiza la entropía bajo la condición <span class="math inline">\(\langle A \rangle = \sum_i p_i A_i = c\)</span> fijo.</p>
-<p>Si vemos <span class="math inline">\(\langle A \rangle\)</span> como una función de las variables <span class="math inline">\(p_i\)</span>, queremos maximizar <span class="math inline">\(H(\mathbf{p})\)</span> en el espacio dado por las coordenadas <span class="math inline">\((p_1, ..., p_n)\)</span> sobre la superficie <span class="math inline">\(g(\mathbf{p}) = \sum_i p_i A_i\)</span> constante.</p>
-<p>El gradiente <span class="math inline">\(\nabla g\)</span> siempre es ortogonal a la superficie <span class="math inline">\(g\)</span> constante.</p>
-<p>El gradiente <span class="math inline">\(\nabla H\)</span> es ortogonal a la superficie <span class="math inline">\(g\)</span> constante en los puntos donde <span class="math inline">\(H\)</span> es un mínimo o máximo sobre la superficie. Si no fuera así podríamos movernos en la dirección del gradiente proyectado sobre la superficie y hacer que <span class="math inline">\(H\)</span> sea un poco más pequeño o grande.</p>
-<p>Entonces los dos gradientes son proporcionales en el punto extremo de <span class="math inline">\(H\)</span>, es decir <span class="math inline">\(\nabla H = \lambda \nabla g\)</span> o en otras palabras tenemos que encontrar <span class="math display">\[
-\nabla (H - \lambda g) = 0\,.
-\]</span> Aquí <span class="math inline">\(\lambda\)</span> se llama un <em>multiplicador de Lagrange</em>.</p>
+</div>
+</div>
+</section>
+<section id="muestreo-por-importancia" class="level1">
+<h1>Muestreo por Importancia</h1>
+<p>Consideremos ahora <span class="math display">\[
+I = \int dx \, h(x) f(x),
+\]</span> donde <span class="math inline">\(f\)</span> es una pdf fija — por ejemplo, un posterior bayesiano. En muchos casos puede ocurrir no podemos tomar muestras de <span class="math inline">\(f\)</span> fácilmente. Pero podemos introducir una distribución auxiliar <span class="math inline">\(g\)</span> y tomar muestras de ella.</p>
+<p>Podemos aplicar el mismo truco y escribir <span class="math display">\[
+I = \int dx \, \frac{h(x) f(x)}{g(x)} g(x)
+   = \langle Y(X) \rangle, \qquad
+Y(X) = \frac{h(X) f(X)}{g(X)},
+\]</span> donde <span class="math inline">\(X\)</span> es una variable aleatoria tomada de <span class="math inline">\(g\)</span>. De esta manera estimamos <span class="math display">\[
+\hat{I} = \frac{1}{N} \sum_{i=1}^N Y_i.
+\]</span></p>
+<p>¿Qué condiciones debe satisfacer <span class="math inline">\(g\)</span>? Consideremos el segundo momento de <span class="math inline">\(w(X)\)</span>: <span class="math display">\[
+\langle w(X)^2 \rangle = \int dx \, \frac{h^2(x) f^2(x)}{g(x)}.
+\]</span></p>
+<p>Si <span class="math inline">\(g \ll f\)</span> en las colas, esto no convergerá. Asimismo, si <span class="math inline">\(g \ll f\)</span> en alguna región, puede generar alta varianza. Por eso, tratamos de elegir <span class="math inline">\(g\)</span> similar a <span class="math inline">\(f\)</span>, pero <strong>más grande en las colas</strong>.</p>
+<p>Podemos usar esto para escoger una <span class="math inline">\(g\)</span> que <strong>de más peso a los puntos que más contribuyen</strong>. Esto se llama <strong>muestreo por importancia</strong>.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Estimemos la misma integral anterior usando muestreo por importancia. El Monte Carlo simple desperdicia muchos puntos que no están cerca de la cola derecha; la mayoría de puntos están en la región <span class="math inline">\(x &lt; 3\)</span>. Por eso, vamos a escoger <span class="math inline">\(g\)</span> que tenga mayor peso en la región <span class="math inline">\(x &lt; 3\)</span> para no desperdiciar tantos puntos.</p>
+<p>Usemos <span class="math inline">\(g\)</span> como una distribución normal con media 4 y varianza 1.</p>
+<div id="a13b5364" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mc_importance(N, rng):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> rng.normal(<span class="fl">4.0</span>, <span class="fl">1.0</span>, N)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.exp(log_phi(z) <span class="op">-</span> log_phi_mu(z, <span class="fl">4.0</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y<span class="op">*</span>(z <span class="op">&gt;</span> <span class="fl">3.0</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span>      <span class="co"># muestras </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>muestras <span class="op">=</span> mc_importance(N, rng)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>mc <span class="op">=</span> muestras.mean()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>mc_var <span class="op">=</span> np.<span class="bu">sum</span>((muestras <span class="op">-</span> mc)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (N <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>mc_se <span class="op">=</span> sqrt(mc_var)<span class="op">/</span>sqrt(N)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">:</span><span class="ch">\n</span><span class="ss">Estima Monte Carlo=</span><span class="sc">{</span>mc<span class="sc">:.5f}</span><span class="ss">, Error estimado=</span><span class="sc">{</span>mc_se<span class="sc">:.5f}</span><span class="ss">, Valor verdadero=</span><span class="sc">{</span>true_p<span class="sc">:.5f}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>N=10000:
+Estima Monte Carlo=0.00137, Error estimado=0.00003, Valor verdadero=0.00135</code></pre>
+</div>
+</div>
+<p>Usandi el muestreo por importancia logramos una <strong>mejora por un factor r10</strong> en el error.</p>
+</div>
+</div>
+</section>
+<section id="mcmc-el-algoritmo-de-metropolishastings" class="level1">
+<h1>MCMC: El algoritmo de Metropolis–Hastings</h1>
+<p>La idea es generar muestras de una distribución <span class="math inline">\(f(x)\)</span> compleja usando una cadena de Markov. La cadena de Markov es una secuencia de variables aleatorias <span class="math inline">\(\{X_1, X_2, \ldots\}\)</span> donde la distribución de <span class="math inline">\(X_{i+1}\)</span> depende solo de <span class="math inline">\(X_i\)</span>. Es decir, <span class="math inline">\(X_{i+1}\)</span> se extrae de una distribución de probabilidad que depende sólo del elemento anterior en la cadena <span class="math inline">\(p(X_i \mid X_{i-1})\)</span>.</p>
+<p>Queremos hacer que la distribución de los <span class="math inline">\(X_i\)</span> converja a <span class="math inline">\(f(x)\)</span>. ¿Pero qué quiere decir esta convergencia? Intuitivamente, significa que a medida que generamos más y más muestras de la cadena de Markov, la distribución de estas muestras se asemeja cada vez más a la distribución objetivo <span class="math inline">\(f(x)\)</span>. En el límite, cuando el número de muestras tiende a infinito, la distribución de los <span class="math inline">\(X_i\)</span> debe coincidir con <span class="math inline">\(f(x)\)</span>.</p>
+<p>Pero tenemos un problema: En general, si partimos por un punto inicial <span class="math inline">\(X_o\)</span> obtenido de la distribución <span class="math inline">\(f(x)\)</span>, el siguiente punto no necesariamente tiene la misma distribución. De hecho, la distribución de probabilidad de obtener un valor <span class="math inline">\(x_1\)</span> será <span class="math inline">\(\int dx_o\,p(x_1|x_o)f(x_o)\)</span>. Necesitamos que esta distribución sea igual a la <span class="math inline">\(f(x)\)</span>, es decir pedimos</p>
 <p><span class="math display">\[
-\nabla_j H = -\nabla_j \sum_i p_i \ln p_i = -\sum_i (1 + \ln p_i) \nabla_j p_i = -\ln \frac{p_j}{p_1}\,,
+\int dx\, p(y|x)f(x) = f(y)\,,
 \]</span></p>
+<p>cuando <span class="math inline">\(f(x)\)</span> y <span class="math inline">\(p(y\mid x)\)</span> satisfacen esta condición, decimos que la distribución <span class="math inline">\(f(x)\)</span> es una <strong>distribución estacionaria</strong> de la cadena definida por <span class="math inline">\(p(y\mid x)\)</span>.</p>
+<p>La idea para integrar <span class="math inline">\(f(x)\)</span> entonces es generar una cadena de Markov cuya distribución estacionaria sea <span class="math inline">\(f\)</span>. Entonces, por la ley de los grandes números, <span class="math display">\[
+\frac{1}{N}\sum_{i=1}^N h(X_i) \;\xrightarrow{\;P\;}\; \langle h(X)\rangle .
+\]</span></p>
+<section id="balance-detallado" class="level2">
+<h2 class="anchored" data-anchor-id="balance-detallado">Balance detallado</h2>
+<p>Una manera de lograr este requisito que parece tan difícil, es encontrar una cadena que satisfaga <strong>balance detallado</strong> <span class="math display">\[
+f(x)\, p(y\mid x) \;=\; f(y)\, p(x\mid y),
+\]</span></p>
+<p>donde <span class="math inline">\(p(y\mid x)\)</span> es la probabilidad de ir de <span class="math inline">\(x\)</span> a <span class="math inline">\(y\)</span>. Con esto, <span class="math display">\[
+\int dy\, f(y)\, p(x\mid y) \;=\; f(x)\int dy\, p(y\mid x) \;=\; f(x),
+\]</span></p>
+<p>luego <span class="math inline">\(f\)</span> es estacionaria.</p>
+</section>
+<section id="construcción-mh" class="level2">
+<h2 class="anchored" data-anchor-id="construcción-mh">Construcción MH</h2>
+<p>Un truco llamado <strong>Metropolis–Hastings</strong> logra este balance detallado. Empezamos con una distribución <span class="math inline">\(q(y\mid x)\)</span> de la cual sea fácil tomar muestras. Con ella seguimos los siguientes pasos:</p>
+<ol type="1">
+<li><p>Tomamos una muestra <span class="math inline">\(Y\)</span> sacada de <span class="math inline">\(q(y\mid x)\)</span> y calculamos la siguiente función de probabilidad <span class="math display">\[
+r(x,y)=\min\!\left\{1,\;\frac{f(y)\,q(x\mid y)}{f(x)\,q(y\mid x)}\right\}.
+\]</span></p>
+<p>Tiene una forma un poco extraña pero veremos en un segundo que el numerador del segundo término está puesto para lograr el balance detallado.</p></li>
+<li><p>Con probabilidad <span class="math inline">\(r\)</span> acepta el salto <span class="math inline">\(x\to y\)</span> (es decir, tomo <span class="math inline">\(X_{i+1}=Y\)</span>); con probabilidad <span class="math inline">\(1-r\)</span> <strong>rechaza</strong> (es decir, el punto es igual que el anterior <span class="math inline">\(X_{i+1}=x\)</span>).</p></li>
+</ol>
+<p><strong>Por qué funciona (intuición).</strong></p>
+<p>Para entender por qué funciona, consideremos el caso <span class="math inline">\(f(x)\,q(y\mid x) &gt; f(y)\,q(x\mid y)\)</span>, entonces <span class="math display">\[
+r(x, y) = \frac{f(y)\,q(x\mid y)}{f(x)\,q(y\mid x)}\,,\quad r(y,x)=1\,.
+\]</span></p>
+<p>Con esto podemos calcular la probabilidad de saltar de <span class="math inline">\(x\)</span> a <span class="math inline">\(y\)</span>, que está dada por la probabilidad de saltar al valor <span class="math inline">\(y\)</span> de la distribución <span class="math inline">\(q(y\mid x)\)</span> multiplicada por la probabilidad de aceptar ese salto</p>
 <p><span class="math display">\[
-\nabla_j g = \nabla_j \sum_i A_i p_i = \sum_i A_i \nabla_j p_i = A_j - A_1\,,
+p(x \mid y)=q(x\mid y)\, r(x,y)
+= \frac{f(y)\,q(x\mid y)}{f(x)}
 \]</span></p>
-<p>Juntando estas expresiones tenemos</p>
+<p>mientras que</p>
 <p><span class="math display">\[
-0 = \ln\frac{p_j}{p_1} + \lambda (A_j - A_1)\,,
+p(y\mid x)=q(y\mid x)\, r(y,x) = q(x\mid y),
 \]</span></p>
-<p>es decir</p>
+<p>Comparando estas dos ecuaciones obtenemos</p>
 <p><span class="math display">\[
-\frac{p_i}{p_1} = \frac{e^{-\lambda A_i}}{e^{-\lambda A_1}}
+f(x)\,p(x\mid y) = f(y)\,q(x\mid y) = f(y)\,p(y\mid x)\,,
 \]</span></p>
-<p>Normalizando adecuadamente</p>
-<p><span class="math display">\[
-p_i = \left(\frac{1}{\sum_{i=1}^n e^{-\lambda A_i}}\right) e^{-\lambda A_i}\,.
+<p>que es el balance detallado.</p>
+<section id="propuesta-gaussiana" class="level3">
+<h3 class="anchored" data-anchor-id="propuesta-gaussiana">Propuesta gaussiana</h3>
+<p>Una elección común es tomar <span class="math inline">\(q(y\mid x)\)</span> como una gaussiana con media <span class="math inline">\(x\)</span> y varianza <span class="math inline">\(b^2\)</span> (donde <span class="math inline">\(b\)</span> es algún valor escogido de antemano). Esta distribución es simétrica <span class="math inline">\(q(y\mid x) = q(x\mid y)\)</span> tal que parte del algoritmo se simplifica <span class="math display">\[
+r(x,y)=\min\!\left\{1,\; \frac{f(y)}{f(x)}\right\}.
 \]</span></p>
-</section>
-</section>
-<section id="el-teorema-de-canal-sin-ruido-de-shannon" class="level1">
-<h1>El teorema de canal sin ruido de Shannon</h1>
-<section id="el-teorema-original" class="level2">
-<h2 class="anchored" data-anchor-id="el-teorema-original">El teorema original</h2>
-<p>Shannon era un informático (más apropiadamente un científico de la información) que introdujo su concepto de entropía para demostrar un teorema sobre comunicaciones en redes.</p>
-<p>La pregunta es cuánto podemos comprimir la información producida por un computador para enviarla de manera eficiente a otro computador. Todos hemos usado archivos .zip. La pregunta es cuánto podemos comprimir una serie de bits.</p>
-<p>Definimos la compresión como un mapa <span class="math inline">\(C^n\)</span> entre las posibles secuencias <span class="math inline">\((x_1,...,x_n)\)</span> y una cadena de bits de longitud <span class="math inline">\(nR\)</span>. Entonces la <em>razón de compresión</em> de este mapa es <span class="math inline">\(R\)</span>.</p>
-<p>La descompresión del mensjae es un mapa <span class="math inline">\(D^n\)</span> que toma una cadena de bits de longitud <span class="math inline">\(nR\)</span> y produce <span class="math inline">\((x_1,...,x_n)\)</span>.</p>
-<p>Un mecanismo de compresión y descompresión es <em>confiable</em> si <span class="math inline">\(D^n(C^n(x)) = x\)</span> con probabilidad <span class="math inline">\(1\)</span> cuando <span class="math inline">\(n\)</span> tiende a infinito.</p>
-<p>El teorema dice (asumiendo que el logaritmo en la definición de <span class="math inline">\(H\)</span> es base <span class="math inline">\(2\)</span>)</p>
-<p><strong>Teorema del canal sin ruido de Shannon</strong>: Suponga que <span class="math inline">\(X_i\)</span> es una serie de variables i.i.d (independientes e idénticamente distribuidas) sacadas de una distribución discreta de probabilidad con entropía <span class="math inline">\(H(X)\)</span>. Sea <span class="math inline">\(R &gt; H\)</span>, entonces existe un mecanismo de compresión confiable con razón de compresión <span class="math inline">\(R\)</span>. Por el contrario sea <span class="math inline">\(R &lt; H\)</span>, entonces no existe un tal mecanismo confiable.</p>
-<p>Lamentablemente no tenemos el tiempo necesario para introducir los conceptos previos necesarios para demostrar este teorema.</p>
-</section>
-<section id="un-par-de-consideraciones-intuitivas" class="level2">
-<h2 class="anchored" data-anchor-id="un-par-de-consideraciones-intuitivas">Un par de consideraciones intuitivas</h2>
-<p>Consideremos una fuente que sólo produce la letra “c”. Esta fuente no contiene ninguna información, no necesitamos comprimir nada.</p>
-<p>Ahora supongamos que unos días la fuente produce la palabra “azul” y otros días la fuente produce la palabra “rojo”. En este caso podemos representar la palabra “azul” con 0 y la palabra rojo con “1”. De hecho la entropía es <span class="math inline">\(1\)</span>, necesitamos un solo bit.</p>
-<p>En el otro extremo, supongamos que la fuente produce una cadena completamente aleatoria de “1” y “0” de longitud <span class="math inline">\(n\)</span>. No tenemos manera de comprimirla si es completamente aleatoria, la entropía es <span class="math display">\[
-H = -n\sum_{i=0}^1 \frac{1}{2}\log\frac{1}{2} = n\,,
-\]</span> y necesitamos todos los <span class="math inline">\(n\)</span> bits. Esta cadena tiene la máxima cantidad de información, no se puede comprimir.</p>
-<p>Aquí vemos que la estadística de la fuente es importante, por eso la información está relacionada con la estadísitica.</p>
-<p>Ahora pensemos en una fuente que transmite un mensaje en español. Resulta que los 33 caracteres del español no ocurren con igual probabilidad, las vocales son mucho más probables. Igualmente para las palabras, algunas palabras son más comunes. Idem para las parejas de palabras o frases.</p>
-<p>Para acercarnos a ese caso, ahora pensemos en una cadena de “0” y “1” tal que el “1” aparece con probabilidad <span class="math inline">\(0.8\)</span>. Una tal cadena es <span class="math display">\[
-111101110101111
-\]</span> Parecería que no podemos comprimir esta cadena, después de todo para el cero necesitamos el símbolo “0” y para el uno necesitamos el símbolo “1”. Esto parecería contradecir la intuición que hemos construído de entropía <span class="math display">\[
-H = -n\left(0.8\log 0.8 + 0.2 \log 0.2\right) \approx 0.5\,.
-\]</span> Pero en realidad podemos tomar cadenas de caracteres, por ejemplo de cinco caracteres. Las cinco cadenas “11110”, “11101”, “11011”, “10111”, “01111” ocurren con mucha más frecuencia que las otras, tal que podemos usar un par de bits para representarlas en vez de cinco. Jugando de esta manera nos podemos acercar a comprimir esos mensajes por un <span class="math inline">\(50\%\)</span>.</p>
-</section>
-<section id="un-ejemplo-de-compresión" class="level2">
-<h2 class="anchored" data-anchor-id="un-ejemplo-de-compresión">Un ejemplo de compresión</h2>
-<p>Ahora supongamos que tenemos un alfabeto de 8 caracteres que queremos comprimir, llamémoslos <span class="math inline">\(\{1,2,3,4,5,6,7,8\}\)</span>. De forma ingenua podemos representar cada caracter con 3 bits. ¿Podemos comprimirlo?</p>
-<p>Si los 8 caracteres ocurren con igual probabilidad <span class="math inline">\(1/8\)</span> no podemos hacer mucho <span class="math display">\[
-H = -n\sum \frac{1}{8}\log\frac{1}{8} = n\log 8 = 3n\,.
-\]</span> Es decir, necesitamos <span class="math inline">\(3n\)</span> bits para representar un mensaje de longitud <span class="math inline">\(n\)</span>.</p>
-<p>Pero si ocurren con probabilidad diferente, podemos hacer algo mejor. Supongamos que las probabilidades son <span class="math display">\[
-\{p_1 = 0.5, p_2 = 0.3, p_3 = 0.1, p_4 = 0.05, p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,.
-\]</span> Entonces un esquema debido a Fano consiste en:</p>
-<ol type="1">
-<li>Ordenar las probabilidades de forma decreciente (como ya hemos hecho)</li>
-<li>Dividir en dos conjuntos que tengan aproximadamente la misma probabilidad. Para nosotros serán <span class="math display">\[
-\{0.5\}\,,\quad \{0.3, 0.1, 0.05, 0.025, 0.0125, 0.0065, 0.006\}\,.
-\]</span></li>
-<li>Los caracteres del primer conjunto se representan con el dígito <span class="math inline">\(0\)</span>, los del segundo con el dígito <span class="math inline">\(1\)</span>. <span class="math display">\[
-``0" = 1\,,\quad ``1" = \{p_2 = 0.3, p_3 = 0.1, p_4 = 0.05, p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span></li>
-<li>Repetimos hasta terminar <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``11" = \{p_3 = 0.1, p_4 = 0.05, p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span> <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``110" = \{p_3 = 0.1, p_4 = 0.05\}\,,\quad ``111" = \{p_5 = 0.025, p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span> <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``1111" = \{p_6 = 0.0125, p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span> <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``11110" = 6\,,\quad ``11111" = \{p_7 = 0.0065, p_8 = 0.006\}\,,
-\]</span> <span class="math display">\[
-``0" = 1\,,\quad ``10" = 2\,,\quad ``1100" = 3\,,\quad ``1101"= 4\,,\quad ``1110" = 5\,,\quad ``11110" = 6\,,\quad ``111110" = 7\,,\quad ``111111" = 8\,.
-\]</span> Es verdad que los símbolos menos probables son representados por más de 3 bits. Pero en promedio un mensaje tendrá longitud</li>
-</ol>
-<div id="b2ba6b3b" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.5</span><span class="op">*</span><span class="dv">1</span><span class="op">+</span><span class="fl">0.3</span><span class="op">*</span><span class="dv">2</span><span class="op">+</span><span class="fl">0.1</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.05</span><span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="fl">0.025</span><span class="op">*</span><span class="dv">4</span><span class="op">+</span><span class="fl">0.0125</span><span class="op">*</span><span class="dv">5</span><span class="op">+</span><span class="fl">0.0065</span><span class="op">*</span><span class="dv">6</span><span class="op">+</span><span class="fl">0.006</span><span class="op">*</span><span class="dv">6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>1.7875000000000003</code></pre>
-</div>
-</div>
-<p>La entropía es</p>
-<div id="c08372c7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>np.log(<span class="fl">0.5</span>)<span class="op">-</span><span class="fl">0.3</span><span class="op">*</span>np.log(<span class="fl">0.3</span>)<span class="op">-</span><span class="fl">0.1</span><span class="op">*</span>np.log(<span class="fl">0.1</span>)<span class="op">-</span><span class="fl">0.05</span><span class="op">*</span>np.log(<span class="fl">0.05</span>)<span class="op">-</span><span class="fl">0.025</span><span class="op">*</span>np.log(<span class="fl">0.025</span>)<span class="op">-</span><span class="fl">0.0125</span><span class="op">*</span>np.log(<span class="fl">0.0125</span>)<span class="op">\</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">0.0065</span><span class="op">*</span>np.log(<span class="fl">0.0065</span>)<span class="op">-</span><span class="fl">0.006</span><span class="op">*</span>np.log(<span class="fl">0.006</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>np.float64(1.2982375438631775)</code></pre>
-</div>
-</div>
-<p>El esquema descrito arriba se acerca a esta entropía.</p>
-<p>En general, aplicando un esquema como el que vimos la longitud de cada caracter será aproximadamente <span class="math inline">\(-\log p\)</span> y como este ocurre con frecuencia <span class="math inline">\(p\)</span>, la longitud promedio de un mensaje en bits será cercana a la entropía <span class="math display">\[
--n\sum_i p_i\log p_i\,.
-\]</span></p>
-</section>
-</section>
-<section id="tipos-de-entropía" class="level1">
-<h1>Tipos de entropía</h1>
-<p>Existen al menos cinco definiciones de entropía</p>
-<ol type="1">
-<li><strong>Termodinámica</strong>: La función que hace integrable el diferencial de calor. En equilibrio térmico <span class="math inline">\(dQ = TdS\)</span>.</li>
-<li><strong>Física estadística clásica</strong>: Definida por Boltzmann como <span class="math inline">\(S = k\ln\Omega\)</span> donde <span class="math inline">\(\Omega\)</span> es el número de estados del sistema. Se puede demostrar que cumple todas las propiedades de la termodinámica. Esta fue reescrita por Gibbs en la forma <span class="math inline">\(S = -k\sum_i p_i\ln p_i\)</span>,.</li>
-<li><strong>Entropía de información</strong>: Shannon aplicó el concepto de entropía a cualquier distribución de probabilidad para definir la información contenida en un mensaje, escribiendo <span class="math inline">\(H = -\sum_i p_i \log p_i\)</span>. Difiere de la de Boltzmann y Gibbs solo por una constante. Jaynes arguyó que se puede interpretar como la información de cualquier observación de eventos con una distribución de probabilidad. Esta fue la estudiada aquí.</li>
-<li><strong>Física estadística cuántica</strong>: Generalizada por Von Neumann y otros al caso cuántico <span class="math inline">\(S = -k \text{tr}(\rho \ln \rho)\)</span> donde <span class="math inline">\(\rho\)</span> es la matriz de densidad.</li>
-<li><strong>Entropía algorítmica</strong>: La entropía de una cadena de símbolos es la longitud del código más corto que la puede producir.</li>
-</ol>
-</section>
-<section id="tareas" class="level1">
-<h1>¡Tareas!</h1>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">5.1</h2>
-<ol type="1">
-<li><p>Si dos variables aleatorias <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> son independientes, demuestre que su entropía conjunta satisface <span class="math display">\[
-H(x,y) = H(x) + H(y)\,,
-\]</span> donde <span class="math inline">\(H(x,y)\)</span> se calcula con la distribución de probabilidad conjunta <span class="math inline">\(p(x,y)\)</span> y <span class="math inline">\(H(x)\)</span>, <span class="math inline">\(H(y)\)</span> se calculan con las distribuciones de probabilidad <span class="math inline">\(p(x)\)</span>, <span class="math inline">\(p(y)\)</span> respectivamente.</p></li>
-<li><p>Demuestre que <span class="math inline">\(H(x) \leq H(x,y)\)</span>.</p></li>
-</ol>
-</section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1">5.2</h2>
-<p>Considere una variable aleatoria <span class="math inline">\(x\)</span> que puede tomar valores enteros con probabilidades <span class="math inline">\(p_i\)</span>. Suponga que a priori conocemos sólo la varianza de <span class="math inline">\(x\)</span> y que su media es cero. Calcule la distribución de probabilidad de <span class="math inline">\(x\)</span> basándose en el principio de máxima entropía.</p>
-</section>
-<section id="section-2" class="level2">
-<h2 class="anchored" data-anchor-id="section-2">5.3</h2>
-<p>La distribución de uso de letras en el español es (en porcentajes y orden alfabético):</p>
-<div id="72d224cc" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[<span class="fl">12.53</span>,<span class="fl">1.42</span>,<span class="fl">4.68</span>,<span class="fl">5.86</span>,<span class="fl">13.68</span>,<span class="fl">0.69</span>,<span class="fl">1.01</span>,<span class="fl">0.70</span>,<span class="fl">6.25</span>,<span class="fl">0.44</span>,<span class="fl">0.02</span>,<span class="fl">4.97</span>,<span class="fl">3.15</span>,<span class="fl">6.71</span>,<span class="fl">0.31</span>,<span class="fl">8.68</span>,<span class="fl">2.51</span>,<span class="fl">0.88</span>,<span class="fl">6.87</span>,<span class="fl">7.98</span>,<span class="fl">4.63</span>,<span class="fl">3.93</span>,<span class="fl">0.90</span>,<span class="fl">0.01</span>,<span class="fl">0.22</span>,<span class="fl">0.90</span>,<span class="fl">0.52</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>[12.53,
- 1.42,
- 4.68,
- 5.86,
- 13.68,
- 0.69,
- 1.01,
- 0.7,
- 6.25,
- 0.44,
- 0.02,
- 4.97,
- 3.15,
- 6.71,
- 0.31,
- 8.68,
- 2.51,
- 0.88,
- 6.87,
- 7.98,
- 4.63,
- 3.93,
- 0.9,
- 0.01,
- 0.22,
- 0.9,
- 0.52]</code></pre>
-</div>
-</div>
-<p>(Sacado de Wikipedia).</p>
-<ol type="1">
-<li><p>Calcule la entropía de Shannon del español como si fuera sólo una distribución de letras.</p></li>
-<li><p>Ignorando comas, espacios y la diferencia entre mayúsculas y minúsculas, explique por qué es posible comprimir el siguiente poema con una razón de compresión mayor a la entropía calculada en el numeral anterior</p></li>
-</ol>
-<p>Entre menesteres, el ser envejece,<br>
-teje redes, perece<br>
-reverdece en el refleje breve<br>
-de este presente. Cede.</p>
-</section>
-<section id="section-3" class="level2">
-<h2 class="anchored" data-anchor-id="section-3">5.4</h2>
-<p>La entropía de Shannon de una distribución discreta que tiene absoluta certeza de obtener un resultado dado es cero.</p>
-<p>En el continuo es un poco más complicado. Considere la siguiente función de densidad de probabilidad <span class="math display">\[
-\rho(x) = \begin{cases} \frac{1}{L} &amp; -L/2 \leq x \leq L/2 \\ 0 &amp; x &lt; -L/2\quad\text{o}\quad x &gt; L/2 \end{cases}
-\]</span></p>
-<ol type="1">
-<li>Calcule la entropía de Shannon de esta distribución de probabilidad.</li>
-<li>Tome el límite <span class="math inline">\(L \rightarrow 0\)</span> en el cual esta distribución tiende a una delta de Dirac.</li>
-<li>En el límite anterior estamos absolutamente seguros de que la variable tiene el valor <span class="math inline">\(0\)</span>. ¿Por qué la entropía no nos da igual a cero? De una interpretación de este hecho más allá del simple hecho que la fórmula para el continuo es diferente.</li>
-</ol>
-</section>
-<section id="section-4" class="level2">
-<h2 class="anchored" data-anchor-id="section-4">5.5</h2>
-<p>Calcule la entropía de Shannon de la distribución binomial para un número grande de eventos <span class="math inline">\(n\)</span>.</p>
+<p>El parámetro <span class="math inline">\(b\)</span> controla el tamaño de paso, y debemos considerar que</p>
+<ul>
+<li><strong>b muy pequeño:</strong> la cadena avanza en pasos diminutos y explora muy lentamente.</li>
+<li><strong>b muy grande:</strong> muchos intentos caen en colas y se <strong>rechazan</strong>; la cadena se “atasca”.</li>
+</ul>
+<p>Una regla práctica en 1–3 dimensiones es ajustar <span class="math inline">\(b\)</span> para aceptar aproximadamente <strong>50 %</strong> de los saltos.</p>
+<p>Una referencia útil para el uso de este tipo de integración en la práctica es la documentación de las librerías <a href="https://docs.pymc.io/en/stable/">PyMC</a> y <a href="https://emcee.readthedocs.io/en/stable/">emcee</a>.</p>
 
 
+</section>
 </section>
 </section>
 

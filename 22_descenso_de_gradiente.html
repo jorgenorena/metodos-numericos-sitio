@@ -284,6 +284,14 @@ window.Quarto = {
     <a class="dropdown-item" href="./23_redes_neuronales.html">
  <span class="dropdown-text">Redes neuronales</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./24_integracion_monte_carlo.html">
+ <span class="dropdown-text">Integración de Monte Carlo</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./25_transformada_de_fourier.html">
+ <span class="dropdown-text">Transformada de Fourier</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -500,6 +508,18 @@ window.Quarto = {
  <span class="menu-text">Redes neuronales</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24_integracion_monte_carlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Integración de Monte Carlo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25_transformada_de_fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transformada de Fourier</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -581,14 +601,14 @@ window.Quarto = {
 </section>
 <section id="trabajando-con-arrays-de-jax" class="level2">
 <h2 class="anchored" data-anchor-id="trabajando-con-arrays-de-jax">Trabajando con arrays de JAX</h2>
-<div id="945fcee8" class="cell" data-execution_count="1">
+<div id="945fcee8" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Crear arrays</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> jnp.array([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f4fb5301" class="cell" data-execution_count="2">
+<div id="f4fb5301" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sumar arrays</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="op">+</span> y</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -596,7 +616,7 @@ window.Quarto = {
 <pre><code>[5 7 9]</code></pre>
 </div>
 </div>
-<div id="72bd4b7d" class="cell" data-execution_count="3">
+<div id="72bd4b7d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Producto punto</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> jnp.dot(x, y)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -608,7 +628,7 @@ window.Quarto = {
 </section>
 <section id="diferenciación-automática-con-grad" class="level2">
 <h2 class="anchored" data-anchor-id="diferenciación-automática-con-grad">Diferenciación automática con <code>grad</code></h2>
-<div id="d2623f69" class="cell" data-execution_count="4">
+<div id="d2623f69" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Defina una función</span></span>
@@ -618,14 +638,14 @@ window.Quarto = {
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Calcule la derivada</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df_dx <span class="op">=</span> jax.grad(f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="105a30dc" class="cell" data-execution_count="5">
+<div id="105a30dc" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_dx(<span class="fl">3.0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>Array(8., dtype=float32, weak_type=True)</code></pre>
 </div>
 </div>
 <p>También podemos calcular gradientes de funciones de varios parámetros:</p>
-<div id="3eba491a" class="cell" data-execution_count="6">
+<div id="3eba491a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x, y):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x<span class="op">*</span>y</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -640,17 +660,17 @@ window.Quarto = {
 </section>
 <section id="acelerar-código-con-jit" class="level2">
 <h2 class="anchored" data-anchor-id="acelerar-código-con-jit">Acelerar código con JIT</h2>
-<div id="fdeffe0c" class="cell" data-execution_count="7">
+<div id="fdeffe0c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.sin(x) <span class="op">+</span> jnp.cos(x)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>f_jit <span class="op">=</span> jax.jit(f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6b00abab" class="cell" data-execution_count="8">
+<div id="6b00abab" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100_000_000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="35b1b732" class="cell" data-execution_count="9">
+<div id="35b1b732" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se necesita ejecutar la función una vez para obligarla a compilar</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>f_jit(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -658,7 +678,7 @@ window.Quarto = {
        -1.3830926], dtype=float32)</code></pre>
 </div>
 </div>
-<div id="3165058a" class="cell" data-execution_count="10">
+<div id="3165058a" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sin JIT</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>f(x)</span>
@@ -667,7 +687,7 @@ window.Quarto = {
 <pre><code>Sin JIT: 0.8004708290100098</code></pre>
 </div>
 </div>
-<div id="18ae4097" class="cell" data-execution_count="11">
+<div id="18ae4097" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con JIT</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>f_jit(x)</span>
@@ -697,7 +717,7 @@ f(\vec{\theta}) = \sum_i (\hat{y}_{\vec{\theta}}(x_i)) - y_i)^2\,,
 y(x) = e^{-x/2}\,.
 \]</span></p>
 <p>Creamos datos ficticios con un ruido:</p>
-<div id="daa91328" class="cell" data-execution_count="12">
+<div id="daa91328" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar datos ficticios</span></span>
@@ -710,20 +730,20 @@ y(x) = e^{-x/2}\,.
 <p><span class="math display">\[
 \hat{y}_{\vec{\theta}}(x) = \theta_0e^{-\theta_1 x}\,.
 \]</span></p>
-<div id="6bc8caa8" class="cell" data-execution_count="13">
+<div id="6bc8caa8" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modelo(x, theta):</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta[<span class="dv">0</span>]<span class="op">*</span>jnp.exp(<span class="op">-</span>theta[<span class="dv">1</span>]<span class="op">*</span>x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="minimización" class="level2">
 <h2 class="anchored" data-anchor-id="minimización">Minimización</h2>
 <p>Definimos primero la función a minimizar:</p>
-<div id="cbd2bc95" class="cell" data-execution_count="14">
+<div id="cbd2bc95" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> suma_cuadrados(theta, x, y):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    predicciones <span class="op">=</span> modelo(x, theta)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.<span class="bu">sum</span>((y <span class="op">-</span> predicciones)<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El siguiente es un algoritmo sencillo de minimización por descenso de gradiente:</p>
-<div id="0d7958bb" class="cell" data-execution_count="15">
+<div id="0d7958bb" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gradiente <span class="op">=</span> jax.grad(suma_cuadrados)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
@@ -737,7 +757,7 @@ y(x) = e^{-x/2}\,.
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1179dc42" class="cell" data-execution_count="16">
+<div id="1179dc42" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -780,7 +800,7 @@ Iteración 2900, Suma cuadrados: 0.915155291557312
 Parámetros optimizados: [1.1409745  0.56464535 1.        ]</code></pre>
 </div>
 </div>
-<div id="f336cdfc" class="cell" data-execution_count="17">
+<div id="f336cdfc" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
@@ -807,7 +827,7 @@ Parámetros optimizados: [1.1409745  0.56464535 1.        ]</code></pre>
 <p><span class="math display">\[
 y(x) = (\theta_0 x)^2 e^{\theta_1 x}
 \]</span></p>
-<div id="3e52671f" class="cell" data-execution_count="18">
+<div id="3e52671f" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar datos ficticios</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
@@ -876,7 +896,7 @@ Iteración 2900, Suma cuadrados: 3676.298583984375
 Parámetros optimizados: [-72.194016 414.01147 ]</code></pre>
 </div>
 </div>
-<div id="d719cd9a" class="cell" data-execution_count="19">
+<div id="d719cd9a" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
@@ -904,7 +924,7 @@ Parámetros optimizados: [-72.194016 414.01147 ]</code></pre>
 \vec{\theta}_{t+1} = \vec{\theta}_t + \vec{m}_{t+1}\,.
 \]</span></p>
 <p>Escribamos un código que lo implemente en JAX</p>
-<div id="f12f67ee" class="cell" data-execution_count="20">
+<div id="f12f67ee" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_momentum(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    velocity <span class="op">=</span> jnp.zeros_like(theta)  <span class="co"># Inicializar el término de velocidad</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -920,7 +940,7 @@ Parámetros optimizados: [-72.194016 414.01147 ]</code></pre>
 <span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cf6f6959" class="cell" data-execution_count="21">
+<div id="cf6f6959" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -995,7 +1015,7 @@ Parámetros optimizados: [-730.93976 4131.1123 ]</code></pre>
 <li>Aquí el parámetro <span class="math inline">\(\rho\)</span> controla cuánto se modifica <span class="math inline">\(\vec{s}\)</span> a cada paso. Para <span class="math inline">\(\rho\)</span> cercano a 1, se modifica muy poco y tiene una “memoria larga”. Para <span class="math inline">\(\rho\)</span> pequeño se modifica mucho pero tiene una “memoria corta” ya que su valor cambia rápidamente.</li>
 <li>El <span class="math inline">\(\epsilon\)</span> sirve solamente a que no haya divisiones por cero cuando alguna componente de <span class="math inline">\(\vec{s}\)</span> es cero.</li>
 </ul>
-<div id="110d8021" class="cell" data-execution_count="22">
+<div id="110d8021" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_rmsprop(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, beta<span class="op">=</span><span class="fl">0.9</span>, epsilon<span class="op">=</span><span class="fl">1e-8</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    cache <span class="op">=</span> jnp.zeros_like(theta)</span>
@@ -1009,7 +1029,7 @@ Parámetros optimizados: [-730.93976 4131.1123 ]</code></pre>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="35f0a872" class="cell" data-execution_count="23">
+<div id="35f0a872" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1082,7 +1102,7 @@ Parámetros optimizados: [1.9981217  0.50082964 1.        ]</code></pre>
 \end{align}
 \]</span></p>
 <p>El tercer y cuarto pasos sirven para hacer que <span class="math inline">\(\vec{m}\)</span> y <span class="math inline">\(\vec{s}\)</span> no sean demasiado pequeños durante las primeras iteraciones. De otra forma tenderán a estar cercanos a <span class="math inline">\(0\)</span> ya que ese es su valor inicial.</p>
-<div id="9dccff42" class="cell" data-execution_count="24">
+<div id="9dccff42" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_adam(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, beta1<span class="op">=</span><span class="fl">0.9</span>, beta2<span class="op">=</span><span class="fl">0.999</span>, epsilon<span class="op">=</span><span class="fl">1e-8</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    m, v <span class="op">=</span> jnp.zeros_like(theta), jnp.zeros_like(theta)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, iterations <span class="op">+</span> <span class="dv">1</span>):</span>
@@ -1098,7 +1118,7 @@ Parámetros optimizados: [1.9981217  0.50082964 1.        ]</code></pre>
 <span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4987babf" class="cell" data-execution_count="25">
+<div id="4987babf" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1162,7 +1182,7 @@ Parámetros optimizados: [1.9952817  0.49972048 1.        ]</code></pre>
 <h1>Usando Flax</h1>
 <p>Estos métodos están ya todos programados en varias librerías. Una de las más usadas con JAX es Flax.</p>
 <p>Flax en general es una librería para aprendizaje automático con redes neuronales. Tiene también el descenso de gradiente.</p>
-<div id="ca5c76eb" class="cell" data-execution_count="26">
+<div id="ca5c76eb" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flax.training <span class="im">import</span> train_state  </span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> optax  </span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1527,7 +1547,7 @@ Parámetros optimizados: [1.9934452 0.506759  1.        1.       ]</code></pre>
 <h2 class="anchored" data-anchor-id="tarea-11.1">Tarea 11.1</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = (\theta x)^2\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="1e882ec3" class="cell" data-execution_count="27">
+<div id="1e882ec3" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
@@ -1539,7 +1559,7 @@ Parámetros optimizados: [1.9934452 0.506759  1.        1.       ]</code></pre>
 <h2 class="anchored" data-anchor-id="tarea-11.2">Tarea 11.2</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = \cos(\theta x)\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="6f9b81eb" class="cell" data-execution_count="28">
+<div id="6f9b81eb" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> np.cos(<span class="dv">2</span><span class="op">*</span>x_data)</span>
@@ -1559,7 +1579,7 @@ V(\theta_1, \theta_2) = \sinh(\theta_1^4 + \theta_2^2) - 1\,,
 <h2 class="anchored" data-anchor-id="tarea-11.4">Tarea 11.4</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = (\theta x)^2 + 50\theta x\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="59df0436" class="cell" data-execution_count="29">
+<div id="59df0436" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">50</span><span class="op">*</span>x_data<span class="op">/</span><span class="dv">2</span></span>
@@ -1571,7 +1591,7 @@ V(\theta_1, \theta_2) = \sinh(\theta_1^4 + \theta_2^2) - 1\,,
 <h2 class="anchored" data-anchor-id="tarea-11.5">Tarea 11.5</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = (\theta_0 x)^2 + (\theta_1x)^{-3}\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="ec794346" class="cell" data-execution_count="30">
+<div id="ec794346" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**-</span><span class="dv">3</span> <span class="op">+</span> x_data<span class="op">**</span><span class="dv">2</span></span>
