@@ -1,0 +1,241 @@
+---
+title: Integración de Monte Carlo
+jupyter: python3
+lang: es
+---
+
+Cuando queremos evaluar numéricamente una integral en muchas dimensiones, los métodos más eficientes son de monte carlo. Es decir, aproximan la integral mediante el uso de muestras aleatorias. Veamos cómo funciona.
+
+Este tipo de integrales aparecen con frecuencia al realizar inferencia bayesiana. Esos casos consisten en la integración de funciones de distribución de probabilidad y nos enfocaremos en esto aquí.
+
+# Integración de Monte Carlo Básica
+
+Por simplicidad, consideremos integrales unidimensionales. Queremos calcular
+$$
+I = \int_a^b dx \, h(x).
+$$
+Esto lo reescribimos como
+$$
+I = \int_a^b dx \, g(x) \, w(x),
+$$
+donde
+$$
+w(x) = h(x)(b - a), \qquad g(x) = \frac{1}{b - a}.
+$$
+
+De esta forma,
+$$
+I = \langle w(X) \rangle,
+$$
+donde $X$ es una variable aleatoria tomada de una distribución uniforme en $[a, b]$.
+
+Podemos entonces generar muchos $X_i$ y estimar
+$$
+\hat{I} = \frac{1}{N} \sum_{i=1}^N w(X_i),
+\qquad \Rightarrow \qquad \langle w(X) \rangle \approx I.
+$$
+
+Esto es **integración Monte Carlo**.
+
+También podemos estimar el error:
+$$
+se = \frac{s}{\sqrt{N}}, \qquad 
+s^2 = \frac{1}{N - 1} \sum_{i=1}^N (Y_i - \hat{I})^2, \qquad
+Y_i \equiv w(X_i).
+$$
+
+En realidad, podemos generalizar y tomar $g$ como una distribución más general o más conveniente. Por ejemplo, podemos calcular integrales de la forma $\int_a^b dx \, g(x) \, h(x)$ tomando muestras de la distribución $g$.
+
+::: {.callout-note icon=false}
+
+## Ejemplo
+
+Estimemos $I = P(Z > 3)$ con $Z$ tomada de una distribución normal con media 0 y varianza 1. Sabemos que esto vale $0.0013$.
+
+```{python}
+import numpy as np
+from math import sqrt, pi, exp, erfc
+
+rng = np.random.default_rng(42)
+
+# Densidades normal estándar y N(mu,1) en log-escala
+def log_phi(x):            # N(0,1)
+    return -0.5*np.log(2*pi) - 0.5*x*x
+
+def log_phi_mu(x, mu):     # N(mu,1)
+    return -0.5*np.log(2*pi) - 0.5*(x-mu)*(x-mu)
+
+# Valor verdadero P(Z>3)
+true_p = 0.5*erfc(3.0/sqrt(2.0))
+true_p
+```
+
+Pero usemos Monte Carlo.
+
+```{python}
+def mc_plain(N, rng):
+    z = rng.standard_normal(N)
+    return z > 3.0
+
+N = 10000      # muestras 
+muestras = mc_plain(N, rng)
+
+mc = muestras.mean()
+mc_var = np.sum((muestras - mc)**2) / (N - 1)
+mc_se = sqrt(mc_var)/sqrt(N)
+
+print(f'N={N}:\nEstima Monte Carlo={mc:.4f}, Error estimado={mc_se:.4f}, Valor verdadero={true_p:.4f}')
+```
+
+Con $N = 10000$ encontramos
+$$
+\langle \hat{I} \rangle = 0.0017, \qquad V(\hat{I}) = 0.0004,
+$$
+
+:::
+
+# Muestreo por Importancia
+
+Consideremos ahora
+$$
+I = \int dx \, h(x) f(x),
+$$
+donde $f$ es una pdf fija — por ejemplo, un posterior bayesiano. En muchos casos puede ocurrir no podemos tomar muestras de $f$ fácilmente. Pero podemos introducir una distribución auxiliar $g$ y tomar muestras de ella.
+
+Podemos aplicar el mismo truco y escribir
+$$
+I = \int dx \, \frac{h(x) f(x)}{g(x)} g(x)
+   = \langle Y(X) \rangle, \qquad
+Y(X) = \frac{h(X) f(X)}{g(X)}, 
+$$
+donde $X$ es una variable aleatoria tomada de $g$. De esta manera estimamos
+$$
+\hat{I} = \frac{1}{N} \sum_{i=1}^N Y_i.
+$$
+
+¿Qué condiciones debe satisfacer $g$?  Consideremos el segundo momento de $w(X)$:
+$$
+\langle w(X)^2 \rangle = \int dx \, \frac{h^2(x) f^2(x)}{g(x)}.
+$$
+
+Si $g \ll f$ en las colas, esto no convergerá. Asimismo, si $g \ll f$ en alguna región, puede generar alta varianza. Por eso, tratamos de elegir $g$ similar a $f$, pero **más grande en las colas**.
+
+Podemos usar esto para escoger una $g$ que **de más peso a los puntos que más contribuyen**. Esto se llama **muestreo por importancia**.
+
+::: {.callout-note icon=false}
+
+## Ejemplo
+
+Estimemos la misma integral anterior usando muestreo por importancia. El Monte Carlo simple desperdicia muchos puntos que no están cerca de la cola derecha; la mayoría de puntos están en la región $x < 3$. Por eso, vamos a escoger $g$ que tenga mayor peso en la región $x < 3$ para no desperdiciar tantos puntos.
+
+Usemos $g$ como una distribución normal con media 4 y varianza 1. 
+
+```{python}
+def mc_importance(N, rng):
+    z = rng.normal(4.0, 1.0, N)
+    y = np.exp(log_phi(z) - log_phi_mu(z, 4.0))
+    return y*(z > 3.0)
+
+N = 10000      # muestras 
+muestras = mc_importance(N, rng)
+
+mc = muestras.mean()
+mc_var = np.sum((muestras - mc)**2) / (N - 1)
+mc_se = sqrt(mc_var)/sqrt(N)
+
+print(f'N={N}:\nEstima Monte Carlo={mc:.5f}, Error estimado={mc_se:.5f}, Valor verdadero={true_p:.5f}')
+```
+
+Usandi el muestreo por importancia logramos una **mejora por un factor r10** en el error.
+
+:::
+
+# MCMC: El algoritmo de Metropolis–Hastings
+
+La idea es generar muestras de una distribución $f(x)$ compleja usando una cadena de Markov. La cadena de Markov es una secuencia de variables aleatorias $\{X_1, X_2, \ldots\}$ donde la distribución de $X_{i+1}$ depende solo de $X_i$. Es decir, $X_{i+1}$ se extrae de una distribución de probabilidad que depende sólo del elemento anterior en la cadena $p(X_i \mid X_{i-1})$. 
+
+Queremos hacer que la distribución de los $X_i$ converja a $f(x)$. ¿Pero qué quiere decir esta convergencia? Intuitivamente, significa que a medida que generamos más y más muestras de la cadena de Markov, la distribución de estas muestras se asemeja cada vez más a la distribución objetivo $f(x)$. En el límite, cuando el número de muestras tiende a infinito, la distribución de los $X_i$ debe coincidir con $f(x)$. 
+
+Pero tenemos un problema: En general, si partimos por un punto inicial $X_o$ obtenido de la distribución $f(x)$, el siguiente punto no necesariamente tiene la misma distribución. De hecho, la distribución de probabilidad de obtener un valor $x_1$ será $\int dx_o\,p(x_1|x_o)f(x_o)$. Necesitamos que esta distribución sea igual a la $f(x)$, es decir pedimos
+
+$$
+\int dx\, p(y|x)f(x) = f(y)\,,
+$$
+
+cuando $f(x)$ y $p(y\mid x)$ satisfacen esta condición, decimos que la distribución $f(x)$ es una **distribución estacionaria** de la cadena definida por $p(y\mid x)$.
+
+La idea para integrar $f(x)$ entonces es generar una cadena de Markov cuya distribución estacionaria sea $f$. Entonces, por la ley de los grandes números,
+$$
+\frac{1}{N}\sum_{i=1}^N h(X_i) \;\xrightarrow{\;P\;}\; \langle h(X)\rangle .
+$$
+
+## Balance detallado
+
+Una manera de lograr este requisito que parece tan difícil, es encontrar una cadena que satisfaga **balance detallado**
+$$
+f(x)\, p(y\mid x) \;=\; f(y)\, p(x\mid y),
+$$
+
+donde $p(y\mid x)$ es la probabilidad de ir de $x$ a $y$. Con esto,
+$$
+\int dy\, f(y)\, p(x\mid y) \;=\; f(x)\int dy\, p(y\mid x) \;=\; f(x),
+$$
+
+luego $f$ es estacionaria.
+
+## Construcción MH
+
+Un truco llamado **Metropolis–Hastings** logra este balance detallado. Empezamos con una distribución $q(y\mid x)$ de la cual sea fácil tomar muestras. Con ella seguimos los siguientes pasos:
+
+1. Tomamos una muestra $Y$ sacada de $q(y\mid x)$ y calculamos la siguiente función de probabilidad
+   $$
+   r(x,y)=\min\!\left\{1,\;\frac{f(y)\,q(x\mid y)}{f(x)\,q(y\mid x)}\right\}.
+   $$
+
+   Tiene una forma un poco extraña pero veremos en un segundo que el numerador del segundo término está puesto para lograr el balance detallado.
+
+2. Con probabilidad $r$ acepta el salto $x\to y$ (es decir, tomo $X_{i+1}=Y$); con probabilidad $1-r$ **rechaza** (es decir, el punto es igual que el anterior $X_{i+1}=x$).
+
+**Por qué funciona (intuición).**
+
+Para entender por qué funciona, consideremos el caso $f(x)\,q(y\mid x) > f(y)\,q(x\mid y)$, entonces 
+$$
+r(x, y) = \frac{f(y)\,q(x\mid y)}{f(x)\,q(y\mid x)}\,,\quad r(y,x)=1\,.
+$$
+
+Con esto podemos calcular la probabilidad de saltar de $x$ a $y$, que está dada por la probabilidad de saltar al valor $y$ de la distribución $q(y\mid x)$ multiplicada por la probabilidad de aceptar ese salto
+
+$$
+p(x \mid y)=q(x\mid y)\, r(x,y) 
+= \frac{f(y)\,q(x\mid y)}{f(x)}
+$$
+
+mientras que
+
+$$
+p(y\mid x)=q(y\mid x)\, r(y,x) = q(x\mid y),
+$$
+
+Comparando estas dos ecuaciones obtenemos
+
+$$
+f(x)\,p(x\mid y) = f(y)\,q(x\mid y) = f(y)\,p(y\mid x)\,,
+$$
+
+que es el balance detallado.
+
+### Propuesta gaussiana
+
+Una elección común es tomar $q(y\mid x)$ como una gaussiana con media $x$ y varianza $b^2$ (donde $b$ es algún valor escogido de antemano). Esta distribución es simétrica $q(y\mid x) = q(x\mid y)$ tal que parte del algoritmo se simplifica
+$$
+r(x,y)=\min\!\left\{1,\; \frac{f(y)}{f(x)}\right\}.
+$$
+
+El parámetro $b$ controla el tamaño de paso, y debemos considerar que
+
+- **b muy pequeño:** la cadena avanza en pasos diminutos y explora muy lentamente.
+- **b muy grande:** muchos intentos caen en colas y se **rechazan**; la cadena se “atasca”.
+
+Una regla práctica en 1–3 dimensiones es ajustar $b$ para aceptar aproximadamente **50 %** de los saltos. 
+
+Una referencia útil para el uso de este tipo de integración en la práctica es la documentación de las librerías [PyMC](https://docs.pymc.io/en/stable/) y [emcee](https://emcee.readthedocs.io/en/stable/).
