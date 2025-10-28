@@ -71,6 +71,8 @@ website:
             href: 23_redes_neuronales.qmd
           - text: "Integración de Monte Carlo"
             href: 24_integracion_monte_carlo.qmd
+          - text: "Transformada de Fourier"
+            href: 25_transformada_de_fourier.qmd
   sidebar:
     style: docked
     contents:
@@ -132,6 +134,8 @@ website:
             href: 23_redes_neuronales.qmd
           - text: "Integración de Monte Carlo"
             href: 24_integracion_monte_carlo.qmd
+          - text: "Transformada de Fourier"
+            href: 25_transformada_de_fourier.qmd
 
 format:
   html:
