@@ -603,7 +603,7 @@ Ejemplo
 </div>
 <div class="callout-body-container callout-body">
 <p>Estimemos <span class="math inline">\(I = P(Z &gt; 3)\)</span> con <span class="math inline">\(Z\)</span> tomada de una distribución normal con media 0 y varianza 1. Sabemos que esto vale <span class="math inline">\(0.0013\)</span>.</p>
-<div id="e7ba98dc" class="cell" data-execution_count="1">
+<div id="e7ba98dc" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt, pi, exp, erfc</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -624,7 +624,7 @@ Ejemplo
 </div>
 </div>
 <p>Pero usemos Monte Carlo.</p>
-<div id="f8c8ac0f" class="cell" data-execution_count="2">
+<div id="f8c8ac0f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mc_plain(N, rng):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> rng.standard_normal(N)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z <span class="op">&gt;</span> <span class="fl">3.0</span></span>
@@ -677,7 +677,7 @@ Ejemplo
 <div class="callout-body-container callout-body">
 <p>Estimemos la misma integral anterior usando muestreo por importancia. El Monte Carlo simple desperdicia muchos puntos que no están cerca de la cola derecha; la mayoría de puntos están en la región <span class="math inline">\(x &lt; 3\)</span>. Por eso, vamos a escoger <span class="math inline">\(g\)</span> que tenga mayor peso en la región <span class="math inline">\(x &lt; 3\)</span> para no desperdiciar tantos puntos.</p>
 <p>Usemos <span class="math inline">\(g\)</span> como una distribución normal con media 4 y varianza 1.</p>
-<div id="a13b5364" class="cell" data-execution_count="3">
+<div id="a13b5364" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mc_importance(N, rng):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> rng.normal(<span class="fl">4.0</span>, <span class="fl">1.0</span>, N)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.exp(log_phi(z) <span class="op">-</span> log_phi_mu(z, <span class="fl">4.0</span>))</span>

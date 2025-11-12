@@ -700,7 +700,7 @@ F_n - F_{n + N/2} = 2 e^{i\pi n/(N/2)} \sum_{j=0}^{N/2 - 1} e^{2\pi i nj/(N/2)} 
 <p>Hemos reducido el número de operaciones a <span class="math inline">\(2(N/2)^2\)</span> porque tenemos dos sumatorias cada una con la mitad de términos. Esas sumatorias se deben combinar para obtener <span class="math inline">\(F_n = (S_1 + S_2)/2\)</span> y <span class="math inline">\(F_{n + N/2} = (S_1 - S_2)/2\)</span> que son <span class="math inline">\(N\)</span> operaciones adicionales. Entonces el número de operaciones es <span class="math inline">\(N(N/2 + 2)\)</span>.</p>
 <p>Pero <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span> tienen la forma de la sumatoria original, tal que podemos repetir el proceso y reducir el número de operaciones a <span class="math inline">\(N(N/4 + 4)\)</span>. Repitiendo el proceso <span class="math inline">\(p\)</span> veces llegamos a <span class="math inline">\(N(1 + 2p)\)</span> operaciones. Pero <span class="math inline">\(p = \log_2 N\)</span> y entonces vemos que este algoritmo tiene complejidad <span class="math inline">\(\mathcal{O}(N\log_2 N)\)</span> que es mucho menor que <span class="math inline">\(\mathcal{O}(N^2)\)</span>.</p>
 <p>Para ver lo mucho que ganamos, tome <span class="math inline">\(N=1000\)</span>, entonces</p>
-<div id="c4868b8a" class="cell" data-execution_count="1">
+<div id="c4868b8a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
@@ -712,7 +712,7 @@ F_n - F_{n + N/2} = 2 e^{i\pi n/(N/2)} \sum_{j=0}^{N/2 - 1} e^{2\pi i nj/(N/2)} 
 N logN = 9965.784284662088</code></pre>
 </div>
 </div>
-<div id="8d83e2a8" class="cell" data-execution_count="2">
+<div id="8d83e2a8" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
