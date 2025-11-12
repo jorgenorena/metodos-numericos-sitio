@@ -756,6 +756,32 @@ $$
 
 Para ser consistente con el orden, los primeros pasos deberían ser dados por un Runge-Kutta de orden 2.
 
+## Tarea 9.8
+
+Use el método de Adams-Moulton de tres pasos descrito en clase para resolver el siguiente problema de valor inicial:
+
+$$
+y'(t) = te^{3t} - 2y\,,\quad 0 \leq t \leq 1\,, \quad y(0) = 0\,.
+$$
+
+Recuerde que este método usa $w_{i+1}$ para calcular $w_{i+1}$ tal que es necesario resolver algebráicamente la ecuación resultante y así obtener una expresión explícita para $w_{i + 1}$ que se pueda usar en el código.
+
+## Tarea 9.9
+
+Ejercicio 5.6.15, libro de Burden
+
+El algoritmo del predictor-corrector intenta predecir el valor de $y_{i+1}$ a partir de un Adams-Bashforth y luego usa ese resultado dentro de un Adams-Moulton para aproximarse más al verdadero valor. Esto se podría iterar varias veces, es decir usar esa predicción corregida dentro del mismo Adams-Moulton para corregir ulteriormente el valor. 
+
+* Modifique el algoritmo de predictor-corrector para que el corrector se pueda iterar $p$ veces.
+
+* Resuelva el siguiente problema de valor inicial para $p = 2, 3, 4$. ¿Cuál da un mejor resultado?
+
+$$
+y'(t) = \frac{y}{t} - \left(\frac{y}{t}\right)^2\,,\quad 1\leq t\leq 2, y(1) = 1,
+$$
+
+con $h = 0.1$, siendo la solución analítica $y(t) = t/(1+ \ln(t))$.
+
 ## Tarea 9.10
 
 Ejercicio 5.7.12, libro de Burden
