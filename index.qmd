@@ -67,11 +67,11 @@ Prueba: 13 de noviembre
   - Ajuste de curvas y bondad de ajuste, 11 de noviembre
   - Optimización por descenso de gradiente, 18 de noviembre
   - Introducción a las redes neuronales, 20 de noviembre
-  - Métodos de Monte Carlo y/o transformada rápida de Fourier, 25 de noviembre
+  - Métodos de Monte Carlo y/o transformada rápida de Fourier, 27 de noviembre
 
-Recuperativa: 27 de noviembre
+Recuperativa: 25 de noviembre
 
-Examen: Definido por Instituto
+Examen: 5 de diciembre
 
 # Evaluación
 
