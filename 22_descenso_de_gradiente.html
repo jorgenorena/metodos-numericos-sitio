@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -601,25 +601,28 @@ window.Quarto = {
 </section>
 <section id="trabajando-con-arrays-de-jax" class="level2">
 <h2 class="anchored" data-anchor-id="trabajando-con-arrays-de-jax">Trabajando con arrays de JAX</h2>
-<div id="945fcee8" class="cell" data-execution_count="2">
+<div id="a807d01d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Crear arrays</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> jnp.array([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>An NVIDIA GPU may be present on this machine, but a CUDA-enabled jaxlib is not installed. Falling back to cpu.</code></pre>
 </div>
-<div id="f4fb5301" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sumar arrays</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="op">+</span> y</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ceff6fba" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Sumar arrays</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="op">+</span> y</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[5 7 9]</code></pre>
 </div>
 </div>
-<div id="72bd4b7d" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Producto punto</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> jnp.dot(x, y)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6868f62a" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Producto punto</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> jnp.dot(x, y)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>32</code></pre>
 </div>
@@ -628,31 +631,31 @@ window.Quarto = {
 </section>
 <section id="diferenciación-automática-con-grad" class="level2">
 <h2 class="anchored" data-anchor-id="diferenciación-automática-con-grad">Diferenciación automática con <code>grad</code></h2>
-<div id="d2623f69" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Defina una función</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Calcule la derivada</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df_dx <span class="op">=</span> jax.grad(f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9f540e43" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Defina una función</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Calcule la derivada</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df_dx <span class="op">=</span> jax.grad(f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="105a30dc" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_dx(<span class="fl">3.0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4324f82b" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_dx(<span class="fl">3.0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>Array(8., dtype=float32, weak_type=True)</code></pre>
 </div>
 </div>
 <p>También podemos calcular gradientes de funciones de varios parámetros:</p>
-<div id="3eba491a" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x, y):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x<span class="op">*</span>y</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>grad_g <span class="op">=</span> jax.grad(g, argnums<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>grad_x, grad_y <span class="op">=</span> grad_g(<span class="fl">3.0</span>, <span class="fl">4.0</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grad_x, grad_y)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="65b899d8" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x, y):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x<span class="op">*</span>y</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>grad_g <span class="op">=</span> jax.grad(g, argnums<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>grad_x, grad_y <span class="op">=</span> grad_g(<span class="fl">3.0</span>, <span class="fl">4.0</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grad_x, grad_y)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>10.0 11.0</code></pre>
 </div>
@@ -660,40 +663,40 @@ window.Quarto = {
 </section>
 <section id="acelerar-código-con-jit" class="level2">
 <h2 class="anchored" data-anchor-id="acelerar-código-con-jit">Acelerar código con JIT</h2>
-<div id="fdeffe0c" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.sin(x) <span class="op">+</span> jnp.cos(x)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>f_jit <span class="op">=</span> jax.jit(f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="85025190" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.sin(x) <span class="op">+</span> jnp.cos(x)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>f_jit <span class="op">=</span> jax.jit(f)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6b00abab" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100_000_000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b491f61c" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100_000_000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="35b1b732" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se necesita ejecutar la función una vez para obligarla a compilar</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>f_jit(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3e3f64b8" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se necesita ejecutar la función una vez para obligarla a compilar</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>f_jit(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>Array([ 1.       ,  1.0000001,  1.0000002, ..., -1.3830926, -1.3830926,
        -1.3830926], dtype=float32)</code></pre>
 </div>
 </div>
-<div id="3165058a" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sin JIT</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>f(x)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sin JIT: </span><span class="sc">{</span>time<span class="sc">.</span>time() <span class="op">-</span> start<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="16ff840c" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sin JIT</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>f(x)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sin JIT: </span><span class="sc">{</span>time<span class="sc">.</span>time() <span class="op">-</span> start<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sin JIT: 0.8004708290100098</code></pre>
+<pre><code>Sin JIT: 0.30278468132019043</code></pre>
 </div>
 </div>
-<div id="18ae4097" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con JIT</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>f_jit(x)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Con JIT: </span><span class="sc">{</span>time<span class="sc">.</span>time() <span class="op">-</span> start<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a7823cbe" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con JIT</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time.time()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>f_jit(x)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Con JIT: </span><span class="sc">{</span>time<span class="sc">.</span>time() <span class="op">-</span> start<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Con JIT: 0.36315298080444336</code></pre>
+<pre><code>Con JIT: 0.15223383903503418</code></pre>
 </div>
 </div>
 <p>Nota: Esta no es la manera más precisa para medir tiempos. Es sólo para ilustrar que el código compilado es más rápido.</p>
@@ -717,55 +720,55 @@ f(\vec{\theta}) = \sum_i (\hat{y}_{\vec{\theta}}(x_i)) - y_i)^2\,,
 y(x) = e^{-x/2}\,.
 \]</span></p>
 <p>Creamos datos ficticios con un ruido:</p>
-<div id="daa91328" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar datos ficticios</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> x_data)  <span class="co"># True model parameters</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.1</span>, size<span class="op">=</span>x_data.shape)  <span class="co"># Add noise</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ae456425" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar datos ficticios</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> x_data)  <span class="co"># True model parameters</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.1</span>, size<span class="op">=</span>x_data.shape)  <span class="co"># Add noise</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El modelo que queremos ajustar es</p>
 <p><span class="math display">\[
 \hat{y}_{\vec{\theta}}(x) = \theta_0e^{-\theta_1 x}\,.
 \]</span></p>
-<div id="6bc8caa8" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modelo(x, theta):</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta[<span class="dv">0</span>]<span class="op">*</span>jnp.exp(<span class="op">-</span>theta[<span class="dv">1</span>]<span class="op">*</span>x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cfc74839" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modelo(x, theta):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta[<span class="dv">0</span>]<span class="op">*</span>jnp.exp(<span class="op">-</span>theta[<span class="dv">1</span>]<span class="op">*</span>x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="minimización" class="level2">
 <h2 class="anchored" data-anchor-id="minimización">Minimización</h2>
 <p>Definimos primero la función a minimizar:</p>
-<div id="cbd2bc95" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> suma_cuadrados(theta, x, y):</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    predicciones <span class="op">=</span> modelo(x, theta)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.<span class="bu">sum</span>((y <span class="op">-</span> predicciones)<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="06f4b1db" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> suma_cuadrados(theta, x, y):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    predicciones <span class="op">=</span> modelo(x, theta)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.<span class="bu">sum</span>((y <span class="op">-</span> predicciones)<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El siguiente es un algoritmo sencillo de minimización por descenso de gradiente:</p>
-<div id="0d7958bb" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gradiente <span class="op">=</span> jax.grad(suma_cuadrados)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        gradients <span class="op">=</span> gradiente(theta, x, y)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> learning_rate <span class="op">*</span> gradients</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Imprimimos el resultado cada 100 iteraciones</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f019475f" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gradiente <span class="op">=</span> jax.grad(suma_cuadrados)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        gradients <span class="op">=</span> gradiente(theta, x, y)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> learning_rate <span class="op">*</span> gradients</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Imprimimos el resultado cada 100 iteraciones</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1179dc42" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6011fd0d" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iteración 0, Suma cuadrados: 2.8259427547454834
 Iteración 100, Suma cuadrados: 0.9898320436477661
@@ -781,39 +784,39 @@ Iteración 1000, Suma cuadrados: 0.9151554107666016
 Iteración 1100, Suma cuadrados: 0.915155291557312
 Iteración 1200, Suma cuadrados: 0.915155291557312
 Iteración 1300, Suma cuadrados: 0.915155291557312
-Iteración 1400, Suma cuadrados: 0.915155291557312
-Iteración 1500, Suma cuadrados: 0.915155291557312
-Iteración 1600, Suma cuadrados: 0.915155291557312
-Iteración 1700, Suma cuadrados: 0.915155291557312
-Iteración 1800, Suma cuadrados: 0.915155291557312
-Iteración 1900, Suma cuadrados: 0.915155291557312
-Iteración 2000, Suma cuadrados: 0.915155291557312
-Iteración 2100, Suma cuadrados: 0.915155291557312
-Iteración 2200, Suma cuadrados: 0.915155291557312
-Iteración 2300, Suma cuadrados: 0.915155291557312
-Iteración 2400, Suma cuadrados: 0.915155291557312
-Iteración 2500, Suma cuadrados: 0.915155291557312
-Iteración 2600, Suma cuadrados: 0.915155291557312
-Iteración 2700, Suma cuadrados: 0.915155291557312
-Iteración 2800, Suma cuadrados: 0.915155291557312
-Iteración 2900, Suma cuadrados: 0.915155291557312
+Iteración 1400, Suma cuadrados: 0.9151553511619568
+Iteración 1500, Suma cuadrados: 0.9151553511619568
+Iteración 1600, Suma cuadrados: 0.9151553511619568
+Iteración 1700, Suma cuadrados: 0.9151553511619568
+Iteración 1800, Suma cuadrados: 0.9151553511619568
+Iteración 1900, Suma cuadrados: 0.9151553511619568
+Iteración 2000, Suma cuadrados: 0.9151553511619568
+Iteración 2100, Suma cuadrados: 0.9151553511619568
+Iteración 2200, Suma cuadrados: 0.9151553511619568
+Iteración 2300, Suma cuadrados: 0.9151553511619568
+Iteración 2400, Suma cuadrados: 0.9151553511619568
+Iteración 2500, Suma cuadrados: 0.9151553511619568
+Iteración 2600, Suma cuadrados: 0.9151553511619568
+Iteración 2700, Suma cuadrados: 0.9151553511619568
+Iteración 2800, Suma cuadrados: 0.9151553511619568
+Iteración 2900, Suma cuadrados: 0.9151553511619568
 Parámetros optimizados: [1.1409745  0.56464535 1.        ]</code></pre>
 </div>
 </div>
-<div id="f336cdfc" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no lineal con descenso de gradiente'</span>)</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fa3a70f3" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no lineal con descenso de gradiente'</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="22_descenso_de_gradiente_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="22_descenso_de_gradiente_files/figure-html/cell-18-output-1.png" width="605" height="450" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -827,41 +830,41 @@ Parámetros optimizados: [1.1409745  0.56464535 1.        ]</code></pre>
 <p><span class="math display">\[
 y(x) = (\theta_0 x)^2 e^{\theta_1 x}
 \]</span></p>
-<div id="3e52671f" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar datos ficticios</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (<span class="dv">2</span><span class="op">*</span>x_data)<span class="op">**</span><span class="dv">2</span><span class="op">*</span>np.exp(<span class="op">-</span>x_data<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modelo(x, theta):</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (theta[<span class="dv">0</span>]<span class="op">*</span>x)<span class="op">**</span><span class="dv">2</span><span class="op">*</span>jnp.exp(<span class="op">-</span>theta[<span class="dv">1</span>]<span class="op">*</span>x) </span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> suma_cuadrados(theta, x, y):</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    predicciones <span class="op">=</span> modelo(x, theta)</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.<span class="bu">sum</span>((y <span class="op">-</span> predicciones)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>gradiente <span class="op">=</span> jax.grad(suma_cuadrados)</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>        gradients <span class="op">=</span> gradiente(theta, x, y)</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> learning_rate <span class="op">*</span> gradients</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Imprimimos el resultado cada 100 iteraciones</span></span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bb90bade" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar datos ficticios</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (<span class="dv">2</span><span class="op">*</span>x_data)<span class="op">**</span><span class="dv">2</span><span class="op">*</span>np.exp(<span class="op">-</span>x_data<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modelo(x, theta):</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (theta[<span class="dv">0</span>]<span class="op">*</span>x)<span class="op">**</span><span class="dv">2</span><span class="op">*</span>jnp.exp(<span class="op">-</span>theta[<span class="dv">1</span>]<span class="op">*</span>x) </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> suma_cuadrados(theta, x, y):</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    predicciones <span class="op">=</span> modelo(x, theta)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.<span class="bu">sum</span>((y <span class="op">-</span> predicciones)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>gradiente <span class="op">=</span> jax.grad(suma_cuadrados)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        gradients <span class="op">=</span> gradiente(theta, x, y)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> learning_rate <span class="op">*</span> gradients</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Imprimimos el resultado cada 100 iteraciones</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iteración 0, Suma cuadrados: 21042.046875
 Iteración 100, Suma cuadrados: 3676.298583984375
@@ -896,18 +899,18 @@ Iteración 2900, Suma cuadrados: 3676.298583984375
 Parámetros optimizados: [-72.194016 414.01147 ]</code></pre>
 </div>
 </div>
-<div id="d719cd9a" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no lineal con descenso de gradiente'</span>)</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bdc0bf6d" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no lineal con descenso de gradiente'</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="22_descenso_de_gradiente_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="22_descenso_de_gradiente_files/figure-html/cell-20-output-1.png" width="582" height="450" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -924,39 +927,39 @@ Parámetros optimizados: [-72.194016 414.01147 ]</code></pre>
 \vec{\theta}_{t+1} = \vec{\theta}_t + \vec{m}_{t+1}\,.
 \]</span></p>
 <p>Escribamos un código que lo implemente en JAX</p>
-<div id="f12f67ee" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_momentum(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    velocity <span class="op">=</span> jnp.zeros_like(theta)  <span class="co"># Inicializar el término de velocidad</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        gradients <span class="op">=</span> gradiente(theta, x, y)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        velocity <span class="op">=</span> momentum <span class="op">*</span> velocity <span class="op">-</span> learning_rate <span class="op">*</span> gradients</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">+</span> velocity</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2fa8c871" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_momentum(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    velocity <span class="op">=</span> jnp.zeros_like(theta)  <span class="co"># Inicializar el término de velocidad</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        gradients <span class="op">=</span> gradiente(theta, x, y)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>        velocity <span class="op">=</span> momentum <span class="op">*</span> velocity <span class="op">-</span> learning_rate <span class="op">*</span> gradients</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">+</span> velocity</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cf6f6959" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent_momentum(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no-lineal con momentum'</span>)</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f945f400" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent_momentum(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no-lineal con momentum'</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iteración 0, Suma cuadrados: 21042.046875
 Iteración 100, Suma cuadrados: 3676.298583984375
@@ -993,7 +996,7 @@ Parámetros optimizados: [-730.93976 4131.1123 ]</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="22_descenso_de_gradiente_files/figure-html/cell-22-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="22_descenso_de_gradiente_files/figure-html/cell-22-output-2.png" width="576" height="450" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1015,37 +1018,37 @@ Parámetros optimizados: [-730.93976 4131.1123 ]</code></pre>
 <li>Aquí el parámetro <span class="math inline">\(\rho\)</span> controla cuánto se modifica <span class="math inline">\(\vec{s}\)</span> a cada paso. Para <span class="math inline">\(\rho\)</span> cercano a 1, se modifica muy poco y tiene una “memoria larga”. Para <span class="math inline">\(\rho\)</span> pequeño se modifica mucho pero tiene una “memoria corta” ya que su valor cambia rápidamente.</li>
 <li>El <span class="math inline">\(\epsilon\)</span> sirve solamente a que no haya divisiones por cero cuando alguna componente de <span class="math inline">\(\vec{s}\)</span> es cero.</li>
 </ul>
-<div id="110d8021" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_rmsprop(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, beta<span class="op">=</span><span class="fl">0.9</span>, epsilon<span class="op">=</span><span class="fl">1e-8</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    cache <span class="op">=</span> jnp.zeros_like(theta)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        grads <span class="op">=</span> gradiente(theta, x, y)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        cache <span class="op">=</span> beta <span class="op">*</span> cache <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta) <span class="op">*</span> (grads <span class="op">**</span> <span class="dv">2</span>)  <span class="co"># Actualizar la media móvil de los gradientes al cuadrado</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> learning_rate <span class="op">*</span> grads <span class="op">/</span> (jnp.sqrt(cache) <span class="op">+</span> epsilon)  <span class="co"># Actualizar los parámetros</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c73bf8a7" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_rmsprop(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, beta<span class="op">=</span><span class="fl">0.9</span>, epsilon<span class="op">=</span><span class="fl">1e-8</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    cache <span class="op">=</span> jnp.zeros_like(theta)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        grads <span class="op">=</span> gradiente(theta, x, y)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>        cache <span class="op">=</span> beta <span class="op">*</span> cache <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta) <span class="op">*</span> (grads <span class="op">**</span> <span class="dv">2</span>)  <span class="co"># Actualizar la media móvil de los gradientes al cuadrado</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> learning_rate <span class="op">*</span> grads <span class="op">/</span> (jnp.sqrt(cache) <span class="op">+</span> epsilon)  <span class="co"># Actualizar los parámetros</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="35f0a872" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent_rmsprop(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no-lineal con momentum'</span>)</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8555e96a" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent_rmsprop(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no-lineal con momentum'</span>)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iteración 0, Suma cuadrados: 3429.28564453125
 Iteración 100, Suma cuadrados: 3235.61865234375
@@ -1053,36 +1056,36 @@ Iteración 200, Suma cuadrados: 2916.4580078125
 Iteración 300, Suma cuadrados: 2370.6962890625
 Iteración 400, Suma cuadrados: 1490.12548828125
 Iteración 500, Suma cuadrados: 401.747802734375
-Iteración 600, Suma cuadrados: 90.45286560058594
-Iteración 700, Suma cuadrados: 51.82493591308594
-Iteración 800, Suma cuadrados: 25.270719528198242
-Iteración 900, Suma cuadrados: 9.871788024902344
-Iteración 1000, Suma cuadrados: 4.352239608764648
-Iteración 1100, Suma cuadrados: 4.078448295593262
-Iteración 1200, Suma cuadrados: 4.078287601470947
-Iteración 1300, Suma cuadrados: 4.078277587890625
-Iteración 1400, Suma cuadrados: 4.07828426361084
-Iteración 1500, Suma cuadrados: 4.07828426361084
-Iteración 1600, Suma cuadrados: 4.07828426361084
-Iteración 1700, Suma cuadrados: 4.078278064727783
-Iteración 1800, Suma cuadrados: 4.078278064727783
-Iteración 1900, Suma cuadrados: 4.07828426361084
-Iteración 2000, Suma cuadrados: 4.07828426361084
-Iteración 2100, Suma cuadrados: 4.07828426361084
-Iteración 2200, Suma cuadrados: 4.07828426361084
-Iteración 2300, Suma cuadrados: 4.07828426361084
-Iteración 2400, Suma cuadrados: 4.078278064727783
-Iteración 2500, Suma cuadrados: 4.078278064727783
-Iteración 2600, Suma cuadrados: 4.07828426361084
-Iteración 2700, Suma cuadrados: 4.07828426361084
-Iteración 2800, Suma cuadrados: 4.07828426361084
-Iteración 2900, Suma cuadrados: 4.07828426361084
-Parámetros optimizados: [1.9981217  0.50082964 1.        ]</code></pre>
+Iteración 600, Suma cuadrados: 90.45291137695312
+Iteración 700, Suma cuadrados: 51.823265075683594
+Iteración 800, Suma cuadrados: 25.26919937133789
+Iteración 900, Suma cuadrados: 9.870442390441895
+Iteración 1000, Suma cuadrados: 4.351919174194336
+Iteración 1100, Suma cuadrados: 4.078932762145996
+Iteración 1200, Suma cuadrados: 4.078771591186523
+Iteración 1300, Suma cuadrados: 4.0787553787231445
+Iteración 1400, Suma cuadrados: 4.078762054443359
+Iteración 1500, Suma cuadrados: 4.078766345977783
+Iteración 1600, Suma cuadrados: 4.078766345977783
+Iteración 1700, Suma cuadrados: 4.078766345977783
+Iteración 1800, Suma cuadrados: 4.078766345977783
+Iteración 1900, Suma cuadrados: 4.078762054443359
+Iteración 2000, Suma cuadrados: 4.0787553787231445
+Iteración 2100, Suma cuadrados: 4.078762054443359
+Iteración 2200, Suma cuadrados: 4.078766345977783
+Iteración 2300, Suma cuadrados: 4.078766345977783
+Iteración 2400, Suma cuadrados: 4.078766345977783
+Iteración 2500, Suma cuadrados: 4.078766345977783
+Iteración 2600, Suma cuadrados: 4.078762054443359
+Iteración 2700, Suma cuadrados: 4.0787553787231445
+Iteración 2800, Suma cuadrados: 4.078762054443359
+Iteración 2900, Suma cuadrados: 4.078766345977783
+Parámetros optimizados: [1.9991218  0.49982956 1.        ]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="22_descenso_de_gradiente_files/figure-html/cell-24-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="22_descenso_de_gradiente_files/figure-html/cell-24-output-2.png" width="576" height="450" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1102,76 +1105,76 @@ Parámetros optimizados: [1.9981217  0.50082964 1.        ]</code></pre>
 \end{align}
 \]</span></p>
 <p>El tercer y cuarto pasos sirven para hacer que <span class="math inline">\(\vec{m}\)</span> y <span class="math inline">\(\vec{s}\)</span> no sean demasiado pequeños durante las primeras iteraciones. De otra forma tenderán a estar cercanos a <span class="math inline">\(0\)</span> ya que ese es su valor inicial.</p>
-<div id="9dccff42" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_adam(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, beta1<span class="op">=</span><span class="fl">0.9</span>, beta2<span class="op">=</span><span class="fl">0.999</span>, epsilon<span class="op">=</span><span class="fl">1e-8</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    m, v <span class="op">=</span> jnp.zeros_like(theta), jnp.zeros_like(theta)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, iterations <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>        grads <span class="op">=</span> gradiente(theta, x, y)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> beta1 <span class="op">*</span> m <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta1) <span class="op">*</span> grads  </span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> beta2 <span class="op">*</span> v <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta2) <span class="op">*</span> (grads <span class="op">**</span> <span class="dv">2</span>)  </span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>        m_hat <span class="op">=</span> m <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta1 <span class="op">**</span> t)  </span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>        v_hat <span class="op">=</span> v <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta2 <span class="op">**</span> t)  </span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> learning_rate <span class="op">*</span> m_hat <span class="op">/</span> (jnp.sqrt(v_hat) <span class="op">+</span> epsilon)  </span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> t <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4de78a2e" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent_adam(theta, x, y, learning_rate<span class="op">=</span><span class="fl">0.001</span>, beta1<span class="op">=</span><span class="fl">0.9</span>, beta2<span class="op">=</span><span class="fl">0.999</span>, epsilon<span class="op">=</span><span class="fl">1e-8</span>, iterations<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    m, v <span class="op">=</span> jnp.zeros_like(theta), jnp.zeros_like(theta)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, iterations <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>        grads <span class="op">=</span> gradiente(theta, x, y)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> beta1 <span class="op">*</span> m <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta1) <span class="op">*</span> grads  </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> beta2 <span class="op">*</span> v <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta2) <span class="op">*</span> (grads <span class="op">**</span> <span class="dv">2</span>)  </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        m_hat <span class="op">=</span> m <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta1 <span class="op">**</span> t)  </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>        v_hat <span class="op">=</span> v <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta2 <span class="op">**</span> t)  </span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> theta <span class="op">-</span> learning_rate <span class="op">*</span> m_hat <span class="op">/</span> (jnp.sqrt(v_hat) <span class="op">+</span> epsilon)  </span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> t <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> suma_cuadrados(theta, x, y)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4987babf" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent_adam(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no-lineal con momentum'</span>)</span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="250072ab" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Descenso de gradiente</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> gradient_descent_adam(theta_init, x_data, y_data, learning_rate<span class="op">=</span><span class="fl">0.001</span>, iterations<span class="op">=</span><span class="dv">3000</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros encontrados</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no-lineal con momentum'</span>)</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iteración 100, Suma cuadrados: 3247.58837890625
-Iteración 200, Suma cuadrados: 2781.543701171875
+Iteración 200, Suma cuadrados: 2781.5439453125
 Iteración 300, Suma cuadrados: 1436.5238037109375
 Iteración 400, Suma cuadrados: 125.83804321289062
 Iteración 500, Suma cuadrados: 108.08612060546875
 Iteración 600, Suma cuadrados: 91.434326171875
-Iteración 700, Suma cuadrados: 76.28626251220703
+Iteración 700, Suma cuadrados: 76.28627014160156
 Iteración 800, Suma cuadrados: 62.861900329589844
-Iteración 900, Suma cuadrados: 51.22735595703125
-Iteración 1000, Suma cuadrados: 41.34318161010742
-Iteración 1100, Suma cuadrados: 33.09861755371094
-Iteración 1200, Suma cuadrados: 26.34052085876465
-Iteración 1300, Suma cuadrados: 20.89399528503418
-Iteración 1400, Suma cuadrados: 16.57768440246582
-Iteración 1500, Suma cuadrados: 13.214640617370605
-Iteración 1600, Suma cuadrados: 10.639381408691406
-Iteración 1700, Suma cuadrados: 8.702418327331543
-Iteración 1800, Suma cuadrados: 7.272414684295654
-Iteración 1900, Suma cuadrados: 6.237038612365723
+Iteración 900, Suma cuadrados: 51.22740173339844
+Iteración 1000, Suma cuadrados: 41.343177795410156
+Iteración 1100, Suma cuadrados: 33.09865188598633
+Iteración 1200, Suma cuadrados: 26.340545654296875
+Iteración 1300, Suma cuadrados: 20.89400863647461
+Iteración 1400, Suma cuadrados: 16.57770538330078
+Iteración 1500, Suma cuadrados: 13.214654922485352
+Iteración 1600, Suma cuadrados: 10.63939094543457
+Iteración 1700, Suma cuadrados: 8.70242691040039
+Iteración 1800, Suma cuadrados: 7.272426605224609
+Iteración 1900, Suma cuadrados: 6.237037658691406
 Iteración 2000, Suma cuadrados: 5.502582550048828
-Iteración 2100, Suma cuadrados: 4.992691516876221
+Iteración 2100, Suma cuadrados: 4.9926910400390625
 Iteración 2200, Suma cuadrados: 4.646664619445801
 Iteración 2300, Suma cuadrados: 4.4174346923828125
 Iteración 2400, Suma cuadrados: 4.26937198638916
-Iteración 2500, Suma cuadrados: 4.176309108734131
+Iteración 2500, Suma cuadrados: 4.176309585571289
 Iteración 2600, Suma cuadrados: 4.119433879852295
 Iteración 2700, Suma cuadrados: 4.085715293884277
-Iteración 2800, Suma cuadrados: 4.066339492797852
+Iteración 2800, Suma cuadrados: 4.06633996963501
 Iteración 2900, Suma cuadrados: 4.055578231811523
-Iteración 3000, Suma cuadrados: 4.049808025360107
+Iteración 3000, Suma cuadrados: 4.049807548522949
 Parámetros optimizados: [1.9952817  0.49972048 1.        ]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="22_descenso_de_gradiente_files/figure-html/cell-26-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="22_descenso_de_gradiente_files/figure-html/cell-26-output-2.png" width="576" height="450" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1182,360 +1185,360 @@ Parámetros optimizados: [1.9952817  0.49972048 1.        ]</code></pre>
 <h1>Usando Flax</h1>
 <p>Estos métodos están ya todos programados en varias librerías. Una de las más usadas con JAX es Flax.</p>
 <p>Flax en general es una librería para aprendizaje automático con redes neuronales. Tiene también el descenso de gradiente.</p>
-<div id="ca5c76eb" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flax.training <span class="im">import</span> train_state  </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> optax  </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TrainState(train_state.TrainState):</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    params: jnp.ndarray</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_train_state(params, learning_rate):</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    tx <span class="op">=</span> optax.adam(learning_rate<span class="op">=</span><span class="fl">0.1</span>)  <span class="co"># SGD con Momentum</span></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> TrainState.create(apply_fn<span class="op">=</span><span class="va">None</span>, params<span class="op">=</span>params, tx<span class="op">=</span>tx)</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar el descenso de gradiente por un paso</span></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="at">@jax.jit</span></span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_step(state, x, y):</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> loss_fn_wrapper(params):</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> suma_cuadrados(params, x, y)</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> jax.grad(loss_fn_wrapper)(state.params)  </span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>    new_state <span class="op">=</span> state.apply_gradients(grads<span class="op">=</span>grads)   </span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_state</span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el estado a entrenar</span></span>
-<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">0.001</span></span>
-<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>state <span class="op">=</span> create_train_state(theta_init, learning_rate)</span>
-<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrenamiento</span></span>
-<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">30000</span></span>
-<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
-<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> train_step(state, x_data, y_data)</span>
-<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> suma_cuadrados(state.params, x_data, y_data)</span>
-<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> state.params</span>
-<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span>
-<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
-<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
-<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no-lineal con momentum'</span>)</span>
-<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1dc06f62" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flax.training <span class="im">import</span> train_state  </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> optax  </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TrainState(train_state.TrainState):</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    params: jnp.ndarray</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_train_state(params, learning_rate):</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    tx <span class="op">=</span> optax.adam(learning_rate<span class="op">=</span><span class="fl">0.1</span>)  <span class="co"># SGD con Momentum</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> TrainState.create(apply_fn<span class="op">=</span><span class="va">None</span>, params<span class="op">=</span>params, tx<span class="op">=</span>tx)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar el descenso de gradiente por un paso</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="at">@jax.jit</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_step(state, x, y):</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> loss_fn_wrapper(params):</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> suma_cuadrados(params, x, y)</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> jax.grad(loss_fn_wrapper)(state.params)  </span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    new_state <span class="op">=</span> state.apply_gradients(grads<span class="op">=</span>grads)   </span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_state</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros iniciales</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>theta_init <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el estado a entrenar</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>state <span class="op">=</span> create_train_state(theta_init, learning_rate)</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrenamiento</span></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">30000</span></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> train_step(state, x_data, y_data)</span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> suma_cuadrados(state.params, x_data, y_data)</span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Iteración </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Suma cuadrados: </span><span class="sc">{</span>loss<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a>theta_opt <span class="op">=</span> state.params</span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Parámetros optimizados:"</span>, theta_opt)</span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data, y_data, label<span class="op">=</span><span class="st">"Datos"</span>)</span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a>plt.plot(x_data, modelo(x_data, theta_opt), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"Modelo ajustado"</span>)</span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Ajuste de mínimos cuadrados no-lineal con momentum'</span>)</span>
+<span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Iteración 0, Suma cuadrados: 3267.79248046875
+<pre><code>Iteración 0, Suma cuadrados: 3267.792724609375
 Iteración 100, Suma cuadrados: 4.0442657470703125
-Iteración 200, Suma cuadrados: 4.044098377227783
-Iteración 300, Suma cuadrados: 4.044095039367676
-Iteración 400, Suma cuadrados: 4.04409122467041
-Iteración 500, Suma cuadrados: 4.044095039367676
-Iteración 600, Suma cuadrados: 4.044092178344727
-Iteración 700, Suma cuadrados: 4.04409122467041
-Iteración 800, Suma cuadrados: 4.044089317321777
-Iteración 900, Suma cuadrados: 4.04409122467041
+Iteración 200, Suma cuadrados: 4.044096946716309
+Iteración 300, Suma cuadrados: 4.04409122467041
+Iteración 400, Suma cuadrados: 4.044095039367676
+Iteración 500, Suma cuadrados: 4.044095516204834
+Iteración 600, Suma cuadrados: 4.044095039367676
+Iteración 700, Suma cuadrados: 4.044094085693359
+Iteración 800, Suma cuadrados: 4.04409122467041
+Iteración 900, Suma cuadrados: 4.044095039367676
 Iteración 1000, Suma cuadrados: 4.044095039367676
-Iteración 1100, Suma cuadrados: 4.044094085693359
-Iteración 1200, Suma cuadrados: 4.044095039367676
-Iteración 1300, Suma cuadrados: 4.04409122467041
-Iteración 1400, Suma cuadrados: 4.044095039367676
+Iteración 1100, Suma cuadrados: 4.04409122467041
+Iteración 1200, Suma cuadrados: 4.04409122467041
+Iteración 1300, Suma cuadrados: 4.044095039367676
+Iteración 1400, Suma cuadrados: 4.04409122467041
 Iteración 1500, Suma cuadrados: 4.044095039367676
 Iteración 1600, Suma cuadrados: 4.044095039367676
-Iteración 1700, Suma cuadrados: 4.044094085693359
+Iteración 1700, Suma cuadrados: 4.044095039367676
 Iteración 1800, Suma cuadrados: 4.044095039367676
-Iteración 1900, Suma cuadrados: 4.04409122467041
+Iteración 1900, Suma cuadrados: 4.044094085693359
 Iteración 2000, Suma cuadrados: 4.044095039367676
-Iteración 2100, Suma cuadrados: 4.044094085693359
+Iteración 2100, Suma cuadrados: 4.04409122467041
 Iteración 2200, Suma cuadrados: 4.044095039367676
-Iteración 2300, Suma cuadrados: 4.044094085693359
+Iteración 2300, Suma cuadrados: 4.04409122467041
 Iteración 2400, Suma cuadrados: 4.044095039367676
-Iteración 2500, Suma cuadrados: 4.044094085693359
-Iteración 2600, Suma cuadrados: 4.044095039367676
+Iteración 2500, Suma cuadrados: 4.04409122467041
+Iteración 2600, Suma cuadrados: 4.04409122467041
 Iteración 2700, Suma cuadrados: 4.044095039367676
 Iteración 2800, Suma cuadrados: 4.044095039367676
-Iteración 2900, Suma cuadrados: 8.140222549438477
-Iteración 3000, Suma cuadrados: 4.0441203117370605
-Iteración 3100, Suma cuadrados: 4.083864212036133
-Iteración 3200, Suma cuadrados: 4.223141193389893
-Iteración 3300, Suma cuadrados: 4.04438591003418
-Iteración 3400, Suma cuadrados: 4.066340446472168
-Iteración 3500, Suma cuadrados: 4.0473313331604
-Iteración 3600, Suma cuadrados: 4.782164096832275
-Iteración 3700, Suma cuadrados: 4.545530319213867
-Iteración 3800, Suma cuadrados: 4.124549388885498
-Iteración 3900, Suma cuadrados: 5.193822860717773
-Iteración 4000, Suma cuadrados: 4.58197546005249
-Iteración 4100, Suma cuadrados: 4.065535545349121
-Iteración 4200, Suma cuadrados: 5.297750473022461
-Iteración 4300, Suma cuadrados: 4.2796406745910645
-Iteración 4400, Suma cuadrados: 5.396370887756348
-Iteración 4500, Suma cuadrados: 5.102736949920654
-Iteración 4600, Suma cuadrados: 4.270684242248535
-Iteración 4700, Suma cuadrados: 5.114706993103027
-Iteración 4800, Suma cuadrados: 7.473214626312256
-Iteración 4900, Suma cuadrados: 4.044869422912598
-Iteración 5000, Suma cuadrados: 5.246514320373535
-Iteración 5100, Suma cuadrados: 8.634164810180664
-Iteración 5200, Suma cuadrados: 4.045713424682617
-Iteración 5300, Suma cuadrados: 4.357792854309082
-Iteración 5400, Suma cuadrados: 4.50225830078125
-Iteración 5500, Suma cuadrados: 4.046539306640625
-Iteración 5600, Suma cuadrados: 5.647562503814697
-Iteración 5700, Suma cuadrados: 4.103586196899414
-Iteración 5800, Suma cuadrados: 4.3448166847229
-Iteración 5900, Suma cuadrados: 4.984243869781494
-Iteración 6000, Suma cuadrados: 7.862437725067139
-Iteración 6100, Suma cuadrados: 4.673740386962891
-Iteración 6200, Suma cuadrados: 4.135581970214844
-Iteración 6300, Suma cuadrados: 5.409382343292236
-Iteración 6400, Suma cuadrados: 4.522267818450928
-Iteración 6500, Suma cuadrados: 4.545810222625732
-Iteración 6600, Suma cuadrados: 4.68690299987793
-Iteración 6700, Suma cuadrados: 4.472934722900391
-Iteración 6800, Suma cuadrados: 4.114614486694336
-Iteración 6900, Suma cuadrados: 4.093858242034912
-Iteración 7000, Suma cuadrados: 4.463376045227051
-Iteración 7100, Suma cuadrados: 5.187305450439453
-Iteración 7200, Suma cuadrados: 4.208889007568359
-Iteración 7300, Suma cuadrados: 4.509934902191162
-Iteración 7400, Suma cuadrados: 4.322332382202148
-Iteración 7500, Suma cuadrados: 4.565561771392822
-Iteración 7600, Suma cuadrados: 4.421506881713867
-Iteración 7700, Suma cuadrados: 5.1818108558654785
-Iteración 7800, Suma cuadrados: 4.0732011795043945
-Iteración 7900, Suma cuadrados: 4.592609405517578
-Iteración 8000, Suma cuadrados: 4.733181953430176
-Iteración 8100, Suma cuadrados: 5.328281402587891
-Iteración 8200, Suma cuadrados: 7.799322605133057
-Iteración 8300, Suma cuadrados: 6.904780387878418
-Iteración 8400, Suma cuadrados: 4.428199768066406
-Iteración 8500, Suma cuadrados: 4.347289085388184
-Iteración 8600, Suma cuadrados: 5.189572334289551
-Iteración 8700, Suma cuadrados: 4.236367702484131
-Iteración 8800, Suma cuadrados: 4.106025695800781
-Iteración 8900, Suma cuadrados: 4.392693519592285
-Iteración 9000, Suma cuadrados: 5.368438720703125
-Iteración 9100, Suma cuadrados: 4.476973056793213
-Iteración 9200, Suma cuadrados: 4.38358211517334
-Iteración 9300, Suma cuadrados: 6.032645225524902
-Iteración 9400, Suma cuadrados: 4.155267238616943
-Iteración 9500, Suma cuadrados: 4.443551063537598
-Iteración 9600, Suma cuadrados: 4.136192798614502
-Iteración 9700, Suma cuadrados: 4.044668197631836
-Iteración 9800, Suma cuadrados: 6.031164169311523
-Iteración 9900, Suma cuadrados: 4.06586217880249
-Iteración 10000, Suma cuadrados: 4.112851142883301
-Iteración 10100, Suma cuadrados: 7.309657096862793
-Iteración 10200, Suma cuadrados: 4.15325927734375
-Iteración 10300, Suma cuadrados: 4.481555461883545
-Iteración 10400, Suma cuadrados: 4.439813613891602
-Iteración 10500, Suma cuadrados: 4.044394493103027
-Iteración 10600, Suma cuadrados: 5.628578186035156
-Iteración 10700, Suma cuadrados: 4.648001670837402
-Iteración 10800, Suma cuadrados: 4.399417877197266
-Iteración 10900, Suma cuadrados: 4.597678184509277
-Iteración 11000, Suma cuadrados: 4.28067684173584
-Iteración 11100, Suma cuadrados: 5.126941204071045
-Iteración 11200, Suma cuadrados: 4.287448406219482
-Iteración 11300, Suma cuadrados: 4.381411075592041
-Iteración 11400, Suma cuadrados: 4.282249450683594
-Iteración 11500, Suma cuadrados: 4.36629056930542
-Iteración 11600, Suma cuadrados: 4.968255996704102
-Iteración 11700, Suma cuadrados: 7.222647666931152
-Iteración 11800, Suma cuadrados: 5.421287536621094
-Iteración 11900, Suma cuadrados: 4.421457290649414
-Iteración 12000, Suma cuadrados: 4.404991149902344
-Iteración 12100, Suma cuadrados: 5.137217044830322
-Iteración 12200, Suma cuadrados: 4.147444725036621
-Iteración 12300, Suma cuadrados: 4.050764083862305
-Iteración 12400, Suma cuadrados: 6.319845199584961
-Iteración 12500, Suma cuadrados: 4.044315338134766
-Iteración 12600, Suma cuadrados: 4.835749626159668
-Iteración 12700, Suma cuadrados: 7.045258045196533
-Iteración 12800, Suma cuadrados: 4.565488815307617
-Iteración 12900, Suma cuadrados: 5.274136543273926
-Iteración 13000, Suma cuadrados: 4.777831077575684
-Iteración 13100, Suma cuadrados: 4.379836082458496
-Iteración 13200, Suma cuadrados: 4.21384334564209
-Iteración 13300, Suma cuadrados: 4.068807125091553
-Iteración 13400, Suma cuadrados: 4.396144866943359
-Iteración 13500, Suma cuadrados: 6.031885147094727
-Iteración 13600, Suma cuadrados: 4.060705184936523
-Iteración 13700, Suma cuadrados: 5.627315044403076
-Iteración 13800, Suma cuadrados: 4.289231300354004
-Iteración 13900, Suma cuadrados: 4.062831878662109
-Iteración 14000, Suma cuadrados: 6.670578479766846
-Iteración 14100, Suma cuadrados: 4.334878444671631
-Iteración 14200, Suma cuadrados: 4.159766674041748
-Iteración 14300, Suma cuadrados: 4.0569610595703125
-Iteración 14400, Suma cuadrados: 4.068578720092773
-Iteración 14500, Suma cuadrados: 4.3238139152526855
-Iteración 14600, Suma cuadrados: 4.1434326171875
-Iteración 14700, Suma cuadrados: 5.558236122131348
-Iteración 14800, Suma cuadrados: 4.631649017333984
-Iteración 14900, Suma cuadrados: 4.425412178039551
-Iteración 15000, Suma cuadrados: 4.193510055541992
-Iteración 15100, Suma cuadrados: 4.084900856018066
-Iteración 15200, Suma cuadrados: 7.2651519775390625
-Iteración 15300, Suma cuadrados: 4.932102680206299
-Iteración 15400, Suma cuadrados: 4.1158647537231445
-Iteración 15500, Suma cuadrados: 8.804788589477539
-Iteración 15600, Suma cuadrados: 4.937045097351074
-Iteración 15700, Suma cuadrados: 4.26634407043457
-Iteración 15800, Suma cuadrados: 5.1115827560424805
-Iteración 15900, Suma cuadrados: 5.739487648010254
-Iteración 16000, Suma cuadrados: 4.150198936462402
-Iteración 16100, Suma cuadrados: 4.631872177124023
-Iteración 16200, Suma cuadrados: 10.345563888549805
-Iteración 16300, Suma cuadrados: 4.961970329284668
-Iteración 16400, Suma cuadrados: 4.070531845092773
-Iteración 16500, Suma cuadrados: 4.045327663421631
-Iteración 16600, Suma cuadrados: 5.886414527893066
-Iteración 16700, Suma cuadrados: 4.827934265136719
-Iteración 16800, Suma cuadrados: 4.583343505859375
-Iteración 16900, Suma cuadrados: 4.4513421058654785
-Iteración 17000, Suma cuadrados: 5.976771354675293
-Iteración 17100, Suma cuadrados: 4.425599575042725
-Iteración 17200, Suma cuadrados: 4.315341472625732
-Iteración 17300, Suma cuadrados: 4.305272102355957
-Iteración 17400, Suma cuadrados: 6.093077659606934
-Iteración 17500, Suma cuadrados: 5.055633544921875
-Iteración 17600, Suma cuadrados: 5.986372470855713
-Iteración 17700, Suma cuadrados: 4.158754348754883
-Iteración 17800, Suma cuadrados: 4.156856060028076
-Iteración 17900, Suma cuadrados: 4.932376384735107
-Iteración 18000, Suma cuadrados: 5.10541296005249
-Iteración 18100, Suma cuadrados: 4.3180437088012695
-Iteración 18200, Suma cuadrados: 4.335972785949707
-Iteración 18300, Suma cuadrados: 4.0442962646484375
-Iteración 18400, Suma cuadrados: 4.057880401611328
-Iteración 18500, Suma cuadrados: 4.131072998046875
-Iteración 18600, Suma cuadrados: 4.829109191894531
-Iteración 18700, Suma cuadrados: 4.124711513519287
-Iteración 18800, Suma cuadrados: 4.984511375427246
-Iteración 18900, Suma cuadrados: 5.6168060302734375
-Iteración 19000, Suma cuadrados: 4.1251068115234375
-Iteración 19100, Suma cuadrados: 4.141744613647461
-Iteración 19200, Suma cuadrados: 4.743391036987305
-Iteración 19300, Suma cuadrados: 4.135076999664307
-Iteración 19400, Suma cuadrados: 4.937239646911621
-Iteración 19500, Suma cuadrados: 7.0298357009887695
-Iteración 19600, Suma cuadrados: 5.341719627380371
-Iteración 19700, Suma cuadrados: 4.948145866394043
-Iteración 19800, Suma cuadrados: 6.438948631286621
-Iteración 19900, Suma cuadrados: 5.151679515838623
-Iteración 20000, Suma cuadrados: 4.7523345947265625
-Iteración 20100, Suma cuadrados: 4.281454563140869
-Iteración 20200, Suma cuadrados: 5.119143009185791
-Iteración 20300, Suma cuadrados: 5.140933036804199
-Iteración 20400, Suma cuadrados: 4.389584541320801
-Iteración 20500, Suma cuadrados: 4.07371187210083
-Iteración 20600, Suma cuadrados: 4.3056840896606445
-Iteración 20700, Suma cuadrados: 5.095439434051514
-Iteración 20800, Suma cuadrados: 4.813080787658691
-Iteración 20900, Suma cuadrados: 5.373014450073242
-Iteración 21000, Suma cuadrados: 4.720608711242676
-Iteración 21100, Suma cuadrados: 4.335497856140137
-Iteración 21200, Suma cuadrados: 5.139557838439941
-Iteración 21300, Suma cuadrados: 4.275731563568115
-Iteración 21400, Suma cuadrados: 4.377289295196533
-Iteración 21500, Suma cuadrados: 4.61005973815918
-Iteración 21600, Suma cuadrados: 4.455329418182373
-Iteración 21700, Suma cuadrados: 6.000493049621582
-Iteración 21800, Suma cuadrados: 4.33392333984375
-Iteración 21900, Suma cuadrados: 4.140448570251465
-Iteración 22000, Suma cuadrados: 11.577780723571777
-Iteración 22100, Suma cuadrados: 5.002017021179199
-Iteración 22200, Suma cuadrados: 4.128687858581543
-Iteración 22300, Suma cuadrados: 4.132321357727051
-Iteración 22400, Suma cuadrados: 4.179278373718262
-Iteración 22500, Suma cuadrados: 4.1214752197265625
-Iteración 22600, Suma cuadrados: 4.319884777069092
-Iteración 22700, Suma cuadrados: 4.04579496383667
-Iteración 22800, Suma cuadrados: 4.613255023956299
-Iteración 22900, Suma cuadrados: 7.283084869384766
-Iteración 23000, Suma cuadrados: 5.145301818847656
-Iteración 23100, Suma cuadrados: 5.29563570022583
-Iteración 23200, Suma cuadrados: 4.14206600189209
-Iteración 23300, Suma cuadrados: 8.343851089477539
-Iteración 23400, Suma cuadrados: 4.303062438964844
-Iteración 23500, Suma cuadrados: 4.044186592102051
-Iteración 23600, Suma cuadrados: 4.351436138153076
-Iteración 23700, Suma cuadrados: 4.314474105834961
-Iteración 23800, Suma cuadrados: 7.199549674987793
-Iteración 23900, Suma cuadrados: 4.07554817199707
-Iteración 24000, Suma cuadrados: 4.36419677734375
-Iteración 24100, Suma cuadrados: 5.208860397338867
-Iteración 24200, Suma cuadrados: 5.236138343811035
-Iteración 24300, Suma cuadrados: 4.361567974090576
-Iteración 24400, Suma cuadrados: 4.829207420349121
-Iteración 24500, Suma cuadrados: 5.042420387268066
-Iteración 24600, Suma cuadrados: 4.076838493347168
-Iteración 24700, Suma cuadrados: 4.045942306518555
-Iteración 24800, Suma cuadrados: 4.789889335632324
-Iteración 24900, Suma cuadrados: 4.4279093742370605
-Iteración 25000, Suma cuadrados: 4.8018798828125
-Iteración 25100, Suma cuadrados: 4.399082183837891
-Iteración 25200, Suma cuadrados: 4.5228424072265625
-Iteración 25300, Suma cuadrados: 4.560074806213379
-Iteración 25400, Suma cuadrados: 5.454067707061768
-Iteración 25500, Suma cuadrados: 4.321236610412598
-Iteración 25600, Suma cuadrados: 4.057992935180664
-Iteración 25700, Suma cuadrados: 4.6801605224609375
-Iteración 25800, Suma cuadrados: 4.045083999633789
-Iteración 25900, Suma cuadrados: 4.109826564788818
-Iteración 26000, Suma cuadrados: 4.2373528480529785
-Iteración 26100, Suma cuadrados: 5.830325126647949
-Iteración 26200, Suma cuadrados: 4.3426008224487305
-Iteración 26300, Suma cuadrados: 5.677359104156494
-Iteración 26400, Suma cuadrados: 4.232968330383301
-Iteración 26500, Suma cuadrados: 5.196901321411133
-Iteración 26600, Suma cuadrados: 4.27099609375
-Iteración 26700, Suma cuadrados: 4.2631330490112305
-Iteración 26800, Suma cuadrados: 6.137340068817139
-Iteración 26900, Suma cuadrados: 4.062531471252441
-Iteración 27000, Suma cuadrados: 4.0487446784973145
-Iteración 27100, Suma cuadrados: 4.635319709777832
-Iteración 27200, Suma cuadrados: 4.535178184509277
-Iteración 27300, Suma cuadrados: 4.167543411254883
-Iteración 27400, Suma cuadrados: 4.784193992614746
-Iteración 27500, Suma cuadrados: 4.132907390594482
-Iteración 27600, Suma cuadrados: 4.229986190795898
-Iteración 27700, Suma cuadrados: 4.076696872711182
-Iteración 27800, Suma cuadrados: 5.578505039215088
-Iteración 27900, Suma cuadrados: 4.141605854034424
-Iteración 28000, Suma cuadrados: 4.061137676239014
-Iteración 28100, Suma cuadrados: 4.587177276611328
-Iteración 28200, Suma cuadrados: 4.753252029418945
-Iteración 28300, Suma cuadrados: 4.132824897766113
-Iteración 28400, Suma cuadrados: 4.046442031860352
-Iteración 28500, Suma cuadrados: 6.1160993576049805
-Iteración 28600, Suma cuadrados: 4.240307331085205
-Iteración 28700, Suma cuadrados: 5.186999320983887
-Iteración 28800, Suma cuadrados: 4.803816795349121
-Iteración 28900, Suma cuadrados: 5.180248260498047
-Iteración 29000, Suma cuadrados: 4.435433387756348
-Iteración 29100, Suma cuadrados: 4.081098556518555
-Iteración 29200, Suma cuadrados: 4.120488166809082
-Iteración 29300, Suma cuadrados: 4.253233432769775
-Iteración 29400, Suma cuadrados: 4.052385330200195
-Iteración 29500, Suma cuadrados: 5.985908508300781
-Iteración 29600, Suma cuadrados: 4.078293800354004
-Iteración 29700, Suma cuadrados: 8.609962463378906
-Iteración 29800, Suma cuadrados: 5.073331356048584
-Iteración 29900, Suma cuadrados: 4.526256561279297
-Parámetros optimizados: [1.9934452 0.506759  1.        1.       ]</code></pre>
+Iteración 2900, Suma cuadrados: 5.471590995788574
+Iteración 3000, Suma cuadrados: 4.045629501342773
+Iteración 3100, Suma cuadrados: 4.046225070953369
+Iteración 3200, Suma cuadrados: 4.121339797973633
+Iteración 3300, Suma cuadrados: 6.206316947937012
+Iteración 3400, Suma cuadrados: 4.071436882019043
+Iteración 3500, Suma cuadrados: 5.57887077331543
+Iteración 3600, Suma cuadrados: 6.284522533416748
+Iteración 3700, Suma cuadrados: 4.072629928588867
+Iteración 3800, Suma cuadrados: 4.14105224609375
+Iteración 3900, Suma cuadrados: 4.619814872741699
+Iteración 4000, Suma cuadrados: 6.086818218231201
+Iteración 4100, Suma cuadrados: 5.390110969543457
+Iteración 4200, Suma cuadrados: 4.494438171386719
+Iteración 4300, Suma cuadrados: 4.305286407470703
+Iteración 4400, Suma cuadrados: 4.045108795166016
+Iteración 4500, Suma cuadrados: 4.082281112670898
+Iteración 4600, Suma cuadrados: 4.154871940612793
+Iteración 4700, Suma cuadrados: 7.406267166137695
+Iteración 4800, Suma cuadrados: 4.285836219787598
+Iteración 4900, Suma cuadrados: 4.426356315612793
+Iteración 5000, Suma cuadrados: 10.884464263916016
+Iteración 5100, Suma cuadrados: 5.174866676330566
+Iteración 5200, Suma cuadrados: 4.076207160949707
+Iteración 5300, Suma cuadrados: 6.2567548751831055
+Iteración 5400, Suma cuadrados: 4.334840774536133
+Iteración 5500, Suma cuadrados: 4.5783185958862305
+Iteración 5600, Suma cuadrados: 5.041240215301514
+Iteración 5700, Suma cuadrados: 4.548403739929199
+Iteración 5800, Suma cuadrados: 4.1995134353637695
+Iteración 5900, Suma cuadrados: 4.047691345214844
+Iteración 6000, Suma cuadrados: 7.766546249389648
+Iteración 6100, Suma cuadrados: 5.101372241973877
+Iteración 6200, Suma cuadrados: 4.584712028503418
+Iteración 6300, Suma cuadrados: 8.226726531982422
+Iteración 6400, Suma cuadrados: 4.6013994216918945
+Iteración 6500, Suma cuadrados: 4.727679252624512
+Iteración 6600, Suma cuadrados: 4.347781181335449
+Iteración 6700, Suma cuadrados: 4.181650638580322
+Iteración 6800, Suma cuadrados: 4.263227462768555
+Iteración 6900, Suma cuadrados: 4.52927827835083
+Iteración 7000, Suma cuadrados: 4.246344566345215
+Iteración 7100, Suma cuadrados: 6.417340278625488
+Iteración 7200, Suma cuadrados: 5.166752815246582
+Iteración 7300, Suma cuadrados: 4.220556259155273
+Iteración 7400, Suma cuadrados: 5.387799263000488
+Iteración 7500, Suma cuadrados: 5.238258361816406
+Iteración 7600, Suma cuadrados: 4.062378406524658
+Iteración 7700, Suma cuadrados: 4.832957744598389
+Iteración 7800, Suma cuadrados: 4.256785869598389
+Iteración 7900, Suma cuadrados: 4.119063854217529
+Iteración 8000, Suma cuadrados: 5.263709545135498
+Iteración 8100, Suma cuadrados: 5.915206432342529
+Iteración 8200, Suma cuadrados: 4.315390586853027
+Iteración 8300, Suma cuadrados: 4.220365524291992
+Iteración 8400, Suma cuadrados: 4.06153678894043
+Iteración 8500, Suma cuadrados: 4.368973731994629
+Iteración 8600, Suma cuadrados: 4.623717308044434
+Iteración 8700, Suma cuadrados: 5.786194801330566
+Iteración 8800, Suma cuadrados: 4.525938987731934
+Iteración 8900, Suma cuadrados: 4.059689521789551
+Iteración 9000, Suma cuadrados: 4.502852439880371
+Iteración 9100, Suma cuadrados: 4.507997035980225
+Iteración 9200, Suma cuadrados: 4.5473480224609375
+Iteración 9300, Suma cuadrados: 4.409025192260742
+Iteración 9400, Suma cuadrados: 4.304195880889893
+Iteración 9500, Suma cuadrados: 5.124032974243164
+Iteración 9600, Suma cuadrados: 5.0498881340026855
+Iteración 9700, Suma cuadrados: 4.810750961303711
+Iteración 9800, Suma cuadrados: 4.192280292510986
+Iteración 9900, Suma cuadrados: 4.429644584655762
+Iteración 10000, Suma cuadrados: 5.923192977905273
+Iteración 10100, Suma cuadrados: 4.153621673583984
+Iteración 10200, Suma cuadrados: 4.137456893920898
+Iteración 10300, Suma cuadrados: 5.773155212402344
+Iteración 10400, Suma cuadrados: 4.047209739685059
+Iteración 10500, Suma cuadrados: 4.082477569580078
+Iteración 10600, Suma cuadrados: 5.268391132354736
+Iteración 10700, Suma cuadrados: 4.422891139984131
+Iteración 10800, Suma cuadrados: 4.758668899536133
+Iteración 10900, Suma cuadrados: 4.056825637817383
+Iteración 11000, Suma cuadrados: 4.147940635681152
+Iteración 11100, Suma cuadrados: 4.312173843383789
+Iteración 11200, Suma cuadrados: 4.435616493225098
+Iteración 11300, Suma cuadrados: 4.4754109382629395
+Iteración 11400, Suma cuadrados: 4.285840034484863
+Iteración 11500, Suma cuadrados: 4.059900283813477
+Iteración 11600, Suma cuadrados: 4.41378927230835
+Iteración 11700, Suma cuadrados: 9.626407623291016
+Iteración 11800, Suma cuadrados: 4.944194793701172
+Iteración 11900, Suma cuadrados: 4.183115005493164
+Iteración 12000, Suma cuadrados: 4.044503211975098
+Iteración 12100, Suma cuadrados: 4.20684289932251
+Iteración 12200, Suma cuadrados: 9.678367614746094
+Iteración 12300, Suma cuadrados: 4.074411392211914
+Iteración 12400, Suma cuadrados: 5.628018379211426
+Iteración 12500, Suma cuadrados: 4.372136116027832
+Iteración 12600, Suma cuadrados: 4.04418420791626
+Iteración 12700, Suma cuadrados: 4.2814531326293945
+Iteración 12800, Suma cuadrados: 5.68199348449707
+Iteración 12900, Suma cuadrados: 4.346493244171143
+Iteración 13000, Suma cuadrados: 4.40957498550415
+Iteración 13100, Suma cuadrados: 4.045331954956055
+Iteración 13200, Suma cuadrados: 4.239386558532715
+Iteración 13300, Suma cuadrados: 4.047881603240967
+Iteración 13400, Suma cuadrados: 4.12317419052124
+Iteración 13500, Suma cuadrados: 5.263510704040527
+Iteración 13600, Suma cuadrados: 4.7643141746521
+Iteración 13700, Suma cuadrados: 4.814492225646973
+Iteración 13800, Suma cuadrados: 4.081429958343506
+Iteración 13900, Suma cuadrados: 6.026717185974121
+Iteración 14000, Suma cuadrados: 4.047952651977539
+Iteración 14100, Suma cuadrados: 4.708639621734619
+Iteración 14200, Suma cuadrados: 6.692774772644043
+Iteración 14300, Suma cuadrados: 6.118167400360107
+Iteración 14400, Suma cuadrados: 4.373660564422607
+Iteración 14500, Suma cuadrados: 8.632919311523438
+Iteración 14600, Suma cuadrados: 5.144014835357666
+Iteración 14700, Suma cuadrados: 4.6295061111450195
+Iteración 14800, Suma cuadrados: 6.794267654418945
+Iteración 14900, Suma cuadrados: 4.426146507263184
+Iteración 15000, Suma cuadrados: 5.116991996765137
+Iteración 15100, Suma cuadrados: 4.083767890930176
+Iteración 15200, Suma cuadrados: 4.245124816894531
+Iteración 15300, Suma cuadrados: 5.138859748840332
+Iteración 15400, Suma cuadrados: 5.215333461761475
+Iteración 15500, Suma cuadrados: 4.044112682342529
+Iteración 15600, Suma cuadrados: 5.346697807312012
+Iteración 15700, Suma cuadrados: 4.251892566680908
+Iteración 15800, Suma cuadrados: 4.063446998596191
+Iteración 15900, Suma cuadrados: 6.5082807540893555
+Iteración 16000, Suma cuadrados: 4.681329727172852
+Iteración 16100, Suma cuadrados: 4.596615791320801
+Iteración 16200, Suma cuadrados: 4.428354263305664
+Iteración 16300, Suma cuadrados: 5.403054714202881
+Iteración 16400, Suma cuadrados: 4.2056474685668945
+Iteración 16500, Suma cuadrados: 7.3341546058654785
+Iteración 16600, Suma cuadrados: 4.370957374572754
+Iteración 16700, Suma cuadrados: 4.233997344970703
+Iteración 16800, Suma cuadrados: 4.1354851722717285
+Iteración 16900, Suma cuadrados: 4.812607288360596
+Iteración 17000, Suma cuadrados: 4.210143089294434
+Iteración 17100, Suma cuadrados: 4.055096626281738
+Iteración 17200, Suma cuadrados: 5.059120178222656
+Iteración 17300, Suma cuadrados: 4.20456600189209
+Iteración 17400, Suma cuadrados: 4.848971366882324
+Iteración 17500, Suma cuadrados: 4.900928497314453
+Iteración 17600, Suma cuadrados: 4.4938530921936035
+Iteración 17700, Suma cuadrados: 4.390709400177002
+Iteración 17800, Suma cuadrados: 4.295697212219238
+Iteración 17900, Suma cuadrados: 4.051713466644287
+Iteración 18000, Suma cuadrados: 4.343985080718994
+Iteración 18100, Suma cuadrados: 4.195722579956055
+Iteración 18200, Suma cuadrados: 4.573965549468994
+Iteración 18300, Suma cuadrados: 4.2401933670043945
+Iteración 18400, Suma cuadrados: 4.093889236450195
+Iteración 18500, Suma cuadrados: 4.7867608070373535
+Iteración 18600, Suma cuadrados: 4.097292900085449
+Iteración 18700, Suma cuadrados: 4.626296043395996
+Iteración 18800, Suma cuadrados: 4.167498588562012
+Iteración 18900, Suma cuadrados: 5.856185436248779
+Iteración 19000, Suma cuadrados: 4.079311847686768
+Iteración 19100, Suma cuadrados: 9.900836944580078
+Iteración 19200, Suma cuadrados: 4.97274923324585
+Iteración 19300, Suma cuadrados: 4.190138339996338
+Iteración 19400, Suma cuadrados: 4.0751800537109375
+Iteración 19500, Suma cuadrados: 5.313701152801514
+Iteración 19600, Suma cuadrados: 4.072208404541016
+Iteración 19700, Suma cuadrados: 8.854387283325195
+Iteración 19800, Suma cuadrados: 4.472643852233887
+Iteración 19900, Suma cuadrados: 4.454446792602539
+Iteración 20000, Suma cuadrados: 4.780727386474609
+Iteración 20100, Suma cuadrados: 4.2121148109436035
+Iteración 20200, Suma cuadrados: 4.067635536193848
+Iteración 20300, Suma cuadrados: 5.082885265350342
+Iteración 20400, Suma cuadrados: 4.555091857910156
+Iteración 20500, Suma cuadrados: 4.940275192260742
+Iteración 20600, Suma cuadrados: 5.421708106994629
+Iteración 20700, Suma cuadrados: 4.050044059753418
+Iteración 20800, Suma cuadrados: 4.343541622161865
+Iteración 20900, Suma cuadrados: 7.68551778793335
+Iteración 21000, Suma cuadrados: 4.170497894287109
+Iteración 21100, Suma cuadrados: 4.600713729858398
+Iteración 21200, Suma cuadrados: 4.378966331481934
+Iteración 21300, Suma cuadrados: 4.20708703994751
+Iteración 21400, Suma cuadrados: 5.880369186401367
+Iteración 21500, Suma cuadrados: 4.059860706329346
+Iteración 21600, Suma cuadrados: 4.196103572845459
+Iteración 21700, Suma cuadrados: 4.058696746826172
+Iteración 21800, Suma cuadrados: 4.13985538482666
+Iteración 21900, Suma cuadrados: 4.187601089477539
+Iteración 22000, Suma cuadrados: 4.339480876922607
+Iteración 22100, Suma cuadrados: 4.164960861206055
+Iteración 22200, Suma cuadrados: 4.6016387939453125
+Iteración 22300, Suma cuadrados: 7.169179916381836
+Iteración 22400, Suma cuadrados: 5.343267440795898
+Iteración 22500, Suma cuadrados: 4.7581787109375
+Iteración 22600, Suma cuadrados: 4.140371322631836
+Iteración 22700, Suma cuadrados: 4.059388160705566
+Iteración 22800, Suma cuadrados: 4.192390441894531
+Iteración 22900, Suma cuadrados: 4.94191312789917
+Iteración 23000, Suma cuadrados: 4.1551737785339355
+Iteración 23100, Suma cuadrados: 4.069222927093506
+Iteración 23200, Suma cuadrados: 5.591836929321289
+Iteración 23300, Suma cuadrados: 4.134202480316162
+Iteración 23400, Suma cuadrados: 4.411377906799316
+Iteración 23500, Suma cuadrados: 4.502415180206299
+Iteración 23600, Suma cuadrados: 4.908420085906982
+Iteración 23700, Suma cuadrados: 4.119803428649902
+Iteración 23800, Suma cuadrados: 7.129547119140625
+Iteración 23900, Suma cuadrados: 4.695497512817383
+Iteración 24000, Suma cuadrados: 5.4070611000061035
+Iteración 24100, Suma cuadrados: 6.542568206787109
+Iteración 24200, Suma cuadrados: 4.733626842498779
+Iteración 24300, Suma cuadrados: 5.578272819519043
+Iteración 24400, Suma cuadrados: 4.4180755615234375
+Iteración 24500, Suma cuadrados: 5.89174747467041
+Iteración 24600, Suma cuadrados: 4.58130407333374
+Iteración 24700, Suma cuadrados: 4.404761791229248
+Iteración 24800, Suma cuadrados: 4.058867931365967
+Iteración 24900, Suma cuadrados: 4.170109748840332
+Iteración 25000, Suma cuadrados: 6.572751998901367
+Iteración 25100, Suma cuadrados: 4.447794437408447
+Iteración 25200, Suma cuadrados: 4.948233604431152
+Iteración 25300, Suma cuadrados: 4.970843315124512
+Iteración 25400, Suma cuadrados: 5.208209991455078
+Iteración 25500, Suma cuadrados: 4.484058380126953
+Iteración 25600, Suma cuadrados: 4.1537933349609375
+Iteración 25700, Suma cuadrados: 4.0455121994018555
+Iteración 25800, Suma cuadrados: 4.0701727867126465
+Iteración 25900, Suma cuadrados: 4.050625324249268
+Iteración 26000, Suma cuadrados: 5.759308815002441
+Iteración 26100, Suma cuadrados: 4.553588390350342
+Iteración 26200, Suma cuadrados: 4.4373779296875
+Iteración 26300, Suma cuadrados: 4.263930797576904
+Iteración 26400, Suma cuadrados: 5.449954509735107
+Iteración 26500, Suma cuadrados: 4.114926338195801
+Iteración 26600, Suma cuadrados: 4.215481758117676
+Iteración 26700, Suma cuadrados: 4.623934745788574
+Iteración 26800, Suma cuadrados: 9.611564636230469
+Iteración 26900, Suma cuadrados: 13.1351318359375
+Iteración 27000, Suma cuadrados: 5.088671684265137
+Iteración 27100, Suma cuadrados: 4.084439277648926
+Iteración 27200, Suma cuadrados: 4.108346939086914
+Iteración 27300, Suma cuadrados: 6.93508768081665
+Iteración 27400, Suma cuadrados: 4.397321701049805
+Iteración 27500, Suma cuadrados: 4.053285598754883
+Iteración 27600, Suma cuadrados: 4.6691999435424805
+Iteración 27700, Suma cuadrados: 4.287134647369385
+Iteración 27800, Suma cuadrados: 4.231245994567871
+Iteración 27900, Suma cuadrados: 4.058831214904785
+Iteración 28000, Suma cuadrados: 5.806825637817383
+Iteración 28100, Suma cuadrados: 5.941788673400879
+Iteración 28200, Suma cuadrados: 9.367290496826172
+Iteración 28300, Suma cuadrados: 5.442954063415527
+Iteración 28400, Suma cuadrados: 4.472907543182373
+Iteración 28500, Suma cuadrados: 4.532450199127197
+Iteración 28600, Suma cuadrados: 4.1276702880859375
+Iteración 28700, Suma cuadrados: 4.090008735656738
+Iteración 28800, Suma cuadrados: 4.052028656005859
+Iteración 28900, Suma cuadrados: 4.384111404418945
+Iteración 29000, Suma cuadrados: 4.755672931671143
+Iteración 29100, Suma cuadrados: 4.0585856437683105
+Iteración 29200, Suma cuadrados: 8.51402473449707
+Iteración 29300, Suma cuadrados: 4.990051746368408
+Iteración 29400, Suma cuadrados: 4.056412696838379
+Iteración 29500, Suma cuadrados: 7.491554260253906
+Iteración 29600, Suma cuadrados: 4.52838134765625
+Iteración 29700, Suma cuadrados: 5.4314045906066895
+Iteración 29800, Suma cuadrados: 4.546317100524902
+Iteración 29900, Suma cuadrados: 4.44674015045166
+Parámetros optimizados: [2.0014644  0.49827138 1.         1.        ]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="22_descenso_de_gradiente_files/figure-html/cell-27-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="22_descenso_de_gradiente_files/figure-html/cell-27-output-2.png" width="576" height="450" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1547,11 +1550,11 @@ Parámetros optimizados: [1.9934452 0.506759  1.        1.       ]</code></pre>
 <h2 class="anchored" data-anchor-id="tarea-11.1">Tarea 11.1</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = (\theta x)^2\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="1e882ec3" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b8ef1093" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Realice un descenso de gradiente para ajustar el valor de <span class="math inline">\(\theta\)</span> empezando desde el punto <span class="math inline">\(\theta = 1\)</span> y de nuevo desde el punto <span class="math inline">\(\theta = -1\)</span>. Explique la diferencia entre los resultados.</p>
 </section>
@@ -1559,11 +1562,11 @@ Parámetros optimizados: [1.9934452 0.506759  1.        1.       ]</code></pre>
 <h2 class="anchored" data-anchor-id="tarea-11.2">Tarea 11.2</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = \cos(\theta x)\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="6f9b81eb" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> np.cos(<span class="dv">2</span><span class="op">*</span>x_data)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d881cebd" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> np.cos(<span class="dv">2</span><span class="op">*</span>x_data)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Intente encontrar el valor de <span class="math inline">\(\theta\)</span> ajustando los datos con mínimos cuadrados y descenso de gradiente partiendo del punto <span class="math inline">\(\theta=-1\)</span>.</p>
 <p>Grafique la función de pérdida y explique el origen de la dificultad.</p>
@@ -1579,11 +1582,11 @@ V(\theta_1, \theta_2) = \sinh(\theta_1^4 + \theta_2^2) - 1\,,
 <h2 class="anchored" data-anchor-id="tarea-11.4">Tarea 11.4</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = (\theta x)^2 + 50\theta x\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="59df0436" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">50</span><span class="op">*</span>x_data<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7791cf7d" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">50</span><span class="op">*</span>x_data<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Realice un descenso de gradiente para ajustar el valor de <span class="math inline">\(\theta\)</span> empezando desde el punto <span class="math inline">\(\theta = 2\)</span> y de nuevo desde el punto <span class="math inline">\(\theta = -9\)</span>. Explique la diferencia entre los resultados.</p>
 </section>
@@ -1591,11 +1594,11 @@ V(\theta_1, \theta_2) = \sinh(\theta_1^4 + \theta_2^2) - 1\,,
 <h2 class="anchored" data-anchor-id="tarea-11.5">Tarea 11.5</h2>
 <p>Considere la función <span class="math inline">\(y_{\theta}(x) = (\theta_0 x)^2 + (\theta_1x)^{-3}\)</span>.</p>
 <p>Generamos datos ficticios con el siguiente código:</p>
-<div id="ec794346" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**-</span><span class="dv">3</span> <span class="op">+</span> x_data<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b6286837" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.linspace(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> (x_data<span class="op">/</span><span class="dv">2</span>)<span class="op">**-</span><span class="dv">3</span> <span class="op">+</span> x_data<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>x_data.shape)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Realice un descenso de gradiente con varios métodos (gradiente sencillo y Adam) y explique la diferencia.</p>
 

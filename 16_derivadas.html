@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -579,7 +579,7 @@ window.Quarto = {
 
 <p>En muchos casos la derivada de una función es fácil de calcular. Sin embargo con frecuencia la función se conoce sólo en algunos puntos (por ejemplo cuando es el resultado de una medición o de una simulación) y los métodos numéricos para tomar derivadas pueden resultar muy útiles.</p>
 <p>Además, las derivadas numéricas forman parte fundamental de la solución numérica a ecuaciones diferenciales parciales (para modelar el clima, la fusión de dos agujeros negros, el colapso estelar, la turbulencia, entre muchos otros fenómenos). También son la base de los métodos de optimización en los cuales se basa el aprendizaje automático.</p>
-<div id="17ccc402" class="cell" data-execution_count="2">
+<div id="04a06ba0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -603,7 +603,7 @@ f'(x_o) = \frac{f(x_o + h) - f(x_o)}{h} - \frac{1}{2}h f''(\xi)
 <p><span class="math display">\[
 \left|f'(x_o) - \frac{f(x_o + h) - f(x_o)}{h}\right| \leq \frac{h}{2}\,\text{max}_{x\in[x_o, x_o+h]}\,|f''(x)|
 \]</span></p>
-<div id="5c1ef304" class="cell" data-execution_count="3">
+<div id="fd969e14" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv2p(f, x, h):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">+</span> h) <span class="op">-</span> f(x))<span class="op">/</span>h</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -611,7 +611,7 @@ f'(x_o) = \frac{f(x_o + h) - f(x_o)}{h} - \frac{1}{2}h f''(\xi)
 <p><span class="math display">\[
 f'(x_o) = \frac{f(x_o) - f(x_o - h)}{h} + \frac{1}{2}h f''(\xi)
 \]</span></p>
-<div id="68e0c163" class="cell" data-execution_count="4">
+<div id="ce028e85" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">100</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>exactas <span class="op">=</span> np.cos(x)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>aprox2 <span class="op">=</span> [deriv2p(np.sin, xi, <span class="fl">0.2</span>) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
@@ -622,7 +622,7 @@ f'(x_o) = \frac{f(x_o) - f(x_o - h)}{h} + \frac{1}{2}h f''(\xi)
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="16_derivadas_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="16_derivadas_files/figure-html/cell-4-output-1.png" width="590" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -643,11 +643,11 @@ f(x_o + h) - f(x_o - h) = 2h f'(x_o) + \mathcal{O}(h^3)\,,
 f'(x_o) =\frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right) + \frac{h^2}{6}f^{(3)}(\xi)
 \]</span></p>
 <p>¡Obtenemos una mayor precisión (error cuadrático) haciendo un número igual de evaluaciones que la fórmula de dos puntos!</p>
-<div id="889a6ee7" class="cell" data-execution_count="5">
+<div id="0eeeb6b8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3p(f, x, h):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">+</span> h) <span class="op">-</span> f(x <span class="op">-</span> h))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b4b07f93" class="cell" data-execution_count="6">
+<div id="6bc89d1d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">100</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>exactas <span class="op">=</span> np.cos(x)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>aprox2 <span class="op">=</span> [deriv2p(np.sin, xi, <span class="fl">0.2</span>) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
@@ -659,7 +659,7 @@ f'(x_o) =\frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right) + \frac{h^2}{6}f^{(3)}
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="16_derivadas_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="16_derivadas_files/figure-html/cell-6-output-1.png" width="599" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -669,16 +669,16 @@ f'(x_o) =\frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right) + \frac{h^2}{6}f^{(3)}
 f'(x_o) =\frac{1}{2h}\left(- 3f(x_o) + 4f(x_o + h) - f(x_o + 2h)\right) + \frac{h^2}{3}f^{(3)}(\xi)
 \]</span></p>
 <p>Esta fórmula sirve para estimar la derivada de una función en los bordes, cuando no conocemos <span class="math inline">\(f(x)\)</span> para <span class="math inline">\(x &lt; x_o\)</span>. También se puede usar cuando no conocemos la función para <span class="math inline">\(x &gt; x_o\)</span>, en cuyo caso reemplazamos <span class="math inline">\(h \rightarrow -h\)</span>. Tiene dos desventajas respecto a la anterior: Necesita tres evaluaciones y el error es aproximadamente el doble.</p>
-<div id="1a6f6c6a" class="cell" data-execution_count="7">
+<div id="2f233b57" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3p_extremo(f, x, h):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="op">-</span><span class="dv">3</span><span class="op">*</span>f(x) <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>f(x <span class="op">+</span> h) <span class="op">-</span> f(x <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>h))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>También podemos usar polinomios de más alto orden para obtener fórmulas de más puntos. Por ejemplo la fórmula de tres puntos tiene un error <span class="math inline">\((h^4/30)f^{(5)}(\xi)\)</span>.</p>
-<div id="a9bab3af" class="cell" data-execution_count="8">
+<div id="207c1aa5" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv5p(f, x, h):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>h) <span class="op">-</span> <span class="dv">8</span><span class="op">*</span>f(x <span class="op">-</span> h) <span class="op">+</span> <span class="dv">8</span><span class="op">*</span>f(x <span class="op">+</span> h) <span class="op">-</span> f(x <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>h))<span class="op">/</span>(<span class="dv">12</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6d01f96a" class="cell" data-execution_count="9">
+<div id="5340909d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv5p_extremo(f, x, h):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="op">-</span><span class="dv">25</span><span class="op">*</span>f(x) <span class="op">+</span> <span class="dv">48</span><span class="op">*</span>f(x <span class="op">+</span> h) <span class="op">-</span> <span class="dv">36</span><span class="op">*</span>f(x <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>h) <span class="op">+</span> <span class="dv">16</span><span class="op">*</span>f(x <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>h) <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>f(x <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>h))<span class="op">/</span>(<span class="dv">12</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -694,7 +694,7 @@ f(x_o + h) + f(x_o - h) = 2f(x_o) + f''(x_o)h^2 + \frac{1}{12}f^{(4)}(\xi)h^4\,.
 <p><span class="math display">\[
 f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1}{12}f^{(4)}(\xi)h^2
 \]</span></p>
-<div id="932f349c" class="cell" data-execution_count="10">
+<div id="78977647" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> segunda_deriv(f, x, h):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (f(x <span class="op">+</span> h) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>f(x) <span class="op">+</span> f(x <span class="op">-</span> h))<span class="op">/</span>(h<span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -706,23 +706,23 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 \left|f'(x_o) - \frac{1}{2h}\left(f(x_o + h) - f(x_o - h)\right)\right| \leq \left|\frac{1}{2h}(\delta(x_o + h) - \delta(x_o - h))\right| + \frac{h^2}{6} M \leq \frac{\Delta}{h} + \frac{h^2}{6} M
 \]</span></p>
 <p>¡Al disminuir <span class="math inline">\(h\)</span> aumentamos el primer término de este error!</p>
-<div id="e541d8f0" class="cell" data-execution_count="11">
+<div id="c5001a31" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.1</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>datos_r <span class="op">=</span> np.sin(x) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="dv">40</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>datos_e <span class="op">=</span> np.sin(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b5c421f6" class="cell" data-execution_count="12">
+<div id="ced0d497" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, datos_e)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, datos_r)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="16_derivadas_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="16_derivadas_files/figure-html/cell-12-output-1.png" width="590" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="8e84df57" class="cell" data-execution_count="13">
+<div id="8939d894" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deriv3_datos(fxo, fx2, h):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fx2 <span class="op">-</span> fxo)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -743,7 +743,7 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> deriv</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fx2 <span class="op">-</span> fxo)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>h)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f75b47ea" class="cell" data-execution_count="14">
+<div id="dc4b91b2" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">20</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="dv">4</span><span class="op">/</span>num</span>
@@ -754,7 +754,7 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="16_derivadas_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="16_derivadas_files/figure-html/cell-14-output-1.png" width="590" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -773,7 +773,7 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 <h2 class="anchored" data-anchor-id="la-idea-detrás-de-la-autodiferenciación">La idea detrás de la autodiferenciación</h2>
 <p>La idea es sencilla: Conocemos las derivadas de cualquier función sencilla y para las demás usamos la regla de la cadena.</p>
 <p>Por ejemplo, supongamos que queremos tomar la derivada del coseno. Existen librerías que tuenen tabuladas las derivadas para muchas funciones. Aquí usamos <code>jax</code>.</p>
-<div id="15e04a80" class="cell" data-execution_count="15">
+<div id="28c0952b" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># derivada_cos_autodiff_vs_finitas.py</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparar derivadas con autodiff (JAX) y con diferencias finitas para cos(x)</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -821,10 +821,13 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 <span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Error L2 comparado con -sin(x):"</span>)</span>
 <span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Diferencias finitas : </span><span class="sc">{</span>error_L2(df_fd, df_real)<span class="sc">:.3e}</span><span class="ss">"</span>)</span>
 <span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Autodiff (JAX)      : </span><span class="sc">{</span>error_L2(df_ad, df_real)<span class="sc">:.3e}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>An NVIDIA GPU may be present on this machine, but a CUDA-enabled jaxlib is not installed. Falling back to cpu.</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="16_derivadas_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="16_derivadas_files/figure-html/cell-15-output-2.png" width="661" height="372" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -914,31 +917,31 @@ f''(x_o) = \frac{1}{h^2}\left(f(x_o + h) - 2f(x_o) + f(x_o - h)\right) - \frac{1
 <p>Los siguientes datos corresponden al cálculo numérico de una cierta propiedad estadística de la distribución de materia en el universo (el espectro de potencias) <span class="math inline">\(P(k)\)</span> (segunda columna) en función del modo de Fourier <span class="math inline">\(k\)</span> (primera columna).</p>
 <p>Use la derivada numérica para encontrar <span class="math inline">\(d\ln P/d\ln k\)</span> en cada punto (es decir, la derivada del logaritmo de <span class="math inline">\(P\)</span> respecto a <span class="math inline">\(y\)</span> donde <span class="math inline">\(y = \ln k\)</span>).</p>
 <p>Para estimar el error cometido en esta derivada numérica compare el resultado de la fórmula a tres puntos con el resultado de la fórmula a cinco puntos. Será necesario usar las fórmulas a tres y cinco puntos en los extremos que se encuentran en este mismo notebook.</p>
-<div id="7aacf57a" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> np.array([       [<span class="fl">5.531683013105e-04</span>,       <span class="fl">1.070304113861e+12</span>], </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">5.910227121702e-04</span>,       <span class="fl">1.139622191891e+12</span>], </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">6.315688849627e-04</span>,       <span class="fl">1.213481232452e+12</span>], </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">6.750065137883e-04</span>,       <span class="fl">1.292169597309e+12</span>], </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">7.215301959429e-04</span>,       <span class="fl">1.375954296780e+12</span>], </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">7.713235180257e-04</span>,       <span class="fl">1.465069697719e+12</span>], </span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">8.245525173319e-04</span>,       <span class="fl">1.559705507566e+12</span>], </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">8.813589235833e-04</span>,       <span class="fl">1.659994890361e+12</span>], </span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">9.418537183337e-04</span>,       <span class="fl">1.766003776663e+12</span>], </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.006111625261e-03</span>,       <span class="fl">1.877722471320e+12</span>], </span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.074167130425e-03</span>,       <span class="fl">1.995060685935e+12</span>], </span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.146012510269e-03</span>,       <span class="fl">2.117846703996e+12</span>], </span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.221598126720e-03</span>,       <span class="fl">2.245831037960e+12</span>], </span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.300834972303e-03</span>,       <span class="fl">2.378694410099e+12</span>], </span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.383599172303e-03</span>,       <span class="fl">2.516052095865e+12</span>], </span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.469737934874e-03</span>,       <span class="fl">2.657475892684e+12</span>], </span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.559076324033e-03</span>,       <span class="fl">2.802524407596e+12</span>], </span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.651424225675e-03</span>,       <span class="fl">2.950729179407e+12</span>], </span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.746582964833e-03</span>,       <span class="fl">3.101618970269e+12</span>], </span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.844351177716e-03</span>,       <span class="fl">3.254730780491e+12</span>], </span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.944529704896e-03</span>,       <span class="fl">3.409618695392e+12</span>], </span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">2.046925420592e-03</span>,       <span class="fl">3.565860320889e+12</span>], </span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">2.151354028418e-03</span>,       <span class="fl">3.723061333248e+12</span>], </span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">2.257641930146e-03</span>,       <span class="fl">3.880858018481e+12</span>] ])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="35d080bd" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> np.array([       [<span class="fl">5.531683013105e-04</span>,       <span class="fl">1.070304113861e+12</span>], </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">5.910227121702e-04</span>,       <span class="fl">1.139622191891e+12</span>], </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">6.315688849627e-04</span>,       <span class="fl">1.213481232452e+12</span>], </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">6.750065137883e-04</span>,       <span class="fl">1.292169597309e+12</span>], </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">7.215301959429e-04</span>,       <span class="fl">1.375954296780e+12</span>], </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">7.713235180257e-04</span>,       <span class="fl">1.465069697719e+12</span>], </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">8.245525173319e-04</span>,       <span class="fl">1.559705507566e+12</span>], </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">8.813589235833e-04</span>,       <span class="fl">1.659994890361e+12</span>], </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">9.418537183337e-04</span>,       <span class="fl">1.766003776663e+12</span>], </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.006111625261e-03</span>,       <span class="fl">1.877722471320e+12</span>], </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.074167130425e-03</span>,       <span class="fl">1.995060685935e+12</span>], </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.146012510269e-03</span>,       <span class="fl">2.117846703996e+12</span>], </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.221598126720e-03</span>,       <span class="fl">2.245831037960e+12</span>], </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.300834972303e-03</span>,       <span class="fl">2.378694410099e+12</span>], </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.383599172303e-03</span>,       <span class="fl">2.516052095865e+12</span>], </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.469737934874e-03</span>,       <span class="fl">2.657475892684e+12</span>], </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.559076324033e-03</span>,       <span class="fl">2.802524407596e+12</span>], </span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.651424225675e-03</span>,       <span class="fl">2.950729179407e+12</span>], </span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.746582964833e-03</span>,       <span class="fl">3.101618970269e+12</span>], </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.844351177716e-03</span>,       <span class="fl">3.254730780491e+12</span>], </span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">1.944529704896e-03</span>,       <span class="fl">3.409618695392e+12</span>], </span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">2.046925420592e-03</span>,       <span class="fl">3.565860320889e+12</span>], </span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">2.151354028418e-03</span>,       <span class="fl">3.723061333248e+12</span>], </span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">2.257641930146e-03</span>,       <span class="fl">3.880858018481e+12</span>] ])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="tarea-8.2" class="level2">

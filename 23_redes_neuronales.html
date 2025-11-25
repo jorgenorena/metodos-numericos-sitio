@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -606,7 +606,7 @@ y_{out} = \sigma(z)
 ReLU(x) = \begin{cases}x &amp; x \geq 0\\ 0 &amp; x &lt; 0\end{cases}\,.
 \]</span></p>
 <p>Implementemos una neurona usando JAX:</p>
-<div id="769f7fdb" class="cell" data-execution_count="2">
+<div id="60c3b080" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
@@ -622,6 +622,9 @@ ReLU(x) = \begin{cases}x &amp; x \geq 0\\ 0 &amp; x &lt; 0\end{cases}\,.
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>salida <span class="op">=</span> neurona(x, w, b)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(salida)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>An NVIDIA GPU may be present on this machine, but a CUDA-enabled jaxlib is not installed. Falling back to cpu.</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.40131235</code></pre>
 </div>
@@ -638,32 +641,32 @@ ReLU(x) = \begin{cases}x &amp; x \geq 0\\ 0 &amp; x &lt; 0\end{cases}\,.
 <p>Cada capa oculta está formada por varias neuronas que reciben la salida de la capa anterior como entrada.</p>
 <p>Cuando se usan muchas capas, se dice que la red es <em>profunda</em>.</p>
 <p>Hagamos un ejemplo de una red neuronal multicapa con JAX:</p>
-<div id="ce0a976b" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(z):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.maximum(<span class="dv">0</span>, z)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> red_neuronal(x, w1, b1, w2, b2):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa oculta</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> jnp.dot(w1, x) <span class="op">+</span> b1</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> relu(z1)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa de salida</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> jnp.dot(w2, a1) <span class="op">+</span> b2</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    salida <span class="op">=</span> sigmoid(z2)  <span class="co"># Usamos sigmoide en la salida</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> salida</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de pesos y sesgos para una red simple</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> jnp.array([[<span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.4</span>], [<span class="fl">0.7</span>, <span class="fl">0.3</span>]])  <span class="co"># Pesos capa oculta</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> jnp.array([<span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.2</span>])  <span class="co"># Sesgos capa oculta</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> jnp.array([<span class="fl">0.6</span>, <span class="op">-</span><span class="fl">0.1</span>])  <span class="co"># Pesos capa de salida</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># Sesgo capa de salida</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Entradas</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">0.5</span>])</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la salida de la red</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>salida_red <span class="op">=</span> red_neuronal(x, w1, b1, w2, b2)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(salida_red)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0e7431cc" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(z):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.maximum(<span class="dv">0</span>, z)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> red_neuronal(x, w1, b1, w2, b2):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa oculta</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> jnp.dot(w1, x) <span class="op">+</span> b1</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> relu(z1)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa de salida</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> jnp.dot(w2, a1) <span class="op">+</span> b2</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    salida <span class="op">=</span> sigmoid(z2)  <span class="co"># Usamos sigmoide en la salida</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> salida</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de pesos y sesgos para una red simple</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> jnp.array([[<span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.4</span>], [<span class="fl">0.7</span>, <span class="fl">0.3</span>]])  <span class="co"># Pesos capa oculta</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> jnp.array([<span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.2</span>])  <span class="co"># Sesgos capa oculta</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> jnp.array([<span class="fl">0.6</span>, <span class="op">-</span><span class="fl">0.1</span>])  <span class="co"># Pesos capa de salida</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># Sesgo capa de salida</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Entradas</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">0.5</span>])</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la salida de la red</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>salida_red <span class="op">=</span> red_neuronal(x, w1, b1, w2, b2)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(salida_red)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.5112481</code></pre>
 </div>
@@ -674,12 +677,12 @@ ReLU(x) = \begin{cases}x &amp; x \geq 0\\ 0 &amp; x &lt; 0\end{cases}\,.
 <p>El poder de las redes neuronales se puede explicar en parte porque pueden ajustar cualquier función.</p>
 <p>Para ser más precisos, existe un teorema que dice que una red neuronal con una capa oculta puede aproximar cualquier función en un intervalo cerrado.</p>
 <p>Para ver cómo, intentemos aproximar un coseno:</p>
-<div id="e32042cf" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> random</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> jnp.linspace(<span class="op">-</span>jnp.pi, jnp.pi, <span class="dv">30</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)  </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> jnp.cos(x_data).reshape(<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5e2d70ba" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> random</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> jnp.linspace(<span class="op">-</span>jnp.pi, jnp.pi, <span class="dv">30</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> jnp.cos(x_data).reshape(<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Podemos ajustar la función en <em>todos los puntos</em> usando la siguiente fórmula:</p>
 <p><span class="math display">\[
@@ -687,41 +690,41 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 \]</span></p>
 <p>donde <span class="math inline">\(\delta F_i\)</span> es el salto que hace la función entre el punto <span class="math inline">\(x_{i-1}\)</span> y el punto <span class="math inline">\(x_i\)</span>. El parámetro <span class="math inline">\(w\)</span> controla la altura del paso.</p>
 <p>Note que esta fórmula tiene la forma de una red neuronal con una capa escondida con pesos todos iguales a <span class="math inline">\(w\)</span> y sesgo <span class="math inline">\(-w X_i\)</span>, y una capa de salida sin función de activación con sesgo cero y pesos <span class="math inline">\(\delta F_i\)</span>.</p>
-<div id="70490d01" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> red_neuronal(x, w1, b1, w2, b2):</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa oculta</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> jnp.matmul(x, w1.T) <span class="op">+</span> b1</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> sigmoid(z1)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa de salida</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> jnp.matmul(a1, w2.T) <span class="op">+</span> b2</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z2</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Pesos calculados para ajustar los datos</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> w<span class="op">*</span>jnp.ones(<span class="bu">len</span>(x_data)).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> <span class="op">-</span>w<span class="op">*</span>x_data.reshape(<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>dF <span class="op">=</span> np.zeros(<span class="bu">len</span>(x_data))</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>dF[<span class="dv">0</span>] <span class="op">=</span> y_data[<span class="dv">0</span>]</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>dF[<span class="dv">1</span>:] <span class="op">=</span> np.array([y_data[i] <span class="op">-</span> y_data[i<span class="op">-</span><span class="dv">1</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(y_data))])</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> jnp.array(dF)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="98969cc7" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div id="b79712d6" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x_plot <span class="op">=</span> jnp.linspace(<span class="op">-</span>jnp.pi, jnp.pi, <span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> red_neuronal(x_plot, w1, b1, w2, b2)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>y_plot <span class="op">=</span> jnp.cos(x_plot)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x_plot, y_plot, label<span class="op">=</span><span class="st">"Coseno"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_plot, y_pred, label<span class="op">=</span><span class="st">"Red neuronal"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> red_neuronal(x, w1, b1, w2, b2):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa oculta</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> jnp.matmul(x, w1.T) <span class="op">+</span> b1</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> sigmoid(z1)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa de salida</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> jnp.matmul(a1, w2.T) <span class="op">+</span> b2</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z2</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Pesos calculados para ajustar los datos</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> w<span class="op">*</span>jnp.ones(<span class="bu">len</span>(x_data)).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> <span class="op">-</span>w<span class="op">*</span>x_data.reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>dF <span class="op">=</span> np.zeros(<span class="bu">len</span>(x_data))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>dF[<span class="dv">0</span>] <span class="op">=</span> y_data[<span class="dv">0</span>]</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>dF[<span class="dv">1</span>:] <span class="op">=</span> np.array([y_data[i] <span class="op">-</span> y_data[i<span class="op">-</span><span class="dv">1</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(y_data))])</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> jnp.array(dF)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5a846cdf" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x_plot <span class="op">=</span> jnp.linspace(<span class="op">-</span>jnp.pi, jnp.pi, <span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> red_neuronal(x_plot, w1, b1, w2, b2)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>y_plot <span class="op">=</span> jnp.cos(x_plot)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x_plot, y_plot, label<span class="op">=</span><span class="st">"Coseno"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_plot, y_pred, label<span class="op">=</span><span class="st">"Red neuronal"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="23_redes_neuronales_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="23_redes_neuronales_files/figure-html/cell-6-output-1.png" width="590" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -749,37 +752,47 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 <section id="cargar-el-dataset-de-fashion-mnist" class="level3">
 <h3 class="anchored" data-anchor-id="cargar-el-dataset-de-fashion-mnist">1. Cargar el dataset de Fashion MNIST</h3>
 <p>Primero, cargamos el dataset de Fashion MNIST utilizando TensorFlow, que ofrece una forma sencilla de acceder a los datos.</p>
-<div id="b8905557" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> grad, random</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> jit</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fashion_mnist <span class="op">=</span> tf.keras.datasets.fashion_mnist</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> fashion_mnist.load_data()</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalizamos los datos</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> test_images <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertimos las imágenes a formato adecuado para el MLP</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> jnp.array(train_images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>))  </span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> jnp.array(test_images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>))</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>train_labels <span class="op">=</span> jnp.array(train_labels)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>test_labels <span class="op">=</span> jnp.array(test_labels)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="020aa567" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> grad, random</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> jit</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fashion_mnist <span class="op">=</span> tf.keras.datasets.fashion_mnist</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> fashion_mnist.load_data()</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalizamos los datos</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> test_images <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertimos las imágenes a formato adecuado para el MLP</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> jnp.array(train_images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>))  </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> jnp.array(test_images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>train_labels <span class="op">=</span> jnp.array(train_labels)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>test_labels <span class="op">=</span> jnp.array(test_labels)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/train-labels-idx1-ubyte.gz
+    0/29515 ━━━━━━━━━━━━━━━━━━━━ 0s 0s/step29515/29515 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step
+Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/train-images-idx3-ubyte.gz
+       0/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0s/step   49152/26421880 ━━━━━━━━━━━━━━━━━━━━ 1:13 3us/step   81920/26421880 ━━━━━━━━━━━━━━━━━━━━ 1:21 3us/step  147456/26421880 ━━━━━━━━━━━━━━━━━━━━ 56s 2us/step   212992/26421880 ━━━━━━━━━━━━━━━━━━━━ 46s 2us/step  278528/26421880 ━━━━━━━━━━━━━━━━━━━━ 40s 2us/step  376832/26421880 ━━━━━━━━━━━━━━━━━━━━ 33s 1us/step  540672/26421880 ━━━━━━━━━━━━━━━━━━━━ 25s 1us/step  704512/26421880 ━━━━━━━━━━━━━━━━━━━━ 21s 1us/step  966656/26421880 ━━━━━━━━━━━━━━━━━━━━ 16s 1us/step 1310720/26421880 ━━━━━━━━━━━━━━━━━━━━ 13s 1us/step 1769472/26421880 ━━━━━━━━━━━━━━━━━━━━ 10s 0us/step 2367488/26421880 ━━━━━━━━━━━━━━━━━━━━ 8s 0us/step  2842624/26421880 ━━━━━━━━━━━━━━━━━━━━ 7s 0us/step 3547136/26421880 ━━━━━━━━━━━━━━━━━━━━ 5s 0us/step 4136960/26421880 ━━━━━━━━━━━━━━━━━━━━ 5s 0us/step 4718592/26421880 ━━━━━━━━━━━━━━━━━━━━ 4s 0us/step 5308416/26421880 ━━━━━━━━━━━━━━━━━━━━ 4s 0us/step 5898240/26421880 ━━━━━━━━━━━━━━━━━━━━ 3s 0us/step 6488064/26421880 ━━━━━━━━━━━━━━━━━━━━ 3s 0us/step 7077888/26421880 ━━━━━━━━━━━━━━━━━━━━ 3s 0us/step 7667712/26421880 ━━━━━━━━━━━━━━━━━━━━ 3s 0us/step 8257536/26421880 ━━━━━━━━━━━━━━━━━━━━ 2s 0us/step 8847360/26421880 ━━━━━━━━━━━━━━━━━━━━ 2s 0us/step 9437184/26421880 ━━━━━━━━━━━━━━━━━━━━ 2s 0us/step10027008/26421880 ━━━━━━━━━━━━━━━━━━━━ 2s 0us/step10616832/26421880 ━━━━━━━━━━━━━━━━━━━━ 2s 0us/step11206656/26421880 ━━━━━━━━━━━━━━━━━━━━ 2s 0us/step11796480/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step12386304/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step12976128/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step13582336/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step14172160/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step14761984/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step15237120/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step15941632/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step16498688/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step17088512/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step17678336/26421880 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step18268160/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step18857984/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step19447808/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step20054016/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step20643840/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step21250048/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step21839872/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step22446080/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step23035904/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step23625728/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step24215552/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step24805376/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step25378816/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step25968640/26421880 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step26421880/26421880 ━━━━━━━━━━━━━━━━━━━━ 3s 0us/step
+Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/t10k-labels-idx1-ubyte.gz
+   0/5148 ━━━━━━━━━━━━━━━━━━━━ 0s 0s/step5148/5148 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step
+Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/t10k-images-idx3-ubyte.gz
+      0/4422102 ━━━━━━━━━━━━━━━━━━━━ 0s 0s/step  49152/4422102 ━━━━━━━━━━━━━━━━━━━━ 12s 3us/step  81920/4422102 ━━━━━━━━━━━━━━━━━━━━ 13s 3us/step 147456/4422102 ━━━━━━━━━━━━━━━━━━━━ 9s 2us/step  196608/4422102 ━━━━━━━━━━━━━━━━━━━━ 7s 2us/step 262144/4422102 ━━━━━━━━━━━━━━━━━━━━ 6s 2us/step 360448/4422102 ━━━━━━━━━━━━━━━━━━━━ 5s 1us/step 507904/4422102 ━━━━━━━━━━━━━━━━━━━━ 4s 1us/step 663552/4422102 ━━━━━━━━━━━━━━━━━━━━ 3s 1us/step 901120/4422102 ━━━━━━━━━━━━━━━━━━━━ 2s 1us/step1245184/4422102 ━━━━━━━━━━━━━━━━━━━━ 1s 1us/step1687552/4422102 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step2269184/4422102 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step2859008/4422102 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step3448832/4422102 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step4038656/4422102 ━━━━━━━━━━━━━━━━━━━━ 0s 0us/step4422102/4422102 ━━━━━━━━━━━━━━━━━━━━ 1s 0us/step</code></pre>
 </div>
-<div id="c8226a1f" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">"T-shirt/top"</span>, <span class="st">"Trouser"</span>, <span class="st">"Pullover"</span>, <span class="st">"Dress"</span>, <span class="st">"Coat"</span>, <span class="st">"Sandal"</span>, <span class="st">"Shirt"</span>, <span class="st">"Sneaker"</span>, <span class="st">"Bag"</span>, <span class="st">"Ankle boot"</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>class_names[train_labels[<span class="dv">0</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f7c6972a" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">"T-shirt/top"</span>, <span class="st">"Trouser"</span>, <span class="st">"Pullover"</span>, <span class="st">"Dress"</span>, <span class="st">"Coat"</span>, <span class="st">"Sandal"</span>, <span class="st">"Shirt"</span>, <span class="st">"Sneaker"</span>, <span class="st">"Bag"</span>, <span class="st">"Ankle boot"</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>class_names[train_labels[<span class="dv">0</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>'Ankle boot'</code></pre>
 </div>
 </div>
-<div id="358f14e5" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(train_images[<span class="dv">0</span>].reshape([<span class="dv">28</span>,<span class="dv">28</span>]), cmap<span class="op">=</span><span class="st">'gray_r'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9611211e" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(train_images[<span class="dv">0</span>].reshape([<span class="dv">28</span>,<span class="dv">28</span>]), cmap<span class="op">=</span><span class="st">'gray_r'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="23_redes_neuronales_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="23_redes_neuronales_files/figure-html/cell-9-output-1.png" width="415" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -788,48 +801,48 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 <section id="definir-la-red-neuronal" class="level3">
 <h3 class="anchored" data-anchor-id="definir-la-red-neuronal">2. Definir la Red Neuronal</h3>
 <p>Ahora, definimos un <strong>MLP</strong> con una capa oculta utilizando JAX. Esta red tendrá 784 entradas (una por cada píxel de una imagen de 28x28), una capa oculta con 128 neuronas, y una capa de salida con 10 neuronas (una por cada clase).</p>
-<div id="48ff467b" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función ReLU</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(z):</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.maximum(<span class="dv">0</span>, z)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Función Softmax (para la salida de clasificación)</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> softmax(z):</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    exp_z <span class="op">=</span> jnp.exp(z)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> exp_z <span class="op">/</span> jnp.<span class="bu">sum</span>(exp_z, axis<span class="op">=-</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir MLP con una capa oculta</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mlp(params, x):</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    w1, b1, w2, b2, w3, b3 <span class="op">=</span> params</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capas ocultas</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> jnp.dot(x, w1) <span class="op">+</span> b1</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> relu(z1)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> jnp.dot(a1, w2) <span class="op">+</span> b2</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    a2 <span class="op">=</span> relu(z2)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa de salida</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    z3 <span class="op">=</span> jnp.dot(a2, w3) <span class="op">+</span> b3</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> softmax(z3)</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicialización de pesos y sesgos</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inicializar_pesos(rng, input_size, hidden_sizes, output_size):</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    w1 <span class="op">=</span> random.normal(rng, (input_size, hidden_sizes[<span class="dv">0</span>])) <span class="op">*</span> <span class="fl">0.01</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    b1 <span class="op">=</span> jnp.zeros((hidden_sizes[<span class="dv">0</span>],))</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    w2 <span class="op">=</span> random.normal(rng, (hidden_sizes[<span class="dv">0</span>], hidden_sizes[<span class="dv">1</span>])) <span class="op">*</span> <span class="fl">0.01</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    b2 <span class="op">=</span> jnp.zeros((hidden_sizes[<span class="dv">1</span>],))</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    w3 <span class="op">=</span> random.normal(rng, (hidden_sizes[<span class="dv">1</span>], output_size)) <span class="op">*</span> <span class="fl">0.01</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    b3 <span class="op">=</span> jnp.zeros((output_size,))</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w1, b1, w2, b2, w3, b3</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir los tamaños de la red</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>input_size <span class="op">=</span> <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>  <span class="co"># Tamaño de la imagen aplanada</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>hidden_sizes <span class="op">=</span> [<span class="dv">300</span>, <span class="dv">100</span>]  <span class="co"># Tamaño de las capas ocultas</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>output_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># Número de clases</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar parámetros</span></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> random.PRNGKey(<span class="dv">0</span>)</span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> inicializar_pesos(rng, input_size, hidden_sizes, output_size)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="17b8b3cf" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función ReLU</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(z):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.maximum(<span class="dv">0</span>, z)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Función Softmax (para la salida de clasificación)</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> softmax(z):</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    exp_z <span class="op">=</span> jnp.exp(z)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> exp_z <span class="op">/</span> jnp.<span class="bu">sum</span>(exp_z, axis<span class="op">=-</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir MLP con una capa oculta</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mlp(params, x):</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    w1, b1, w2, b2, w3, b3 <span class="op">=</span> params</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capas ocultas</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    z1 <span class="op">=</span> jnp.dot(x, w1) <span class="op">+</span> b1</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> relu(z1)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    z2 <span class="op">=</span> jnp.dot(a1, w2) <span class="op">+</span> b2</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    a2 <span class="op">=</span> relu(z2)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Capa de salida</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    z3 <span class="op">=</span> jnp.dot(a2, w3) <span class="op">+</span> b3</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> softmax(z3)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicialización de pesos y sesgos</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inicializar_pesos(rng, input_size, hidden_sizes, output_size):</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    w1 <span class="op">=</span> random.normal(rng, (input_size, hidden_sizes[<span class="dv">0</span>])) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    b1 <span class="op">=</span> jnp.zeros((hidden_sizes[<span class="dv">0</span>],))</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    w2 <span class="op">=</span> random.normal(rng, (hidden_sizes[<span class="dv">0</span>], hidden_sizes[<span class="dv">1</span>])) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    b2 <span class="op">=</span> jnp.zeros((hidden_sizes[<span class="dv">1</span>],))</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    w3 <span class="op">=</span> random.normal(rng, (hidden_sizes[<span class="dv">1</span>], output_size)) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    b3 <span class="op">=</span> jnp.zeros((output_size,))</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w1, b1, w2, b2, w3, b3</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir los tamaños de la red</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>input_size <span class="op">=</span> <span class="dv">28</span> <span class="op">*</span> <span class="dv">28</span>  <span class="co"># Tamaño de la imagen aplanada</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>hidden_sizes <span class="op">=</span> [<span class="dv">300</span>, <span class="dv">100</span>]  <span class="co"># Tamaño de las capas ocultas</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>output_size <span class="op">=</span> <span class="dv">10</span>  <span class="co"># Número de clases</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar parámetros</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> random.PRNGKey(<span class="dv">0</span>)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> inicializar_pesos(rng, input_size, hidden_sizes, output_size)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="definir-la-función-de-pérdida-y-la-retropropagación" class="level3">
@@ -840,54 +853,54 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 \]</span></p>
 <p>donde <span class="math inline">\(y_{out}\)</span> es la probabilidad predicha por la red para cada clase.</p>
 <p>Calcularemos los gradientes de esta pérdida con respecto a los pesos utilizando <code>jax.grad</code>.</p>
-<div id="e81020b3" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de pérdida (Entropía Cruzada)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_entropy_loss(params, x, y):</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> mlp(params, x)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>jnp.mean(jnp.<span class="bu">sum</span>(y <span class="op">*</span> jnp.log(preds), axis<span class="op">=-</span><span class="dv">1</span>))</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para calcular la precisión</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(params, x, y):</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> jnp.argmax(mlp(params, x), axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.mean(predictions <span class="op">==</span> y)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de retropropagación y actualización de pesos</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> actualizar_pesos(params, x, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>):</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calcular gradientes</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> grad(cross_entropy_loss)(params, x, y)</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar los pesos</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> [w <span class="op">-</span> learning_rate <span class="op">*</span> dw</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> w, dw <span class="kw">in</span> <span class="bu">zip</span>(params, grads)]</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> params</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="76abbccc" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de pérdida (Entropía Cruzada)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_entropy_loss(params, x, y):</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> mlp(params, x)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>jnp.mean(jnp.<span class="bu">sum</span>(y <span class="op">*</span> jnp.log(preds), axis<span class="op">=-</span><span class="dv">1</span>))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para calcular la precisión</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(params, x, y):</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> jnp.argmax(mlp(params, x), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.mean(predictions <span class="op">==</span> y)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de retropropagación y actualización de pesos</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="at">@jit</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> actualizar_pesos(params, x, y, learning_rate<span class="op">=</span><span class="fl">0.01</span>):</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calcular gradientes</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    grads <span class="op">=</span> grad(cross_entropy_loss)(params, x, y)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar los pesos</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> [w <span class="op">-</span> learning_rate <span class="op">*</span> dw</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> w, dw <span class="kw">in</span> <span class="bu">zip</span>(params, grads)]</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> params</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="entrenamiento-de-la-red" class="level3">
 <h3 class="anchored" data-anchor-id="entrenamiento-de-la-red">4. Entrenamiento de la Red</h3>
 <p>El siguiente código entrena la red, no está optimizado y es bastante lento.</p>
-<div id="7ba40cb2" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrenamiento de la red</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="dv">30</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">0.01</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">64</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>accuracies <span class="op">=</span> []</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dividimos los datos en minibatches</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    num_batches <span class="op">=</span> <span class="bu">len</span>(train_images) <span class="op">//</span> batch_size</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_batches):</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        x_batch <span class="op">=</span> train_images[i<span class="op">*</span>batch_size:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>batch_size]</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        y_batch <span class="op">=</span> jnp.eye(<span class="dv">10</span>)[train_labels[i<span class="op">*</span>batch_size:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>batch_size]]  <span class="co"># One-hot encoding</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Actualizar los pesos usando el gradiente</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> actualizar_pesos(params, x_batch, y_batch, learning_rate)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evaluar la precisión en el conjunto de prueba</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    test_acc <span class="op">=</span> accuracy(params, test_images, test_labels)</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    accuracies.append(test_acc)</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Época </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">, Precisión en test: </span><span class="sc">{</span>test_acc<span class="sc">:.3f}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="910a414d" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrenamiento de la red</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">64</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>accuracies <span class="op">=</span> []</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dividimos los datos en minibatches</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    num_batches <span class="op">=</span> <span class="bu">len</span>(train_images) <span class="op">//</span> batch_size</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_batches):</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        x_batch <span class="op">=</span> train_images[i<span class="op">*</span>batch_size:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>batch_size]</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        y_batch <span class="op">=</span> jnp.eye(<span class="dv">10</span>)[train_labels[i<span class="op">*</span>batch_size:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>batch_size]]  <span class="co"># One-hot encoding</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Actualizar los pesos usando el gradiente</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> actualizar_pesos(params, x_batch, y_batch, learning_rate)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evaluar la precisión en el conjunto de prueba</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    test_acc <span class="op">=</span> accuracy(params, test_images, test_labels)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    accuracies.append(test_acc)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Época </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">, Precisión en test: </span><span class="sc">{</span>test_acc<span class="sc">:.3f}</span><span class="ss">'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Época 1, Precisión en test: 0.180
 Época 2, Precisión en test: 0.523
@@ -907,31 +920,31 @@ y_{out} = \sum_i \delta F_i \sigma(w\cdot(x - X_i))\,,
 Época 16, Precisión en test: 0.823
 Época 17, Precisión en test: 0.827
 Época 18, Precisión en test: 0.830
-Época 19, Precisión en test: 0.833
+Época 19, Precisión en test: 0.834
 Época 20, Precisión en test: 0.837
-Época 21, Precisión en test: 0.839
+Época 21, Precisión en test: 0.840
 Época 22, Precisión en test: 0.842
 Época 23, Precisión en test: 0.844
 Época 24, Precisión en test: 0.846
-Época 25, Precisión en test: 0.848
+Época 25, Precisión en test: 0.847
 Época 26, Precisión en test: 0.849
 Época 27, Precisión en test: 0.850
 Época 28, Precisión en test: 0.851
-Época 29, Precisión en test: 0.851
-Época 30, Precisión en test: 0.853</code></pre>
+Época 29, Precisión en test: 0.852
+Época 30, Precisión en test: 0.852</code></pre>
 </div>
 </div>
-<div id="6a117c77" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="bu">len</span>(accuracies)) <span class="op">+</span> <span class="dv">1</span>, accuracies)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Época"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Precisión en el conjunto de prueba"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4caeb391" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="bu">len</span>(accuracies)) <span class="op">+</span> <span class="dv">1</span>, accuracies)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Época"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Precisión en el conjunto de prueba"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>Text(0, 0.5, 'Precisión en el conjunto de prueba')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="23_redes_neuronales_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="23_redes_neuronales_files/figure-html/cell-13-output-2.png" width="590" height="432" class="figure-img"></p>
 </figure>
 </div>
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -568,7 +568,7 @@ window.Quarto = {
 
 
 <p>Los métodos que hemos estudiado han intentado predecir <span class="math inline">\(y(t_i)\)</span> usando la predicción anterior <span class="math inline">\(w_{i-1}\)</span>. Como hemos visto, el error cometido por los métodos estudiados hasta ahora va creciendo a medida que crece <span class="math inline">\(t\)</span>. Debido a esto, vale la pena involucrar varias predicciones anteriores en la predicción apra <span class="math inline">\(y(t_i)\)</span>.</p>
-<div id="2ea04b55" class="cell" data-execution_count="1">
+<div id="d8666f1a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -603,7 +603,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[55f(t_i, y(t_i)) - 59f(t_{i-1}, y(t_{i-1
 \]</span></p>
 <p>vemos que así obtenemos un método con error de truncación local de orden <span class="math inline">\(h^4\)</span>.</p>
 <p>A estos métodos se los llama métodos de <strong>Adams-Bashforth</strong>. Necesitan tres condiciones iniciales para sus primeros pasos. Estas se pueden obtener usando por ejemplo un método de Runge-Kutta.</p>
-<div id="56cf2165" class="cell" data-execution_count="2">
+<div id="d3dbaa61" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4_step(f, fi, t, w, h):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    k1 <span class="op">=</span> h<span class="op">*</span>fi</span>
@@ -645,7 +645,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[55f(t_i, y(t_i)) - 59f(t_{i-1}, y(t_{i-1
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, ws</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Comparemos con el método de Runge-Kutta</p>
-<div id="f0233af3" class="cell" data-execution_count="3">
+<div id="af19f2d3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4(f, a, b, yo, N):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b<span class="op">-</span>a)<span class="op">/</span>N</span>
@@ -669,7 +669,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[55f(t_i, y(t_i)) - 59f(t_{i-1}, y(t_{i-1
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, sol</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e3198e99" class="cell" data-execution_count="4">
+<div id="bcc4a168" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -680,7 +680,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[55f(t_i, y(t_i)) - 59f(t_{i-1}, y(t_{i-1
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exacta(t):</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (t <span class="op">+</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(t)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b27ab538" class="cell" data-execution_count="5">
+<div id="08f19361" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sol_rk4 <span class="op">=</span> rk4(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sol_ab4 <span class="op">=</span> ab4(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -690,7 +690,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[55f(t_i, y(t_i)) - 59f(t_{i-1}, y(t_{i-1
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="19_metodos_de_multiples_pasos_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="19_metodos_de_multiples_pasos_files/figure-html/cell-6-output-1.png" width="596" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -705,7 +705,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 \]</span></p>
 <p>Tenemos un método de orden <span class="math inline">\(h^4\)</span> de nuevo, pero es difícil ver cómo usarlo ya que necesitamos <span class="math inline">\(y(t_{i+1})\)</span>, pero es lo que queremos calcular. Este método se llama de <strong>Adams-Moulton</strong>.</p>
 <p>Lo que podemos hacer es usar el Adams-Bashforth para predecir <span class="math inline">\(y(t_{i+1})\)</span> y usar esa aproximación dentro de la fórmula de Adams-Moulton para corregir la aproximación. A esto se lo llama un método <strong>predictor-corrector</strong>.</p>
-<div id="028bdcf2" class="cell" data-execution_count="6">
+<div id="e3f78353" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4_step(f, fi, t, w, h):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    k1 <span class="op">=</span> h<span class="op">*</span>fi</span>
@@ -749,7 +749,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ts, ws</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="75dfb5b1" class="cell" data-execution_count="7">
+<div id="f25435a6" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sol_rk4 <span class="op">=</span> rk4(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sol_ab4 <span class="op">=</span> ab4(f, a, b, yo, <span class="dv">10</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sol_apc <span class="op">=</span> apc4(f, a, b, yo, <span class="dv">10</span>)</span>
@@ -761,7 +761,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="19_metodos_de_multiples_pasos_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="19_metodos_de_multiples_pasos_files/figure-html/cell-8-output-1.png" width="616" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -798,7 +798,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <p><span class="math display">\[
 \delta &lt; \left(\frac{270}{19}\frac{h\epsilon}{|w_{i+1} - \hat{w}_{i+1}|}\right)^{1/4}
 \]</span></p>
-<div id="2886bb64" class="cell" data-execution_count="8">
+<div id="d789313b" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4_step(f, fi, t, w, h):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    k1 <span class="op">=</span> h<span class="op">*</span>fi</span>
@@ -937,7 +937,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(ts), np.array(ws), np.array(hs), np.array(rs)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="154a51fc" class="cell" data-execution_count="9">
+<div id="b6cb10eb" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rkf(f, a, b, yo, tol, hmin, hmax):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> a</span>
@@ -1000,7 +1000,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(ts), np.array(sol), np.array(hs), np.array(rs)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="221bb170" class="cell" data-execution_count="10">
+<div id="fe8c6003" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>apce(f, a, b, yo, <span class="fl">1e-5</span>, <span class="fl">0.01</span>, <span class="fl">0.2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>(array([0.        , 0.12841311, 0.25682622, 0.38523933, 0.51365244,
@@ -1026,7 +1026,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
          1.62700884e-08]))</code></pre>
 </div>
 </div>
-<div id="c52e09f8" class="cell" data-execution_count="11">
+<div id="3c41feb7" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ts_rkf, sol_rkf, hs_rkf, rs_rkf <span class="op">=</span> rkf(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="fl">1e-6</span>, <span class="fl">0.01</span>, <span class="fl">0.25</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ts_apce, sol_apce, hs_apce, rs_apce <span class="op">=</span> apce(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.5</span>, <span class="fl">1e-6</span>, <span class="fl">0.01</span>, <span class="fl">0.25</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>exacta_rkf <span class="op">=</span> (ts_rkf <span class="op">+</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>np.exp(ts_rkf)</span>
@@ -1039,7 +1039,7 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="19_metodos_de_multiples_pasos_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="19_metodos_de_multiples_pasos_files/figure-html/cell-12-output-1.png" width="587" height="443" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1054,257 +1054,6 @@ y(t_{i+1}) = y(t_i) + \frac{h}{24}\left[9f(t_{i+1}, y(t_{i+1})) + 19f(t_{i}, y(t
 <p><span class="math display">\[
 y'(t) = (1/t)(y^2 + y)\,,\quad 1 \leq t \leq 3\,,\quad y(1) = -2\,.
 \]</span></p>
-<div id="b5670850" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MinStep(<span class="pp">Exception</span>):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rkf_m(f, a, b, yo, tol, hmin, hmax):</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> a</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> yo</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> hmax</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    flag <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    ts <span class="op">=</span> [t]</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    sol <span class="op">=</span> [w]</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    hs <span class="op">=</span> []</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    rs <span class="op">=</span> []</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    evals <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> flag:</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Evaluaciones de la función </span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>        k1 <span class="op">=</span> h<span class="op">*</span>f(t, w)</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        k2 <span class="op">=</span> h<span class="op">*</span>f(t <span class="op">+</span> h<span class="op">/</span><span class="dv">4</span>, w <span class="op">+</span> k1<span class="op">/</span><span class="dv">4</span>)</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        k3 <span class="op">=</span> h<span class="op">*</span>f(t <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>h<span class="op">/</span><span class="dv">8</span>, w <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>k1<span class="op">/</span><span class="dv">32</span> <span class="op">+</span> <span class="dv">9</span><span class="op">*</span>k2<span class="op">/</span><span class="dv">32</span>)</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        k4 <span class="op">=</span> h<span class="op">*</span>f(t <span class="op">+</span> <span class="dv">12</span><span class="op">*</span>h<span class="op">/</span><span class="dv">13</span>, w <span class="op">+</span> <span class="dv">1932</span><span class="op">*</span>k1<span class="op">/</span><span class="dv">2197</span> <span class="op">-</span> <span class="dv">7200</span><span class="op">*</span>k2<span class="op">/</span><span class="dv">2197</span> <span class="op">+</span> <span class="dv">7296</span><span class="op">*</span>k3<span class="op">/</span><span class="dv">2197</span>)</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>        k5 <span class="op">=</span> h<span class="op">*</span>f(t <span class="op">+</span> h, w <span class="op">+</span> <span class="dv">439</span><span class="op">*</span>k1<span class="op">/</span><span class="dv">216</span> <span class="op">-</span> <span class="dv">8</span><span class="op">*</span>k2 <span class="op">+</span> <span class="dv">3680</span><span class="op">*</span>k3<span class="op">/</span><span class="dv">513</span> <span class="op">-</span> <span class="dv">845</span><span class="op">*</span>k4<span class="op">/</span><span class="dv">4104</span>)</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>        k6 <span class="op">=</span> h<span class="op">*</span>f(t <span class="op">+</span> h<span class="op">/</span><span class="dv">2</span>, w <span class="op">-</span> <span class="dv">8</span><span class="op">*</span>k1<span class="op">/</span><span class="dv">27</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>k2 <span class="op">-</span> <span class="dv">3544</span><span class="op">*</span>k3<span class="op">/</span><span class="dv">2565</span> <span class="op">+</span> <span class="dv">1859</span><span class="op">*</span>k4<span class="op">/</span><span class="dv">4104</span> <span class="op">-</span> <span class="dv">11</span><span class="op">*</span>k5<span class="op">/</span><span class="dv">40</span>)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>        evals <span class="op">+=</span> <span class="dv">6</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Estima del error dada por la diferencia entre dos RKs</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>        R <span class="op">=</span> <span class="bu">abs</span>(k1<span class="op">/</span><span class="dv">360</span> <span class="op">-</span> <span class="dv">128</span><span class="op">*</span>k3<span class="op">/</span><span class="dv">4275</span> <span class="op">-</span> <span class="dv">2197</span><span class="op">*</span>k4<span class="op">/</span><span class="dv">75240</span> <span class="op">+</span> k5<span class="op">/</span><span class="dv">50</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>k6<span class="op">/</span><span class="dv">55</span>)</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si el error es menor que la tolerancia, se acepta el paso</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> R <span class="op">&lt;=</span> tol:</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>            t <span class="op">+=</span> h</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>            w <span class="op">=</span> w <span class="op">+</span> <span class="dv">25</span><span class="op">*</span>k1<span class="op">/</span><span class="dv">216</span> <span class="op">+</span> <span class="dv">1408</span><span class="op">*</span>k3<span class="op">/</span><span class="dv">2565</span> <span class="op">+</span> <span class="dv">2197</span><span class="op">*</span>k4<span class="op">/</span><span class="dv">4104</span> <span class="op">-</span> k5<span class="op">/</span><span class="dv">5</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>            ts.append(t)</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>            sol.append(w)</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>            hs.append(h)</span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>            rs.append(R)</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># el 0.84 es un factor para hacer la estima más conservadora </span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># corresponde a 1/2**(1/4)</span></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>        q <span class="op">=</span> <span class="fl">0.84</span><span class="op">*</span>(tol<span class="op">/</span>R)<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>)</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ACTUALIZACIÓN DE h</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Se establece un q mínimo para no quedarse atrapado en alguna región.</span></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Esto se puede cambiar.</span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> q <span class="op">&lt;=</span> <span class="fl">0.1</span>:</span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>            h <span class="op">=</span> <span class="fl">0.1</span><span class="op">*</span>h</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Se establece también un q máximo para no peder detalles de la función</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> q <span class="op">&gt;=</span> <span class="dv">4</span>:</span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>            h <span class="op">=</span> <span class="dv">4</span><span class="op">*</span>h</span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>            h <span class="op">=</span> q<span class="op">*</span>h</span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> h <span class="op">&gt;</span> hmax:</span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>            h <span class="op">=</span> hmax</span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si nos pasamos de b, terminamos</span></span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> t <span class="op">&gt;=</span> b:</span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>            flag <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>        <span class="co"># El último paso debe llegar a b</span></span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> t <span class="op">+</span> h <span class="op">&gt;</span> b:</span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>            h <span class="op">=</span> b <span class="op">-</span> t</span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> h <span class="op">&lt;</span> hmin:</span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> MinStep(<span class="st">'Se excedió el paso mínimo.'</span>)</span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(ts), np.array(sol), np.array(hs), np.array(rs), evals</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="28f17bde" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rk4_step(f, fi, t, w, h):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    k1 <span class="op">=</span> h<span class="op">*</span>fi</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    k2 <span class="op">=</span> h<span class="op">*</span>f(t<span class="op">+</span>h<span class="op">/</span><span class="dv">2</span>, w<span class="op">+</span>k1<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    k3 <span class="op">=</span> h<span class="op">*</span>f(t<span class="op">+</span>h<span class="op">/</span><span class="dv">2</span>, w<span class="op">+</span>k2<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    k4 <span class="op">=</span> h<span class="op">*</span>f(t <span class="op">+</span> h, w <span class="op">+</span> k3)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (k1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>k2 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>k3 <span class="op">+</span> k4)<span class="op">/</span><span class="dv">6</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MinStep(<span class="pp">Exception</span>):</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apce_m(f, a, b, yo, tol, hmin, hmax):</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> hmax</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    flag <span class="op">=</span> <span class="dv">1</span> <span class="co"># Indica si terminamos</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    last <span class="op">=</span> <span class="dv">0</span> <span class="co"># Indica si es el último paso</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    ts <span class="op">=</span> [a]</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    ws <span class="op">=</span> [yo]</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    hs <span class="op">=</span> [h]</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    rs <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    evals <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    fi <span class="op">=</span> f(ts[<span class="dv">0</span>], ws[<span class="dv">0</span>])</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    evals <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    fim1 <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    fim2 <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    fim3 <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Puntos iniciales obtenidos de Runge-Kutta</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>        ws.append(ws[i] <span class="op">+</span> rk4_step(f, fi, ts[i], ws[i], h))</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>        evals <span class="op">+=</span> <span class="dv">3</span></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>        ts.append(ts[i] <span class="op">+</span> h)</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>        hs.append(h)</span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>        rs.append(<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>        fim3 <span class="op">=</span> fim2</span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>        fim2 <span class="op">=</span> fim1</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>        fim1 <span class="op">=</span> fi</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>        fi <span class="op">=</span> f(ts[i<span class="op">+</span><span class="dv">1</span>], ws[i<span class="op">+</span><span class="dv">1</span>])</span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>        evals <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>    nflag <span class="op">=</span> <span class="dv">1</span> <span class="co"># Indica si los últimos puntos fueron obtenidos con RK</span></span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> ts[<span class="dv">3</span>] <span class="op">+</span> h</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> flag:</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Predictor Adams-Bashforth de 4 pasos</span></span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>        wp <span class="op">=</span> ws[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> h<span class="op">*</span>(<span class="dv">55</span><span class="op">*</span>fi <span class="op">-</span> <span class="dv">59</span><span class="op">*</span>fim1 <span class="op">+</span><span class="dv">37</span><span class="op">*</span>fim2 <span class="op">-</span> <span class="dv">9</span><span class="op">*</span>fim3)<span class="op">/</span><span class="dv">24</span></span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Corrector Adams-Moulton de 3 pasos</span></span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>        wc <span class="op">=</span> ws[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> h<span class="op">*</span>(<span class="dv">9</span><span class="op">*</span>f(t, wp) <span class="op">+</span> <span class="dv">19</span><span class="op">*</span>fi <span class="op">-</span> <span class="dv">5</span><span class="op">*</span>fim1 <span class="op">+</span> fim2)<span class="op">/</span><span class="dv">24</span></span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>        evals <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Estima del error dada por la diferencia entre dos Adams</span></span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>        sigma <span class="op">=</span> <span class="dv">19</span><span class="op">*</span><span class="bu">abs</span>(wc <span class="op">-</span> wp)<span class="op">/</span>(<span class="dv">270</span><span class="op">*</span>h)</span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si el error es menor que la tolerancia, se acepta el paso</span></span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> sigma <span class="op">&lt;=</span> tol:</span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>            ws.append(wc)</span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>            ts.append(t)</span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>            hs.append(h)</span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>            rs.append(sigma)</span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>            fim3 <span class="op">=</span> fim2</span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>            fim2 <span class="op">=</span> fim1</span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>            fim1 <span class="op">=</span> fi</span>
-<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>            fi <span class="op">=</span> f(ts[i], ws[i])</span>
-<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>            evals <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si es el último paso, terminamos</span></span>
-<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> last:</span>
-<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>                flag <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>                i <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>                nflag <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Incrementamos h si es más preciso de lo requerido</span></span>
-<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>                <span class="co"># o lo reducimos para incluir b</span></span>
-<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> sigma <span class="op">&lt;=</span> <span class="fl">0.1</span><span class="op">*</span>tol <span class="kw">or</span> ts[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> h <span class="op">&gt;</span> b:</span>
-<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>                    delta <span class="op">=</span> (tol<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma))<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>)</span>
-<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> delta <span class="op">&gt;</span> <span class="dv">4</span>: <span class="co"># Evitamos que crezca demasiado</span></span>
-<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>                        h <span class="op">=</span> <span class="dv">4</span><span class="op">*</span>h </span>
-<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span>:</span>
-<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>                        h <span class="op">=</span> delta<span class="op">*</span>h</span>
-<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> h <span class="op">&gt;</span> hmax:</span>
-<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>                        h <span class="op">=</span> hmax</span>
-<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> ts[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>h <span class="op">&gt;</span> b:</span>
-<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>                        h <span class="op">=</span> (b <span class="op">-</span> ts[i<span class="op">-</span><span class="dv">1</span>])<span class="op">/</span><span class="dv">4</span></span>
-<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>                        last <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># Como h cambió, necesitamos volver a calcular los</span></span>
-<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># puntos iniciales para los Adams</span></span>
-<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>                        ws.append(ws[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> rk4_step(f, fi, ts[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>], ws[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>], h))</span>
-<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>                        evals <span class="op">+=</span> <span class="dv">3</span></span>
-<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>                        ts.append(ts[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> h)</span>
-<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>                        hs.append(h)</span>
-<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a>                        rs.append(<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a>                        fim3 <span class="op">=</span> fim2</span>
-<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a>                        fim2 <span class="op">=</span> fim1</span>
-<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a>                        fim1 <span class="op">=</span> fi</span>
-<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a>                        fi <span class="op">=</span> f(ts[i<span class="op">+</span>j],ws[i<span class="op">+</span>j])</span>
-<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>                        evals <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>                    i <span class="op">+=</span> <span class="dv">3</span></span>
-<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a>                    nflag <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>: <span class="co"># sigma &gt; tol</span></span>
-<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a>            <span class="co"># disminuimos h</span></span>
-<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>            delta <span class="op">=</span> (tol<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma))<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>)</span>
-<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> delta <span class="op">&lt;</span> <span class="fl">0.1</span>: <span class="co"># evitamos que disminuya demasiado</span></span>
-<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>                h <span class="op">=</span> <span class="fl">0.1</span><span class="op">*</span>h</span>
-<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a>                h <span class="op">=</span> delta<span class="op">*</span>h</span>
-<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> h <span class="op">&lt;</span> hmin:</span>
-<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> MinStep(<span class="st">'Tamaño de paso mínimo excedido'</span>, ts, ws, hs, rs)</span>
-<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> nflag: <span class="co"># los últimos pasos vienen de RK</span></span>
-<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>                    i <span class="op">-=</span> <span class="dv">3</span> <span class="co"># se rechazan los pasos anteriores del RK</span></span>
-<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>                    fi <span class="op">=</span> fim3</span>
-<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a>                        ws[i<span class="op">+</span>j] <span class="op">=</span> ws[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> rk4_step(f, fi, ts[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>], ws[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>], h)</span>
-<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a>                        evals <span class="op">+=</span> <span class="dv">3</span></span>
-<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a>                        ts[i<span class="op">+</span>j] <span class="op">=</span> ts[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> h</span>
-<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a>                        hs[i<span class="op">+</span>j] <span class="op">=</span> h</span>
-<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a>                        rs[i<span class="op">+</span>j] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a>                        fim3 <span class="op">=</span> fim2</span>
-<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a>                        fim2 <span class="op">=</span> fim1</span>
-<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a>                        fim1 <span class="op">=</span> fi</span>
-<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a>                        fi <span class="op">=</span> f(ts[i<span class="op">+</span>j],ws[i<span class="op">+</span>j])</span>
-<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a>                        evals <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a>                    i <span class="op">+=</span> <span class="dv">3</span></span>
-<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a>                    nflag <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>:</span>
-<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a>                        ws.append(ws[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> rk4_step(f, fi, ts[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>], ws[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>], h))</span>
-<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a>                        evals <span class="op">+=</span> <span class="dv">3</span></span>
-<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a>                        ts.append(ts[i<span class="op">+</span>j<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> h)</span>
-<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a>                        hs.append(h)</span>
-<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a>                        rs.append(<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a>                        fim3 <span class="op">=</span> fim2</span>
-<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a>                        fim2 <span class="op">=</span> fim1</span>
-<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a>                        fim1 <span class="op">=</span> fi</span>
-<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a>                        fi <span class="op">=</span> f(ts[i<span class="op">+</span>j],ws[i<span class="op">+</span>j])</span>
-<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a>                        evals <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a>                    i <span class="op">+=</span> <span class="dv">3</span></span>
-<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a>                    nflag <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> ts[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> h</span>
-<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a>        <span class="co"># fin del while</span></span>
-<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(ts), np.array(ws), np.array(hs), np.array(rs), evals</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="8b38f0fb" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(t, y):</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">1</span><span class="op">/</span>t)<span class="op">*</span>(y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>yo <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>hmin <span class="op">=</span> <span class="fl">0.001</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>hmax <span class="op">=</span> <span class="fl">0.2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="06751fae" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tols <span class="op">=</span> [<span class="fl">1e-2</span>, <span class="fl">1e-3</span>, <span class="fl">1e-4</span>, <span class="fl">1e-5</span>, <span class="fl">1e-6</span>, <span class="fl">1e-7</span>, <span class="fl">1e-8</span>, <span class="fl">1e-9</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>num_rkf <span class="op">=</span> [rkf_m(f, a, b, yo, t, hmin, hmax)[<span class="op">-</span><span class="dv">1</span>] <span class="cf">for</span> t <span class="kw">in</span> tols]</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>num_apce <span class="op">=</span> [apce_m(f, a, b, yo, t, hmin, hmax)[<span class="op">-</span><span class="dv">1</span>] <span class="cf">for</span> t <span class="kw">in</span> tols]</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.loglog(tols, num_rkf, label<span class="op">=</span><span class="st">'RKF'</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.loglog(tols, num_apce, label<span class="op">=</span><span class="st">'APCE'</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Tolerancia'</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Nro. evaluaciones'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
-<pre><code>Text(0, 0.5, 'Nro. evaluaciones')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="19_metodos_de_multiples_pasos_files/figure-html/cell-16-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Para este problema, el método de RKF es más económico para pecisiones altas, ya que logra una mejor aproximación con un tamaño de paso grande. Para bajas tolerancias requiere más evaluaciones.</p>
 </section>
 <section id="tarea-9.7" class="level2">
 <h2 class="anchored" data-anchor-id="tarea-9.7">Tarea 9.7</h2>

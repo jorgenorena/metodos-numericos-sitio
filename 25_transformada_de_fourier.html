@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -700,7 +700,7 @@ F_n - F_{n + N/2} = 2 e^{i\pi n/(N/2)} \sum_{j=0}^{N/2 - 1} e^{2\pi i nj/(N/2)} 
 <p>Hemos reducido el número de operaciones a <span class="math inline">\(2(N/2)^2\)</span> porque tenemos dos sumatorias cada una con la mitad de términos. Esas sumatorias se deben combinar para obtener <span class="math inline">\(F_n = (S_1 + S_2)/2\)</span> y <span class="math inline">\(F_{n + N/2} = (S_1 - S_2)/2\)</span> que son <span class="math inline">\(N\)</span> operaciones adicionales. Entonces el número de operaciones es <span class="math inline">\(N(N/2 + 2)\)</span>.</p>
 <p>Pero <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span> tienen la forma de la sumatoria original, tal que podemos repetir el proceso y reducir el número de operaciones a <span class="math inline">\(N(N/4 + 4)\)</span>. Repitiendo el proceso <span class="math inline">\(p\)</span> veces llegamos a <span class="math inline">\(N(1 + 2p)\)</span> operaciones. Pero <span class="math inline">\(p = \log_2 N\)</span> y entonces vemos que este algoritmo tiene complejidad <span class="math inline">\(\mathcal{O}(N\log_2 N)\)</span> que es mucho menor que <span class="math inline">\(\mathcal{O}(N^2)\)</span>.</p>
 <p>Para ver lo mucho que ganamos, tome <span class="math inline">\(N=1000\)</span>, entonces</p>
-<div id="c4868b8a" class="cell" data-execution_count="2">
+<div id="9b9af790" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
@@ -712,7 +712,7 @@ F_n - F_{n + N/2} = 2 e^{i\pi n/(N/2)} \sum_{j=0}^{N/2 - 1} e^{2\pi i nj/(N/2)} 
 N logN = 9965.784284662088</code></pre>
 </div>
 </div>
-<div id="8d83e2a8" class="cell" data-execution_count="3">
+<div id="2a48fa79" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -808,7 +808,7 @@ N logN = 9965.784284662088</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="25_transformada_de_fourier_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="25_transformada_de_fourier_files/figure-html/cell-3-output-1.png" width="1717" height="756" class="figure-img"></p>
 </figure>
 </div>
 </div>

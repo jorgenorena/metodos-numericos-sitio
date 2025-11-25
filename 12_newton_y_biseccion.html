@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -582,7 +582,7 @@ f(z) = \cos(z) - \frac{\sin(z)}{z}
 <li><p>Si <span class="math inline">\(f(p_1) = 0\)</span> terminamos.</p></li>
 <li><p>Si <span class="math inline">\(f(p_1)f(a) &gt; 0\)</span> entonces escogemos un nuevo <span class="math inline">\(a = p_1\)</span>. Si <span class="math inline">\(f(p_1)f(a) &lt; 0\)</span> entonces escogemos un nuevo <span class="math inline">\(b = p_1\)</span>. Repetimos desde el paso 0.</p></li>
 </ol>
-<div id="69d0357f" class="cell" data-execution_count="1">
+<div id="d65a5314" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> biseccion(f, a, b, epsilon, N<span class="op">=</span><span class="dv">1000000</span>):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
@@ -597,40 +597,40 @@ f(z) = \cos(z) - \frac{\sin(z)}{z}
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            b <span class="op">=</span> p</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No se encontró el cero después de"</span>, N, <span class="st">"iteraciones."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4cf058f6" class="cell" data-execution_count="2">
+<div id="aec86744" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e04e221f" class="cell" data-execution_count="3">
+<div id="5ede5698" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func(x):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.cos(x) <span class="op">-</span> np.sin(x)<span class="op">/</span>x <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cbd2fb79" class="cell" data-execution_count="4">
+<div id="490d0ca8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="dcdad712" class="cell" data-execution_count="5">
+<div id="38e4541e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">6.5</span>, <span class="op">-</span><span class="dv">6</span>, <span class="dv">100</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, func(x))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="12_newton_y_biseccion_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="12_newton_y_biseccion_files/figure-html/cell-6-output-1.png" width="590" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="d39024e7" class="cell" data-execution_count="6">
+<div id="1b94dba8" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>func(<span class="op">-</span><span class="fl">6.5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>-0.056507757054717334</code></pre>
 </div>
 </div>
-<div id="3d4812f7" class="cell" data-execution_count="7">
+<div id="54bdadc3" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>func(<span class="op">-</span><span class="fl">6.1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>0.013131144060960942</code></pre>
 </div>
 </div>
-<div id="88cfa1cf" class="cell" data-execution_count="8">
+<div id="b0dc1023" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>biseccion(func, <span class="op">-</span><span class="fl">6.5</span>, <span class="op">-</span><span class="fl">6.1</span>, <span class="fl">0.0001</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>-6.3
@@ -655,7 +655,7 @@ Cero en -6.2828125 encontrado después de 7 iteraciones.</code></pre>
 <p><span class="math display">\[
 \frac{|p_n - p_{n-1}|}{|p_n|} &lt; \epsilon
 \]</span></p>
-<div id="6dfeeae8" class="cell" data-execution_count="9">
+<div id="46dd204c" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> biseccion(f, a, b, epsilon, N<span class="op">=</span><span class="dv">1000000</span>):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    pp <span class="op">=</span> a</span>
@@ -670,7 +670,7 @@ Cero en -6.2828125 encontrado después de 7 iteraciones.</code></pre>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        pp <span class="op">=</span> p</span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No se encontró el cero después de"</span>, N, <span class="st">"iteraciones."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="40812383" class="cell" data-execution_count="10">
+<div id="0dc06a87" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>biseccion(func, <span class="op">-</span><span class="fl">6.5</span>, <span class="op">-</span><span class="fl">6.1</span>, <span class="fl">0.0001</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>-6.283203125</code></pre>
@@ -694,7 +694,7 @@ Cero en -6.2828125 encontrado después de 7 iteraciones.</code></pre>
 <p><span class="math display">\[
 0.0001\times 6 = \frac{1}{2^n}(-6.1 + 6.5)
 \]</span></p>
-<div id="563ccae0" class="cell" data-execution_count="11">
+<div id="d3e9f4ee" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>np.log((<span class="op">-</span><span class="fl">6.1</span><span class="op">+</span><span class="fl">6.5</span>)<span class="op">/</span>(<span class="dv">6</span><span class="op">*</span><span class="fl">0.0001</span>))<span class="op">/</span>np.log(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>9.380821783940931</code></pre>
@@ -717,15 +717,15 @@ Cero en -6.2828125 encontrado después de 7 iteraciones.</code></pre>
 p \approx p_o - \frac{f(p_o)}{f'(p_o)}
 \]</span></p>
 <p>A esta aproximación la llamamos <span class="math inline">\(p_1\)</span> y debería ser más cercana a <span class="math inline">\(p\)</span>. Podemos entonces repetir el proceso empezando desde <span class="math inline">\(p_1\)</span>.</p>
-<div id="701d3851" class="cell" data-execution_count="12">
+<div id="e4c55076" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9d756cb5" class="cell" data-execution_count="13">
+<div id="0d33803d" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MaxIterations(<span class="pp">Exception</span>):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c914e284" class="cell" data-execution_count="14">
+<div id="dcdc0ff2" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> newton(f, df, po, epsilon, N<span class="op">=</span><span class="dv">1000000</span>):</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
@@ -737,7 +737,7 @@ p \approx p_o - \frac{f(p_o)}{f'(p_o)}
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> MaxIterations(<span class="st">"No se encontró el cero luego de"</span>, N, <span class="st">"iteraciones."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Así como antes, puede haber varios criterios para determinar la convergencia de este algoritmo. Comparemos con el método de bisección.</p>
-<div id="8b8cebfc" class="cell" data-execution_count="15">
+<div id="6df8fec1" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> biseccion(f, a, b, epsilon, N<span class="op">=</span><span class="dv">1000000</span>):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    pp <span class="op">=</span> a</span>
@@ -753,32 +753,32 @@ p \approx p_o - \frac{f(p_o)}{f'(p_o)}
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> MaxIterations(<span class="st">"No se encontró el cero luego de"</span>, N, <span class="st">"iteraciones."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9e45f2c0" class="cell" data-execution_count="16">
+<div id="3e0de109" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">-</span> np.cos(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="65b92d21" class="cell" data-execution_count="17">
+<div id="c07fa560" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df(x):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">+</span> np.sin(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f89fc27f" class="cell" data-execution_count="18">
+<div id="f53b9165" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">100</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, f(x))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="12_newton_y_biseccion_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="12_newton_y_biseccion_files/figure-html/cell-19-output-1.png" width="569" height="416" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="790d2f39" class="cell" data-execution_count="19">
+<div id="991af0c3" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>biseccion(f, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.00001</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>(0.7390861511230469, 18)</code></pre>
 </div>
 </div>
-<div id="18a0b1d1" class="cell" data-execution_count="20">
+<div id="feb0d2fa" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>newton(f, df, <span class="dv">1</span>, <span class="fl">0.00001</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>(0.7390851332151607, 4)</code></pre>
@@ -788,7 +788,7 @@ p \approx p_o - \frac{f(p_o)}{f'(p_o)}
 <p><span class="math display">\[
 f'(p_n) \approx \frac{f(p_n) - f(p_{n-1})}{p_n - p_{n-1}}
 \]</span></p>
-<div id="464adf7d" class="cell" data-execution_count="21">
+<div id="cfe2c8ce" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> secante(f, po, p1, epsilon, N<span class="op">=</span><span class="dv">1000000</span>):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    qo <span class="op">=</span> f(po)</span>
@@ -804,7 +804,7 @@ f'(p_n) \approx \frac{f(p_n) - f(p_{n-1})}{p_n - p_{n-1}}
 <span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> MaxIterations(<span class="st">'No se encontró el cero luego de'</span>, N, <span class="st">'iteraciones'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8c385a46" class="cell" data-execution_count="22">
+<div id="fe316e58" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>secante(f, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.00001</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>(0.7390851332150012, 5)</code></pre>
@@ -814,17 +814,17 @@ f'(p_n) \approx \frac{f(p_n) - f(p_{n-1})}{p_n - p_{n-1}}
 <section id="métodos-de-scipy" class="level1">
 <h1>Métodos de scipy</h1>
 <p>Estos métodos ya fueron programados en scipy. Lo siguiente es copiado de su documentación (https://docs.scipy.org/doc/scipy/reference/optimize.html).</p>
-<div id="d7a45d49" class="cell" data-execution_count="23">
+<div id="d8983f51" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> optimize</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9ea920db" class="cell" data-execution_count="24">
+<div id="1dbe0c32" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">1</span>)</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fprime(x):</span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1913bcfc" class="cell" data-execution_count="25">
+<div id="5ad36a6f" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El método de Brent es considerado el mejor, es una modificación del método de la secante.</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Implementa una fase inicial de acercamiento al cero usando bisección.</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -835,7 +835,7 @@ f'(p_n) \approx \frac{f(p_n) - f(p_{n-1})}{p_n - p_{n-1}}
 <pre><code>(1.0, 10, 11)</code></pre>
 </div>
 </div>
-<div id="ac092c8d" class="cell" data-execution_count="26">
+<div id="8ec3f410" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podemos también llamar directamente el método de Newton si tenemos la derivada.</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> optimize.root_scalar(f, x0<span class="op">=</span><span class="fl">0.2</span>, fprime<span class="op">=</span>fprime, method<span class="op">=</span><span class="st">'newton'</span>)</span>

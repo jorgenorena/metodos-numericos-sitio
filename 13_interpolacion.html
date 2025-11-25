@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e13f217ceb0135cb77e1494052e28e8a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9eb995e8644016eb670a0cb3bf478a26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -578,11 +578,11 @@ window.Quarto = {
 <p>Las funciones genéricas son difíciles de integrar o derivar. Una manera de simplificar los cálculos es aproximar la función por medio de un polinomio cuyas derivadas e integrales son casi triviales.</p>
 <p>Por otro lado, en muchos casos calcular una función es numéricamente costoso. Podemos entonces calcularla en un número de puntos limitado y asumiendo que es lo suficientemente suave, obtener valores aproximados para cualquier otro punto. A esto se lo llama interpolar la función.</p>
 <p>Uno podría pensar que los polinomios de Taylor proveen una buena aproximación a las funciones.</p>
-<div id="f830d205" class="cell" data-execution_count="2">
+<div id="e5abbdc0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a05b0eae" class="cell" data-execution_count="3">
+<div id="2cf53fc6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="fl">0.2</span>, <span class="dv">4</span>, <span class="dv">100</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ex <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>x</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>tay0 <span class="op">=</span> np.full(<span class="dv">100</span>, <span class="dv">1</span>)</span>
@@ -600,7 +600,7 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13_interpolacion_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_interpolacion_files/figure-html/cell-3-output-1.png" width="578" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -616,7 +616,7 @@ P(x) = \sum_{i = 0}^n f(x_i) L_{n,i}(x)\,,
 <p><span class="math display">\[
 L_{n,i}(x) = \prod_{j = 0, j \neq i}^n \frac{(x - x_j)}{(x_i - x_j)}
 \]</span></p>
-<div id="c2ae0361" class="cell" data-execution_count="4">
+<div id="47aaeb18" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lagrange(x, puntos):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Interpola una función que pasa por n puntos como un polinomio</span></span>
@@ -634,33 +634,33 @@ L_{n,i}(x) = \prod_{j = 0, j \neq i}^n \frac{(x - x_j)}{(x_i - x_j)}
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(fs<span class="op">*</span>Lis)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="16b1c251" class="cell" data-execution_count="5">
+<div id="14c37ef8" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> ((<span class="dv">2</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>), (<span class="fl">2.75</span>, <span class="dv">1</span><span class="op">/</span><span class="fl">2.75</span>), (<span class="dv">4</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lagrange(<span class="dv">2</span>, puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>np.float64(0.5)</code></pre>
 </div>
 </div>
-<div id="42b5a2b4" class="cell" data-execution_count="6">
+<div id="fdefc5eb" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">100</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, <span class="dv">1</span><span class="op">/</span>x)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, [lagrange(xi, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13_interpolacion_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_interpolacion_files/figure-html/cell-6-output-1.png" width="579" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="644a5081" class="cell" data-execution_count="7">
+<div id="6597ca7b" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="fl">0.5</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, <span class="dv">1</span><span class="op">/</span>x)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, [lagrange(xi, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13_interpolacion_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_interpolacion_files/figure-html/cell-7-output-1.png" width="579" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -735,7 +735,7 @@ a_2 = \frac{(f(x_2) - f(x_o))/(x_2 - x_o) - (f(x_1) - f(x_o))/(x_1 - x_o)}{(x_2 
 <p><span class="math display">\[
 a_k = f[x_o, x_1, ..., x_k] \equiv \frac{f[x_o, x_1,...,x_{k-2}, x_k] - f[x_o, x_1,...,x_{k-2},x_{k-1}]}{(x_k - x_{k-1})}
 \]</span></p>
-<div id="97992db9" class="cell" data-execution_count="8">
+<div id="e5e11e57" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> difer(puntos):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(puntos) <span class="op">-</span> <span class="dv">1</span></span>
@@ -749,30 +749,30 @@ a_k = f[x_o, x_1, ..., x_k] \equiv \frac{f[x_o, x_1,...,x_{k-2}, x_k] - f[x_o, x
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [Fs[i][<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">+</span> <span class="dv">1</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c4811ef3" class="cell" data-execution_count="9">
+<div id="b69816ec" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="fl">0.7651977</span>], [<span class="fl">1.3</span>, <span class="fl">0.6200860</span>], [<span class="fl">1.6</span>, <span class="fl">0.4554022</span>], [<span class="fl">1.9</span>, <span class="fl">0.2818186</span>], [<span class="fl">2.2</span>, <span class="fl">0.1103623</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="42e16824" class="cell" data-execution_count="10">
+<div id="7cc13b67" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> difer(puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b9b520cc" class="cell" data-execution_count="11">
+<div id="20dbd164" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>np.prod([i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>)])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>np.float64(1.0)</code></pre>
 </div>
 </div>
-<div id="afeabba9" class="cell" data-execution_count="12">
+<div id="bd101ed7" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poly(x, coefs):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(coef[n]<span class="op">*</span>np.prod([(x <span class="op">-</span> puntos[i,<span class="dv">0</span>]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coefs)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="73ad602a" class="cell" data-execution_count="13">
+<div id="3407aabc" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, [poly(xi, coef) <span class="cf">for</span> xi <span class="kw">in</span> x])</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(puntos[:,<span class="dv">0</span>], puntos[:,<span class="dv">1</span>], color<span class="op">=</span><span class="st">'red'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13_interpolacion_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_interpolacion_files/figure-html/cell-13-output-1.png" width="582" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -795,11 +795,11 @@ f[z_{2i}, z_{2i + 1}] = f'(x_i).
 <p><span class="math display">\[
 P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
 \]</span></p>
-<div id="75366840" class="cell" data-execution_count="14">
+<div id="dc38cb18" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="31c6e984" class="cell" data-execution_count="15">
+<div id="cbdb9e4e" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hermite(puntos):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(puntos) <span class="op">-</span> <span class="dv">1</span></span>
@@ -824,13 +824,13 @@ P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
 <span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [Fs[i][<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span><span class="op">*</span>n <span class="op">+</span> <span class="dv">2</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7af65465" class="cell" data-execution_count="16">
+<div id="03a3d4e0" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> [[<span class="fl">1.3</span>, <span class="fl">0.6200860</span>, <span class="op">-</span><span class="fl">0.5220232</span>], [<span class="fl">1.6</span>, <span class="fl">0.4554022</span>, <span class="op">-</span><span class="fl">0.5698959</span>], [<span class="fl">1.9</span>, <span class="fl">0.2818186</span>, <span class="op">-</span><span class="fl">0.5811571</span>]]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="af456feb" class="cell" data-execution_count="17">
+<div id="92a1470a" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> hermite(puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c1bde86c" class="cell" data-execution_count="18">
+<div id="60e89ac6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poly_hermite(x, coefs, puntos):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    zs <span class="op">=</span> [puntos[n<span class="op">//</span><span class="dv">2</span>][<span class="dv">0</span>] <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coefs))]</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
@@ -839,14 +839,14 @@ P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> coefs[n]<span class="op">*</span>np.prod(terms[:n])</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cae4892a" class="cell" data-execution_count="19">
+<div id="0964e11c" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>poly_hermite(<span class="fl">1.5</span>, coefs, puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>np.float64(0.5118277017283951)</code></pre>
 </div>
 </div>
 <p>Hagamos un ejemplo. Interpolemos la función de <span class="math inline">\(1/x\)</span> entre <span class="math inline">\(0.2\)</span> y <span class="math inline">\(2\)</span> usando tres puntos usando un polinomio de Lagrange y luego usando un polinomio de Hermite.</p>
-<div id="7da83827" class="cell" data-execution_count="20">
+<div id="9450673c" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> difer(puntos):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(puntos) <span class="op">-</span> <span class="dv">1</span></span>
@@ -860,20 +860,20 @@ P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [Fs[i][<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">+</span> <span class="dv">1</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2eecdd2d" class="cell" data-execution_count="21">
+<div id="a090a9f8" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>puntos <span class="op">=</span> np.array([[<span class="fl">0.5</span>, <span class="dv">1</span><span class="op">/</span><span class="fl">0.5</span>, <span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="fl">0.5</span><span class="op">**</span><span class="dv">2</span>], [<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>], [<span class="dv">2</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">4</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0bef34f2" class="cell" data-execution_count="22">
+<div id="69b518ab" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>coefs_lagrange <span class="op">=</span> difer(puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9093c2c4" class="cell" data-execution_count="23">
+<div id="4d2edb9a" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poly_lagrange(x, coefs, puntos):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(coefs[n]<span class="op">*</span>np.prod([(x <span class="op">-</span> puntos[i,<span class="dv">0</span>]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coefs)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9e29abfd" class="cell" data-execution_count="24">
+<div id="5b33c4d3" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>coefs_hermite <span class="op">=</span> hermite(puntos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="da2c76bf" class="cell" data-execution_count="25">
+<div id="372ef278" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="fl">0.15</span>, <span class="fl">2.5</span>, <span class="dv">100</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>exact <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>x</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> [poly_lagrange(xi, coefs_lagrange, puntos) <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
@@ -885,7 +885,7 @@ P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13_interpolacion_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_interpolacion_files/figure-html/cell-25-output-1.png" width="558" height="415" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -894,7 +894,7 @@ P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
 <section id="splines-cúbicas" class="level1">
 <h1>Splines cúbicas</h1>
 <p>Los polinomios de alto orden tienen problemas al intentar interpolar una función. Intentemos un ejemplo tomando muchos puntos.</p>
-<div id="d9bbae25" class="cell" data-execution_count="26">
+<div id="f33f2ae3" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mini <span class="op">=</span> <span class="fl">0.1</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>maxi <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> <span class="dv">9</span></span>
@@ -913,14 +913,14 @@ P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13_interpolacion_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_interpolacion_files/figure-html/cell-26-output-1.png" width="590" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Lo mismo ocurre cuando los puntos de datos contienen un error numérico.</p>
 <p>Por este motivo es más práctico hacer una interpolación de la función tramo por tramo.</p>
-<div id="dc383b4c" class="cell" data-execution_count="27">
+<div id="205934a4" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_ind(x, puntos):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(puntos)):</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x <span class="op">&lt;</span> puntos[i,<span class="dv">0</span>] <span class="kw">and</span> i <span class="op">!=</span> <span class="dv">0</span>:</span>
@@ -937,7 +937,7 @@ P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
 <span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> puntos[i<span class="op">+</span><span class="dv">1</span>][<span class="dv">1</span>]<span class="op">*</span>(x <span class="op">-</span> puntos[i][<span class="dv">0</span>])<span class="op">/</span>(puntos[i<span class="op">+</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">-</span> puntos[i][<span class="dv">0</span>])</span>
 <span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Lo <span class="op">+</span> L1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="17abb0ec" class="cell" data-execution_count="28">
+<div id="3ad27e01" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mini <span class="op">=</span> <span class="fl">0.1</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>maxi <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> <span class="dv">9</span></span>
@@ -955,7 +955,7 @@ P(x) = f[z_o] + \sum_{k=1}^{2n + 1} f[z_o, ..., z_k] (z - z_o)...(z - z_{k-1})
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13_interpolacion_files/figure-html/cell-28-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_interpolacion_files/figure-html/cell-28-output-1.png" width="582" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -975,7 +975,7 @@ S_{i}''(x_{i+1}) = S_{i+1}''(x_{i+1})
 S_0''(x_o) = S_{n-1}''(x_n) = 0
 \]</span></p>
 <p>A estas se las llama splines naturales. Se pueden encontrar resolviendo un sistema de <span class="math inline">\(4n - 4\)</span> ecuaciones.</p>
-<div id="74e00724" class="cell" data-execution_count="29">
+<div id="3a41d445" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spline_coefs(puntos):</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(puntos) <span class="op">-</span> <span class="dv">1</span></span>
@@ -1008,7 +1008,7 @@ S_0''(x_o) = S_{n-1}''(x_n) = 0
 <span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a, b, c, d</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c0babfc4" class="cell" data-execution_count="30">
+<div id="05de2c15" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spline_eval(x, coefs, puntos):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span> puntos[<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>]:</span>
@@ -1021,7 +1021,7 @@ S_0''(x_o) = S_{n-1}''(x_n) = 0
 <span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (a[i] <span class="op">+</span> b[i]<span class="op">*</span>(x <span class="op">-</span> puntos[i][<span class="dv">0</span>]) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>            c[i]<span class="op">*</span>(x <span class="op">-</span> puntos[i][<span class="dv">0</span>])<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> d[i]<span class="op">*</span>(x <span class="op">-</span> puntos[i][<span class="dv">0</span>])<span class="op">**</span><span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="53e7aae1" class="cell" data-execution_count="31">
+<div id="33694e31" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>mini <span class="op">=</span> <span class="fl">0.1</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>maxi <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> <span class="dv">9</span></span>
@@ -1040,7 +1040,7 @@ S_0''(x_o) = S_{n-1}''(x_n) = 0
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13_interpolacion_files/figure-html/cell-31-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_interpolacion_files/figure-html/cell-31-output-1.png" width="582" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1048,7 +1048,7 @@ S_0''(x_o) = S_{n-1}''(x_n) = 0
 </section>
 <section id="scipy" class="level1">
 <h1>Scipy</h1>
-<div id="6ae764be" class="cell" data-execution_count="32">
+<div id="6f8c39e3" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tomado de: https://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> interp1d</span>
@@ -1066,7 +1066,7 @@ S_0''(x_o) = S_{n-1}''(x_n) = 0
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13_interpolacion_files/figure-html/cell-32-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_interpolacion_files/figure-html/cell-32-output-1.png" width="582" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
